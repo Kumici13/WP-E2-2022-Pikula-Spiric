@@ -2,7 +2,7 @@ var app = new Vue({
 	el: '#products',
 	data: {
 		products: null,
-		title: "Primer Vue.js tehnologije na spisku proizvoda",
+		title: "Prikaz sportskih objekata",
 		mode: "BROWSE",
 		selectedProduct: {},
 		error: ''
@@ -18,12 +18,12 @@ var app = new Vue({
 		},
 		showForm: function () {
 			this.mode = 'CREATE'
-			this.selectedProduct = { id: '', name: null, price: null }
+			this.selectedProduct = { id: '', name: null, status: null, type: null, sadrzaj: null, lokacija: null, ocena: null, vreme: null }
 		},
 		createOrEditProduct: function (event) {
 			this.error = ""
-			if (!this.selectedProduct.name || !this.selectedProduct.price) {
-				this.error = "Unesite naziv i cenu";
+			if (!this.selectedProduct.name || !this.selectedProduct.status || !this.selectedProduct.type || !this.selectedProduct.sadrzaj || !this.selectedProduct.lokacija || !this.selectedProduct.ocena || !this.selectedProduct.vreme) {
+				this.error = "Morate popuniti sva polja!";
 				event.preventDefault();
 				return;
 			}
