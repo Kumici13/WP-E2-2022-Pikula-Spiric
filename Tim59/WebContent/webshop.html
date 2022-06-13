@@ -18,17 +18,25 @@
 
 		<table border="1" id="tabela">
 			<thead>
-				<tr bgcolor="lightgrey">
+				<tr bgcolor="#E9F7F8">
 					<th>Naziv</th>
-					<th>Cena</th>
-					<th>&nbsp;</th>
-					<th>&nbsp;</th>
+					<th>Status</th>
+					<th>Tip</th>
+					<th>Sadrzaj</th>
+					<th>Lokacija</th>
+					<th>ProsecnaOcena</th>
+					<th>RadnoVr</th>
 				</tr>
 			</thead>
 
 			<tr v-for="p in products">
 				<td>{{p.name }}</td>
-				<td>{{p.price }}</td>
+				<td>{{p.status }}</td>
+				<td>{{p.type }}</td>
+				<td>{{p.sadrzaj }}</td>
+				<td>{{p.lokacija }}</td>
+				<td>{{p.ocena }}</td>
+				<td>{{p.vreme }}</td>
 				<td><button  v-on:click="editProduct(p)">Izmeni</button></td>
 				<td><button type="button" class="btn-close" aria-label="Close" v-on:click="deleteProduct(p)"></button></td>
 			</tr>
@@ -43,8 +51,28 @@
 					<td><input type="text" name="name" v-model="selectedProduct.name"></td>
 				</tr>
 				<tr>
-					<td>Cena</td>
-					<td><input type="number" name="price" v-model="selectedProduct.price"></td>
+					<td>Status</td>
+					<td><input type="text" name="status" v-model="selectedProduct.status"></td>
+				</tr>
+				<tr>
+					<td>Tip</td>
+					<td><input type="text" name="type" v-model="type"></td>
+				</tr>
+				<tr>
+					<td>Sadrzaj</td>
+					<td><input type="text" name="sadrzaj" v-model="selectedProduct.sadrzaj"></td>
+				</tr>
+				<tr>
+					<td>Lokacija</td>
+					<td><input type="text" name="lokacija" v-model="selectedProduct.lokacija"></td>
+				</tr>
+				<tr>
+					<td>ProsecnaOcena</td>
+					<td><input type="text" name="ocena" v-model="selectedProduct.ocena"></td>
+				</tr>
+				<tr>
+					<td>RadnoVr</td>
+					<td><input type="text" name="vreme" v-model="selectedProduct.vreme"></td>
 				</tr>
 				<tr>
 					<td><input type="submit" value="Pošalji"></td>
