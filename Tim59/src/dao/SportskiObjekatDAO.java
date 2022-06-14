@@ -12,7 +12,7 @@ import beans.SportskiObjekat;
 
 
 /***
- * Klasa namenjena da uèita proizvode iz fajla i pruža operacije nad njima (poput pretrage).
+ * Klasa namenjena da uï¿½ita proizvode iz fajla i pruï¿½a operacije nad njima (poput pretrage).
  * Proizvodi se nalaze u fajlu WebContent/products.txt u obliku: <br>
  * id;status;tipObjekta;sadrzaj;lokacija;slika;prosecnaOcena;
  * @author Lazar
@@ -27,14 +27,14 @@ public class SportskiObjekatDAO {
 	}
 	
 	/***
-	 * @param contextPath Putanja do aplikacije u Tomcatu. Može se pristupiti samo iz servleta.
+	 * @param contextPath Putanja do aplikacije u Tomcatu. Moï¿½e se pristupiti samo iz servleta.
 	 */
 	public SportskiObjekatDAO(String contextPath) {
 		loadSportskiObjekat(contextPath);
 	}
 
 	/***
-	 * Vraæa sve proizvode.
+	 * Vraï¿½a sve proizvode.
 	 * @return
 	 */
 	public Collection<SportskiObjekat> findAll() {
@@ -50,9 +50,9 @@ public class SportskiObjekatDAO {
 	}
 	
 	/***
-	 * Dodaje proizvod u mapu proizvoda. Id novog proizvoda æe biti postavljen na maxPostojeciId + 1.
+	 * Dodaje proizvod u mapu proizvoda. Id novog proizvoda ï¿½e biti postavljen na maxPostojeciId + 1.
 	 * id;status;tipObjekta;sadrzaj;lokacija;slika;prosecnaOcena;
-	 * @param product
+	 * @param SportskiObjekat
 	 */
 	public SportskiObjekat save(SportskiObjekat sport) {
 		Integer maxId = -1;
@@ -69,8 +69,8 @@ public class SportskiObjekatDAO {
 	}
 
 	/**
-	 * Uèitava korisnike iz WebContent/users.txt fajla i dodaje ih u mapu {@link #products}.
-	 * Kljuè je id proizovda.
+	 * Uï¿½itava korisnike iz WebContent/users.txt fajla i dodaje ih u mapu {@link #products}.
+	 * Kljuï¿½ je id proizovda.
 	 * id;status;tipObjekta;sadrzaj;lokacija;slika;prosecnaOcena;
 	 * @param contextPath Putanja do aplikacije u Tomcatu
 	 */

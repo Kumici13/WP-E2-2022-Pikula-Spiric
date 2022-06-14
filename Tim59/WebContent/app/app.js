@@ -18,17 +18,17 @@ var app = new Vue({
 		},
 		showForm: function () {
 			this.mode = 'CREATE'
-			this.selectedProduct = { id: "", name: "", status: "", type: "", sadrzaj: "", lokacija: "", ocena: 0, vreme: ""  }
+			this.selectedProduct = { id: "-1", name: "", status: "", tipObjekta: "", sadrzaj: "", lokacija: "", prosecnaOcena: 0, radnoVreme: ""  }
 		},
 		createOrEditProduct: function (event) {
 			this.error = ""
-			if ((this.selectedProduct.name=="") || (this.selectedProduct.status=="") || (this.selectedProduct.type=="") || (this.selectedProduct.sadrzaj=="") || (this.selectedProduct.lokacija=="") || (this.selectedProduct.ocena==0) || (this.selectedProduct.vreme=="")) {
+			if ((this.selectedProduct.name=="") || (this.selectedProduct.status=="") || (this.selectedProduct.tipObjekta=="") || (this.selectedProduct.sadrzaj=="") || (this.selectedProduct.lokacija=="") || (this.selectedProduct.prosecnaOcena==0) || (this.selectedProduct.radnoVreme=="")) {
 				this.error = "Unesite vrednosti za sva polja!";
 				event.preventDefault();
 				return;
 			}
 			if (this.mode == 'CREATE') {
-				axios.post('rest/sportskiobjekti/', this.selectedProduct)
+				axios.post('rest/sportskiobjekti', this.selectedProduct)
 					.then((response) => {
 						alert('Novi proizvod uspešno kreiran')
 						this.mode = 'BROWSE'
