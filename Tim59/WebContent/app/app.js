@@ -2,7 +2,7 @@ var app = new Vue({
 	el: '#products',
 	data: {
 		products: null,
-		title: "Prikaz sportskih objekata",
+		title: "Prikaz sportskih objekata:",
 		mode: "BROWSE",
 		selectedProduct: {},
 		error: ''
@@ -18,12 +18,12 @@ var app = new Vue({
 		},
 		showForm: function () {
 			this.mode = 'CREATE'
-			this.selectedProduct = { id: '', name: null, status: null, type: null, sadrzaj: null, lokacija: null, ocena: null, vreme: null }
+			this.selectedProduct = { id: '', name: null, status: null, type: null, sadrzaj: null, lokacija: null, ocena: null, vreme: null  }
 		},
 		createOrEditProduct: function (event) {
 			this.error = ""
-			if (!this.selectedProduct.name || !this.selectedProduct.status || !this.selectedProduct.type || !this.selectedProduct.sadrzaj || !this.selectedProduct.lokacija || !this.selectedProduct.ocena || !this.selectedProduct.vreme) {
-				this.error = "Morate popuniti sva polja!";
+			if (!this.selectedProduct.name || !this.selectedProduct.status && !this.selectedProduct.type && !this.selectedProduct.sadrzaj && !this.selectedProduct.lokacija && !this.selectedProduct.ocena && !this.selectedProduct.vreme) {
+				this.error = "Unesite vrednosti za sva polja!";
 				event.preventDefault();
 				return;
 			}
@@ -57,3 +57,4 @@ var app = new Vue({
 		}
 	}
 });
+

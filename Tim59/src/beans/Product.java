@@ -6,7 +6,7 @@ public class Product {
 	private String name;
 	private double price;
 	
-	public Product() {
+	public Product(String id2, String name2, String status, String type, String sadrzaj, String lokacija, double d, String vreme) {
 		
 	}
 
