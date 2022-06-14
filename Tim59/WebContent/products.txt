@@ -1,1 +1,2 @@
-1;Naziv;Status;Tip;Sadrzaj;Lokacija;ProsecnaOcena;RadnoVr
+1;naziv;status;tipObjekta;sadrzaj;lokacija;2;radnoVreme
+2;naziv2;status2;tipObjekta2;sadrzaj2;lokacija2;5;radnoVreme2

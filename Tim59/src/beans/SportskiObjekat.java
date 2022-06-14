@@ -2,12 +2,13 @@ package beans;
 
 public class SportskiObjekat {
 	
-	private String naziv;
-	private boolean status;
+	private String id;
+	private String name;
+	private String status;
 	private String tipObjekta;
 	private String sadrzaj;
 	private String lokacija;
-	private String slika;
+	//private String slika;  Obrisao sliku jer ne znam sta sa njom u htmlu(za sad)
 	private double prosecnaOcena;
 	private String radnoVreme;
 	
@@ -16,33 +17,34 @@ public class SportskiObjekat {
 		
 	}
 	
-	public SportskiObjekat(String naziv, boolean status, String tipObjekta, String sadrzaj, String lokacija, String slika, Double prosecnaOcena, String radnoVreme)
+	public SportskiObjekat(String id, String name, String status, String tipObjekta, String sadrzaj, String lokacija,  Double prosecnaOcena, String radnoVreme)
 	{
-		this.naziv = naziv;
+		this.id = id;
+		this.name = name;
 		this.status = status;
 		this.tipObjekta = tipObjekta;
 		this.sadrzaj = sadrzaj;
 		this.lokacija = lokacija;
-		this.slika = slika;
+	//	this.slika = slika;
 		this.prosecnaOcena = prosecnaOcena;
 		this.radnoVreme = radnoVreme;
 		
 	}
 	
 
-	public String getNaziv() {
-		return naziv;
+	public String getId() {
+		return id;
 	}
 
-	public void setNaziv(String naziv) {
-		this.naziv = naziv;
+	public void setId(String naziv) {
+		this.id = naziv;
 	}
 
-	public boolean isStatus() {
+	public String isStatus() {
 		return status;
 	}
 
-	public void setStatus(boolean status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
@@ -70,14 +72,7 @@ public class SportskiObjekat {
 		this.lokacija = lokacija;
 	}
 
-	public String getSlika() {
-		return slika;
-	}
-
-	public void setSlika(String slika) {
-		this.slika = slika;
-	}
-
+	
 	public double getProsecnaOcena() {
 		return prosecnaOcena;
 	}
@@ -94,6 +89,19 @@ public class SportskiObjekat {
 		this.radnoVreme = radnoVreme;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	
 	
 	
 }
