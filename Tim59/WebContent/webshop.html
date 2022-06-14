@@ -9,7 +9,7 @@
 </head>
 
 <body>
-	<div id ="products">
+	<div id ="sportskiobjekti">
 		<h3>{{title}}</h3>
 
 		<table border="1" id="tabela">
@@ -27,7 +27,7 @@
 				</tr>
 			</thead>
 
-			<tr v-for="p in products">
+			<tr v-for="p in sportskiobjekti">
 				<td>{{p.name }}</td>
 				<td>{{p.status }}</td>
 				<td>{{p.type }}</td>
@@ -54,7 +54,7 @@
 				</tr>
 				<tr>
 					<td>Tip objekta</td>
-					<td><input type="text" name="type" v-model="type"></td>
+					<td><input type="text" name="type" v-model="selectedProduct.type"></td>
 				</tr>
 				<tr>
 					<td>Sadrzaj</td>

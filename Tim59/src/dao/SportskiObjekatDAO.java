@@ -77,7 +77,7 @@ public class SportskiObjekatDAO {
 	private void loadSportskiObjekat(String contextPath) {
 		BufferedReader in = null;
 		try {
-			File file = new File(contextPath + "/products.txt");
+			File file = new File(contextPath + "/sportskiobjekti.txt");
 			System.out.println(file.getCanonicalPath());
 			in = new BufferedReader(new FileReader(file));
 			String line, id = "", name ="", status = "" , type = "" , sadrzaj = "" , lokacija = "" , ocena ="" , vreme = "";

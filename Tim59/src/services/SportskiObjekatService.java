@@ -20,7 +20,7 @@ import javax.ws.rs.core.MediaType;
 import beans.SportskiObjekat;
 import dao.SportskiObjekatDAO;
 
-@Path("/products")
+@Path("/sportskiobjekti")
 public class SportskiObjekatService {
 	
 	@Context
