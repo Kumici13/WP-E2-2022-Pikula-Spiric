@@ -40,6 +40,18 @@ public class SportskiObjekatDAO {
 	public Collection<SportskiObjekat> findAll() {
 		return sportski.values();
 	}
+	
+	public Collection<SportskiObjekat> findByName(String name) {
+		HashMap<String, SportskiObjekat> sportskitemp = new HashMap<String, SportskiObjekat>();
+		for(int i = 0;i < sportski.size(); i++)
+		{
+			if(sportski.get(Integer.toString(i)).getName() == name)
+			{
+				sportskitemp.put(Integer.toString(i),sportski.get(Integer.toString(i)));
+			}
+		}
+		return sportskitemp.values();
+	}
 
 	/***
 	 *  Vraca proizvod na osnovu njegovog id-a. 

@@ -2,6 +2,7 @@ var app = new Vue({
 	el: '#sportskiobjekti',
 	data: {
 		sportskiobjekti: null,
+		search: "",
 		title: "Prikaz sportskih objekata:",
 		mode: "BROWSE",
 		selectedProduct: {},
@@ -54,6 +55,11 @@ var app = new Vue({
 					alert('Proizvod je uspesno obrisan')
 					this.sportskiobjekti = this.sportskiobjekti.filter((p) => p.id !== product.id)
 				})
+		},
+		findByName: function (searchtext) {
+			this.search = searchtext
+			axios.get('rest/sportskiobjekti/' + this.search)
+				.then(response => (this.sportskiobjekti = response.data))
 		}
 	}
 });
