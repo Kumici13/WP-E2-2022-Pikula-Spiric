@@ -4,15 +4,15 @@ public class IstorijaTreninga {
 	
 	private String datumVreme;
 	private Trening trening;
-	private String kupac;
-	private String trener;
+	private Kupac kupac;
+	private Trener trener;
 	
 	public IstorijaTreninga()
 	{
 		
 	}
 
-	public IstorijaTreninga(String datumVreme, Trening trening, String kupac, String trener) {
+	public IstorijaTreninga(String datumVreme, Trening trening, Kupac kupac, Trener trener) {
 		super();
 		this.datumVreme = datumVreme;
 		this.trening = trening;
@@ -36,19 +36,19 @@ public class IstorijaTreninga {
 		this.trening = trening;
 	}
 
-	public String getKupac() {
+	public Kupac getKupac() {
 		return kupac;
 	}
 
-	public void setKupac(String kupac) {
+	public void setKupac(Kupac kupac) {
 		this.kupac = kupac;
 	}
 
-	public String getTrener() {
+	public Trener getTrener() {
 		return trener;
 	}
 
-	public void setTrener(String trener) {
+	public void setTrener(Trener trener) {
 		this.trener = trener;
 	}
 	

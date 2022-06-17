@@ -1,13 +1,15 @@
 package beans;
 
+import enums.TipObjektaEnum;
+
 public class SportskiObjekat {
 	
 	private String id;
-	private String name;
-	private String status;
-	private String tipObjekta;
+	private String naziv;
+	private Boolean status;
+	private TipObjektaEnum tipObjekta;
 	private String sadrzaj;
-	private String lokacija;
+	private Lokacija lokacija;
 	//private String slika;  Obrisao sliku jer ne znam sta sa njom u htmlu(za sad)
 	private double prosecnaOcena;
 	private String radnoVreme;
@@ -17,10 +19,10 @@ public class SportskiObjekat {
 		
 	}
 	
-	public SportskiObjekat(String id, String name, String status, String tipObjekta, String sadrzaj, String lokacija,  Double prosecnaOcena, String radnoVreme)
+	public SportskiObjekat(String id, String naziv, Boolean status, TipObjektaEnum tipObjekta, String sadrzaj, Lokacija lokacija,  Double prosecnaOcena, String radnoVreme)
 	{
 		this.id = id;
-		this.name = name;
+		this.naziv = naziv;
 		this.status = status;
 		this.tipObjekta = tipObjekta;
 		this.sadrzaj = sadrzaj;
@@ -40,19 +42,19 @@ public class SportskiObjekat {
 		this.id = naziv;
 	}
 
-	public String isStatus() {
+	public Boolean isStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Boolean status) {
 		this.status = status;
 	}
 
-	public String getTipObjekta() {
+	public TipObjektaEnum getTipObjekta() {
 		return tipObjekta;
 	}
 
-	public void setTipObjekta(String tipObjekta) {
+	public void setTipObjekta(TipObjektaEnum tipObjekta) {
 		this.tipObjekta = tipObjekta;
 	}
 
@@ -64,11 +66,11 @@ public class SportskiObjekat {
 		this.sadrzaj = sadrzaj;
 	}
 
-	public String getLokacija() {
+	public Lokacija getLokacija() {
 		return lokacija;
 	}
 
-	public void setLokacija(String lokacija) {
+	public void setLokacija(Lokacija lokacija) {
 		this.lokacija = lokacija;
 	}
 
@@ -90,14 +92,14 @@ public class SportskiObjekat {
 	}
 
 	public String getName() {
-		return name;
+		return naziv;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.naziv = name;
 	}
 
-	public String getStatus() {
+	public Boolean getStatus() {
 		return status;
 	}
 

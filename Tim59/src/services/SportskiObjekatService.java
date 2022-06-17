@@ -41,6 +41,14 @@ public class SportskiObjekatService {
 	}
 	
 	@GET
+	@Path("/{name}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<SportskiObjekat> getSportskiObjektiByName(@PathParam("name") String name) {
+		SportskiObjekatDAO dao = (SportskiObjekatDAO) ctx.getAttribute("sportskiObjekatDAO");
+		return dao.findAll();
+	}
+	
+	@GET
 	@Path("/")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Collection<SportskiObjekat> getSportskiObjekti() {

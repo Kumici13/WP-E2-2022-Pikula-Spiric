@@ -17,31 +17,38 @@
 <body>
 	<div id ="sportskiobjekti">
 		<h3>{{title}}</h3>
-
-		<table class ="table" border="1" id="tabela">
+		
+ 
+		<table bgcolor="#EEEDE7" class ="table" border="2" id="tabela">
 			<thead>
-				<tr bgcolor="#E9F7F8">
+				<tr bgcolor="#B9B7BD">
 					<th>Naziv</th>
 					<th>Status</th>
 					<th>Tip objekta</th>
 					<th>Sadrzaj</th>
 					<th>Lokacija</th>
+					<th>Logo</th>
 					<th>ProsecnaOcena</th>
 					<th>Radno Vreme</th>
-					<th>&nbsp;</th>
-					<th>&nbsp;</th>
+					<form class="d-flex" role="search">
+					<th><input @submit='findByName' class="form-control me-2" v-model="search" type="search" placeholder="Search" aria-label="Search"></th>
+					<th><button  class="btn btn-outline-success" type="submit">Search</button></th>
+					</form>
+        
+      
 				</tr>
 			</thead>
 
-			<tr v-for="p in sportskiobjekti">
+			<tr  v-for="p in sportskiobjekti">
 				<td>{{p.name }}</td>
 				<td>{{p.status }}</td>
 				<td>{{p.tipObjekta }}</td>
 				<td>{{p.sadrzaj }}</td>
 				<td>{{p.lokacija }}</td>
+				<td><img src="Images/gymlogo.jpg" class="img-thumbnail" width="50" height="50"></td>
 				<td>{{p.prosecnaOcena }}</td>
 				<td>{{p.radnoVreme }}</td>
-				<td><button  v-on:click="editProduct(p)"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+				<td><button style="float: right;" v-on:click="editProduct(p)"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
   <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
 </svg> Izmeni</button></td>
 				<td><button class="close" v-on:click="deleteProduct(p)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -57,7 +64,7 @@
 </svg> Dodaj</button></p>
 
 		<form id="forma" v-bind:hidden="mode=='BROWSE'" @submit='createOrEditProduct'>
-			<table border="2" class ="table">
+			<table bgcolor="#E7D2CC" border="2" class ="table">
 				<tr>
 					<td>Naziv</td>
 					<td><input type="text" name="name" v-model="selectedProduct.name"></td>

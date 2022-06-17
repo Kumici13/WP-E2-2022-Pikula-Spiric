@@ -4,14 +4,14 @@ public class Lokacija {
 	
 	private double geoDuzina;
 	private double geoSirina;
-	private String adresa;
+	private Adresa adresa;
 	
 	public Lokacija()
 	{
 		
 	}
 
-	public Lokacija(double geoDuzina, double geoSirina, String adresa) {
+	public Lokacija(double geoDuzina, double geoSirina, Adresa adresa) {
 		super();
 		this.geoDuzina = geoDuzina;
 		this.geoSirina = geoSirina;
@@ -34,11 +34,11 @@ public class Lokacija {
 		this.geoSirina = geoSirina;
 	}
 
-	public String getAdresa() {
+	public Adresa getAdresa() {
 		return adresa;
 	}
 
-	public void setAdresa(String adresa) {
+	public void setAdresa(Adresa adresa) {
 		this.adresa = adresa;
 	}
 	

@@ -1,1 +1,4 @@
-2;asd;sd;fe;ew;gr;2;fds
+1;Kolos-fitnes Gym;Otvoren;Teretana;Bazeni;Futoski put 45;5;10:00AM - 22:00PM
+2;Ozzy gym;Zatvoren;Grupni treninzi;Full oprema za treninge;Bulevar Patrijarha Pavla 35;4;9:00AM - 20:00PM
+3;Promenada Gym;Otvoren;Teretana;Trzni centar;Bulevar Oslobodjenja 76;5;00:00AM - 24:00PM
+4;Total gym Futog;Otvoren;Teretana;Trake za trcanje;Brace Bosnjak 20;3;7:00AM - 23:00PM
