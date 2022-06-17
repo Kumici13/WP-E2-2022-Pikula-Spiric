@@ -1,28 +1,26 @@
 package beans;
 
+import enums.Pol;
+import enums.Uloga;
+
 public class Korisnik {
 	
 	private String korisnickoIme;
 	private String lozinka;
 	private String ime;
 	private String prezime;
-	private String pol;
+	private Pol pol;
 	private String datumRodjenja;
-	private String uloga;
-	private String clanarina;
-	private String sportskiObjekat;
-	private String poseceniObjekat;
-	private int brojBodova;
-	private TipKupca tipKupca;
+	protected Uloga uloga;
+
 	
 	public Korisnik()
 	{
 		
 	}
 	
-	public Korisnik(String korisnickoIme, String lozinka, String ime, String prezime, String pol, String datumRodjenja,
-			String uloga, String clanarina, String sportskiObjekat, String poseceniObjekat, int brojBodova,
-			TipKupca tipKupca) {
+	public Korisnik(String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, String datumRodjenja,
+			Uloga uloga) {
 		super();
 		this.korisnickoIme = korisnickoIme;
 		this.lozinka = lozinka;
@@ -31,11 +29,7 @@ public class Korisnik {
 		this.pol = pol;
 		this.datumRodjenja = datumRodjenja;
 		this.uloga = uloga;
-		this.clanarina = clanarina;
-		this.sportskiObjekat = sportskiObjekat;
-		this.poseceniObjekat = poseceniObjekat;
-		this.brojBodova = brojBodova;
-		this.tipKupca = tipKupca;
+		
 	}
 	
 	public String getKorisnickoIme() {
@@ -70,11 +64,11 @@ public class Korisnik {
 		this.prezime = prezime;
 	}
 
-	public String getPol() {
+	public Pol getPol() {
 		return pol;
 	}
 
-	public void setPol(String pol) {
+	public void setPol(Pol pol) {
 		this.pol = pol;
 	}
 
@@ -86,52 +80,15 @@ public class Korisnik {
 		this.datumRodjenja = datumRodjenja;
 	}
 
-	public String getUloga() {
+	public Uloga getUloga() {
 		return uloga;
 	}
 
-	public void setUloga(String uloga) {
+	public void setUloga(Uloga uloga) {
 		this.uloga = uloga;
 	}
 
-	public String getClanarina() {
-		return clanarina;
-	}
-
-	public void setClanarina(String clanarina) {
-		this.clanarina = clanarina;
-	}
-
-	public String getSportskiObjekat() {
-		return sportskiObjekat;
-	}
-
-	public void setSportskiObjekat(String sportskiObjekat) {
-		this.sportskiObjekat = sportskiObjekat;
-	}
-
-	public String getPoseceniObjekat() {
-		return poseceniObjekat;
-	}
-
-	public void setPoseceniObjekat(String poseceniObjekat) {
-		this.poseceniObjekat = poseceniObjekat;
-	}
-
-	public int getBrojBodova() {
-		return brojBodova;
-	}
-
-	public void setBrojBodova(int brojBodova) {
-		this.brojBodova = brojBodova;
-	}
-
-	public TipKupca getTipKupca() {
-		return tipKupca;
-	}
-
-	public void setTipKupca(TipKupca tipKupca) {
-		this.tipKupca = tipKupca;
-	}
+	
+	
 
 }

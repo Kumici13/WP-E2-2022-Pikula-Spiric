@@ -1,13 +1,15 @@
 package beans;
 
+import enums.TipClanarine;
+
 public class Clanarina {
 	
 	private String identifikator;
-	private String tipClanarine;
+	private TipClanarine tipClanarine;
 	private String datumPlacanja;
 	private String datumVazenja;
 	private double cena;
-	private String kupac;
+	private Kupac kupac;
 	private boolean status;
 	private int brojTermina;
 	
@@ -16,8 +18,8 @@ public class Clanarina {
 		
 	}
 
-	public Clanarina(String identifikator, String tipClanarine, String datumPlacanja, String datumVazenja, double cena,
-			String kupac, boolean status, int brojTermina) {
+	public Clanarina(String identifikator, TipClanarine tipClanarine, String datumPlacanja, String datumVazenja, double cena,
+			Kupac kupac, boolean status, int brojTermina) {
 		super();
 		this.identifikator = identifikator;
 		this.tipClanarine = tipClanarine;
@@ -37,11 +39,11 @@ public class Clanarina {
 		this.identifikator = identifikator;
 	}
 
-	public String getTipClanarine() {
+	public TipClanarine getTipClanarine() {
 		return tipClanarine;
 	}
 
-	public void setTipClanarine(String tipClanarine) {
+	public void setTipClanarine(TipClanarine tipClanarine) {
 		this.tipClanarine = tipClanarine;
 	}
 
@@ -69,11 +71,11 @@ public class Clanarina {
 		this.cena = cena;
 	}
 
-	public String getKupac() {
+	public Kupac getKupac() {
 		return kupac;
 	}
 
-	public void setKupac(String kupac) {
+	public void setKupac(Kupac kupac) {
 		this.kupac = kupac;
 	}
 

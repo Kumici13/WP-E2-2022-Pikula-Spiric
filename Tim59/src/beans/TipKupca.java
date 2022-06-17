@@ -1,8 +1,10 @@
 package beans;
 
+import enums.TipKupcaEnum;
+
 public class TipKupca {
 	
-	private String ime;
+	private TipKupcaEnum ime;
 	private double popust;
 	private double brojBodova;
 	
@@ -11,18 +13,18 @@ public class TipKupca {
 		
 	}
 	
-	public TipKupca(String ime, double popust, double brojBodova) {
+	public TipKupca(TipKupcaEnum ime, double popust, double brojBodova) {
 		super();
 		this.ime = ime;
 		this.popust = popust;
 		this.brojBodova = brojBodova;
 	}
 
-	public String getIme() {
+	public TipKupcaEnum getIme() {
 		return ime;
 	}
 
-	public void setIme(String ime) {
+	public void setIme(TipKupcaEnum ime) {
 		this.ime = ime;
 	}
 

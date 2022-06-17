@@ -1,12 +1,14 @@
 package beans;
 
+import enums.TipTreninga;
+
 public class Trening {
 	
 	private String naziv;
-	private String tip;
-	private SportskiObjekat ime;
+	private TipTreninga tip;
+	private SportskiObjekat sportskiObjekat;
 	private double trajanje;
-	private String trener;
+	private Trener trener;
 	private String opis;
 	private String slika;
 	
@@ -15,12 +17,12 @@ public class Trening {
 		
 	}
 
-	public Trening(String naziv, String tip, SportskiObjekat ime, double trajanje, String trener, String opis,
+	public Trening(String naziv, TipTreninga tip, SportskiObjekat sportskiObjekat, double trajanje, Trener trener, String opis,
 			String slika) {
 		super();
 		this.naziv = naziv;
 		this.tip = tip;
-		this.ime = ime;
+		this.sportskiObjekat = sportskiObjekat;
 		this.trajanje = trajanje;
 		this.trener = trener;
 		this.opis = opis;
@@ -35,20 +37,20 @@ public class Trening {
 		this.naziv = naziv;
 	}
 
-	public String getTip() {
+	public TipTreninga getTip() {
 		return tip;
 	}
 
-	public void setTip(String tip) {
+	public void setTip(TipTreninga tip) {
 		this.tip = tip;
 	}
 
 	public SportskiObjekat getIme() {
-		return ime;
+		return sportskiObjekat;
 	}
 
 	public void setIme(SportskiObjekat ime) {
-		this.ime = ime;
+		this.sportskiObjekat = ime;
 	}
 
 	public double getTrajanje() {
@@ -59,11 +61,11 @@ public class Trening {
 		this.trajanje = trajanje;
 	}
 
-	public String getTrener() {
+	public Trener getTrener() {
 		return trener;
 	}
 
-	public void setTrener(String trener) {
+	public void setTrener(Trener trener) {
 		this.trener = trener;
 	}
 
