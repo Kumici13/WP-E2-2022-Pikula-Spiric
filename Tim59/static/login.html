@@ -23,7 +23,7 @@
             	font-size: 30;
             }
             
-            .table3    {
+            .table4    {
             	text-align: center;
             	padding: 200px;
             	font-size: 30;
@@ -50,7 +50,7 @@
 </head>
 
 <body>
-		<div id="index-app">
+		<div id="login-app">
 			<nav class="navbar navbar-expand  fixed-top" style="background-color: #3E1D57; ">
                 <h1><a  class="naslov"  class="navbar-brand" style="color: white ; font-family:Roboto">Uloguj se</a></h1>
                 <div class="collapse navbar-collapse">
@@ -62,41 +62,58 @@
                     </ul>
                 </div>
             </nav>
-        </div>   
+            <br/><br/><br/><br/>
+
 
 		<div  class="welcome">
             <form id="loginForma">
-			 <div class="table1">
-	         	<label style="color: white; font-family:Roboto">Molimo ulogujte se na vas nalog.</label>  
-	         </div>
-	         
-	         <div class="table2">
-	           	<table>
-	           		<tr>
-	           			<td> <label style="color: white; font-family:Roboto">Korisnicko ime:</label> </td>	           			
-		           		<td> <input type="textbox"  font-family:Roboto style="width: 400px; height: 35px"> </td>  	           		        		
-	           		</tr>          		
-	            </table>
-	         </div>
-	         
-	         <div class="table2">
-	         	<table>
-	         		<tr>
-	           			<td> <label style="color: white; font-family:Roboto">Lozinka:</label> </td>	           			
-		           		<td> <input type="textbox"  font-family:Roboto style="width: 400px; height: 35px"> </td>  	
-		           		<td> <button v-on:click.prevent="validacija">Uloguj se</button> </td>	        		
-	           		</tr>
-	         	</table>
-	         </div>
+				 <div class="table1">
+		         	<label style="color: white; font-family:Roboto">Molimo ulogujte se na vas nalog.</label>  
+		         </div>
+		         
+		         <div class="table2">
+		           	<table>
+		           		<tr>
+		           			<td> <label style="color: white; font-family:Roboto">Korisnicko ime:</label> </td>	           			
+			           		<td> <input v-model:value="korisnickoIme" id="korisnickoIme" ref="korisnickoIme" type="textbox"  font-family:Roboto style="width: 400px; height: 35px"> </td>  	           		        		
+		           		</tr>          		
+		            </table>
+		         </div>
+		         
+		         <div class="table2">
+		         	<table>
+		         		<tr>
+		           			<td> <label style="color: white; font-family:Roboto">Lozinka:</label> </td>	           			
+			           		<td> <input v-model:value="sifra" id="sifra" ref="sifra" type="password"  font-family:Roboto style="width: 400px; height: 35px"> </td>  	
+			           		       		
+		           		</tr>
+		         	</table>
+		         </div>    
+	         </form>
 	         
 	         <div class="table3">
+	         		<tr>
+	         			<td> <button v-on:click.prevent="provera">Uloguj se</button> </td>	
+					</tr>
+	         </div>
+	         
+	         <div class="table4">
 	         		<tr>
 	           			<td> <label style="color: white; font-family:Roboto">Nemate kreiran nalog? </label> </td>	 	           			   
 		           		<td> <button type="button" onclick="window.location.href='registration.html'"  class="btn btn-outline-danger">Kreiraj novi nalog.</button> </td>  	   		     
 	         		</tr>
 	         </div>
-	         </form>
          </div>
+         
+         <div class="row">
+                <div class="col" align="center">
+                    <p id="msg" ref="msg"></p>
+                </div>
+            </div>
+  </div>      
+        <script src="./js/vue.js"></script>
+        <script src="./js/axios.js"></script>
+        <script src="./js/login.js"></script>
 </body>
 
 </html>

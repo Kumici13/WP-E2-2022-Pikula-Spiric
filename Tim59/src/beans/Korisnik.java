@@ -6,7 +6,7 @@ import enums.Uloga;
 public class Korisnik {
 	
 	private String korisnickoIme;
-	private String lozinka;
+	private String sifra;
 	private String ime;
 	private String prezime;
 	private Pol pol;
@@ -20,11 +20,11 @@ public class Korisnik {
 		
 	}
 	
-	public Korisnik(String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, String datumRodjenja,
+	public Korisnik(String korisnickoIme, String sifra, String ime, String prezime, Pol pol, String datumRodjenja,
 			Uloga uloga) {
 		super();
 		this.korisnickoIme = korisnickoIme;
-		this.lozinka = lozinka;
+		this.sifra = sifra;
 		this.ime = ime;
 		this.prezime = prezime;
 		this.pol = pol;
@@ -41,12 +41,12 @@ public class Korisnik {
 		this.korisnickoIme = korisnickoIme;
 	}
 
-	public String getLozinka() {
-		return lozinka;
+	public String getSifra() {
+		return sifra;
 	}
 
-	public void setLozinka(String lozinka) {
-		this.lozinka = lozinka;
+	public void setSifra(String sifra) {
+		this.sifra = sifra;
 	}
 
 	public String getIme() {
@@ -97,5 +97,8 @@ public class Korisnik {
 		JWTToken = jWTToken;
 	}
 	
+	public String toSaveFormat() {
+		return this.korisnickoIme + ";" + this.sifra + ";" + this.ime + ";" + this.prezime + ";" + this.pol.name() + ";" + this.datumRodjenja +"\n";
+	}
 
 }
