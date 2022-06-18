@@ -12,6 +12,7 @@ public class Korisnik {
 	private Pol pol;
 	private String datumRodjenja;
 	protected Uloga uloga;
+	protected String JWTToken;
 
 	
 	public Korisnik()
@@ -88,7 +89,13 @@ public class Korisnik {
 		this.uloga = uloga;
 	}
 
-	
+	public String getJWTToken() {
+		return JWTToken;
+	}
+
+	public void setJWTToken(String jWTToken) {
+		JWTToken = jWTToken;
+	}
 	
 
 }
