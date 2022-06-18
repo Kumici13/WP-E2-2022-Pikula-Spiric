@@ -2,120 +2,141 @@
 <html>
 
 <head>
-	<title>Prikaz sportskih objekata</title>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<title>Prikaz sportskih objekata</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="styles.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+
+<script src="jquery-3.3.1.min.js"></script>
+<!-- CSS only -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+	crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 	
-	<script src="jquery-3.3.1.min.js"></script>
-	<!-- CSS only -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-	<!-- JavaScript Bundle with Popper -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+	<style>
+            body   {
+                background-image: url(Images/loginback.jpg);
+                height: 100%;
+            }
+            
+            .h1 {
+            padding : 10px;
+            text-align : center;  
+            }
+            
+            .search {
+            padding : 5px;
+            text-align : center;  
+            }
+            
+           
+            
+            label {
+		      
+		        width: 250px;   
+     		}
+            
+    </style>
 
 </head>
 
 <body>
-		 <div id="index-app">
-			<nav class="navbar navbar-expand  fixed-top" style="background-color: #3E1D57; ">
-                <h1><a  class="naslov"  class="navbar-brand" style="color: white ; font-family:Roboto">Sportski objekat</a></h1>
-                <div class="collapse navbar-collapse">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a href="index.html" class="nav-link" style="color: white; font-family:Roboto">Početna</a></li>
-                        <li class="nav-item"><a href="sportskiobjekti.html" class="nav-link" style="color: white; font-family:Roboto">Sportski objekti</a></li>
-                        <li class="nav-item"><a href="login.html" class="nav-link" style="color: white; font-family:Roboto">Uloguj se</a></li>
-                        <li class="nav-item"><a href="registration.html" class="nav-link" style="color: white; font-family:Roboto">Registruj se</a></li>
-                    </ul>
-                </div>
-            </nav>
-            <br/><br/><br/><br/>
-          </div>   
-         
-        <div id ="sportskiobjekti">
-		<h3>{{title}}</h3>
+	<div class="welcome" id="index-app">
+		<nav class="navbar navbar-expand  fixed-top"
+			style="background-color: #3E1D57;">
+			<h1>
+				<a class="naslov" class="navbar-brand"
+					style="color: white; font-family: Roboto">Sportski objekat</a>
+			</h1>
+			<div class="collapse navbar-collapse">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a href="index.html" class="nav-link"
+						style="color: white; font-family: Roboto">Početna</a></li>
+					<li class="nav-item"><a href="sportskiobjekti.html"
+						class="nav-link" style="color: white; font-family: Roboto">Sportski
+							objekti</a></li>
+					<li class="nav-item"><a href="login.html" class="nav-link"
+						style="color: white; font-family: Roboto">Uloguj se</a></li>
+					<li class="nav-item"><a href="registration.html"
+						class="nav-link" style="color: white; font-family: Roboto">Registruj
+							se</a></li>
+				</ul>
+			</div>
+		</nav>
+		<br />
+		<br />
+		<br />
+		<br />
+	
+	
+		<div class="h1">
+			<h1 style="color: white; font-family: Roboto">Pregled sportskih objekata:</h1>			
+		</div>
 		
- 
-		<table bgcolor="#EEEDE7" class ="table" border="2" id="tabela">
-			<thead>
-				<tr bgcolor="#B9B7BD">
-					<th>Naziv</th>
-					<th>Status</th>
-					<th>Tip objekta</th>
-					<th>Sadrzaj</th>
-					<th>Lokacija</th>
-					<th>Logo</th>
-					<th>ProsecnaOcena</th>
-					<th>Radno Vreme</th>
-					<form class="d-flex" role="search">
-					<th><input @submit='findByName' class="form-control me-2" v-model="search" type="search" placeholder="Search" aria-label="Search"></th>
-					<th><button  class="btn btn-outline-success" type="submit">Search</button></th>
-					</form>
-        
-      
-				</tr>
-			</thead>
-
-			<tr  v-for="p in sportskiobjekti">
-				<td>{{p.name }}</td>
-				<td>{{p.status }}</td>
-				<td>{{p.tipObjekta }}</td>
-				<td>{{p.sadrzaj }}</td>
-				<td>{{p.lokacija }}</td>
-				<td><img src="Images/gymlogo.jpg" class="img-thumbnail" width="50" height="50"></td>
-				<td>{{p.prosecnaOcena }}</td>
-				<td>{{p.radnoVreme }}</td>
-				<td><button style="float: right;" v-on:click="editProduct(p)"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-  <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-</svg> Izmeni</button></td>
-				<td><button class="close" v-on:click="deleteProduct(p)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-</svg> Obrisi</button></td>
-			</tr>
-		</table>
-
-		<p><button  v-on:click="showForm()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
-  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-</svg> Dodaj</button></p>
-
-		<form id="forma" v-bind:hidden="mode=='BROWSE'" @submit='createOrEditProduct'>
-			<table bgcolor="#E7D2CC" border="2" class ="table">
-				<tr>
-					<td>Naziv</td>
-					<td><input type="text" name="name" v-model="selectedProduct.name"></td>
-				</tr>
-				<tr>
-					<td>Status</td>
-					<td><input type="text" name="status" v-model="selectedProduct.status"></td>
-				</tr>
-				<tr>
-					<td>Tip objekta</td>
-					<td><input type="text" name="tipObjekta" v-model="selectedProduct.tipObjekta"></td>
-				</tr>
-				<tr>
-					<td>Sadrzaj</td>
-					<td><input type="text" name="sadrzaj" v-model="selectedProduct.sadrzaj"></td>
-				</tr>
-				<tr>
-					<td>Lokacija</td>
-					<td><input type="text" name="lokacija" v-model="selectedProduct.lokacija"></td>
-				</tr>
-				<tr>
-					<td>ProsecnaOcena</td>
-					<td><input type="number" name="prosecnaOcena" v-model="selectedProduct.prosecnaOcena"></td>
-				</tr>
-				<tr>
-					<td>Radno Vreme</td>
-					<td><input type="text" name="radnoVreme" v-model="selectedProduct.radnoVreme"></td>
-				</tr>
-				<tr>
-					<td><input type="submit" value="Pošalji"></td>
+		<div class="search">
+			<label  style="color: white; font-family:Roboto" >Naziv:</label>	
+			<label  style="color: white; font-family:Roboto" >Tip:</label>
+			<label  style="color: white; font-family:Roboto" >Lokacija:</label>
+			<label  style="color: white; font-family:Roboto" >Prosecna ocena:</label>		
+		</div>
+		<div class="search">
+			<input  type="textbox" style="width: 250px; height: 35px">  	
+			<select style="width: 250px; height: 35px; font-family:Roboto " >
+                        <option value="" selected disabled hidden ">Izaberite tip:</option>
+                        <option value="0">Teretana</option>
+                        <option value="1">Bazen</option>
+                        <option value="2">Sportski centar</option>
+                        <option value="3">Plesni studio</option>
+                        <option value="4">Ostalo</option>
+            </select>  
+			<input  type="textbox" style="width: 250px; height: 35px">  
+			<input  type="textbox" style="width: 250px; height: 35px">  		
+		</div>
+		
+		<div class="search">
+		</div>
+	
+		<div  id="sportskiobjekti">
+			<table bgcolor="#DEF7F9" class="table" border="2" id="tabela">
+				<thead>
+					<tr bgcolor="#309AF9">
+						<th>Naziv</th>
+						<th>Status</th>
+						<th>Tip objekta</th>
+						<th>Sadrzaj</th>
+						<th>Lokacija</th>
+						<th>Logo</th>
+						<th>ProsecnaOcena</th>
+						<th>Radno Vreme</th>
+					</tr>
+				</thead>
+	
+				<tr v-for="p in sportskiobjekti">
+					<td>{{p.name }}</td>
+					<td>{{p.status }}</td>
+					<td>{{p.tipObjekta }}</td>
+					<td>{{p.sadrzaj }}</td>
+					<td>{{p.lokacija }}</td>
+					<td><img src="Images/gymlogo.jpg" class="img-thumbnail"
+						width="50" height="50"></td>
+					<td>{{p.prosecnaOcena }}</td>
+					<td>{{p.radnoVreme }}</td>
+	
 				</tr>
 			</table>
-			<p id="error" >{{error}}</p>
-		</form>
+		</div>
 	</div>
 	<script src="js/vue.js"></script>
 	<script src="js/axios.js"></script>
