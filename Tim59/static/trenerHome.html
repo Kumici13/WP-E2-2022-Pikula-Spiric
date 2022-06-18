@@ -1,10 +1,49 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Pozdrav treneru</title>
-</head>
-<body>
+    <head>
+        <meta charset="utf-8">
+        <title>Pocetna strana</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-</body>
+
+        <style>
+            body   {
+                background-image: url(Images/gympravi.jpg);
+                height: 100%;
+                background-repeat: no-repeat;
+            }
+            
+            .kupac {
+            font-size: 50px;
+            text-align: center;
+            }
+            
+            .sadrzaj    {
+                text-align: center;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="welcome" id="index-app">
+            <nav class="navbar navbar-expand  fixed-top" style="background-color: #3E1D57; ">
+                <h1><a  class="naslov" href="#" class="navbar-brand" style="color: white ; font-family:Roboto">Početna stranica</a></h1>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="#" class="nav-link" style="color: white; font-family:Roboto">Početna</a></li>
+                        <li class="nav-item"><a href="sportskiobjekti.html" class="nav-link" style="color: white; font-family:Roboto">Sportski objekti</a></li>
+                        <li class="nav-item"><a href="javascript:window.localStorage.removeItem('jwt'); window.location = 'login.html';" class="nav-link" style="color: white; font-family:Roboto">Odjavi se</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <br/><br/><br/><br/>
+        </div>
+        
+        <div class="kupac">
+        	<label  style="color: white; font-family:Roboto" >Trener:</label>
+        </div>
+ 
+       
+       
+    </body>
 </html>

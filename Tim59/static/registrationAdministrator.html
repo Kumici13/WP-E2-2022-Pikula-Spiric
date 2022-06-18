@@ -52,14 +52,15 @@
 <body>
 		<div class="welcome" id="register-app">
 			<nav class="navbar navbar-expand  fixed-top" style="background-color: #3E1D57; ">
-                <h1><a  class="naslov"  class="navbar-brand" style="color: white ; font-family:Roboto">Registruj se</a></h1>
+                <h1><a  class="naslov"  class="navbar-brand" style="color: white ; font-family:Roboto">Registruj korisnika</a></h1>
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a href="index.html" class="nav-link" style="color: white; font-family:Roboto">Pocetna</a></li>
+                        <li class="nav-item"><a href="administratorHome.html" class="nav-link" style="color: white; font-family:Roboto">Pocetna</a></li>
                         <li class="nav-item"><a href="sportskiobjekti.html" class="nav-link" style="color: white; font-family:Roboto">Sportski objekti</a></li>
-                        <li class="nav-item"><a href="login.html" class="nav-link" style="color: white; font-family:Roboto">Uloguj se</a></li>
+                        <li class="nav-item"><a href="regkorisnici.html" class="nav-link" style="color: white; font-family:Roboto">Registrovani korisnici</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link" style="color: white; font-family:Roboto">Registruj korisnika</a></li>
                         <li class="nav-item"><a href="profile.html" class="nav-link" style="color: white; font-family:Roboto">Moj profil</a></li>
-                        <li class="nav-item"><a href="registration.html" class="nav-link" style="color: white; font-family:Roboto">Registruj se</a></li>
+                        <li class="nav-item"><a href="javascript:window.localStorage.removeItem('jwt'); window.location = 'login.html';" class="nav-link" style="color: white; font-family:Roboto">Odjavi se</a></li>
                     </ul>
                 </div>
             </nav>
@@ -102,6 +103,14 @@
                         <option value="" selected disabled hidden>Izaberite pol:</option>
                         <option value="0">Zenski</option>
                         <option value="1">Muski</option>
+                     </select>
+             </div>
+              <div class="textboxovi">
+                    <label style="color: white; font-family:Roboto">Uloga:</label>
+                    <select v-model:value="pol"  id="pol" ref="pol" style="width: 400px; height: 35px; font-family:Roboto " >
+                        <option value="" selected disabled hidden>Izaberite ulogu:</option>
+                        <option value="0">Trener</option>
+                        <option value="1">Menadzer</option>
                      </select>
              </div>
              <div class="tablebutton">
