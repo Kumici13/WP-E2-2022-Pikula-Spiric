@@ -1,6 +1,10 @@
 package enums;
 
+import com.google.gson.annotations.SerializedName;
+
 public enum Pol {
-	Muski,
-	Zenski
+	@SerializedName("0")
+	Zenski,
+	@SerializedName("1")
+	Muski
 }

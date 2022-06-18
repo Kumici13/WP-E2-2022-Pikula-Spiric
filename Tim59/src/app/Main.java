@@ -1,0 +1,100 @@
+package app;
+
+import static spark.Spark.port;
+import static spark.Spark.post;
+import static spark.Spark.staticFiles;
+import java.io.File;
+import java.security.Key;
+import java.util.Date;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializer;
+
+import beans.Kupac;
+import beans.Korisnik;
+import dao.KorisniciDAO;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
+public class Main 
+{
+	private static Gson gson;
+	private static KorisniciDAO korisnici = null;
+	private static Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+	public static void main(String[] args) throws Exception 
+	{
+		port(8080);
+
+		staticFiles.externalLocation(new File("./static").getCanonicalPath());
+		korisnici = new KorisniciDAO();
+		gson =  new GsonBuilder().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
+		
+			
+		post("/app/login", (req, res) -> 
+		{
+			String body = req.body();
+			System.out.println("LOGIN: " + body);
+			
+			String[] tokeni = body.split("&");
+			
+			String korisnickoIme = tokeni[0];
+			String sifra = tokeni[1];
+			
+			Korisnik korisnik = korisnici.getKorisnikByKorisnickoIme(korisnickoIme);
+			
+			if (korisnik != null)	
+			{
+				if (korisnik.getSifra().equals(sifra))	
+				{
+					LogovanjeKorisnika(korisnik);
+					return gson.toJson(korisnik);
+				} 
+				else	
+				{
+					res.status(400);
+					return gson.toJson(("sifra za nalog " + korisnik.getKorisnickoIme() + " nije ispravna. Pokušajte ponovo."));
+				}
+			} 
+			else	
+			{
+				res.status(400);	
+				return gson.toJson(("Ne postoji registrovan korisnik sa korisnickim imenom: " + korisnickoIme));
+			}
+		});
+		
+		post("/app/registracija/kupac", (req, res) -> 
+		{
+			res.type("application/json");
+			String body = req.body();
+			Kupac kupac = gson.fromJson(body, Kupac.class);
+			if (kupac != null)	
+			{
+				System.out.println("REGISTRACIJA KUPCA: " + kupac.getIme() + ", " + kupac.getKorisnickoIme());
+				if (korisnici.napraviKorisnika(kupac))	
+				{
+					LogovanjeKorisnika(kupac);
+					return gson.toJson(kupac);
+				} 
+				else	
+				{
+					res.status(400);
+					return gson.toJson("Korisničko ime " + kupac.getKorisnickoIme() + " je zauzeto. Pokušajte drugo korisničko ime.");
+				}
+			} 
+			else	
+			{
+				res.status(500);
+				return gson.toJson("Greška prilikom registracije korisnika. Pokušajte ponovo.");
+			}
+		});
+		
+	}
+	
+	private static void LogovanjeKorisnika(Korisnik korisnik) 
+	{
+		String jwt = Jwts.builder().setSubject(korisnik.getKorisnickoIme()).setIssuedAt(new Date()).signWith(key).compact();
+		korisnik.setJWTToken(jwt);
+	}
+	
+}
