@@ -82,7 +82,7 @@
 		</div>
 		<div class="search">
 			<input v-model:value="pretragaNaziv" type="textbox" style="width: 250px; height: 35px">  	
-			<select v-model:value="pretraga_tip" style="width: 250px; height: 35px; font-family:Roboto " >
+			<select v-model:value="pretragaPoTipu" style="width: 250px; height: 35px; font-family:Roboto " >
                         <option  disabled hidden ">Izaberite tip:</option>
                         <option value="Teretana">Teretana</option>
                         <option value="Bazen">Bazen</option>
@@ -92,7 +92,15 @@
                         <option selected value="5">Sve</option>
             </select>  
 			<input v-model:value="pretragaLokacija" type="textbox" style="width: 250px; height: 35px">  
-			<input v-model:value="pretragaProsecnaOcena" type="textbox" style="width: 250px; height: 35px">  		
+			<select v-model:value="pretragaProsecnaOcena" style="width: 250px; height: 35px; font-family:Roboto " >
+                        <option  disabled hidden ">Izaberite prosecnu ocenu:</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option selected value="6">Sve</option>
+            </select> 		
 		</div>
 		
 		<div class="search">

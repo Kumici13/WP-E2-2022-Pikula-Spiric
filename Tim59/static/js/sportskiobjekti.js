@@ -4,9 +4,9 @@ new Vue({
 	{
         sportskiObjekti: [],
         pretragaNaziv: '',
-        pretraga_tip: '2',
+        pretragaPoTipu: '5',
         pretragaLokacija: '',
-        pretragaProsecnaOcena: ''
+        pretragaProsecnaOcena: '6'
     },
     mounted()  
 	{
@@ -50,8 +50,9 @@ new Vue({
             return this.sportskiObjekti.filter((objekat) => 
 			{	
                 return 	(objekat.lokacija.adresa.mesto.toLowerCase().match(this.pretragaLokacija.toLowerCase()) || objekat.lokacija.adresa.ulica.toLowerCase().match(this.pretragaLokacija.toLowerCase()))
-						&& (objekat.tipObjekta == this.pretraga_tip || this.pretraga_tip=='5')
+						&& (objekat.tipObjekta == this.pretragaPoTipu || this.pretragaPoTipu=='5')
 						&& (objekat.naziv.toLowerCase().match(this.pretragaNaziv.toLowerCase()))
+						&& (objekat.prosecnaOcena ==(this.pretragaProsecnaOcena) || this.pretragaProsecnaOcena == 6) 					
 				});
         }
     }
