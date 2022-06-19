@@ -46,7 +46,10 @@ public class Kupac extends Korisnik {
 		this.sakupljeniBodovi = sakupljeniBodovi;
 	}
 	
-	
+	@Override
+	public String toSaveFormat() {
+		return this.getKorisnickoIme() + ";" + this.getSifra() + ";" + this.getIme() + ";" + this.getPrezime() + ";" + this.getPol().name() + ";" + this.getDatumRodjenja() + ";"+ "clanarina" + ";"+ this.poseceniObjekti + ";"+ this.sakupljeniBodovi +"\n";
+	}
 
 
 }

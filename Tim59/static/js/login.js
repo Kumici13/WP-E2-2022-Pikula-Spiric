@@ -59,6 +59,7 @@ new Vue({
 				{
                     if (response.data.hasOwnProperty('JWTToken'))   
 					{
+						console.log(response.data.uloga)
                         window.localStorage.setItem('jwt', response.data.JWTToken);
 
                         let uloga = response.data.uloga;

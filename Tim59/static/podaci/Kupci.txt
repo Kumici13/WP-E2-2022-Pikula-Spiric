@@ -1,4 +1,1 @@
-nikos;nikosnikos;nikol;spiric;Zenski;null
-perap;perapera;pera;peric;Muski;null
-mika1;mikamika;Mika;Mikic;Muski;null
-Ckepa1;ckepackepa;Ckepa;Ckepa;Muski;null
+nikolas;12345678;Nikola;Spiric;Muski;null;clanarina;null;0.0

@@ -1,5 +1,6 @@
 package app;
 
+import static spark.Spark.get;
 import static spark.Spark.port;
 import static spark.Spark.post;
 import static spark.Spark.staticFiles;
@@ -14,6 +15,8 @@ import com.google.gson.JsonDeserializer;
 import beans.Kupac;
 import beans.Korisnik;
 import dao.KorisniciDAO;
+import dao.SportskiObjektiDAO;
+import enums.Uloga;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -21,6 +24,7 @@ public class Main
 {
 	private static Gson gson;
 	private static KorisniciDAO korisnici = null;
+	private static SportskiObjektiDAO sportskiObjekti = null;
 	private static Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 	public static void main(String[] args) throws Exception 
 	{
@@ -28,6 +32,7 @@ public class Main
 
 		staticFiles.externalLocation(new File("./static").getCanonicalPath());
 		korisnici = new KorisniciDAO();
+		sportskiObjekti = new SportskiObjektiDAO();
 		gson =  new GsonBuilder().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
 		
 			
@@ -87,6 +92,11 @@ public class Main
 				res.status(500);
 				return gson.toJson("Greška prilikom registracije korisnika. Pokušajte ponovo.");
 			}
+		});
+		
+		get("app/getSportskiObjekti", (req, res) -> 
+		{
+			return gson.toJson(sportskiObjekti.getAllSportskiObjekti());
 		});
 		
 	}

@@ -2,10 +2,10 @@ package beans;
 
 public class Adresa {
 	
-	protected String ulica;
-	protected int broj;
-	protected String mesto;
-	protected int postanskiBroj;
+	private String ulica;
+	private int broj;
+	private String mesto;
+	private int postanskiBroj;
 	
 	public Adresa() {}
 	
