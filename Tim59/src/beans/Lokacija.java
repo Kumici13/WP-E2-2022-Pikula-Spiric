@@ -42,8 +42,10 @@ public class Lokacija {
 		this.adresa = adresa;
 	}
 	
-	
-	
-	
+	@Override
+	public String toString()
+	{
+		return adresa.getUlica() + " " + adresa.getBroj() + ", " + adresa.getMesto();
+	}
 
 }
