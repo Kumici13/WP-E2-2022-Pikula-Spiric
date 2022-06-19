@@ -8,7 +8,7 @@
 
         <style>
             body   {
-                background-image: url(Images/gympravi.jpg);
+                background-image: url(Images/loginback.jpg);
                 height: 100%;
                 background-repeat: no-repeat;
             }
@@ -21,6 +21,23 @@
             .sadrzaj    {
                 text-align: center;
             }
+            
+             .prikaz {
+				padding-top: 100px;
+				text-align:center;
+				box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.1);
+				cursor: pointer;
+				transition: transform 0.2s;
+				border-radius: 100%;
+				padding-left: 80px;
+				
+			}
+			
+			.prikaz:hover{
+				transform: translateY(-10px);
+			}
+			
+		
         </style>
     </head>
 
@@ -43,6 +60,12 @@
         	<label  style="color: white; font-family:Roboto" >Kupac:</label>
         </div>
  
+ 		 <div class="prikaz">		
+        		<a href="profile.html">
+        		<img  src="Images/kupac.png" >
+        		<h3  style="color: white; font-family:Roboto">Nikola Spiric</h3>
+        		</a>
+        </div>
        
        
     </body>
