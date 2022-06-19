@@ -58,7 +58,7 @@ public class Main
 				else	
 				{
 					res.status(400);
-					return gson.toJson(("sifra za nalog " + korisnik.getKorisnickoIme() + " nije ispravna. Pokušajte ponovo."));
+					return gson.toJson(("sifra za nalog " + korisnik.getKorisnickoIme() + " nije ispravna. Pokusajte ponovo."));
 				}
 			} 
 			else	
@@ -84,13 +84,13 @@ public class Main
 				else	
 				{
 					res.status(400);
-					return gson.toJson("Korisničko ime " + kupac.getKorisnickoIme() + " je zauzeto. Pokušajte drugo korisničko ime.");
+					return gson.toJson("Korisnicko ime " + kupac.getKorisnickoIme() + " je zauzeto. Pokusajte drugo korisnicko ime.");
 				}
 			} 
 			else	
 			{
 				res.status(500);
-				return gson.toJson("Greška prilikom registracije korisnika. Pokušajte ponovo.");
+				return gson.toJson("Greska prilikom registracije korisnika. Pokusajte ponovo.");
 			}
 		});
 		
