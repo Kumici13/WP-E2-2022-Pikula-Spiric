@@ -89,8 +89,8 @@ new Vue({
                 .catch(error => 
 				{
                     console.log(error);
-                    this.$refs.msg.classList.add("error-msg");
-                    this.$refs.msg.innerHTML = error.response.data.sadrzaj;
+                    this.$refs.err_msg.classList.add("is-invalid");
+                    this.$refs.err_msg.innerHTML = "Ne postoji nalog sa ovim korsnickim imenom i sifrom";
                 });
         }
     }

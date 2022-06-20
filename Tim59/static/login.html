@@ -94,10 +94,15 @@ input[type=text] {
 
 				<div class="table2">
 		
-						<label style="color: white; font-family: Roboto">Lozinka:</label>	
+						<label style="color: white; font-family: Roboto">Sifra:</label>	
 						<input v-model:value="sifra" id="sifra" ref="sifra"
 								type="password" font-family:Roboto
 								style="width: 400px; height: 35px">
+						<div class="row">
+						<div class="col" align="center">
+								<p id="err_msg" ref="err_msg" style="color: red;"></p>
+							</div>
+						</div>
 				</div>
 
 
@@ -126,11 +131,7 @@ input[type=text] {
 			</div>
 		</div>
 
-		<div class="row">
-			<div class="col" align="center">
-				<p id="msg" ref="msg" style="color: red;"></p>
-			</div>
-		</div>
+		
 		
 	</div>
 	<script src="./js/vue.js"></script>

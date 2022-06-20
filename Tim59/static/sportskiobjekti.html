@@ -127,7 +127,7 @@
 						<td>{{p.status == 0 ? 'Ne radi' : 'Radi' }}</td>
 						<td>{{p.tipObjekta }}</td>
 						<td> <div v-for="s of p.sadrzaj">{{s}}</div></td>
-						<td>{{ prikaziAdresu(p) }}</td>
+						<td><pre>{{ prikaziAdresu(p) }}</pre></td>
 						<td><img :src="prikaziSliku(p.slika)" class="img-thumbnail" width="50" height="50"></td>
 						<td>{{p.prosecnaOcena }}</td>
 						<td>{{p.radnoVreme }}</td>

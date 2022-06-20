@@ -38,10 +38,7 @@ public class Main
 			
 		post("/app/login", (req, res) -> 
 		{
-			String body = req.body();
-			System.out.println("LOGIN: " + body);
-			
-			String[] tokeni = body.split("&");
+			String[] tokeni = req.body().split("&");
 			
 			String korisnickoIme = tokeni[0];
 			String sifra = tokeni[1];
@@ -58,13 +55,13 @@ public class Main
 				else	
 				{
 					res.status(400);
-					return gson.toJson(("sifra za nalog " + korisnik.getKorisnickoIme() + " nije ispravna. Pokusajte ponovo."));
+					return gson.toJson(("Sifra za nalog " + korisnik.getKorisnickoIme() + " nije ispravna."));
 				}
 			} 
 			else	
 			{
 				res.status(400);	
-				return gson.toJson(("Ne postoji registrovan korisnik sa korisnickim imenom: " + korisnickoIme));
+				return gson.toJson(("Ne postoji korisnik sa korisnickim imenom: " + korisnickoIme));
 			}
 		});
 		
@@ -75,7 +72,6 @@ public class Main
 			Kupac kupac = gson.fromJson(body, Kupac.class);
 			if (kupac != null)	
 			{
-				System.out.println("REGISTRACIJA KUPCA: " + kupac.getIme() + ", " + kupac.getKorisnickoIme());
 				if (korisnici.napraviKorisnika(kupac))	
 				{
 					LogovanjeKorisnika(kupac);
