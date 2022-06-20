@@ -29,7 +29,7 @@ new Vue({
             return window.localStorage.getItem('jwt') != null;
         },
         prikaziAdresu: function(objekat)   {
-            return objekat.lokacija.adresa['ulica'] + " " + objekat.lokacija.adresa['broj'] + "\n" + objekat.lokacija.adresa['mesto'];
+            return objekat.lokacija.adresa['ulica'] + " " + objekat.lokacija.adresa['broj'] + " \n" + objekat.lokacija.adresa['mesto']+ " " +objekat.lokacija.adresa['postanskiBroj']+ "\n"  + objekat.lokacija.geoDuzina + " " +  objekat.lokacija.geoSirina;
         },
 		prikaziSliku: function(slika)
 		{
@@ -49,7 +49,12 @@ new Vue({
 		{
             return this.sportskiObjekti.filter((objekat) => 
 			{	
-                return 	(objekat.lokacija.adresa.mesto.toLowerCase().match(this.pretragaLokacija.toLowerCase()) || objekat.lokacija.adresa.ulica.toLowerCase().match(this.pretragaLokacija.toLowerCase()))
+                return 	   ((objekat.lokacija.adresa.broj.toString().match(this.pretragaLokacija.toLowerCase())) 
+                		|| (objekat.lokacija.geoSirina.toString().match(this.pretragaLokacija.toLowerCase())) 
+                		|| (objekat.lokacija.geoDuzina.toString().match(this.pretragaLokacija.toLowerCase())) 
+                		|| (objekat.lokacija.adresa.postanskiBroj.toString().match(this.pretragaLokacija.toLowerCase()))
+                		|| (objekat.lokacija.adresa.mesto.toLowerCase().match(this.pretragaLokacija.toLowerCase())) 
+                		|| (objekat.lokacija.adresa.ulica.toLowerCase().match(this.pretragaLokacija.toLowerCase())))
 						&& (objekat.tipObjekta == this.pretragaPoTipu || this.pretragaPoTipu=='5')
 						&& (objekat.naziv.toLowerCase().match(this.pretragaNaziv.toLowerCase()))
 						&& (objekat.prosecnaOcena ==(this.pretragaProsecnaOcena) || this.pretragaProsecnaOcena == 6) 					

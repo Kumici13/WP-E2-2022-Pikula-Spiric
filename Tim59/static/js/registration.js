@@ -12,8 +12,6 @@ new Vue({
     methods: {
         provera: function()   
 		{
-			
-			console.log("dsadsadsdsasda")
             valid = true;
 
             // proveri ime
@@ -32,7 +30,6 @@ new Vue({
                 }
             }
 
-            // proveri prezime
             if (this.$refs.prezime.value.length <= 1 || !/^[a-zA-Z]+$/.test(this.$refs.prezime.value))   
 			{
                 this.$refs.prezime.classList.remove("is-valid");
@@ -48,8 +45,6 @@ new Vue({
                 }
             }
 
-            // proveri korisnickoIme
-            // /\W/ znaci sve osim slova, brojeva i underscore-a
             if (this.$refs.korisnickoIme.value.length <= 1 || /\W/.test(this.$refs.korisnickoIme.value))   
 			{
                 this.$refs.korisnickoIme.classList.remove("is-valid");
@@ -65,7 +60,6 @@ new Vue({
                 }
             }
 
-            // provera lozinke
             if (this.$refs.sifra.value.length < 8 || !this.proveriSifre() || !/^[0-9a-zA-Z]+$/.test(this.$refs.sifra.value))   
 			{
                 this.$refs.sifra.classList.remove("is-valid");
@@ -89,7 +83,6 @@ new Vue({
                 }
             }
 
-            // provera combo box-eva
             if (this.$refs.pol.value == "") 
 			{
                 this.$refs.pol.classList.remove("is-valid");
@@ -139,12 +132,9 @@ new Vue({
                 'sifra': this.sifra,
                 'pol': this.pol
             };
-			console.log("usao u registraciju")
 			
             if (!this.ulogovanKorisnik()) 
 			{
-				console.log(" bas usao u registraciju")
-
                 let putanja = '/app/registracija/kupac';
 
                 axios
@@ -170,9 +160,6 @@ new Vue({
                     .catch(error => 
 					{
                         console.log(error);
-                        //alert(error.response.data.sadrzaj);
-                        this.$refs.msg.classList.add("error-msg");
-                        this.$refs.msg.innerHTML = error.response.data.sadrzaj;
                     });
             }
 			else
