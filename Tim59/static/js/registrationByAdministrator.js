@@ -138,7 +138,7 @@ new Vue({
 			
             if (!this.ulogovanKorisnik()) 
 			{
-				if(uloga == "Menadzer"){
+				if(this.uloga == "1"){
 				 let putanja = '/app/registracija/menadzer';
 
                 axios
