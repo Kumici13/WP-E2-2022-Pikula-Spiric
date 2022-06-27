@@ -53,7 +53,7 @@
 </head>
 
 <body>
-	 <div class="welcome" id="register-app">
+	 <div class="welcome" id="regkorisnici-app">
 			<nav class="navbar navbar-expand  fixed-top" style="background-color: #3E1D57; ">
                 <h1><a  class="naslov"  class="navbar-brand" style="color: white ; font-family:Roboto">Registrovani korisnici</a></h1>
                 <div class="collapse navbar-collapse">
@@ -83,32 +83,38 @@
 			<label  style="color: white; font-family:Roboto" >Broj sakupljenih bodova:</label>		
 		</div>
 		<div class="search">
-			<input  type="textbox" style="width: 250px; height: 35px">  	
-			<input  type="textbox" style="width: 250px; height: 35px"> 
-			<input  type="textbox" style="width: 250px; height: 35px">  
-			<input  type="textbox" style="width: 250px; height: 35px">  		
+			<input v-model:value="pretragaIme" type="textbox" style="width: 250px; height: 35px">  	
+			<input v-model:value="pretragaPrezime" type="textbox" style="width: 250px; height: 35px">   
+			<input v-model:value="pretragaKorisnickoIme" type="textbox" style="width: 250px; height: 35px">  
+			<select v-model:value="" style="width: 250px; height: 35px; font-family:Roboto " >
+                        <option  disabled hidden ">Izaberite kako zelite da sortirate:</option>
+                        <option value="1">Rastuce</option>
+                        <option value="2">Opadajuce</option>                      
+            </select> 		
 		</div>
 		
 		<div class="search">
 		</div>
 	
-		<div  id="sportskiobjekti">
+		<div  id="regkorisnici">
 			<table bgcolor="#DEF7F9" class="table" border="2" id="tabela">
 				<thead>
 					<tr bgcolor="#309AF9">
+						<th>Korisnicko ime</th>
+						<th>Sifra</th>
 						<th>Ime</th>
 						<th>Prezime</th>
-						<th>Korisnicko ime</th>
-						<th>Lozinka</th>
 						<th>Pol</th>
+						<th>Datum rodjenja</th>
 				</thead>
 	
-				<tr v-for="p in sportskiobjekti">
+				<tr v-for="p in regkorisniciFilter">
+					<td>{{p.korIme }}</td>
+					<td>{{p.sifra }}</td>
 					<td>{{p.ime }}</td>
 					<td>{{p.prezime }}</td>
-					<td>{{p.korIme }}</td>
-					<td>{{p.lozinka }}</td>
 					<td>{{p.pol }}</td>
+					<td>{{p.datumRodjenja }}</td>
 				</tr>
 			</table>
 		</div>
