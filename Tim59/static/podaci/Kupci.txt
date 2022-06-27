@@ -1,3 +1,2 @@
 nikolas;12345678;Nikola;Spiric;Muski;null;clanarina;null;0.0
 markom;12345678;Marko;Markovic;Muski;null;clanarina;null;0.0
-asas;12312312;sdadsa;sddadsadas;Zenski;null;clanarina;null;0.0

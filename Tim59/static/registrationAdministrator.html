@@ -47,7 +47,7 @@
 </head>
 
 <body>
-		<div class="welcome" id="register-app">
+		<div class="welcome" id="registerbyAdmin-app">
 			<nav class="navbar navbar-expand  fixed-top" style="background-color: #3E1D57; ">
                 <h1><a  class="naslov"  class="navbar-brand" style="color: white ; font-family:Roboto">Registruj korisnika</a></h1>
                 <div class="collapse navbar-collapse">
@@ -103,14 +103,14 @@
              </div>
               <div class="textboxovi">
                     <label style="color: white; font-family:Roboto">Uloga:</label>
-                    <select v-model:value="pol"  id="pol" ref="pol" style="width: 400px; height: 35px; font-family:Roboto " >
+                    <select v-model:value="uloga"  id="uloga" ref="uloga" style="width: 400px; height: 35px; font-family:Roboto " >
                         <option value="" selected disabled hidden>Izaberite ulogu:</option>
                         <option value="0">Trener</option>
                         <option value="1">Menadzer</option>
                      </select>
              </div>
              <div class="tablebutton">
-                    <button v-on:click.prevent="provera"  class="btn btn-outline-light">Registruj</button>
+                    <button v-on:click.prevent=provera  class="btn btn-outline-light">Registruj</button>
              </div>
 	      </form>
         	</div>

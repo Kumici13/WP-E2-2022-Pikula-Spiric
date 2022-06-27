@@ -31,7 +31,7 @@ new Vue({
     },
     computed:   
 	{
-        regkorisnici: function() 
+        regkorisniciFilter: function() 
 		{
             return this.regKorisnici.filter((objekat) => 
 			{	

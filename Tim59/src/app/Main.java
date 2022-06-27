@@ -13,6 +13,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializer;
 
 import beans.Kupac;
+import beans.Menadzer;
 import beans.Korisnik;
 import dao.KorisniciDAO;
 import dao.SportskiObjektiDAO;
@@ -81,6 +82,31 @@ public class Main
 				{
 					res.status(400);
 					return gson.toJson("Korisnicko ime " + kupac.getKorisnickoIme() + " je zauzeto. Pokusajte drugo korisnicko ime.");
+				}
+			} 
+			else	
+			{
+				res.status(500);
+				return gson.toJson("Greska prilikom registracije korisnika. Pokusajte ponovo.");
+			}
+		});
+		
+		post("/app/registracija/menadzer", (req, res) -> 
+		{
+			res.type("application/json");
+			String body = req.body();
+			Menadzer menadzer = gson.fromJson(body, Menadzer.class);
+			if (menadzer != null)	
+			{
+				if (korisnici.napraviKorisnika(menadzer))	
+				{
+					LogovanjeKorisnika(menadzer);
+					return gson.toJson(menadzer);
+				} 
+				else	
+				{
+					res.status(400);
+					return gson.toJson("Korisnicko ime " + menadzer.getKorisnickoIme() + " je zauzeto. Pokusajte drugo korisnicko ime.");
 				}
 			} 
 			else	
