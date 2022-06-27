@@ -55,7 +55,7 @@
                         <li class="nav-item"><a href="administratorHome.html" class="nav-link" style="color: white; font-family:Roboto">Pocetna</a></li>
                         <li class="nav-item"><a href="sportskiobjekti.html" class="nav-link" style="color: white; font-family:Roboto">Sportski objekti</a></li>
                         <li class="nav-item"><a href="regkorisnici.html" class="nav-link" style="color: white; font-family:Roboto">Registrovani korisnici</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link" style="color: white; font-family:Roboto">Registruj korisnika</a></li>
+                        <li class="nav-item"><a href="registrationAdministrator.html" class="nav-link" style="color: white; font-family:Roboto">Registruj korisnika</a></li>
                         <li class="nav-item"><a href="javascript:window.localStorage.removeItem('jwt'); window.location = 'login.html';" class="nav-link" style="color: white; font-family:Roboto">Odjavi se</a></li>
                     </ul>
                 </div>
@@ -99,6 +99,7 @@
                         <option value="" selected disabled hidden>Izaberite pol:</option>
                         <option value="0">Zenski</option>
                         <option value="1">Muski</option>
+                        <div class="invalid-feedback">Morate uneti pol.</div>
                      </select>
              </div>
               <div class="textboxovi">
@@ -107,6 +108,7 @@
                         <option value="" selected disabled hidden>Izaberite ulogu:</option>
                         <option value="0">Trener</option>
                         <option value="1">Menadzer</option>
+                        <div class="invalid-feedback">Morate uneti ulogu.</div>
                      </select>
              </div>
              <div class="tablebutton">
@@ -118,7 +120,7 @@
         
         <script src="./js/vue.js"></script>
         <script src="./js/axios.js"></script>
-        <script src="./js/registration.js"></script>
+        <script src="./js/registrationByAdministrator.js"></script>
 </body>
 
 </html>

@@ -14,6 +14,7 @@ import com.google.gson.JsonDeserializer;
 
 import beans.Kupac;
 import beans.Menadzer;
+import beans.Trener;
 import beans.Korisnik;
 import dao.KorisniciDAO;
 import dao.SportskiObjektiDAO;
@@ -91,10 +92,36 @@ public class Main
 			}
 		});
 		
+		post("/app/registracija/trener", (req, res) -> 
+		{
+			res.type("application/json");
+			String body = req.body();
+			Trener trener = gson.fromJson(body, Trener.class);
+			if (trener != null)	
+			{
+				if (korisnici.napraviKorisnika(trener))	
+				{
+					LogovanjeKorisnika(trener);
+					return gson.toJson(trener);
+				} 
+				else	
+				{
+					res.status(400);
+					return gson.toJson("Korisnicko ime " + trener.getKorisnickoIme() + " je zauzeto. Pokusajte drugo korisnicko ime.");
+				}
+			} 
+			else	
+			{
+				res.status(500);
+				return gson.toJson("Greska prilikom registracije korisnika. Pokusajte ponovo.");
+			}
+		});
+		
 		post("/app/registracija/menadzer", (req, res) -> 
 		{
 			res.type("application/json");
 			String body = req.body();
+			System.out.print("Kituljica");
 			Menadzer menadzer = gson.fromJson(body, Menadzer.class);
 			if (menadzer != null)	
 			{

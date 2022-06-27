@@ -27,5 +27,12 @@ public class Menadzer extends Korisnik {
 	}
 	
 	
+	@Override
+	public String toSaveFormat() {
+		return this.getKorisnickoIme() + ";" + this.getSifra() + ";" + this.getIme() + ";" + this.getPrezime() + ";" + this.getPol().name() + ";" + this.getDatumRodjenja() + ";"+ "clanarina" + ";"+ this.sportskiobjekat + "\n";
+	}
+
+
+	
 
 }

@@ -14,7 +14,6 @@ new Vue({
         provera: function()   
 		{
             valid = true;
-
             // proveri ime
             if (this.$refs.ime.value.length <= 1 || !/^[a-zA-Z]+$/.test(this.$refs.ime.value))   
 			{
@@ -99,20 +98,7 @@ new Vue({
                 }
             }
             
-             if (this.$refs.uloga.value == "") 
-			{
-                this.$refs.uloga.classList.remove("is-valid");
-                this.$refs.uloga.classList.add("is-invalid");
-                valid = false;
-            } 
-			else 
-			{
-                if (this.$refs.uloga.classList.contains('is-invalid'))    
-				{
-                    this.$refs.uloga.classList.remove("is-invalid");
-                    this.$refs.uloga.classList.add("is-valid");
-                }
-            }
+           
 
             if (valid)  
 			{
@@ -152,7 +138,8 @@ new Vue({
 			
             if (!this.ulogovanKorisnik()) 
 			{
-                let putanja = '/app/registracija/menadzer';
+				if(uloga == "Menadzer"){
+				 let putanja = '/app/registracija/menadzer';
 
                 axios
                     .post(putanja, korisnik, 
@@ -180,6 +167,38 @@ new Vue({
 					{
                         console.log(error);
                     });
+                    }
+                    else {
+				let putanja = '/app/registracija/trener';
+
+               	 axios
+                    .post(putanja, korisnik, 
+					{
+                        headers: 
+						{
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(response => 
+					{
+                        if (response.data.hasOwnProperty('korisnickoIme'))  
+						{
+                           
+								window.localStorage.setItem('jwt', response.data.JWTToken);
+	                            window.location = "trenerHome.html";
+                        	
+                        } 
+						else  
+						{
+                            console.log(response);
+                        }
+                    })
+                    .catch(error => 
+					{
+                        console.log(error);
+                    });
+}
+               
             }
 			else
 			{
