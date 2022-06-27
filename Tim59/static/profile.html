@@ -83,37 +83,24 @@
             </div>
             <div class="textboxovi">
                     <label  style="color: white; font-family:Roboto" >Ime:</label>
-                    <input id="ime" ref="ime" v-model:value="ime" type="textbox" style="width: 400px; height: 35px">  
-                    <div class="invalid-feedback">Unesite Vase ime. Samo mala i velika slova!</div> 
+                    <input id="ime" ref="ime" v-model:value="ime" type="textbox" readonly style="width: 400px; height: 35px">  
             </div>    
             <div class="textboxovi">
                     <label  style="color: white; font-family:Roboto" >Prezime:</label>
-                    <input id="prezime" ref="prezime" v-model:value="prezime" type="textbox" style="width: 400px; height: 35px">   
-                    <div class="invalid-feedback">Unesite Vase prezime. Samo mala i velika slova!</div>
+                    <input id="prezime" ref="prezime" v-model:value="prezime" type="textbox" readonly style="width: 400px; height: 35px">   
             </div>  
             <div class="textboxovi">
                     <label  style="color: white; font-family:Roboto" >Korisnicko ime:</label>
-                    <input id="korisnickoIme" ref="korisnickoIme" v-model:value="korisnickoIme" type="textbox" style="width: 400px; height: 35px">   
-                    <div class="invalid-feedback">Unesite Vase korisnicko ime. Dozvoljena su slova, brojevi i povlaka!</div>
+                    <input id="korisnickoIme" ref="korisnickoIme" v-model:value="korisnickoIme" type="textbox" readonly style="width: 400px; height: 35px">   
             </div>  
              <div class="textboxovi">
                     <label  style="color: white; font-family:Roboto" >Lozinka:</label>
-                    <input id="sifra" ref="sifra" v-model:value="sifra" type="password" style="width: 400px; height: 35px">   
-                    <div class="invalid-feedback">Lozinke moraju da se poklapaju. Dozvoljena su slova, brojevi i povlaka i minimalno 8 karaktera!</div>
+                    <input id="sifra" ref="sifra" v-model:value="sifra" type="password" readonly style="width: 400px; height: 35px">   
             </div> 
+           
             <div class="textboxovi">
-                    <label  style="color: white; font-family:Roboto" >Lozinka:</label>
-                    <input id="sifraPonovo" ref="sifraPonovo" v-model:value="sifraPonovo" type="password" style="width: 400px; height: 35px">   
-            		<div class="invalid-feedback">Lozinke moraju da se poklapaju.</div>
-            </div> 
-            <div class="textboxovi">
-                    <label style="color: white; font-family:Roboto">Pol:</label>
-                    <select v-model:value="pol"  id="pol" ref="pol" style="width: 400px; height: 35px; font-family:Roboto " >
-                        <option value="" selected disabled hidden>Izaberite pol:</option>
-                        <option value="0">Zenski</option>
-                        <option value="1">Muski</option>
-                     </select>
-             </div>
+                    <label  style="color: white; font-family:Roboto" >Pol:</label>
+                    <input id="sifra" ref="sifra" v-model:value="sifra" type="pol"  readonly style="width: 400px; height: 35px">           
              <div class="tablebutton">
                     <button v-on:click.prevent="provera"  class="btn btn-outline-light">Promeni</button>
              </div>
