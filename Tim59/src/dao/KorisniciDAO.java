@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import beans.Administrator;
@@ -11,6 +12,7 @@ import beans.Clanarina;
 import beans.Korisnik;
 import beans.Kupac;
 import beans.Menadzer;
+import beans.SportskiObjekat;
 import beans.Trener;
 import enums.Pol;
 import enums.Uloga;
@@ -35,6 +37,19 @@ public class KorisniciDAO
 		ucitajKorisnike(Uloga.Administrator);
 		ucitajKorisnike(Uloga.Trener);
 
+	}
+	
+
+	public ArrayList<Korisnik> getAllRegKorisnici()
+	{
+		ArrayList<Korisnik> korisnics = new ArrayList<>();
+		
+		for (Korisnik kor : korisnici.values())	
+		{
+			korisnics.add(kor);
+		}
+		
+		return korisnics;
 	}
 	
 	private void ucitajKorisnike(Uloga uloga)	

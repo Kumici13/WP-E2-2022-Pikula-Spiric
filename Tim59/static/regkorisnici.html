@@ -4,27 +4,8 @@
 <head>
 <title>Prikaz registrovanih korisnika</title>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="styles.css">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-	crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-<script src="jquery-3.3.1.min.js"></script>
-<!-- CSS only -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
-	crossorigin="anonymous">
-<!-- JavaScript Bundle with Popper -->
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
-	crossorigin="anonymous"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-	
 	<style>
             body   {
                 background-image: url(Images/loginback.jpg);
@@ -82,18 +63,17 @@
 			<label  style="color: white; font-family:Roboto" >Korisnicko ime:</label>
 			<label  style="color: white; font-family:Roboto" >Broj sakupljenih bodova:</label>		
 		</div>
+		
+		
 		<div class="search">
 			<input v-model:value="pretragaIme" type="textbox" style="width: 250px; height: 35px">  	
 			<input v-model:value="pretragaPrezime" type="textbox" style="width: 250px; height: 35px">   
 			<input v-model:value="pretragaKorisnickoIme" type="textbox" style="width: 250px; height: 35px">  
-			<select v-model:value="" style="width: 250px; height: 35px; font-family:Roboto " >
+			<select v-model:value="filtriranje" style="width: 250px; height: 35px; font-family:Roboto " >
                         <option  disabled hidden ">Izaberite kako zelite da sortirate:</option>
                         <option value="1">Rastuce</option>
                         <option value="2">Opadajuce</option>                      
             </select> 		
-		</div>
-		
-		<div class="search">
 		</div>
 	
 		<div  id="regkorisnici">
@@ -109,7 +89,7 @@
 				</thead>
 	
 				<tr v-for="p in regkorisniciFilter">
-					<td>{{p.korIme }}</td>
+					<td>{{p.korisnickoIme }}</td>
 					<td>{{p.sifra }}</td>
 					<td>{{p.ime }}</td>
 					<td>{{p.prezime }}</td>
@@ -119,9 +99,9 @@
 			</table>
 		</div>
 	</div>
-	<script src="js/vue.js"></script>
-	<script src="js/axios.js"></script>
-	<script src="app/app.js"></script>
+	 	<script src="./js/vue.js"></script>
+        <script src="./js/axios.js"></script>
+        <script src="./js/regkorisnici.js"></script>
 </body>
 
 </html>

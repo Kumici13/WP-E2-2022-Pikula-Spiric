@@ -121,7 +121,6 @@ public class Main
 		{
 			res.type("application/json");
 			String body = req.body();
-			System.out.print("Kituljica");
 			Menadzer menadzer = gson.fromJson(body, Menadzer.class);
 			if (menadzer != null)	
 			{
@@ -146,6 +145,12 @@ public class Main
 		get("app/getSportskiObjekti", (req, res) -> 
 		{
 			return gson.toJson(sportskiObjekti.getAllSportskiObjekti());
+		});
+		
+
+		get("app/getregKorisnici", (req, res) -> 
+		{
+			return gson.toJson(korisnici.getAllRegKorisnici());
 		});
 		
 	}

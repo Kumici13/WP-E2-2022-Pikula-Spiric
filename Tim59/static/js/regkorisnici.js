@@ -5,7 +5,8 @@ new Vue({
 		regKorisnici: [],
      	pretragaIme: '',
         pretragaPrezime: '',
-        pretragaKorisnickoIme: ''
+        pretragaKorisnickoIme: '',
+        filtriranje: ''
     },
     mounted()  
 	{
@@ -37,7 +38,7 @@ new Vue({
 			{	
                 return 	   ((objekat.ime.toLowerCase().match(this.pretragaIme.toLowerCase()))
 						&& (objekat.prezime.toLowerCase().match(this.pretragaPrezime.toLowerCase()))
-						&& (objekat.korIme.toLowerCase().match(this.pretragaKorisnickoIme.toLowerCase())) )
+						&& (objekat.korisnickoIme.toLowerCase().match(this.pretragaKorisnickoIme.toLowerCase())) )
 											
 				});
         }
