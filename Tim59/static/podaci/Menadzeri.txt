@@ -1,2 +1,3 @@
 Ckepa;ckepa123;Ckepa;Ckepa;Muski;null;clanarina;null
 Mamulica;mamulica;Milos;Mamula;Muski;null;clanarina;null
+Vukoman1;vukoman1;Vladimir;Vukoman;Muski;null;clanarina;null
