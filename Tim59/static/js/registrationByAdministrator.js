@@ -168,7 +168,8 @@ new Vue({
                         console.log(error);
                     });
                     }
-                    else {
+                    else  {
+				
 				let putanja = '/app/registracija/trener';
 
                	 axios
