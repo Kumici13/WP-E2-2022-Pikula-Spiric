@@ -153,6 +153,12 @@ public class Main
 			return gson.toJson(korisnici.getAllRegKorisnici());
 		});
 		
+		get("app/getSadrzaji", (req, res) -> 
+		{
+			return gson.toJson(sportskiObjekti.getAllSportskiObjekti());
+		});
+		
+			
 	}
 	
 	private static void LogovanjeKorisnika(Korisnik korisnik) 

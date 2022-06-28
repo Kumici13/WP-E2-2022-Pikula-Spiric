@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Prikaz sadrzaja</title>
+<meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+	<style>
+            body   {
+                background-image: url(Images/loginback.jpg);
+                height: 100%;
+            }
+            
+            .h1 {
+            padding : 10px;
+            text-align : center;  
+            }
+            
+            .search {
+            padding : 5px;
+            text-align : center;  
+            }
+            
+           
+            
+            label {
+		      
+		        width: 250px;   
+     		}
+     		
+     		
+            .editbutton {
+				text-align: right;
+				padding: 10px;
+				font-size: 50;
+				padding-left: 530px;
+			
+			}
+			
+			.addbutton {
+				text-align: left;
+				padding: 10px;
+				font-size: 50;
+				
+			
+			}
+            
+    </style>
+
+</head>
+
+<body>
+	 <div class="welcome" id="sadrzaj-app">
+			<nav class="navbar navbar-expand  fixed-top" style="background-color: #3E1D57; ">
+                <h1><a  class="naslov"  class="navbar-brand" style="color: white ; font-family:Roboto">Sadrzaji</a></h1>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="#" class="nav-link" style="color: white; font-family:Roboto">Početna</a></li>
+                        <li class="nav-item"><a href="sportskiobjekti.html" class="nav-link" style="color: white; font-family:Roboto">Sportski objekti</a></li>
+                        <li class="nav-item"><a href="sadrzaj.html" class="nav-link" style="color: white; font-family:Roboto">Sadrzaj</a></li>                    
+                        <li class="nav-item"><a href="javascript:window.localStorage.removeItem('jwt'); window.location = 'login.html';" class="nav-link" style="color: white; font-family:Roboto">Odjavi se</a></li>
+                    </ul>
+                </div>
+		</nav>
+		<br />
+		<br />
+		<br />
+		<br />
+	
+	
+		<div class="h1">
+			<h1 style="color: white; font-family: Roboto">Pregled sadrzaja za moj lokal:</h1>			
+		</div>
+
+		<div  id="sadrzaj">
+			<table bgcolor="#DEF7F9" class="table" border="2" id="tabela">
+				<thead>
+					<tr bgcolor="#309AF9">
+						<th>Naziv</th>
+						<th>Tip</th>
+						<th>Slika</th>
+						<th>Opis</th>
+						<th>Trajanje</th>
+						<th>Trener</th>
+				</thead>
+	
+				<tr v-for="p in regkorisniciFilter">
+					<td>{{p.korisnickoIme }}</td>
+					<td>{{p.sifra }}</td>
+					<td>{{p.ime }}</td>
+					<td>{{p.prezime }}</td>
+					<td>{{p.pol }}</td>
+					<td>{{p.datumRodjenja }}</td>
+				</tr>
+			</table>
+		</div>
+		
+		<div class="editbutton">
+                    <button v-on:click="editProduct(p)"  class="btn btn-outline-light">Izmeni</button>
+             
+        </div>
+        
+        <div class="addbutton">
+                    <button v-on:click="showForm()"  class="btn btn-outline-light">Dodaj</button>
+             
+        </div>
+        
+        
+		</div>	
+	 	<script src="./js/vue.js"></script>
+        <script src="./js/axios.js"></script>
+        <script src="./js/sadrzaj.js"></script>
+</body>
+
+</html>
