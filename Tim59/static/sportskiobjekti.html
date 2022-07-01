@@ -58,9 +58,10 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item"><a href="index.html" class="nav-link" style="color: white; font-family:Roboto">Pocetna</a></li>
                         <li class="nav-item"><a href="sportskiobjekti.html" class="nav-link" style="color: white; font-family:Roboto">Sportski objekti</a></li>
-                        <li class="nav-item"><a href="login.html" class="nav-link" style="color: white; font-family:Roboto">Uloguj se</a></li>
-                        <li class="nav-item"><a href="profile.html" class="nav-link" style="color: white; font-family:Roboto">Moj profil</a></li>
-                        <li class="nav-item"><a href="registration.html" class="nav-link" style="color: white; font-family:Roboto">Registruj se</a></li>
+                        <li v-if="ulogovanKorisnik()"  class="nav-item"><a  style="color: white; font-family:Roboto" href="javascript:window.localStorage.removeItem('jwt'); window.location = 'login.html';" class="nav-link">Odjavi se</a></li>
+                        <li v-else class="nav-item"><a href="login.html" class="nav-link" style="color: white; font-family:Roboto">Uloguj se</a></li>           
+                        <li v-if="ulogovanKorisnik()" class="nav-item"><a href="profile.html" class="nav-link" style="color: white; font-family:Roboto">Moj profil</a></li>
+                        <li  v-else class="nav-item"><a href="registration.html" class="nav-link" style="color: white; font-family:Roboto">Registruj se</a></li>
                     </ul>
                 </div>
 			</nav>
@@ -137,7 +138,7 @@
 		</div>
 		
 		<div class="tablebutton">
-                    <button onclick="window.location.href='dodajSportskiObjekat.html'"  class="btn btn-outline-light">Dodaj novi objekat</button>
+                    <button  v-if="uloga === '2'" onclick="window.location.href='dodajSportskiObjekat.html'"  class="btn btn-outline-light">Dodaj novi objekat</button>
         </div>
 	</div>
 	<script src="js/vue.js"></script>

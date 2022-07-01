@@ -26,6 +26,9 @@ public class Trener extends Korisnik{
 		this.istorijaTreninga = istorijaTreninga;
 	}
 	
-	
+	@Override
+	public String toSaveFormat() {
+		return this.getKorisnickoIme() + ";" + this.getSifra() + ";" + this.getIme() + ";" + this.getPrezime() + ";" + this.getPol().name() + ";" + this.getDatumRodjenja() + ";"+ "clanarina" + ";"+ this.istorijaTreninga;
+	}
 
 }

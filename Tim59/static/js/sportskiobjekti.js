@@ -2,6 +2,7 @@ new Vue({
     el: '#sportski-objekti-app',
     data:   
 	{
+        uloga: '',
         sportskiObjekti: [],
         pretragaNaziv: '',
         pretragaPoTipu: '5',
@@ -10,6 +11,14 @@ new Vue({
     },
     mounted()  
 	{
+        this.uloga = window.localStorage.getItem('uloga');
+
+        if (this.uloga == null) 
+		{
+            window.localStorage.removeItem('uloga');
+            window.localStorage.removeItem('jwt');
+        }
+
         axios
             .get('app/getSportskiObjekti')
             .then(response => 

@@ -3,6 +3,7 @@ package app;
 import static spark.Spark.get;
 import static spark.Spark.port;
 import static spark.Spark.post;
+import static spark.Spark.put;
 import static spark.Spark.staticFiles;
 import java.io.File;
 import java.security.Key;
@@ -19,9 +20,13 @@ import beans.Korisnik;
 import dao.KorisniciDAO;
 import dao.SportskiObjektiDAO;
 import enums.Uloga;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import spark.Request;
+import spark.Response;
 public class Main 
 {
 	private static Gson gson;
@@ -158,6 +163,64 @@ public class Main
 			return gson.toJson(sportskiObjekti.getAllSportskiObjekti());
 		});
 		
+		get("/app/getKorisnik", (req, res) -> 
+		{
+			Korisnik korisnik = getKorisnikByJWT(req, res);
+			
+			if (korisnik != null)	
+			{
+				return gson.toJson(korisnik);
+			} 
+			else	
+			{
+				if (res.status() == 400)	
+				{
+					return gson.toJson("Morate biti ulogovati da biste pristupili.");
+				}
+				else if (res.status() == 500)	
+				{ 
+					return gson.toJson("Doslo je do greske.");
+				}
+				
+				res.status(500);
+				return gson.toJson("Doslo je do greske.");
+			}
+		});
+		
+		put("/app/izmeniKorisnika", (req, res) -> 
+		{
+			Korisnik korisnik = getKorisnikByJWT(req, res);
+			
+			if (korisnik != null)	
+			{
+				String payload = req.body();
+				Korisnik izmenjenKorisnik = gson.fromJson(payload, Korisnik.class);
+				
+				if (korisnici.izmeniKorisnika(izmenjenKorisnik))	
+				{
+					return gson.toJson("Nalog izmenjen!");
+				} 
+				else	
+				{
+					return gson.toJson("Doslo je do greske.");
+				}
+			} 
+			else	
+			{
+				if (res.status() == 400)	
+				{
+					return gson.toJson("Morate se ulogovati.");
+				}
+				else if (res.status() == 500)	
+				{ 
+					return gson.toJson("Doslo je do greske..");
+				}
+				
+				res.status(500);
+				return gson.toJson("Doslo je do greske.");
+			}
+		});
+		
 			
 	}
 	
@@ -165,6 +228,33 @@ public class Main
 	{
 		String jwt = Jwts.builder().setSubject(korisnik.getKorisnickoIme()).setIssuedAt(new Date()).signWith(key).compact();
 		korisnik.setJWTToken(jwt);
+	}
+	
+	private static Korisnik getKorisnikByJWT(Request req, Response res) 
+	{
+		String autorizacija = req.headers("Autorizacija");
+		
+		if (autorizacija != null) 
+		{	
+			String jwt = autorizacija;
+			try 
+			{
+				Jws<Claims> claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwt);
+				String korisnickoIme = claims.getBody().getSubject();
+				Korisnik korisnik = korisnici.getKorisnikByKorisnickoIme(korisnickoIme);
+				return korisnik;
+			} 
+			catch (Exception e) 
+			{
+				res.status(500);
+				return null;
+			}
+		} 
+		else	
+		{
+			res.status(400);
+			return null;
+		}
 	}
 	
 }

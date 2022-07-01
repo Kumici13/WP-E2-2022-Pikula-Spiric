@@ -159,4 +159,43 @@ public class KorisniciDAO
 		
 		return putanja;
 	}
+	
+	public boolean izmeniKorisnika(Korisnik izmenjenKorisnik)	
+	{
+		Korisnik korisnikZaIzmenu = korisnici.get(izmenjenKorisnik.getKorisnickoIme());
+		if (korisnikZaIzmenu != null) 
+		{
+			korisnikZaIzmenu.setIme(izmenjenKorisnik.getIme());
+			korisnikZaIzmenu.setPrezime(izmenjenKorisnik.getPrezime());
+			korisnikZaIzmenu.setPol(izmenjenKorisnik.getPol());
+			korisnikZaIzmenu.setSifra(izmenjenKorisnik.getSifra());
+			azurirajPodatke(izmenjenKorisnik.getUloga());
+			return true;
+		} 
+		else	
+		{
+			return false;
+		}
+	}
+	
+	private void azurirajPodatke(Uloga uloga) 
+	{
+		String putanja = napraviPutanju(uloga);
+		try 
+		{
+			FileWriter writer = new FileWriter(putanja, false);
+			for (Korisnik korisnik : korisnici.values())	
+			{
+				if (korisnik.getUloga().equals(uloga))	
+				{
+					writer.write(korisnik.toSaveFormat());
+				}
+			}
+			writer.close();
+		} 
+		catch (IOException e)	
+		{
+			e.printStackTrace();
+		}
+	}
 }

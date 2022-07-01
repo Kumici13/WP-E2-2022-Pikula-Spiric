@@ -50,7 +50,7 @@
 </head>
 
 <body>
-		<div class="welcome" id="register-app">
+		<div class="welcome" id="dodaj-sportski-objekat-app">
 			<nav class="navbar navbar-expand  fixed-top" style="background-color: #3E1D57; ">
                 <h1><a  class="naslov"  class="navbar-brand" style="color: white ; font-family:Roboto">Dodavanje novog sportskog objekta</a></h1>
                 <div class="collapse navbar-collapse">
@@ -97,7 +97,7 @@
             </div> 
             <div class="textboxovi">
                     <label style="color: white; font-family:Roboto">Logo:</label>
-                     <input id="sifraPonovo" ref="sifraPonovo" v-model:value="sifraPonovo" type="password" style="width: 400px; height: 35px">   
+                     <input id="sifraPonovo" ref="sifraPonovo" v-model:value="sifraPonovo" type="file" ref="file" accept=".jpg,.png,.jpeg" style="width: 400px; height: 35px">   
              </div>
              <div class="textboxovi">
                     <label style="color: white; font-family:Roboto">Prosecna ocena:</label>
@@ -117,7 +117,7 @@
         
         <script src="./js/vue.js"></script>
         <script src="./js/axios.js"></script>
-        <script src="./js/registration.js"></script>
+        <script src="./js/dodajSportskiObjekat.js"></script>
 </body>
 
 </html>
