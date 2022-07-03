@@ -84,7 +84,7 @@ new Vue({
                         }
 						else if(uloga == 3)
 						{
-							window.location = "trenerHome";
+							window.location = "trenerHome.html";
 						}
 						
                     } 
