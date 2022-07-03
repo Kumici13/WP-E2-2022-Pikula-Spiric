@@ -17,6 +17,12 @@
             text-align : center;  
             }
             
+            .h2 {
+            padding-top : 150px;
+            padding-bottom : 10px;
+            text-align : center;  
+            }
+            
             .search {
             padding : 5px;
             text-align : center;  
@@ -82,7 +88,7 @@
 						<th>Slika</th>
 						<th>Opis</th>
 						<th>Trajanje</th>
-						<th>Trener</th>
+						
 				</thead>
 	
 				<tr v-for="p in regkorisniciFilter">
@@ -105,6 +111,46 @@
                     <button v-on:click="showForm()"  class="btn btn-outline-light">Dodaj</button>
              
         </div>
+		
+		<div class="h2">
+			<h1 style="color: white; font-family: Roboto">Treneri:</h1>			
+		</div>
+		
+		<div  id="sadrzaj">
+			<table bgcolor="#DEF7F9" class="table" border="2" id="tabela">
+				<thead>
+					<tr bgcolor="#309AF9">
+						<th>Ime</th>
+						<th>Prezime</th>
+				</thead>
+	
+				<tr v-for="p in regkorisniciFilter">
+					<td>{{p.korisnickoIme }}</td>
+					<td>{{p.sifra }}</td>
+				</tr>
+			</table>
+		</div>
+		
+		<div class="h2">
+			<h1 style="color: white; font-family: Roboto">Kupci koji su posetili objekat:</h1>			
+		</div>
+		
+		<div  id="sadrzaj">
+			<table bgcolor="#DEF7F9" class="table" border="2" id="tabela">
+				<thead>
+					<tr bgcolor="#309AF9">
+						<th>Ime</th>
+						<th>Prezime</th>
+				</thead>
+	
+				<tr v-for="p in regkorisniciFilter">
+					<td>{{p.korisnickoIme }}</td>
+					<td>{{p.sifra }}</td>
+				</tr>
+			</table>
+		</div>
+		
+		
         
         
 		</div>	

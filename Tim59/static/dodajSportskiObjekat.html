@@ -74,38 +74,44 @@
                     <label  style="color: white; font-family:Roboto" >Naziv:</label>
                     <input id="ime" ref="ime" v-model:value="ime" type="textbox" style="width: 400px; height: 35px">  
                     <div class="invalid-feedback">Ukucajte vase ime.</div> 
-            </div>    
+            </div>   
+             <div class="textboxovi"> 
+             	<label  style="color: white; font-family:Roboto" >Tip objekta:</label>
+	            <select v-model:value="" style="width: 400px; height: 35px; font-family:Roboto " >
+	                        <option value="Teretana">Teretana</option>
+	                        <option value="Bazen">Bazen</option>
+	                        <option value="SportskiCentar">Sportski centar</option>
+	                        <option value="PlesniStudio">Plesni studio</option>
+	                        <option value="Drugo">Ostalo</option>
+	            </select> 
+            </div>          
             <div class="textboxovi">
-                    <label  style="color: white; font-family:Roboto" >Status:</label>
-                    <input id="prezime" ref="prezime" v-model:value="prezime" type="textbox" style="width: 400px; height: 35px">   
-                    <div class="invalid-feedback">Ukucajte vase prezime.</div>
-            </div>  
-            <div class="textboxovi">
-                    <label  style="color: white; font-family:Roboto" >Tip objekta:</label>
-                    <input id="korisnickoIme" ref="korisnickoIme" v-model:value="korisnickoIme" type="textbox" style="width: 400px; height: 35px">   
-                    <div class="invalid-feedback">Ukucajte vase korisnicko ime. Dozvoljena su slova, brojevi i crtica!</div>
-            </div>  
-             <div class="textboxovi">
-                    <label  style="color: white; font-family:Roboto" >Sadrzaj:</label>
-                    <input id="sifra" ref="sifra" v-model:value="sifra" type="password" style="width: 400px; height: 35px">   
-                    <div class="invalid-feedback">Sifre moraju da se poklapaju.Ukucajte najmanje 8 karaktera!</div>
+                    <label  style="color: white; font-family:Roboto" >Geo duzina:</label>
+                    <input id="geoDuzina" ref="geoDuzina" v-model:value="geoDuzina" type="textbox" style="width: 400px; height: 35px">   
             </div> 
             <div class="textboxovi">
-                    <label  style="color: white; font-family:Roboto" >Lokacija:</label>
-                    <input id="sifraPonovo" ref="sifraPonovo" v-model:value="sifraPonovo" type="password" style="width: 400px; height: 35px">   
-            		<div class="invalid-feedback">Sifre moraju da se poklapaju.</div>
+                    <label  style="color: white; font-family:Roboto" >Geo sirina:</label>
+                    <input id="geoSirina" ref="geoSirina" v-model:value="geoSirina" type="textbox" style="width: 400px; height: 35px">   
+            </div> 
+            <div class="textboxovi">
+                    <label  style="color: white; font-family:Roboto" >Ulica:</label>
+                    <input id="ulica" ref="ulica" v-model:value="ulica" type="textbox" style="width: 400px; height: 35px">   
+            </div> 
+            <div class="textboxovi">
+                    <label  style="color: white; font-family:Roboto" >Broj:</label>
+                    <input id="broj" ref="broj" v-model:value="broj" type="textbox" style="width: 400px; height: 35px">   
+            </div> 
+            <div class="textboxovi">
+                    <label  style="color: white; font-family:Roboto" >Mesto:</label>
+                    <input id="mesto" ref="mesto" v-model:value="mesto" type="textbox" style="width: 400px; height: 35px">   
+            </div> 
+            <div class="textboxovi">
+                    <label  style="color: white; font-family:Roboto" >Postanski broj:</label>
+                    <input id="postanskiBroj" ref="postanskiBroj" v-model:value="postanskiBroj" type="textbox" style="width: 400px; height: 35px">   
             </div> 
             <div class="textboxovi">
                     <label style="color: white; font-family:Roboto">Logo:</label>
-                     <input id="sifraPonovo" ref="sifraPonovo" v-model:value="sifraPonovo" type="file" ref="file" accept=".jpg,.png,.jpeg" style="width: 400px; height: 35px">   
-             </div>
-             <div class="textboxovi">
-                    <label style="color: white; font-family:Roboto">Prosecna ocena:</label>
-                     <input id="sifraPonovo" ref="sifraPonovo" v-model:value="sifraPonovo" type="password" style="width: 400px; height: 35px">   
-             </div>
-             <div class="textboxovi">
-                    <label style="color: white; font-family:Roboto">Radno vreme:</label>
-                     <input id="sifraPonovo" ref="sifraPonovo" v-model:value="sifraPonovo" type="password" style="width: 400px; height: 35px">   
+                     <input id="logo" ref="logo" v-model:value="logo" type="file" ref="file" accept=".jpg,.png,.jpeg" style="width: 400px; height: 60px">   
              </div>
              <div class="tablebutton">
                     <button v-on:click.prevent="provera"  class="btn btn-outline-light">Dodaj</button>
