@@ -3,22 +3,41 @@ new Vue({
     data:   
 	{
         Sadrzaji: [],
+        getTreneri: [],
+        pretragaCena: '',
         
     },
-    mounted()  
+    
+    
+     mounted()  
 	{
         axios
-            .get('app/getSadrzaji')
+            .get('app/getTreneri')
             .then(response => 
 			{
-                this.Sadrzaji = response.data;
+                this.getTreneri = response.data;
             })
             .catch(error => 
 			{
                 console.log(error);
-                alert(error.response.data.sadrzaj);
+                
             });
     },
+    computed:   
+	{
+        
+        regTreneriFilter: function() 
+		{
+            return this.getTreneri.filter((objekat) => 
+			{	
+                return 	   ((objekat.sifra.toLowerCase().match(this.pretragaCena.toLowerCase()))
+						 )
+											
+				});
+        }
+       
+    }
+   
     	
 });
 

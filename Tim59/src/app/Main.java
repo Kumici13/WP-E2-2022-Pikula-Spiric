@@ -158,6 +158,11 @@ public class Main
 			return gson.toJson(korisnici.getAllRegKorisnici());
 		});
 		
+		get("app/getTreneri", (req, res) -> 
+		{
+			return gson.toJson(korisnici.getAllRegTreneri());
+		});
+		
 		get("app/getSadrzaji", (req, res) -> 
 		{
 			return gson.toJson(sportskiObjekti.getAllSportskiObjekti());

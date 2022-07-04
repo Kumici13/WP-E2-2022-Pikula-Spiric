@@ -90,15 +90,15 @@
 						<th>Trajanje</th>
 						
 				</thead>
-	
-				<tr v-for="p in regkorisniciFilter">
+	<!-- tr v-for="p in sadrzajFilter">
 					<td>{{p.korisnickoIme }}</td>
 					<td>{{p.sifra }}</td>
 					<td>{{p.ime }}</td>
 					<td>{{p.prezime }}</td>
 					<td>{{p.pol }}</td>
 					<td>{{p.datumRodjenja }}</td>
-				</tr>
+				</tr>- -->
+				<
 			</table>
 		</div>
 		
@@ -124,9 +124,9 @@
 						<th>Prezime</th>
 				</thead>
 	
-				<tr v-for="p in regkorisniciFilter">
-					<td>{{p.korisnickoIme }}</td>
-					<td>{{p.sifra }}</td>
+				<tr v-for="p in regTreneriFilter">
+					<td>{{p.ime }}</td>
+					<td>{{p.prezime }}</td>
 				</tr>
 			</table>
 		</div>
@@ -142,17 +142,14 @@
 						<th>Ime</th>
 						<th>Prezime</th>
 				</thead>
-	
-				<tr v-for="p in regkorisniciFilter">
+	<!-- <tr v-for="p in kupciFilter">
 					<td>{{p.korisnickoIme }}</td>
 					<td>{{p.sifra }}</td>
-				</tr>
+				</tr>- -->
+				
 			</table>
 		</div>
-		
-		
-        
-        
+  
 		</div>	
 	 	<script src="./js/vue.js"></script>
         <script src="./js/axios.js"></script>
