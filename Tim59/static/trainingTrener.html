@@ -26,7 +26,13 @@
             text-align : center;  
             }
             
-           
+            .editbutton {
+				text-align: right;
+				padding: 10px;
+				font-size: 50;
+				padding-left: 530px;
+			
+			}
             
             label {
 		      
@@ -43,7 +49,7 @@
                 <h1><a  class="naslov"  class="navbar-brand" style="color: white ; font-family:Roboto">Treninzi</a></h1>
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav ml-auto">
-                       <li class="nav-item"><a href="menadzerHome.html" class="nav-link" style="color: white; font-family:Roboto">Početna</a></li>
+                       <li class="nav-item"><a href="trainerHome.html" class="nav-link" style="color: white; font-family:Roboto">Početna</a></li>
                         <li class="nav-item"><a href="profile.html" class="nav-link" style="color: white; font-family:Roboto">Profil</a></li>
                         <li class="nav-item"><a href="sportskiobjekti.html" class="nav-link" style="color: white; font-family:Roboto">Sportski objekti</a></li>
                         <li class="nav-item"><a href="#" class="nav-link" style="color: white; font-family:Roboto">Treninzi</a></li>
@@ -58,12 +64,12 @@
 	
 	
 		<div class="h1">
-			<h1 style="color: white; font-family: Roboto">Pregled treninga menadzer:</h1>			
+			<h1 style="color: white; font-family: Roboto">Pregled treninga trener:</h1>			
 		</div>
 		
-		
-			<div class="search">
+		<div class="search">
 			<label  style="color: white; font-family:Roboto" >Nacin treninga:</label>		
+			<label  style="color: white; font-family:Roboto" >Sportski objekat:</label>	
 			<label  style="color: white; font-family:Roboto" >Cena:</label>		
 			<label  style="color: white; font-family:Roboto" >Datum:</label>			
 		</div>
@@ -75,31 +81,35 @@
             </select>  
             <input v-model:value="pretragaNaziv" type="textbox" style="width: 250px; height: 35px">  
             <input v-model:value="pretragaNaziv" type="textbox" style="width: 250px; height: 35px">  
+            <input v-model:value="pretragaNaziv" type="textbox" style="width: 250px; height: 35px">  
          </div>
-			
-		<div class="search">
-		</div>
 	
 		<div  id="sportskiobjekti">
 			<table bgcolor="#DEF7F9" class="table" border="2" id="tabela">
 				<thead>
 					<tr bgcolor="#309AF9">
-						<th>Naziv</th>
-						<th>Tip</th>
+						<th>Naziv treninga</th>
+						<th>Tip treninga</th>
+						<th>Sportski objekat</th>
+						<th>Tip sportskog objekta</th>
 						<th>Trajanje</th>
-						<th>Trener</th>
 						<th>Opis</th>
-						<th>Slika</th>		
+						<th>Slika</th>			
 					</tr>
 				</thead>
 	
 				<tbody>
 					<tr v-for="p in filtriraniObjekti">
-					
+						
 					</tr>
 				</tbody>
 			</table>
 		</div>
+		
+		<div class="editbutton">
+                    <button v-on:click="editProduct(p)"  class="btn btn-outline-light">Otkazi trening</button>
+             
+        </div>
 	</div>
 	<script src="js/vue.js"></script>
 	<script src="js/axios.js"></script>

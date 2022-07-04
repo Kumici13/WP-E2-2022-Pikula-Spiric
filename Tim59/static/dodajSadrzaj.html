@@ -1,0 +1,113 @@
+<html>
+
+<head>
+	<title>Dodaj novi sportski objekat</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+		
+		<style>
+            body    {
+                background-image: url(Images/loginback.jpg);
+                background-size: 100%;
+            }
+            
+            .pocetni     {
+            	text-align: center;
+            	padding: 50px;
+            	font-size: 50;
+            	
+            }
+            
+            .textboxovi  {
+            
+            	text-align: center;
+            	padding: 10px;
+            	font-size: 30;
+            
+            }
+            
+            label {
+		      
+		        width: 200px;   
+     		}
+     		
+     		 .table3    {
+            	text-align: center;
+            	padding: 100px;
+            	font-size: 30;
+            }
+            
+            .tablebutton {
+				text-align: center;
+				padding: 10px;
+				font-size: 30;
+				padding-left: 530px;
+			}
+			     		
+     		
+            
+           
+        </style>
+</head>
+
+<body>
+		<div class="welcome" id="dodaj-sportski-objekat-app">
+			<nav class="navbar navbar-expand  fixed-top" style="background-color: #3E1D57; ">
+                <h1><a  class="naslov"  class="navbar-brand" style="color: white ; font-family:Roboto">Dodavanje novog sportskog objekta</a></h1>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="#" class="nav-link" style="color: white; font-family:Roboto">Pocetna</a></li>
+                        <li class="nav-item"><a href="sportskiobjekti.html" class="nav-link" style="color: white; font-family:Roboto">Sportski objekti</a></li>
+                        <li class="nav-item"><a href="sadrzaj.html" class="nav-link" style="color: white; font-family:Roboto">Sadrzaj</a></li>                    
+                        <li class="nav-item"><a href="javascript:window.localStorage.removeItem('jwt'); window.location = 'login.html';" class="nav-link" style="color: white;  font-family:Roboto">Odjavi se</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <br/><br/><br/><br/>
+          
+
+       <form id="registracionaForma">
+		<div  class="welcome">
+			<div class="pocetni">
+                    <h1  style="color: white; font-family:Roboto" >Dodaj novi sadrzaj:</h1>
+            </div>
+            <div class="textboxovi" >
+                    <label  style="color: white; font-family:Roboto" >Naziv:</label>
+                    <input id="ime" ref="ime" v-model:value="ime" type="textbox" style="width: 400px; height: 35px">  
+                    <div class="invalid-feedback">Ukucajte naziv sadrzaja.</div> 
+            </div>   
+             <div class="textboxovi"> 
+             	<label  style="color: white; font-family:Roboto" >Tip sadrzaja:</label>
+	            <select v-model:value="" style="width: 400px; height: 35px; font-family:Roboto " >
+	                        <option value="Teretana">Teretana</option>
+	                        <option value="Bazen">Bazen</option>
+	                        <option value="SportskiCentar">Sportski centar</option>
+	                        <option value="PlesniStudio">Plesni studio</option>
+	                        <option value="Drugo">Ostalo</option>
+	            </select> 
+            </div>          
+            <div class="textboxovi">
+                    <label style="color: white; font-family:Roboto">Slika:</label>
+                     <input id="logo" ref="logo" v-model:value="logo" type="file" ref="file" accept=".jpg,.png,.jpeg" style="width: 400px; height: 60px">   
+             </div>
+             <div class="textboxovi" >
+                    <label  style="color: white; font-family:Roboto" >Opis:</label>
+                    <input id="ime" ref="ime" v-model:value="ime" type="textbox" style="width: 400px; height: 35px">  
+            </div> 
+            <div class="textboxovi" >
+                    <label  style="color: white; font-family:Roboto" >Trajanje:</label>
+                    <input id="ime" ref="ime" v-model:value="ime" type="textbox" style="width: 400px; height: 35px">  
+            </div> 
+             <div class="tablebutton">
+                    <button v-on:click.prevent="provera"  class="btn btn-outline-light">Dodaj</button>
+             </div>
+	      </form>
+            
+        	</div>
+        </div>   
+        
+        <script src="./js/vue.js"></script>
+        <script src="./js/axios.js"></script>
+        <script src="./js/dodajSportskiObjekat.js"></script>
+</body>
+
+</html>
