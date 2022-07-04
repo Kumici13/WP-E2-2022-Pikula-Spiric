@@ -19,6 +19,7 @@ import beans.Trener;
 import beans.Korisnik;
 import dao.KorisniciDAO;
 import dao.SportskiObjektiDAO;
+import dao.TreningDao;
 import enums.Uloga;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -32,6 +33,7 @@ public class Main
 	private static Gson gson;
 	private static KorisniciDAO korisnici = null;
 	private static SportskiObjektiDAO sportskiObjekti = null;
+	private static TreningDao treninzi = null;
 	private static Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 	public static void main(String[] args) throws Exception 
 	{
@@ -40,6 +42,7 @@ public class Main
 		staticFiles.externalLocation(new File("./static").getCanonicalPath());
 		korisnici = new KorisniciDAO();
 		sportskiObjekti = new SportskiObjektiDAO();
+		treninzi = new TreningDao();
 		gson =  new GsonBuilder().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
 		
 			
@@ -152,6 +155,11 @@ public class Main
 			return gson.toJson(sportskiObjekti.getAllSportskiObjekti());
 		});
 		
+		get("app/getSadrzaji", (req, res) -> 
+		{
+			return gson.toJson(treninzi.getAllTreninzi());
+		});
+		
 
 		get("app/getregKorisnici", (req, res) -> 
 		{
@@ -161,11 +169,6 @@ public class Main
 		get("app/getTreneri", (req, res) -> 
 		{
 			return gson.toJson(korisnici.getAllRegTreneri());
-		});
-		
-		get("app/getSadrzaji", (req, res) -> 
-		{
-			return gson.toJson(sportskiObjekti.getAllSportskiObjekti());
 		});
 		
 		get("/app/getKorisnik", (req, res) -> 

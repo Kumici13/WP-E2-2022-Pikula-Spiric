@@ -2,7 +2,7 @@ new Vue({
     el: '#sadrzaj-app',
     data:   
 	{
-        Sadrzaji: [],
+        getSadrzaji: [],
         getTreneri: [],
         pretragaCena: '',
         
@@ -22,11 +22,51 @@ new Vue({
                 console.log(error);
                 
             });
+            
+        axios
+            .get('app/getSadrzaji')
+            .then(response => 
+			{
+                this.getSadrzaji = response.data;
+            })
+            .catch(error => 
+			{
+                console.log(error);
+                alert(error.response.data.sadrzaj);
+            });
     },
+    
+    /* 
+     methods:    
+	{
+        
+		prikaziSliku: function(slika)
+		{
+            if (slika != null)  
+			{
+                return "data:image/jpeg;base64," + slika;
+            } 
+			else  
+			{
+                return '';
+            }
+        }
+    },*/
+    
+   
+    
     computed:   
 	{
         
-        regTreneriFilter: function() 
+		 sadrzajFilter: function() 
+				{
+		            return this.getSadrzaji.filter((objekat) => 
+					{	
+		                return 	   ((objekat.sifra.toLowerCase().match(this.pretragaCena.toLowerCase())) 
+		                		) 					
+						});
+		        },
+		 regTreneriFilter: function() 
 		{
             return this.getTreneri.filter((objekat) => 
 			{	
@@ -35,9 +75,11 @@ new Vue({
 											
 				});
         }
-       
+           
     }
    
+  
+       
     	
 });
 
