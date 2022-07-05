@@ -7,12 +7,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.imageio.ImageTypeSpecifier;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.IconifyAction;
+
+import com.google.gson.JsonElement;
+
 import beans.Administrator;
-import beans.Clanarina;
 import beans.Korisnik;
 import beans.Kupac;
 import beans.Menadzer;
-import beans.SportskiObjekat;
 import beans.Trener;
 import enums.Pol;
 import enums.Uloga;
@@ -52,6 +55,20 @@ public class KorisniciDAO
 		return korisnics;
 	}
 	
+	public void ucitajSportskeObjekteUMenadzere(SportskiObjektiDAO sportskiObjektiDAO)
+	{
+		
+		for (Korisnik kor : korisnici.values())	
+		{
+			if(kor.getUloga() == Uloga.Menadzer)
+			{
+					if (((Menadzer)kor).getSportskiObjekatId() != null)
+					{
+						((Menadzer)kor).setSportskiobjekat(sportskiObjektiDAO.getSportskiObjekatById(((Menadzer)kor).getSportskiObjekatId()));
+					}
+			}
+		}
+	}
 	private void ucitajKorisnike(Uloga uloga)	
 	{
 		BufferedReader bafer;
@@ -78,7 +95,7 @@ public class KorisniciDAO
 				else if (uloga == Uloga.Menadzer)	
 				{
 					//SPORTSKI OBJEKAT UMESTO NULL 
-					Menadzer menadzer = new Menadzer(tokeni[0], tokeni[1], tokeni[2], tokeni[3], Pol.valueOf(tokeni[4]), tokeni[5], null);
+					Menadzer menadzer = new Menadzer(tokeni[0], tokeni[1], tokeni[2], tokeni[3], Pol.valueOf(tokeni[4]), tokeni[5], tokeni[6]);
 					korisnici.put(tokeni[0], menadzer);
 				}
 				else if(uloga == Uloga.Trener)
@@ -178,7 +195,7 @@ public class KorisniciDAO
 		}
 	}
 	
-	private void azurirajPodatke(Uloga uloga) 
+	public void azurirajPodatke(Uloga uloga) 
 	{
 		String putanja = napraviPutanju(uloga);
 		try 
@@ -197,5 +214,24 @@ public class KorisniciDAO
 		{
 			e.printStackTrace();
 		}
+	}
+
+
+	public ArrayList<Menadzer> getSlobodniMenadzeri()
+	{
+		ArrayList<Menadzer> menadzeri = new ArrayList<>();
+		
+		for (Korisnik korisnik : korisnici.values())	
+		{
+			if(korisnik.getUloga()== Uloga.Menadzer) 
+			{
+				if((((Menadzer) korisnik).getSportskiobjekat() == null) && ((Menadzer) korisnik).getSportskiObjekatId().equals("null")) 
+				{
+					menadzeri.add((Menadzer) korisnik);
+				}
+			}
+		}
+		
+		return menadzeri;
 	}
 }

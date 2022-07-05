@@ -6,8 +6,16 @@ import static spark.Spark.post;
 import static spark.Spark.put;
 import static spark.Spark.staticFiles;
 import java.io.File;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.Key;
+import java.util.Collection;
 import java.util.Date;
+
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.http.Part;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -15,6 +23,7 @@ import com.google.gson.JsonDeserializer;
 
 import beans.Kupac;
 import beans.Menadzer;
+import beans.SportskiObjekat;
 import beans.Trener;
 import beans.Korisnik;
 import dao.KorisniciDAO;
@@ -33,6 +42,7 @@ public class Main
 	private static KorisniciDAO korisnici = null;
 	private static SportskiObjektiDAO sportskiObjekti = null;
 	private static Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+	@SuppressWarnings("unused")
 	public static void main(String[] args) throws Exception 
 	{
 		port(8080);
@@ -40,6 +50,8 @@ public class Main
 		staticFiles.externalLocation(new File("./static").getCanonicalPath());
 		korisnici = new KorisniciDAO();
 		sportskiObjekti = new SportskiObjektiDAO();
+		korisnici.ucitajSportskeObjekteUMenadzere(sportskiObjekti);
+	
 		gson =  new GsonBuilder().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
 		
 			
@@ -152,6 +164,11 @@ public class Main
 			return gson.toJson(sportskiObjekti.getAllSportskiObjekti());
 		});
 		
+		get("app/getSlobodniMenadzeri", (req, res) -> 
+		{
+			return gson.toJson(korisnici.getSlobodniMenadzeri());
+		});
+		
 
 		get("app/getregKorisnici", (req, res) -> 
 		{
@@ -221,6 +238,112 @@ public class Main
 			}
 		});
 		
+		post("app/dodajSportskiObjekat", (req, res) ->	
+		{
+
+			String menadzerUserName = req.headers("Menadzer");
+			res.type("application/json");
+			Korisnik korisnik = korisnici.getKorisnikByKorisnickoIme(menadzerUserName);
+
+			String payload = req.body();
+			SportskiObjekat noviSportskiObjekat = gson.fromJson(payload, SportskiObjekat.class);
+			if (korisnik != null)	
+			{
+				if (korisnik.getUloga().equals(Uloga.Menadzer))	
+				{
+
+					if (noviSportskiObjekat != null)	
+					{
+						noviSportskiObjekat = sportskiObjekti.dodajNoviSportskiObjekat(noviSportskiObjekat);
+						((Menadzer)korisnik).setSportskiobjekat(noviSportskiObjekat);
+						((Menadzer)korisnik).setSportskiObjekatId(noviSportskiObjekat.getId());
+						korisnici.azurirajPodatke(Uloga.Menadzer);
+						res.header("idNovogSportskogObjekta", noviSportskiObjekat.getId());
+						return gson.toJson("Sportski objekat dodat.");
+					} 
+					else	
+					{
+						res.status(500);
+						return gson.toJson("Doslo je do greske");
+					}
+				} 
+				else	
+				{
+					res.status(403);
+					return gson.toJson("Niste ovlasceni.");
+				}
+			} 
+			else	
+			{
+				if (res.status() == 400)	
+				{
+					return gson.toJson("Morate se ulogovati.");
+				} 
+				else if (res.status() == 500)	
+				{
+					return gson.toJson("Doslo je do greske.");
+				}
+
+				res.status(500);
+				return gson.toJson("Doslo je do greske.");
+			}
+
+		});
+		
+		post("/app/dodajSliku", (req, res) -> 
+		{
+			Korisnik korisnik = getKorisnikByJWT(req, res);
+			
+			if (korisnik != null) 
+			{
+				String location = "image";  
+				long maxFileSize = 100000000;       
+				long maxRequestSize = 100000000;    
+				int fileSizeThreshold = 1024;       
+
+				MultipartConfigElement multipartConfigElement = new MultipartConfigElement(
+				location, maxFileSize, maxRequestSize, fileSizeThreshold);
+				req.raw().setAttribute("org.eclipse.jetty.multipartConfig",
+				multipartConfigElement);
+
+				Collection<Part> parts = req.raw().getParts();
+				String tipSlikeString = ".png";
+				for (Part part : parts) 
+				{
+					tipSlikeString= part.getContentType();
+					tipSlikeString = tipSlikeString.replaceAll("image/","");
+				}
+				String fName = req.headers("IdSportskogObjekta")+"."+tipSlikeString;
+				
+				Part uploadedFile = req.raw().getPart("file");
+				Path out = Paths.get("static/Images/" + fName);
+				try (final InputStream in = uploadedFile.getInputStream()) 
+				{
+				   Files.copy(in, out);
+				   uploadedFile.delete();
+				   sportskiObjekti.dodajSliku(fName, req.headers("IdSportskogObjekta"));
+				}
+				multipartConfigElement = null;
+				uploadedFile = null;
+				
+				return gson.toJson(sportskiObjekti.getSportskiObjekatById(req.headers("IdSportskogObjekta")));
+			} 
+			else	
+			{
+				if (res.status() == 400)	
+				{
+					return gson.toJson("Morate se ulogovati.");
+				}
+				else if (res.status() == 500)	
+				{
+					return gson.toJson("Doslo je do greske.");
+				}
+				
+				res.status(500);
+				return gson.toJson("Doslo je do greske.");
+			}
+		});
+	
 			
 	}
 	

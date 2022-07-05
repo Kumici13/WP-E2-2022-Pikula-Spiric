@@ -3,6 +3,8 @@ package dao;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -13,11 +15,12 @@ import beans.Adresa;
 import beans.Lokacija;
 import beans.SportskiObjekat;
 import enums.TipObjektaEnum;
+import javaxt.utils.string;
 
 public class SportskiObjektiDAO {
 
 	private HashMap<Integer, SportskiObjekat> sportskiObjekti;
-	
+	private int SportskiObjektiId =0;
 	public SportskiObjektiDAO()
 	{
 		sportskiObjekti = new HashMap<Integer, SportskiObjekat>();
@@ -49,17 +52,17 @@ public class SportskiObjektiDAO {
 			while ((row = bafer.readLine()) != null)	
 			{
 				String[] tokeni = row.split(";");
-				
+				SportskiObjektiId = Integer.parseInt(tokeni[0]);
 				String[] tokeniAdrese = tokeni[5].split(",");
-				Adresa adresaSportskogObjekta = new Adresa(tokeniAdrese[0],Integer.parseInt(tokeniAdrese[1]),tokeniAdrese[2],Integer.parseInt(tokeniAdrese[3]));
+				Adresa adresaSportskogObjekta = new Adresa(tokeniAdrese[0],tokeniAdrese[1],tokeniAdrese[2],Integer.parseInt(tokeniAdrese[3]));
 				
 				Lokacija lokacija = new Lokacija(Double.parseDouble(tokeni[6]), Double.parseDouble(tokeni[7]), adresaSportskogObjekta);
 				
 				String sadrzaj = tokeni[4];
 				String[] sadrzaji = sadrzaj.split(",");
 				
-				SportskiObjekat sportskiObjekat = new SportskiObjekat(tokeni[0],tokeni[1],Boolean.parseBoolean(tokeni[2]),TipObjektaEnum.valueOf(tokeni[3]),sadrzaji,lokacija,ucitajSliku("./static/Images/" + tokeni[8]),Double.parseDouble(tokeni[9]),tokeni[10]);
-				sportskiObjekti.put(Integer.parseInt(tokeni[0]), sportskiObjekat);
+				SportskiObjekat sportskiObjekat = new SportskiObjekat(tokeni[0],tokeni[1],Boolean.parseBoolean(tokeni[2]),TipObjektaEnum.valueOf(tokeni[3]),sadrzaji,lokacija,tokeni[8],Double.parseDouble(tokeni[9]),tokeni[10]);
+				sportskiObjekti.put(SportskiObjektiId, sportskiObjekat);
 			}
 			
 			bafer.close();
@@ -71,19 +74,77 @@ public class SportskiObjektiDAO {
 		}
 	}
 	
-	private String ucitajSliku(String putanja)	
+	public SportskiObjekat dodajNoviSportskiObjekat(SportskiObjekat noviSportskiObjekat) 
 	{
+		SportskiObjektiId++;
+		noviSportskiObjekat.setId(""+SportskiObjektiId);
+		noviSportskiObjekat.setStatus(false);
+		sportskiObjekti.put(SportskiObjektiId, noviSportskiObjekat);
+		
+		sacuvajNoviSportskiObjekat(noviSportskiObjekat);
+		
+		return noviSportskiObjekat;
+	}
+	
+	private void sacuvajNoviSportskiObjekat(SportskiObjekat noviSportskiObjekat) 
+	{
+		String putanja = "./static/podaci/SportskiObjekti.txt";
 		try 
 		{
-			File file = new File(putanja);
-			String encodeImage = Base64.getEncoder().withoutPadding().encodeToString(Files.readAllBytes(file.toPath()));
-			return encodeImage;
+			FileWriter writer = new FileWriter(putanja, true);
+			writer.append(noviSportskiObjekat.toSaveFormat());
+			writer.close();
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+			System.out.println("Fajl " + putanja + " nije pronadjen!\r\n");
+		}
+	}
+	
+	public void dodajSliku(String imeSlike, String idSportskogObjekta)	
+	{
+		for (SportskiObjekat sportskiObjekat : sportskiObjekti.values())	
+		{
+			if(sportskiObjekat.getId().equals(idSportskogObjekta))
+			{
+				sportskiObjekat.setLogo(imeSlike);
+				azurirajBazu();
+				return;
+			}
+		}
+	}
+	
+	private void azurirajBazu()	
+	{
+		String putanja = "./static/podaci/SportskiObjekti.txt";
+		try 
+		{
+			FileWriter writer = new FileWriter(putanja, false);
+			for (SportskiObjekat sportskiObjekat : sportskiObjekti.values()) 
+			{
+				writer.write(sportskiObjekat.toSaveFormat());
+			}
+			writer.close();
 		} 
 		catch (Exception e) 
 		{
-			System.out.println(putanja + " nije pronadjen.\r\n");
-			return null;
+			e.printStackTrace();
+			System.out.println("Fajl " + putanja + " nije pronadjen!\r\n");
 		}
+	}
+	
+	public SportskiObjekat getSportskiObjekatById(String idSportskogObjekta)	
+	{
+		for (SportskiObjekat sportskiObjekat : sportskiObjekti.values())	
+		{
+			if(sportskiObjekat.getId() == idSportskogObjekta)
+			{
+				return sportskiObjekat;
+			}
+		}
+		
+		return null;
 	}
 	
 }
