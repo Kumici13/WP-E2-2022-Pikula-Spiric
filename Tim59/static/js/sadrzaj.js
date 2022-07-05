@@ -36,7 +36,7 @@ new Vue({
             });
     },
     
-    /* 
+    
      methods:    
 	{
         
@@ -51,7 +51,7 @@ new Vue({
                 return '';
             }
         }
-    },*/
+    },
     
    
     
@@ -62,7 +62,7 @@ new Vue({
 				{
 		            return this.getSadrzaji.filter((objekat) => 
 					{	
-		                return 	   ((objekat.sifra.toLowerCase().match(this.pretragaCena.toLowerCase())) 
+		                return 	   ((objekat.naziv.toLowerCase().match(this.pretragaCena.toLowerCase())) 
 		                		) 					
 						});
 		        },

@@ -179,7 +179,7 @@ public class Main
 
 		get("app/getregKorisnici", (req, res) -> 
 		{
-			return gson.toJson(korisnici.getAllRegKorisnici());
+			return gson.toJson(korisnici.getAllRegKorisniciExceptAdmin());
 		});
 		
 		get("app/getTreneri", (req, res) -> 

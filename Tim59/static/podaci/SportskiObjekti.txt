@@ -4,4 +4,3 @@
 4;Total gym Futog;true;Teretana;Trake za trcanje;Brace Bosnjak,32,Futog,25230;45.241087120233125;19.712642563903927;4.jpg;3.0;7:00AM - 23:00PM
 5;Spens;true;Bazen;Olimpijski i mali bazen;Maksima Gorkog,32,Novi Sad,25230;45.241087120233125;19.712642563903927;gymara.jpg;2.0;7:00AM - 20:00PM
 6;Meridiana;true;Drugo;Fudbalski tereni;Bulevar Evrope,66,Novi Sad,25230;45.241087120233125;19.712642563903927;gympic.jpg;1.0;9:00AM - 21:00PM
-7;Daragu;false;SportskiCentar;/;Maksima Gorkog,54,Crvenka,25567;0.23;0.59;7.png;0.0;/

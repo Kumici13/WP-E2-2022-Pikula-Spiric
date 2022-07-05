@@ -52,10 +52,7 @@ private HashMap<Integer, Trening> treninzi;
 			{
 				String[] tokeni = row.split(";");
 				
-				SportskiObjekat sportskiObjekat = new SportskiObjekat();
-				Trener trener = new Trener();
-			
-				Trening trening = new Trening(tokeni[0],tokeni[1],TipTreninga.valueOf(tokeni[1]), sportskiObjekat, Double.parseDouble(tokeni[4]), trener, tokeni[5], ucitajSliku("./static/Images/" + tokeni[6]));
+				Trening trening = new Trening(tokeni[0],tokeni[1],TipTreninga.valueOf(tokeni[2]), tokeni[3], Double.parseDouble(tokeni[4]), tokeni[5], tokeni[6], ucitajSliku("./static/Images/" + tokeni[7]));
 				treninzi.put(Integer.parseInt(tokeni[0]), trening);
 			}
 			

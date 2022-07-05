@@ -42,14 +42,32 @@ public class KorisniciDAO
 
 	}
 	
-
 	public ArrayList<Korisnik> getAllRegKorisnici()
 	{
 		ArrayList<Korisnik> korisnics = new ArrayList<>();
 		
 		for (Korisnik kor : korisnici.values())	
 		{
-			korisnics.add(kor);
+			
+				korisnics.add(kor);
+		
+			
+		}
+		
+		return korisnics;
+	}
+
+	public ArrayList<Korisnik> getAllRegKorisniciExceptAdmin()
+	{
+		ArrayList<Korisnik> korisnics = new ArrayList<>();
+		
+		for (Korisnik kor : korisnici.values())	
+		{
+			if(kor.getUloga() != Uloga.Administrator)
+			{
+				korisnics.add(kor);
+			}
+			
 		}
 		
 		return korisnics;

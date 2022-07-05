@@ -1,1 +1,1 @@
-1;Teretana;Teretana;Kolos-Fitness-Gym;140.2;Nikola Spiric;neki opis;1.jpg
+1;Teretana;Teretana;Kolos-Fitness-Gym;140.2;Nikola Spiric;Super je;1.jpg
