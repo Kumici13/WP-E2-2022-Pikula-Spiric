@@ -1,6 +1,7 @@
-1;Kolos-fitnes Gym;true;Teretana;Tegovi,Sve za trening snage;Futoski put,45,Novi Sad,21000;45.23748828271396;19.726712657379064;1.jpg;5;10:00AM - 22:00PM
-2;Ozzy gym;false;SportskiCentar;Full oprema za treninge,Ono bas sve;Bulevar Patrijarha Pavla,43,Beograd,11000;45.24040519531655;19.8175578183801;ozzy.png;4;9:00AM - 20:00PM
-3;Promenada Gym;true;Teretana;Trzni centar,Kafic,Klupa;Bulevar Oslobodjenja,76,Novi Sad,21000;45.24510338942768;19.84304758207635;3.jpg;5;00:00AM - 24:00PM
-4;Total gym Futog;true;Teretana;Trake za trcanje;Brace Bosnjak,32,Futog,25230;45.241087120233125;19.712642563903927;4.jpg;3;7:00AM - 23:00PM
-5;Spens;true;Bazen;Olimpijski i mali bazen;Maksima Gorkog,32,Novi Sad,25230;45.241087120233125;19.712642563903927;gymara.jpg;2;7:00AM - 20:00PM
-6;Meridiana;true;Drugo;Fudbalski tereni;Bulevar Evrope,66,Novi Sad,25230;45.241087120233125;19.712642563903927;gympic.jpg;1;9:00AM - 21:00PM
+1;Kolos-fitnes Gym;true;Teretana;Tegovi,Sve za trening snage;Futoski put,45,Novi Sad,21000;45.23748828271396;19.726712657379064;1.jpg;5.0;10:00AM - 22:00PM
+2;Ozzy gym;false;SportskiCentar;Full oprema za treninge,Ono bas sve;Bulevar Patrijarha Pavla,43,Beograd,11000;45.24040519531655;19.8175578183801;ozzy.png;4.0;9:00AM - 20:00PM
+3;Promenada Gym;true;Teretana;Trzni centar,Kafic,Klupa;Bulevar Oslobodjenja,76,Novi Sad,21000;45.24510338942768;19.84304758207635;3.jpg;5.0;00:00AM - 24:00PM
+4;Total gym Futog;true;Teretana;Trake za trcanje;Brace Bosnjak,32,Futog,25230;45.241087120233125;19.712642563903927;4.jpg;3.0;7:00AM - 23:00PM
+5;Spens;true;Bazen;Olimpijski i mali bazen;Maksima Gorkog,32,Novi Sad,25230;45.241087120233125;19.712642563903927;gymara.jpg;2.0;7:00AM - 20:00PM
+6;Meridiana;true;Drugo;Fudbalski tereni;Bulevar Evrope,66,Novi Sad,25230;45.241087120233125;19.712642563903927;gympic.jpg;1.0;9:00AM - 21:00PM
+7;Daragu;false;SportskiCentar;/;Maksima Gorkog,54,Crvenka,25567;0.23;0.59;7.png;0.0;/

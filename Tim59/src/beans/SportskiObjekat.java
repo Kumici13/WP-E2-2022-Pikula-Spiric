@@ -1,8 +1,13 @@
 package beans;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.util.Base64;
+
 import enums.TipObjektaEnum;
 
-public class SportskiObjekat {
+public class SportskiObjekat 
+{
 	
 	private String id;
 	private String naziv;
@@ -10,6 +15,7 @@ public class SportskiObjekat {
 	private TipObjektaEnum tipObjekta;
 	private String[] sadrzaj;
 	private Lokacija lokacija;
+	private String logo;
 	private String slika;
 	private double prosecnaOcena;
 	private String radnoVreme;
@@ -21,8 +27,22 @@ public class SportskiObjekat {
 	
 	
 
+	public String getLogo() {
+		return logo;
+	}
+
+
+
+	public void setLogo(String logo) 
+	{
+		this.logo = logo;
+		this.slika = ucitajSliku("./static/Images/" + this.logo);
+	}
+
+
+
 	public SportskiObjekat(String id, String naziv, Boolean status, TipObjektaEnum tipObjekta, String[] sadrzaj,
-			Lokacija lokacija, String slika, double prosecnaOcena, String radnoVreme) {
+			Lokacija lokacija, String logo, double prosecnaOcena, String radnoVreme) {
 		super();
 		this.id = id;
 		this.naziv = naziv;
@@ -30,9 +50,10 @@ public class SportskiObjekat {
 		this.tipObjekta = tipObjekta;
 		this.sadrzaj = sadrzaj;
 		this.lokacija = lokacija;
-		this.slika = slika;
+		this.logo = logo;
 		this.prosecnaOcena = prosecnaOcena;
 		this.radnoVreme = radnoVreme;
+		this.slika = ucitajSliku("./static/Images/" + this.logo);
 	}
 
 
@@ -46,7 +67,25 @@ public class SportskiObjekat {
 		String s = "";
 		for(int i = 0; i < sadrzaj.length;i++)
 		{
-			s+= sadrzaj[0] + " ";
+			s+= sadrzaj[i] + " ";
+		}
+		
+		return s;
+	}
+	
+	public String getSadrzajSaveFormat()
+	{
+		String s = "";
+		for(int i = 0; i < sadrzaj.length;i++)
+		{
+			if(i == 0)
+			{
+				s = sadrzaj[0];
+			}
+			else 
+			{
+				s+= "," + sadrzaj[i];
+			}
 		}
 		
 		return s;
@@ -118,16 +157,25 @@ public class SportskiObjekat {
 
 
 
-	public String getSlika() {
+	public String getSlika() 
+	{
 		return slika;
 	}
-
-
-
-	public void setSlika(String slika) {
-		this.slika = slika;
+	
+	private String ucitajSliku(String putanja)	
+	{
+		try 
+		{
+			File file = new File(putanja);
+			String encodeImage = Base64.getEncoder().withoutPadding().encodeToString(Files.readAllBytes(file.toPath()));
+			return encodeImage;
+		} 
+		catch (Exception e) 
+		{
+			System.out.println(putanja + " nije pronadjen.\r\n");
+			return null;
+		}
 	}
-
 
 
 	public double getProsecnaOcena() {
@@ -157,6 +205,11 @@ public class SportskiObjekat {
 	{
 		return this.naziv + " - " + this.sadrzaj[0].toString() + " - " + this.tipObjekta +  " - " +prosecnaOcena;
 		
+	}
+	
+	public String toSaveFormat()
+	{
+		return this.id+ ";" + this.naziv + ";" + this.status + ";"+ this.getTipObjekta().toString() + ";" + this.getSadrzajSaveFormat()+ ";" + this.lokacija.getAdresa().toString()+ ";"+this.lokacija.getGeoDuzina()+ ";"+ this.lokacija.getGeoSirina()+ ";" + this.logo+ ";" + this.prosecnaOcena+ ";"+this.radnoVreme+"\n";
 	}
 	
 	

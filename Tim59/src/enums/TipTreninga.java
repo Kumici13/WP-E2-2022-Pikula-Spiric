@@ -4,5 +4,4 @@ public enum TipTreninga {
 	Grupni,
 	Personalni,
 	Teretana
-
 }
