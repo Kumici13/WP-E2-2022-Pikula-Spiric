@@ -4,6 +4,7 @@ import enums.TipTreninga;
 
 public class Trening {
 	
+	private String id;
 	private String naziv;
 	private TipTreninga tip;
 	private SportskiObjekat sportskiObjekat;
@@ -17,9 +18,10 @@ public class Trening {
 		
 	}
 
-	public Trening(String naziv, TipTreninga tip, SportskiObjekat sportskiObjekat, double trajanje, Trener trener, String opis,
+	public Trening(String id,String naziv, TipTreninga tip, SportskiObjekat sportskiObjekat, double trajanje, Trener trener, String opis,
 			String slika) {
 		super();
+		this.id = id;
 		this.naziv = naziv;
 		this.tip = tip;
 		this.sportskiObjekat = sportskiObjekat;
@@ -27,6 +29,15 @@ public class Trening {
 		this.trener = trener;
 		this.opis = opis;
 		this.slika = slika;
+	}
+
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getNaziv() {
