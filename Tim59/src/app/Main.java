@@ -162,10 +162,9 @@ public class Main
 		});
 		
 		
-		get("app/changeActivityOfUser", (req, res) -> 
+		post("app/changeActivityOfUser", (req, res) -> 
 		{
-			String body = req.body();
-			System.out.println("Body ispisuje" + body);
+			String body = req.body();			
 			korisnici.changeActivityOfUser(body);
 			return gson.toJson("Upesno ste izmenili aktivnost.");
 		});

@@ -33,10 +33,10 @@ new Vue({
         
        changeActivity: function(regKorisnik)
        {
-		this.korisnickoIme = { ...regKorisnik }
+		this.korisnickoIme =  regKorisnik 
 		
 		axios
-            .get('app/changeActivityOfUser' , this.korisnickoIme)
+            .post('app/changeActivityOfUser' , this.korisnickoIme )
             .then(response => 
 			{
                 this.changeActivityOfUser = response.data;
