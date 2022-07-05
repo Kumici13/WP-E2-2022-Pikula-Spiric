@@ -161,6 +161,16 @@ public class Main
 			}
 		});
 		
+		
+		get("app/changeActivityOfUser", (req, res) -> 
+		{
+			String body = req.body();
+			System.out.println("Body ispisuje" + body);
+			korisnici.changeActivityOfUser(body);
+			return gson.toJson("Upesno ste izmenili aktivnost.");
+		});
+		
+		
 		get("app/getSportskiObjekti", (req, res) -> 
 		{
 			return gson.toJson(sportskiObjekti.getAllSportskiObjekti());

@@ -14,8 +14,8 @@ public class Menadzer extends Korisnik {
 		this.uloga = Uloga.Menadzer;
 	}
 	
-	public Menadzer(String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, String datumRodjenja, String sportskiobjekatId) {
-		super(korisnickoIme, lozinka, ime, prezime, pol, datumRodjenja, Uloga.Menadzer);
+	public Menadzer(String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, String datumRodjenja, String sportskiobjekatId, boolean aktivan) {
+		super(korisnickoIme, lozinka, ime, prezime, pol, datumRodjenja, Uloga.Menadzer, aktivan);
 		this.uloga = Uloga.Menadzer;
 		this.sportskiObjekatId = sportskiobjekatId;
 	}

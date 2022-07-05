@@ -14,8 +14,8 @@ public class Kupac extends Korisnik {
 		this.uloga = Uloga.Kupac;
 	}
 	
-	public Kupac(String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, String datumRodjenja, Clanarina clanarina, String poseceniObjekti, double sakupljeniBodovi) {
-		super(korisnickoIme, lozinka, ime, prezime, pol, datumRodjenja, Uloga.Kupac);
+	public Kupac(String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, String datumRodjenja, Clanarina clanarina, String poseceniObjekti, double sakupljeniBodovi, boolean aktivan) {
+		super(korisnickoIme, lozinka, ime, prezime, pol, datumRodjenja, Uloga.Kupac, aktivan);
 		this.uloga = Uloga.Kupac;
 		this.clanarina = clanarina;
 		this.poseceniObjekti = poseceniObjekti;
@@ -48,7 +48,7 @@ public class Kupac extends Korisnik {
 	
 	@Override
 	public String toSaveFormat() {
-		return this.getKorisnickoIme() + ";" + this.getSifra() + ";" + this.getIme() + ";" + this.getPrezime() + ";" + this.getPol().name() + ";" + this.getDatumRodjenja() + ";"+ "clanarina" + ";"+ this.poseceniObjekti + ";"+ this.sakupljeniBodovi +"\n";
+		return this.getKorisnickoIme() + ";" + this.getSifra() + ";" + this.getIme() + ";" + this.getPrezime() + ";" + this.getPol().name() + ";" + this.getDatumRodjenja() + ";"+ "clanarina" + ";"+ this.poseceniObjekti + ";"+ this.sakupljeniBodovi + ";" + this.aktivan + "\n";
 	}
 
 
