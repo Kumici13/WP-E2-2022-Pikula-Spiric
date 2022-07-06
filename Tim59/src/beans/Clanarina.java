@@ -10,6 +10,7 @@ public class Clanarina {
 	private String datumVazenja;
 	private double cena;
 	private Kupac kupac;
+	private String kupacid;
 	private boolean status;
 	private int brojTermina;
 	
@@ -19,14 +20,14 @@ public class Clanarina {
 	}
 
 	public Clanarina(String identifikator, TipClanarine tipClanarine, String datumPlacanja, String datumVazenja, double cena,
-			Kupac kupac, boolean status, int brojTermina) {
+			String kupacid, boolean status, int brojTermina) {
 		super();
 		this.identifikator = identifikator;
 		this.tipClanarine = tipClanarine;
 		this.datumPlacanja = datumPlacanja;
 		this.datumVazenja = datumVazenja;
 		this.cena = cena;
-		this.kupac = kupac;
+		this.kupacid = kupacid;
 		this.status = status;
 		this.brojTermina = brojTermina;
 	}
@@ -94,6 +95,16 @@ public class Clanarina {
 	public void setBrojTermina(int brojTermina) {
 		this.brojTermina = brojTermina;
 	}
+
+	public String getKupacid() {
+		return kupacid;
+	}
+
+	public void setKupacid(String kupacid) {
+		this.kupacid = kupacid;
+	}
+	
+	
 	
 	
 

@@ -1,22 +1,20 @@
 new Vue({
-    el: '#regkorisnici-app',
+    el: '#clanarine-app',
     data:   
 	{
-		regKorisnici: [],
-		changeActivityOfUser: [],
-     	pretragaIme: '',
-        pretragaPrezime: '',
-        pretragaKorisnickoIme: '',
-        filtriranje: '',
+		clanarine: [],
+		//changeActivityOfClanarine: [],
+        pretragaClanarine: '',
+      
       
     },
     mounted()  
 	{
         axios
-            .get('app/getregKorisnici')
+            .get('app/getclanarine')
             .then(response => 
 			{
-                this.regKorisnici = response.data;
+                this.clanarine = response.data;
             })
             .catch(error => 
 			{
@@ -31,12 +29,12 @@ new Vue({
             return window.localStorage.getItem('jwt') != null;
         },
         
-       changeActivity: function(regKorisnik)
+   /*    changeActivityOfClanarine: function(regKorisnik)
        {
 		this.korisnickoIme =  regKorisnik 
 		
 		axios
-            .post('app/changeActivityOfUser' , this.korisnickoIme )
+            .post('app/changeActivityOfClanarine' , this.korisnickoIme )
             .then(response => 
 			{
                 this.changeActivityOfUser = response.data;
@@ -47,18 +45,17 @@ new Vue({
                 
             });
 	
-	   }
+	   } */
        	
     },
     computed:   
 	{
-        regkorisniciFilter: function() 
+        clanarineFilter: function() 
 		{
-            return this.regKorisnici.filter((objekat) => 
+            return this.clanarine.filter((objekat) => 
 			{	
-                return 	   ((objekat.ime.toLowerCase().match(this.pretragaIme.toLowerCase()))
-						&& (objekat.prezime.toLowerCase().match(this.pretragaPrezime.toLowerCase()))
-						&& (objekat.korisnickoIme.toLowerCase().match(this.pretragaKorisnickoIme.toLowerCase())) )
+                return 	   ((objekat.datumPlacanja.toLowerCase().match(this.pretragaClanarine.toLowerCase()))
+						 )
 											
 				});
         }

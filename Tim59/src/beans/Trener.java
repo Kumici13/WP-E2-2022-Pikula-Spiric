@@ -12,8 +12,8 @@ public class Trener extends Korisnik{
 		this.uloga = Uloga.Trener;
 	}
 	
-	public Trener(String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, String datumRodjenja, String istorijaTreninga) {
-		super(korisnickoIme, lozinka, ime, prezime, pol,datumRodjenja, Uloga.Trener);
+	public Trener(String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, String datumRodjenja, String istorijaTreninga, boolean aktivan) {
+		super(korisnickoIme, lozinka, ime, prezime, pol,datumRodjenja, Uloga.Trener, aktivan);
 		this.uloga = Uloga.Trener;
 		this.istorijaTreninga = istorijaTreninga;
 	}
@@ -28,7 +28,7 @@ public class Trener extends Korisnik{
 	
 	@Override
 	public String toSaveFormat() {
-		return this.getKorisnickoIme() + ";" + this.getSifra() + ";" + this.getIme() + ";" + this.getPrezime() + ";" + this.getPol().name() + ";" + this.getDatumRodjenja() + ";"+ "clanarina" + ";"+ this.istorijaTreninga;
+		return this.getKorisnickoIme() + ";" + this.getSifra() + ";" + this.getIme() + ";" + this.getPrezime() + ";" + this.getPol().name() + ";" + this.getDatumRodjenja() + ";"+ "clanarina" + ";"+ this.istorijaTreninga + ";" + this.aktivan + "\n";
 	}
 
 }

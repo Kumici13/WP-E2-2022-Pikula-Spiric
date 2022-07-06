@@ -1,2 +1,1 @@
-drapi;drapi123;Dragica;Pikula;Zenski;null;clanarina;19.06.1970.
-spix;spix1312;Nikola;Spiric;Muski;null;clanarina;16.03.2000.
+spix;spix1312;Nikola;Spiric;Muski;null;clanarina;clanarinadrapi;drapi123;Dragica;Pikula;Zenski;null;clanarina;clanarina

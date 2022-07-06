@@ -10,8 +10,8 @@ public class Administrator extends Korisnik {
 		this.uloga = Uloga.Administrator;
 	}
 	
-	public Administrator(String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, String datumRodjenja) {
-		super(korisnickoIme, lozinka, ime, prezime, pol, datumRodjenja, Uloga.Administrator);
+	public Administrator(String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, String datumRodjenja, boolean aktivan) {
+		super(korisnickoIme, lozinka, ime, prezime, pol, datumRodjenja, Uloga.Administrator, aktivan);
 		this.uloga = Uloga.Administrator;
 	}
 

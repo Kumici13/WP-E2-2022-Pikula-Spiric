@@ -14,8 +14,8 @@ public class Menadzer extends Korisnik {
 		this.uloga = Uloga.Menadzer;
 	}
 	
-	public Menadzer(String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, String datumRodjenja, String sportskiobjekatId) {
-		super(korisnickoIme, lozinka, ime, prezime, pol, datumRodjenja, Uloga.Menadzer);
+	public Menadzer(String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, String datumRodjenja, String sportskiobjekatId, boolean aktivan) {
+		super(korisnickoIme, lozinka, ime, prezime, pol, datumRodjenja, Uloga.Menadzer, aktivan);
 		this.uloga = Uloga.Menadzer;
 		this.sportskiObjekatId = sportskiobjekatId;
 	}
@@ -33,7 +33,7 @@ public class Menadzer extends Korisnik {
 	@Override
 	public String toSaveFormat() 
 	{
-		return this.getKorisnickoIme() + ";" + this.getSifra() + ";" + this.getIme() + ";" + this.getPrezime() + ";" + this.getPol().name() + ";" + this.getDatumRodjenja() + ";"+ this.sportskiObjekatId  + "\n";
+		return this.getKorisnickoIme() + ";" + this.getSifra() + ";" + this.getIme() + ";" + this.getPrezime() + ";" + this.getPol().name() + ";" + this.getDatumRodjenja() + ";"+ this.sportskiObjekatId + ";" + this.aktivan + "\n";
 	}
 
 	public String getSportskiObjekatId() {

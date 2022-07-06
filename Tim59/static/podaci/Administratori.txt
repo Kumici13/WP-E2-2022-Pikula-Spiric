@@ -1,1 +1,1 @@
-luka;luka;Luka;Pikula;Muski;24.01.2001
+luka;luka;Luka;Pikula;Muski;24.01.2001;true

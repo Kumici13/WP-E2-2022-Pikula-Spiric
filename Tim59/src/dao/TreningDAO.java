@@ -16,11 +16,11 @@ import beans.Trening;
 import enums.TipObjektaEnum;
 import enums.TipTreninga;
 
-public class TreningDao {
+public class TreningDAO {
 	
 private HashMap<Integer, Trening> treninzi;
 	
-	public TreningDao()
+	public TreningDAO()
 	{
 		treninzi = new HashMap<Integer, Trening>();
 
