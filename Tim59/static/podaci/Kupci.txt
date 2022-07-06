@@ -1,7 +1,7 @@
-Dzoni;dzoni123;Nikola;Spiric;Muski;null;clanarina;null;0.0;false
+Dzoni;dzoni123;Nikola;Spiric;Muski;null;clanarina;null;0.0;true
+Gravarini;gravarini12;Milos;Gravara;Muski;null;clanarina;null;0.0;true
 markom;12345678;Marko;Markovic;Muski;null;clanarina;null;0.0;true
-Jovke;jovkef89;Jovan;Spiric;Muski;null;clanarina;null;0.0;false
+Trenerkica;trenerkica;Trener;Treneric;Zenski;null;clanarina;null;0.0;true
+Jovke;jovkef89;Jovan;Spiric;Muski;null;clanarina;null;0.0;true
 nikolas;12345678;Mirko;Mirkovic;Zenski;null;clanarina;null;0.0;true
 Sima;simasima;Sima;Kesic;Muski;null;clanarina;null;0.0;true
-Gravarini;gravarini12;Milos;Gravara;Muski;null;clanarina;null;0.0;true
-Trenerkica;trenerkica;Trener;Treneric;Zenski;null;clanarina;null;0.0;true
