@@ -15,7 +15,7 @@ public class SportskiObjekat
 	private TipObjektaEnum tipObjekta;
 	private String[] sadrzaj;
 	private Lokacija lokacija;
-	private String logo;
+	private String logo = "null";
 	private String slika;
 	private double prosecnaOcena;
 	private String radnoVreme;
@@ -36,7 +36,10 @@ public class SportskiObjekat
 	public void setLogo(String logo) 
 	{
 		this.logo = logo;
-		this.slika = ucitajSliku("./static/Images/" + this.logo);
+		if(logo != "null") 
+		{
+			this.slika = ucitajSliku("./static/Images/SportskiObjekat/" + this.logo);
+		}
 	}
 
 
@@ -53,7 +56,7 @@ public class SportskiObjekat
 		this.logo = logo;
 		this.prosecnaOcena = prosecnaOcena;
 		this.radnoVreme = radnoVreme;
-		this.slika = ucitajSliku("./static/Images/" + this.logo);
+		this.slika = ucitajSliku("./static/Images/SportskiObjekat/" + this.logo);
 	}
 
 
@@ -172,7 +175,7 @@ public class SportskiObjekat
 		} 
 		catch (Exception e) 
 		{
-			System.out.println(putanja + " nije pronadjen.\r\n");
+			System.out.println("Slika sportskog objekta: " + putanja + " nije pronadjen.\r\n");
 			return null;
 		}
 	}

@@ -90,25 +90,23 @@
 						<th>Trajanje</th>
 						
 				</thead>
-				 <tr v-for="p in sadrzajFilter">
+				 <tr v-for="p in getSadrzaji">
 					<td>{{p.naziv }}</td>
 					<td>{{p.tip }}</td>
 					<td><img :src="prikaziSliku(p.slika)" class="img-thumbnail" width="50" height="50"></td>
 					<td>{{p.opis }}</td>
 					<td>{{p.trajanje }}</td>
 				</tr>
-				<
+				
 			</table>
 		</div>
 		
 		<div class="editbutton">
                     <button v-on:click="editProduct(p)"  class="btn btn-outline-light">Izmeni</button>
-             
         </div>
         
         <div class="addbutton">
                     <button onclick="window.location.href='dodajSadrzaj.html'"  class="btn btn-outline-light">Dodaj novi sadrzaj</button>
-             
         </div>
 		
 		<div class="h2">
@@ -123,7 +121,7 @@
 						<th>Prezime</th>
 				</thead>
 	 
-				<tr v-for="p in regTreneriFilter">
+				<tr v-for="p in getTreneri">
 					<td>{{p.ime }}</td>
 					<td>{{p.prezime }}</td>
 				</tr>

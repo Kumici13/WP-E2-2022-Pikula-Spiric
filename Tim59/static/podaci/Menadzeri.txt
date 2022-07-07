@@ -1,3 +1,2 @@
-Ckepa;ckepa123;Ckepa;Ckepa;Muski;null;null;true
-Mamulica;mamulica;Milos;Mamula;Muski;null;7;true
-Vukoman1;vukoman1;Vladimir;Vukoman;Muski;null;null;true
+menadzer2;menadzer123;MenadzerDva;MenadzericDva;Zenski;null;2;false
+menadzer;menadzer123;Menadzer;Menadzeric;Muski;null;1;false
