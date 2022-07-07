@@ -1,2 +1,2 @@
-trener;trener123;Trener;Treneric;Muski;null;clanarina;null;false
-trener2;trener123;TrenerDva;TrenericDva;Zenski;null;clanarina;null;false
+trener2;trener123;TrenerDva;TrenericDva;Zenski;null;clanarina;clanarina;true
+trener;trener123;Trener;Treneric;Muski;null;clanarina;clanarina;false
