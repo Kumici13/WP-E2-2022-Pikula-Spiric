@@ -52,19 +52,64 @@
 
 <body>
 	 <div class="welcome" id="sportski-objekti-app">
-			<nav class="navbar navbar-expand  fixed-top" style="background-color: #3E1D57; ">
+			<nav v-if="uloga === '0'" class="navbar navbar-expand  fixed-top" style="background-color: #3E1D57; ">
                 <h1><a  class="naslov"  class="navbar-brand" style="color: white ; font-family:Roboto">Sportski objekti</a></h1>
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a href="index.html" class="nav-link" style="color: white; font-family:Roboto">Pocetna</a></li>
+                        <li class="nav-item"><a href="kupacHome.html" class="nav-link" style="color: white; font-family:Roboto">Početna</a></li>          
                         <li class="nav-item"><a href="sportskiobjekti.html" class="nav-link" style="color: white; font-family:Roboto">Sportski objekti</a></li>
-                        <li v-if="ulogovanKorisnik()"  class="nav-item"><a  style="color: white; font-family:Roboto" href="javascript:window.localStorage.removeItem('jwt'); window.location = 'login.html';" class="nav-link">Odjavi se</a></li>
-                        <li v-else class="nav-item"><a href="login.html" class="nav-link" style="color: white; font-family:Roboto">Uloguj se</a></li>           
-                        <li v-if="ulogovanKorisnik()" class="nav-item"><a href="profile.html" class="nav-link" style="color: white; font-family:Roboto">Moj profil</a></li>
-                        <li  v-else class="nav-item"><a href="registration.html" class="nav-link" style="color: white; font-family:Roboto">Registruj se</a></li>
+                        <li class="nav-item"><a href="trainingKupac.html" class="nav-link" style="color: white; font-family:Roboto">Treninzi</a></li>
+                        <li class="nav-item"><a href="clanarine.html" class="nav-link" style="color: white; font-family:Roboto">Clanarine</a></li>
+                        <li class="nav-item"><a href="javascript:window.localStorage.removeItem('jwt'); window.location = 'login.html';" class="nav-link" style="color: white; font-family:Roboto">Odjavi se</a></li>
                     </ul>
                 </div>
-			</nav>
+        </nav>
+        <nav v-else-if="uloga === '1'" class="navbar navbar-expand  fixed-top" style="background-color: #3E1D57; ">
+                <h1><a  class="naslov"  class="navbar-brand" style="color: white ; font-family:Roboto">Sportski objekti</a></h1>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="menadzerHome.html" class="nav-link" style="color: white; font-family:Roboto">Početna</a></li>     
+                        <li class="nav-item"><a href="sportskiobjekti.html" class="nav-link" style="color: white; font-family:Roboto">Sportski objekti</a></li>    
+                        <li class="nav-item"><a href="sadrzaj.html" class="nav-link" style="color: white; font-family:Roboto">Sadrzaj</a></li>  
+                        <li class="nav-item"><a href="trainingManager.html" class="nav-link" style="color: white; font-family:Roboto">Treninzi</a></li>                                          
+                        <li class="nav-item"><a href="javascript:window.localStorage.removeItem('jwt'); window.location = 'login.html';" class="nav-link" style="color: white; font-family:Roboto">Odjavi se</a></li>
+                    </ul>
+                </div>
+        </nav>
+         <nav v-else-if="uloga === '2'" class="navbar navbar-expand  fixed-top" style="background-color: #3E1D57; ">
+                <h1><a  class="naslov"  class="navbar-brand" style="color: white ; font-family:Roboto">Sportski objekti</a></h1>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="administratorHome.html" class="nav-link" style="color: white; font-family:Roboto">Pocetna</a></li>
+                        <li class="nav-item"><a href="sportskiobjekti.html" class="nav-link" style="color: white; font-family:Roboto">Sportski objekti</a></li>
+                        <li class="nav-item"><a href="regkorisnici.html" class="nav-link" style="color: white; font-family:Roboto">Registrovani korisnici</a></li>
+                        <li class="nav-item"><a href="registrationAdministrator.html" class="nav-link" style="color: white; font-family:Roboto">Registruj korisnika</a></li>
+                        <li class="nav-item"><a href="javascript:window.localStorage.removeItem('jwt'); window.location = 'login.html';" class="nav-link" style="color: white; font-family:Roboto">Odjavi se</a></li>
+                    </ul>
+                </div>
+        </nav>
+         <nav v-else-if="uloga === '3'" class="navbar navbar-expand  fixed-top" style="background-color: #3E1D57; ">
+                <h1><a  class="naslov"  class="navbar-brand" style="color: white ; font-family:Roboto">Sportski objekti</a></h1>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="trenerHome.html" class="nav-link" style="color: white; font-family:Roboto">Početna</a></li>
+                        <li class="nav-item"><a href="sportskiobjekti.html" class="nav-link" style="color: white; font-family:Roboto">Sportski objekti</a></li>
+                        <li class="nav-item"><a href="trainingTrener.html" class="nav-link" style="color: white; font-family:Roboto">Treninzi</a></li>                      
+                        <li class="nav-item"><a href="javascript:window.localStorage.removeItem('jwt'); window.location = 'login.html';" class="nav-link" style="color: white; font-family:Roboto">Odjavi se</a></li>
+                    </ul>
+                </div>
+        </nav>
+        <nav v-else class="navbar navbar-expand  fixed-top" style="background-color: #3E1D57; ">
+                <h1><a  class="naslov"  class="navbar-brand" style="color: white ; font-family:Roboto">Uloguj se na profil</a></h1>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="index.html" class="nav-link" style="color: white; font-family:Roboto">Početna</a></li>
+                        <li class="nav-item"><a href="sportskiobjekti.html" class="nav-link" style="color: white; font-family:Roboto">Sportski objekti</a></li>
+                        <li class="nav-item"><a href="login.html" class="nav-link" style="color: white; font-family:Roboto">Uloguj se</a></li>
+                        <li class="nav-item"><a href="registration.html" class="nav-link" style="color: white; font-family:Roboto">Registruj se</a></li>                                                         
+                    </ul>
+                </div>
+        </nav>
 		<br />
 		<br />
 		<br />
