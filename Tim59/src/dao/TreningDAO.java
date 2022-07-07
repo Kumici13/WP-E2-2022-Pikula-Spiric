@@ -12,6 +12,7 @@ import java.util.HashMap;
 
 import beans.Adresa;
 import beans.Lokacija;
+import beans.Menadzer;
 import beans.SportskiObjekat;
 import beans.Trener;
 import beans.Trening;
@@ -29,6 +30,23 @@ private HashMap<Integer, Trening> treninzi;
 		treninzi = new HashMap<Integer, Trening>();
 
 		ucitajTreninge();
+	}
+	
+	public void ucitajSportskeObjekteiTrenerer(SportskiObjektiDAO sportskiObjektiDAO, KorisniciDAO korisniciDAO)
+	{
+		for (Trening trening : treninzi.values())	
+		{
+			if(!trening.getSportskiObjekatid().equals("null"))
+			{
+				trening.setSportskiObjekat(sportskiObjektiDAO.getSportskiObjekatById(trening.getSportskiObjekatid()));
+			}
+			
+			if(!trening.getTrenerid().equals("null"))
+			{
+				trening.setTrener((Trener)korisniciDAO.getKorisnikByKorisnickoIme(trening.getTrenerid()));
+			}
+		}
+		
 	}
 	
 	public ArrayList<Trening> getAllTreninzi()
@@ -49,7 +67,8 @@ private HashMap<Integer, Trening> treninzi;
 		
 		for (Trening trening : treninzi.values())	
 		{
-			if(trening.getSportskiObjekatid() == sportskiObjekatId) 
+			System.out.println("Poredim objekat: " + sportskiObjekatId + " sa trening objektom: " +trening.getSportskiObjekatid());
+			if(trening.getSportskiObjekatid().equals(sportskiObjekatId)) 
 			{
 				trenings.add(trening);
 			}
@@ -58,17 +77,20 @@ private HashMap<Integer, Trening> treninzi;
 		return trenings;
 	}
 	
-	public ArrayList<Trener> getTreneriBySportskiObjekatId(String trenerId)
+	public ArrayList<Trener> getTreneriBySportskiObjekatId(String sportskiObjekatId)
 	{
 		ArrayList<Trener> treneri = new ArrayList<>();
 		
 		for (Trening trening : treninzi.values())	
 		{
-			if(trening.getTrenerid() == trenerId) 
+			if(trening.getSportskiObjekatid().equals(sportskiObjekatId)) 
 			{
-				if(!treneri.contains(trening.getTrener())) 
+				if(trening.getTrener()!=null) 
 				{
-					treneri.add(trening.getTrener());
+					if(!treneri.contains(trening.getTrener())) 
+					{
+						treneri.add(trening.getTrener());
+					}
 				}
 			}
 		}

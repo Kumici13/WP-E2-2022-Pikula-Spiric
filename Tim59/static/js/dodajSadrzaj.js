@@ -2,6 +2,7 @@ new Vue({
     el: '#dodaj-sadrzaj-app',
     data: 
 	{
+		treneri:[],
 		sadrzaj: [],
         naziv: '',
         tip: '',
@@ -25,6 +26,19 @@ new Vue({
         }
 
 		let jwt = window.localStorage.getItem('jwt');
+		
+		 axios
+            .get('app/getTreneri')
+            .then(response => 
+			{
+                this.treneri = response.data;
+            })
+            .catch(error => 
+			{
+                console.log(error);
+                alert("Problem sa ucitavanjem trenera!");
+            });
+
         axios
             .post('app/getTreningeZaObjekat', jwt, 
 				{
@@ -41,7 +55,7 @@ new Vue({
             .catch(error => 
 			{
                 console.log(error);
-                alert(error.response.data.sadrzaj);
+                alert("Problem sa ucitavanjem treninga!");
             });
     },
     methods: 

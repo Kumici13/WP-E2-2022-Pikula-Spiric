@@ -57,6 +57,7 @@ public class Main
 		sportskiObjekti = new SportskiObjektiDAO();
 		korisnici.ucitajSportskeObjekteUMenadzere(sportskiObjekti);
 		treninzi = new TreningDAO();
+		treninzi.ucitajSportskeObjekteiTrenerer(sportskiObjekti, korisnici);
 		clanarine = new ClanarineDAO();
 		gson =  new GsonBuilder().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
 		
