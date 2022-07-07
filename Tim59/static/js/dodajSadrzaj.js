@@ -151,7 +151,7 @@ new Vue({
                             .then(response => 
 							{
                                 this.sportskiObjekat = response.data;
-								window.location = "sportskiObjekti.html";
+								window.location = "sadrzaj.html";
                             })
                             .catch(error => 
 							{
