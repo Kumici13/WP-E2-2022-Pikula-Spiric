@@ -51,6 +51,7 @@ new Vue({
             .then(response => 
 			{
                 this.sadrzaj = response.data;
+				
             })
             .catch(error => 
 			{
@@ -62,6 +63,8 @@ new Vue({
 	{
     	provera: function() 
 		{
+			
+			
             sveDobro = true;
             
             if (this.$refs.tip == "") 
@@ -78,9 +81,20 @@ new Vue({
                     this.$refs.tip.classList.add("is-valid");
                 }
             }
-
-			if (this.$refs.naziv == "") 
+			
+			
+			let imaVecToIme = false;
+			this.sadrzaj.forEach(function (arrayItem) 
 			{
+   					if(this.naziv.value == arrayItem.naziv)
+					{
+						imaVecToIme = true;
+					}
+			});
+				
+			if (this.$refs.naziv == "" || imaVecToIme) 
+			{
+				alert("Ne moze taj naziv");
                 this.$refs.naziv.classList.remove("is-valid");
                 this.$refs.naziv.classList.add("is-invalid");
                 sveDobro = false;
