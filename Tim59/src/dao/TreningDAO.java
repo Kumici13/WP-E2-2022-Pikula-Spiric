@@ -67,7 +67,6 @@ private HashMap<Integer, Trening> treninzi;
 		
 		for (Trening trening : treninzi.values())	
 		{
-			System.out.println("Poredim objekat: " + sportskiObjekatId + " sa trening objektom: " +trening.getSportskiObjekatid());
 			if(trening.getSportskiObjekatid().equals(sportskiObjekatId)) 
 			{
 				trenings.add(trening);

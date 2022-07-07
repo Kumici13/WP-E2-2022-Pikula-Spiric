@@ -483,7 +483,6 @@ public class Main
 				System.out.println("NEMAS SPORTSKI OBJEKAT");
 				return gson.toJson("Morate biti vlasnik sportskog objekta!");
 			}
-			System.out.println("TRENINIZI:" + treninzi.getTreninziBySportskiObjekatId(menadzer.getSportskiObjekatId()));
 			return gson.toJson(treninzi.getTreninziBySportskiObjekatId(menadzer.getSportskiObjekatId()));
 		});
 		
@@ -495,7 +494,6 @@ public class Main
 				System.out.println("NEMAS SPORTSKI OBJEKAT");
 				return gson.toJson("Morate biti vlasnik sportskog objekta!");
 			}
-			System.out.println("TRENERI:" + treninzi.getTreneriBySportskiObjekatId(menadzer.getSportskiObjekatId()));
 			return gson.toJson(treninzi.getTreneriBySportskiObjekatId(menadzer.getSportskiObjekatId()));
 		});
 			
