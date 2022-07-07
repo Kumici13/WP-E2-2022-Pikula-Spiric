@@ -118,24 +118,24 @@ public class KorisniciDAO
 				
 				if (uloga == Uloga.Administrator)	
 				{
-					Administrator admin = new Administrator(tokeni[0], tokeni[1], tokeni[2], tokeni[3], Pol.valueOf(tokeni[4]), tokeni[5]);
+					Administrator admin = new Administrator(tokeni[0], tokeni[1], tokeni[2], tokeni[3], Pol.valueOf(tokeni[4]), tokeni[5], Boolean.parseBoolean(tokeni[6]));
 					korisnici.put(tokeni[0], admin);
 				} 
 				else if (uloga == Uloga.Kupac)	
 				{
 					//CLANARINA FALI UMESTO NULL
-					Kupac kupac = new Kupac(tokeni[0], tokeni[1], tokeni[2], tokeni[3], Pol.valueOf(tokeni[4]), tokeni[5], null, tokeni[7], Double.valueOf(tokeni[8]));
+					Kupac kupac = new Kupac(tokeni[0], tokeni[1], tokeni[2], tokeni[3], Pol.valueOf(tokeni[4]), tokeni[5], null, tokeni[7], Double.parseDouble(tokeni[8]), Boolean.parseBoolean(tokeni[9]));
 					korisnici.put(tokeni[0], kupac);
 				} 
 				else if (uloga == Uloga.Menadzer)	
 				{
 					//SPORTSKI OBJEKAT UMESTO NULL 
-					Menadzer menadzer = new Menadzer(tokeni[0], tokeni[1], tokeni[2], tokeni[3], Pol.valueOf(tokeni[4]), tokeni[5], tokeni[6]);
+					Menadzer menadzer = new Menadzer(tokeni[0], tokeni[1], tokeni[2], tokeni[3], Pol.valueOf(tokeni[4]), tokeni[5], tokeni[6], Boolean.parseBoolean(tokeni[7]));
 					korisnici.put(tokeni[0], menadzer);
 				}
 				else if(uloga == Uloga.Trener)
 				{
-					Trener trener = new Trener(tokeni[0], tokeni[1], tokeni[2], tokeni[3], Pol.valueOf(tokeni[4]), tokeni[5], tokeni[6]);
+					Trener trener = new Trener(tokeni[0], tokeni[1], tokeni[2], tokeni[3], Pol.valueOf(tokeni[4]), tokeni[5], tokeni[6], Boolean.parseBoolean(tokeni[7]));
 					korisnici.put(tokeni[0], trener);
 				}
 			}
@@ -268,5 +268,21 @@ public class KorisniciDAO
 		}
 		
 		return menadzeri;
+	}
+	
+	public ArrayList<Korisnik> changeActivityOfUser(String korisnickoIme)
+	{
+		ArrayList<Korisnik> korisnics = new ArrayList<>();
+		
+		for (Korisnik korisnik : korisnici.values())	
+		{
+			if(korisnik.getKorisnickoIme().equals(korisnickoIme)) 
+			{
+				korisnik.setAktivan(!(korisnik.isAktivan()));
+				azurirajPodatke(korisnik.getUloga());
+			}
+		}
+		
+		return korisnics;
 	}
 }

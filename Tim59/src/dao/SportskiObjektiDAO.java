@@ -39,6 +39,8 @@ public class SportskiObjektiDAO {
 		
 		return sportskiObjekats;
 	}
+		
+	
 	
 	private void ucitajSportskeObjekte() 
 	{

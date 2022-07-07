@@ -13,6 +13,7 @@ public class Korisnik {
 	private String datumRodjenja;
 	protected Uloga uloga;
 	protected String JWTToken;
+	protected boolean aktivan;
 
 	
 	public Korisnik()
@@ -21,7 +22,7 @@ public class Korisnik {
 	}
 	
 	public Korisnik(String korisnickoIme, String sifra, String ime, String prezime, Pol pol, String datumRodjenja,
-			Uloga uloga) {
+			Uloga uloga, boolean aktivan) {
 		super();
 		this.korisnickoIme = korisnickoIme;
 		this.sifra = sifra;
@@ -30,6 +31,7 @@ public class Korisnik {
 		this.pol = pol;
 		this.datumRodjenja = datumRodjenja;
 		this.uloga = uloga;
+		this.aktivan = aktivan;
 		
 	}
 	
@@ -97,6 +99,16 @@ public class Korisnik {
 		JWTToken = jWTToken;
 	}
 	
+	
+	
+	public boolean isAktivan() {
+		return aktivan;
+	}
+
+	public void setAktivan(boolean obrisan) {
+		this.aktivan = obrisan;
+	}
+
 	public String toSaveFormat() {
 		return this.korisnickoIme + ";" + this.sifra + ";" + this.ime + ";" + this.prezime + ";" + this.pol.name() + ";" + this.datumRodjenja +"\n";
 	}

@@ -18,13 +18,13 @@ import beans.Trening;
 import enums.TipObjektaEnum;
 import enums.TipTreninga;
 
-public class TreningDao {
+public class TreningDAO {
 	
 private HashMap<Integer, Trening> treninzi;
 
 	private int TreningId = 0;
 	
-	public TreningDao()
+	public TreningDAO()
 	{
 		treninzi = new HashMap<Integer, Trening>();
 

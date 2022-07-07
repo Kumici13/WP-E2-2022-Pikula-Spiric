@@ -27,9 +27,10 @@ import beans.SportskiObjekat;
 import beans.Trener;
 import beans.Trening;
 import beans.Korisnik;
+import dao.ClanarineDAO;
 import dao.KorisniciDAO;
 import dao.SportskiObjektiDAO;
-import dao.TreningDao;
+import dao.TreningDAO;
 import enums.Uloga;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -43,7 +44,8 @@ public class Main
 	private static Gson gson;
 	private static KorisniciDAO korisnici = null;
 	private static SportskiObjektiDAO sportskiObjekti = null;
-	private static TreningDao treninzi = null;
+	private static TreningDAO treninzi = null;
+	private static ClanarineDAO clanarine = null;
 	private static Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 	
 	public static void main(String[] args) throws Exception 
@@ -54,7 +56,8 @@ public class Main
 		korisnici = new KorisniciDAO();
 		sportskiObjekti = new SportskiObjektiDAO();
 		korisnici.ucitajSportskeObjekteUMenadzere(sportskiObjekti);
-		treninzi = new TreningDao();
+		treninzi = new TreningDAO();
+		clanarine = new ClanarineDAO();
 		gson =  new GsonBuilder().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
 		
 			
@@ -162,9 +165,23 @@ public class Main
 			}
 		});
 		
+		
+		post("app/changeActivityOfUser", (req, res) -> 
+		{
+			String body = req.body();			
+			korisnici.changeActivityOfUser(body);
+			return gson.toJson("Upesno ste izmenili aktivnost.");
+		});
+		
+		
 		get("app/getSportskiObjekti", (req, res) -> 
 		{
 			return gson.toJson(sportskiObjekti.getAllSportskiObjekti());
+		});
+		
+		get("app/getclanarine", (req, res) -> 
+		{
+			return gson.toJson(clanarine.getAllClanarine());
 		});
 		
 		get("app/getSlobodniMenadzeri", (req, res) -> 
