@@ -13,8 +13,9 @@
             }
             
             .h1 {
-            padding : 10px;
-            text-align : center;  
+            padding : 50px;
+            text-align : left;  
+            padding-left: 700px;
             }
             
             .search {
@@ -22,6 +23,25 @@
             text-align : center;  
             }
             
+            .card0 {
+       		width: 300px;
+            padding-top: 100px;
+            text-align: center;
+            }
+            
+            .card1 {
+            width: 300px;
+            padding-left: 20px; 
+            padding-top: 140px;
+            text-align: center;
+            }
+            
+            .card2 {
+			width: 300px;
+            padding-left: 20px; 
+            padding-top: 180px;
+            text-align: center;
+            }
            
             
             label {
@@ -54,39 +74,53 @@
 	
 	
 		<div class="h1">
-			<h1 style="color: white; font-family: Roboto">Pregled clanarina</h1>			
+			<h1 style="color: white; font-family: Roboto">Kupite clanarinu</h1>			
 		</div>
 		
-		
-	
-		<div  id="clanarine">
-			<table bgcolor="#DEF7F9" class="table" border="2" id="tabela">
-				<thead>
-					<tr bgcolor="#309AF9">
-						<th>Jedinstveni id</th>
-						<th>Tip clanarine</th>
-						<th>Datum placanja</th>
-						<th>Datum i vreme vazenja</th>
-						<th>Cena</th>
-						<th>Kupac</th>
-						<th>Status</th>
-						<th>Broj termina</th>
-						<th width = 150 >Izbor na klik</th>
-				</thead>
-	
-				<tr v-for="p in clanarineFilter">
-					<td>{{p.identifikator }}</td>
-					<td>{{p.tipClanarine }}</td>
-					<td>{{p.datumPlacanja }}</td>
-					<td>{{p.datumVazenja }}</td>
-					<td>{{p.cena }}</td>
-					<td>{{p.kupacid }}</td>
-					<td>{{p.status }}</td>
-					<td >{{p.brojTermina }}</td>
-					<td><button witdh=100 type="button" onclick="window.location.href='odaberi.html'"  class="btn btn-primary">Odaberi</button></td>
-				</tr>
-			</table>
-		</div>
+		  <div class="container">
+    		<div class="row">
+				<div class="card0">			 
+					    <div class="card">
+						      <h2 class="card-title">Classic</h2>
+						      <ul class="list-group list-group-flush">
+							    <li class="list-group-item"><h5 class="card-subtitle">16 treninga mesecno</h5></li>
+							    <li class="list-group-item">1 ulazak dnevno</li>
+							    <li class="list-group-item">Aplikacija za vezbanje</li>
+							    <li class="list-group-item"><h5 class="card-subtitle">3000 RSD</h5></li>
+							  </ul>				     
+						      <p class="card-text"></p>
+						      <a href="odaberi.html" class="btn btn-primary">Kupite</a>
+						</div>
+			   </div>
+				 <div class="card1">
+						<div class="card">
+						      <h2 class="card-title">Studio classic</h2>
+						      <ul class="list-group list-group-flush">
+							    <li class="list-group-item"><h5 class="card-subtitle">16 treninga mesecno</h5></li>
+							    <li class="list-group-item">1 ulazak dnevno</li>
+							    <li class="list-group-item">Aplikacija za vezbanje</li>
+							    <li class="list-group-item"><h5 class="card-subtitle">3400 RSD</h5></li>
+							  </ul>				     
+						      <p class="card-text"></p>
+						      <a href="odaberi.html" class="btn btn-primary">Kupite</a>
+						</div>
+			    </div>
+				  <div class="card2">
+						<div class="card">
+						      <h2 class="card-title">Studio elite</h2>
+						      <ul class="list-group list-group-flush">
+							    <li class="list-group-item"><h5 class="card-subtitle">16 treninga mesecno</h5></li>
+							    <li class="list-group-item">1 ulazak dnevno</li>
+							    <li class="list-group-item">Aplikacija za vezbanje</li>
+							    <li class="list-group-item"><h5 class="card-subtitle">4400 RSD</h5></li>
+							  </ul>				     
+						      <p class="card-text"></p>
+						      <a href="odaberi.html" class="btn btn-primary">Kupite</a>
+						</div>
+				 </div>
+		 	</div>
+		</div> 
+				
 	</div>
 	 	<script src="./js/vue.js"></script>
         <script src="./js/axios.js"></script>

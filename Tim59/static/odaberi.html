@@ -70,12 +70,7 @@
 		<div  class="welcome">
 			<div class="pocetni">
                     <h1  style="color: white; font-family:Roboto" >Potvrdi odabranu clanarinu:</h1>
-            </div>
-            <div class="textboxovi" >
-                    <label  style="color: white; font-family:Roboto" >Jedinstveni id:</label>
-                    <input id="ime" ref="ime" v-model:value="ime" type="textbox"  readonly style="width: 400px; height: 35px">  
-                 
-            </div>    
+            </div>          
             <div class="textboxovi">
                     <label  style="color: white; font-family:Roboto" >Tip clanarine:</label>
                     <input id="prezime" ref="prezime" v-model:value="prezime" type="textbox"  readonly style="width: 400px; height: 35px">   
@@ -105,17 +100,7 @@
                     <label  style="color: white; font-family:Roboto" >Status:</label>
                     <input id="sifraPonovo" ref="sifraPonovo" v-model:value="sifraPonovo" type="textbox" readonly style="width: 400px; height: 35px">   
             		
-            </div> 
-             <div class="textboxovi">
-                    <label  style="color: white; font-family:Roboto" >Broj termina:</label>
-                    <input id="sifraPonovo" ref="sifraPonovo" v-model:value="sifraPonovo" type="password" readonly style="width: 400px; height: 35px">   
-            		
-            </div> 
-            <div class="textboxovi">
-                    <label  style="color: white; font-family:Roboto" >Promo kod:</label>
-                    <input id="sifraPonovo" ref="sifraPonovo" v-model:value="sifraPonovo" type="textbox" style="width: 400px; height: 35px">   
-            		
-            </div> 
+            </div>            
            
              <div class="tablebutton">
                     <button v-on:click.prevent="provera"  class="btn btn-outline-light">Potvrdi</button>
