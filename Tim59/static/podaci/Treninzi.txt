@@ -1,1 +1,2 @@
-1;Teretana;Teretana;Kolos-Fitness-Gym;140.2;Nikola Spiric;Super je;1.jpg
+1;TRENING SMIJEHA;Drugo;7;2.0;;Pele te treninra da se smijes;1.png
+2;Spika personla;Personalni;7;2.0;;dfsdffds;2.jpeg

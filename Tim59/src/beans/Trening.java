@@ -1,5 +1,9 @@
 package beans;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.util.Base64;
+
 import enums.TipTreninga;
 
 public class Trening {
@@ -13,6 +17,7 @@ public class Trening {
 	private Trener trener;
 	private String trenerid;
 	private String opis;
+	private String slikaNaziv = "null";
 	private String slika;
 	
 	public Trening()
@@ -20,8 +25,30 @@ public class Trening {
 		
 	}
 
+	public SportskiObjekat getSportskiObjekat() {
+		return sportskiObjekat;
+	}
+
+	public void setSportskiObjekat(SportskiObjekat sportskiObjekat) {
+		this.sportskiObjekat = sportskiObjekat;
+	}
+
+	public String getSlikaNaziv() {
+		return slikaNaziv;
+		
+	}
+
+	public void setSlikaNaziv(String slikaNaziv) {
+		this.slikaNaziv = slikaNaziv;
+		
+		if(slikaNaziv != "null")
+		{
+			this.slika = ucitajSliku("./static/Images/Trening/" + this.slikaNaziv);
+		}
+	}
+
 	public Trening(String id,String naziv, TipTreninga tip, String sportskiObjekatid, double trajanje, String trenerid, String opis,
-			String slika) {
+			String slikaNaziv) {
 		super();
 		this.id = id;
 		this.naziv = naziv;
@@ -30,7 +57,7 @@ public class Trening {
 		this.trenerid = trenerid;
 		this.opis = opis;
 		this.sportskiObjekatid = sportskiObjekatid;
-		this.slika = slika;
+		setSlikaNaziv(slikaNaziv);
 	}
 
 	
@@ -113,7 +140,25 @@ public class Trening {
 	public void setTrenerid(String trenerid) {
 		this.trenerid = trenerid;
 	}
+	private String ucitajSliku(String putanja)	
+	{
+		try 
+		{
+			File file = new File(putanja);
+			String encodeImage = Base64.getEncoder().withoutPadding().encodeToString(Files.readAllBytes(file.toPath()));
+			return encodeImage;
+		} 
+		catch (Exception e) 
+		{
+			System.out.println("Trening slika: "+putanja + " nije pronadjen.\r\n");
+			return null;
+		}
+	}
 	
+	public String toSaveFormat()
+	{
+		return getId()+";"+getNaziv()+";"+getTip()+";"+getSportskiObjekatid()+";"+getTrajanje()+";"+getTrenerid()+";"+getOpis()+";"+getSlikaNaziv()+"\n";
+	}
 	
 	
 

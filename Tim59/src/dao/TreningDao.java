@@ -3,6 +3,8 @@ package dao;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -19,6 +21,8 @@ import enums.TipTreninga;
 public class TreningDao {
 	
 private HashMap<Integer, Trening> treninzi;
+
+	private int TreningId = 0;
 	
 	public TreningDao()
 	{
@@ -39,6 +43,39 @@ private HashMap<Integer, Trening> treninzi;
 		return trenings;
 	}
 	
+	public ArrayList<Trening> getTreninziBySportskiObjekatId(String sportskiObjekatId)
+	{
+		ArrayList<Trening> trenings = new ArrayList<>();
+		
+		for (Trening trening : treninzi.values())	
+		{
+			if(trening.getSportskiObjekatid() == sportskiObjekatId) 
+			{
+				trenings.add(trening);
+			}
+		}
+		
+		return trenings;
+	}
+	
+	public ArrayList<Trener> getTreneriBySportskiObjekatId(String trenerId)
+	{
+		ArrayList<Trener> treneri = new ArrayList<>();
+		
+		for (Trening trening : treninzi.values())	
+		{
+			if(trening.getTrenerid() == trenerId) 
+			{
+				if(!treneri.contains(trening.getTrener())) 
+				{
+					treneri.add(trening.getTrener());
+				}
+			}
+		}
+		
+		return treneri;
+	}
+	
 	private void ucitajTreninge() 
 	{
 		String putanja = "./static/podaci/Treninzi.txt";
@@ -52,8 +89,9 @@ private HashMap<Integer, Trening> treninzi;
 			{
 				String[] tokeni = row.split(";");
 				
-				Trening trening = new Trening(tokeni[0],tokeni[1],TipTreninga.valueOf(tokeni[2]), tokeni[3], Double.parseDouble(tokeni[4]), tokeni[5], tokeni[6], ucitajSliku("./static/Images/" + tokeni[7]));
+				Trening trening = new Trening(tokeni[0],tokeni[1],TipTreninga.valueOf(tokeni[2]), tokeni[3], Double.parseDouble(tokeni[4]), tokeni[5], tokeni[6], tokeni[7]);
 				treninzi.put(Integer.parseInt(tokeni[0]), trening);
+				TreningId = Integer.parseInt(tokeni[0]);
 			}
 			
 			bafer.close();
@@ -65,19 +103,76 @@ private HashMap<Integer, Trening> treninzi;
 		}
 	}
 	
-	private String ucitajSliku(String putanja)	
+	public Trening dodajNoviTrening(Trening noviSportskiObjekat) 
 	{
+		TreningId++;
+		noviSportskiObjekat.setId(""+TreningId);
+		treninzi.put(TreningId, noviSportskiObjekat);
+		
+		sacuvajNoviTrening(noviSportskiObjekat);
+		
+		return noviSportskiObjekat;
+	}
+	
+	private void sacuvajNoviTrening(Trening noviTrening) 
+	{
+		String putanja = "./static/podaci/Treninzi.txt";
 		try 
 		{
-			File file = new File(putanja);
-			String encodeImage = Base64.getEncoder().withoutPadding().encodeToString(Files.readAllBytes(file.toPath()));
-			return encodeImage;
+			FileWriter writer = new FileWriter(putanja, true);
+			writer.append(noviTrening.toSaveFormat());
+			writer.close();
 		} 
-		catch (Exception e) 
+		catch (IOException e) 
 		{
-			System.out.println(putanja + " nije pronadjen.\r\n");
-			return null;
+			e.printStackTrace();
+			System.out.println("Fajl " + putanja + " nije pronadjen!\r\n");
+		}
+	}
+	
+	public void dodajSliku(String imeSlike, String idTreninga)	
+	{
+		for (Trening trening : treninzi.values())	
+		{
+			if(trening.getId().equals(idTreninga))
+			{
+				trening.setSlikaNaziv(imeSlike);
+				azurirajBazu();
+				return;
+			}
 		}
 	}
 
+	private void azurirajBazu()	
+	{
+		String putanja = "./static/podaci/Treninzi.txt";
+		try 
+		{
+			FileWriter writer = new FileWriter(putanja, false);
+			for (Trening trening : treninzi.values()) 
+			{
+				writer.write(trening.toSaveFormat());
+			}
+			writer.close();
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+			System.out.println("Fajl " + putanja + " nije pronadjen!\r\n");
+		}
+	}
+	
+	public Trening getTreningById(String idTreninga)	
+	{
+		for (Trening trening : treninzi.values())	
+		{
+			if(trening.getId() == idTreninga)
+			{
+				return trening;
+			}
+		}
+		
+		return null;
+	}
+	
 }

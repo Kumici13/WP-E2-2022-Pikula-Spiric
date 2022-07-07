@@ -25,6 +25,7 @@ import beans.Kupac;
 import beans.Menadzer;
 import beans.SportskiObjekat;
 import beans.Trener;
+import beans.Trening;
 import beans.Korisnik;
 import dao.KorisniciDAO;
 import dao.SportskiObjektiDAO;
@@ -44,7 +45,7 @@ public class Main
 	private static SportskiObjektiDAO sportskiObjekti = null;
 	private static TreningDao treninzi = null;
 	private static Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
-	@SuppressWarnings("unused")
+	
 	public static void main(String[] args) throws Exception 
 	{
 		port(8080);
@@ -57,7 +58,7 @@ public class Main
 		gson =  new GsonBuilder().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
 		
 			
-		post("/app/login", (req, res) -> 
+		post("app/login", (req, res) -> 
 		{
 			String[] tokeni = req.body().split("&");
 			
@@ -86,7 +87,7 @@ public class Main
 			}
 		});
 		
-		post("/app/registracija/kupac", (req, res) -> 
+		post("app/registracija/kupac", (req, res) -> 
 		{
 			res.type("application/json");
 			String body = req.body();
@@ -111,7 +112,7 @@ public class Main
 			}
 		});
 		
-		post("/app/registracija/trener", (req, res) -> 
+		post("app/registracija/trener", (req, res) -> 
 		{
 			res.type("application/json");
 			String body = req.body();
@@ -136,7 +137,7 @@ public class Main
 			}
 		});
 		
-		post("/app/registracija/menadzer", (req, res) -> 
+		post("app/registracija/menadzer", (req, res) -> 
 		{
 			res.type("application/json");
 			String body = req.body();
@@ -187,7 +188,7 @@ public class Main
 			return gson.toJson(korisnici.getAllRegTreneri());
 		});
 		
-		get("/app/getKorisnik", (req, res) -> 
+		get("app/getKorisnik", (req, res) -> 
 		{
 			Korisnik korisnik = getKorisnikByJWT(req, res);
 			
@@ -211,7 +212,7 @@ public class Main
 			}
 		});
 		
-		put("/app/izmeniKorisnika", (req, res) -> 
+		put("app/izmeniKorisnika", (req, res) -> 
 		{
 			Korisnik korisnik = getKorisnikByJWT(req, res);
 			
@@ -297,7 +298,58 @@ public class Main
 
 		});
 		
-		post("/app/dodajSliku", (req, res) -> 
+		post("app/dodajTrening", (req, res) ->	
+		{
+			res.type("application/json");
+			Korisnik korisnik = getKorisnikByJWT(req, res);
+
+			String payload = req.body();
+			
+			Trening noviTrening = gson.fromJson(payload, Trening.class);
+			
+			if (korisnik != null)	
+			{
+				if (korisnik.getUloga().equals(Uloga.Menadzer))	
+				{
+					if (noviTrening != null)	
+					{
+						noviTrening.setSportskiObjekatid(((Menadzer)korisnik).getSportskiObjekatId());
+						noviTrening.setTrener((Trener)(korisnici.getKorisnikByKorisnickoIme(noviTrening.getTrenerid())));
+						noviTrening = treninzi.dodajNoviTrening(noviTrening);
+						
+						res.header("idnovogtreninga", noviTrening.getId());
+						return gson.toJson("Trening dodat.");
+					} 
+					else	
+					{
+						res.status(500);
+						return gson.toJson("Doslo je do greske");
+					}
+				} 
+				else	
+				{
+					res.status(403);
+					return gson.toJson("Niste ovlasceni.");
+				}
+			} 
+			else	
+			{
+				if (res.status() == 400)	
+				{
+					return gson.toJson("Morate se ulogovati.");
+				} 
+				else if (res.status() == 500)	
+				{
+					return gson.toJson("Doslo je do greske.");
+				}
+
+				res.status(500);
+				return gson.toJson("Doslo je do greske.");
+			}
+
+		});
+		
+		post("app/dodajSliku", (req, res) -> 
 		{
 			Korisnik korisnik = getKorisnikByJWT(req, res);
 			
@@ -323,7 +375,7 @@ public class Main
 				String fName = req.headers("IdSportskogObjekta")+"."+tipSlikeString;
 				
 				Part uploadedFile = req.raw().getPart("file");
-				Path out = Paths.get("static/Images/" + fName);
+				Path out = Paths.get("static/Images/SportskiObjekat/" + fName);
 				try (final InputStream in = uploadedFile.getInputStream()) 
 				{
 				   Files.copy(in, out);
@@ -351,6 +403,83 @@ public class Main
 			}
 		});
 	
+		post("app/dodajSlikuTreningu", (req, res) -> 
+		{
+			Korisnik korisnik = getKorisnikByJWT(req, res);
+			
+			if (korisnik != null) 
+			{
+				String location = "image";  
+				long maxFileSize = 100000000;       
+				long maxRequestSize = 100000000;    
+				int fileSizeThreshold = 1024;       
+
+				MultipartConfigElement multipartConfigElement = new MultipartConfigElement(
+				location, maxFileSize, maxRequestSize, fileSizeThreshold);
+				req.raw().setAttribute("org.eclipse.jetty.multipartConfig",
+				multipartConfigElement);
+
+				Collection<Part> parts = req.raw().getParts();
+				String tipSlikeString = ".png";
+				for (Part part : parts) 
+				{
+					tipSlikeString= part.getContentType();
+					tipSlikeString = tipSlikeString.replaceAll("image/","");
+				}
+				String fName = req.headers("idtreninga")+"."+tipSlikeString;
+				
+				Part uploadedFile = req.raw().getPart("file");
+				Path out = Paths.get("static/Images/Trening/" + fName);
+				try (final InputStream in = uploadedFile.getInputStream()) 
+				{
+				   Files.copy(in, out);
+				   uploadedFile.delete();
+				   treninzi.dodajSliku(fName, req.headers("idtreninga"));
+				}
+				multipartConfigElement = null;
+				uploadedFile = null;
+				
+				return gson.toJson(treninzi.getTreningById(req.headers("idtreninga")));
+			} 
+			else	
+			{
+				if (res.status() == 400)	
+				{
+					return gson.toJson("Morate se ulogovati.");
+				}
+				else if (res.status() == 500)	
+				{
+					return gson.toJson("Doslo je do greske.");
+				}
+				
+				res.status(500);
+				return gson.toJson("Doslo je do greske.");
+			}
+		});
+		
+		post("app/getTreningeZaObjekat", (req, res) -> 
+		{
+			Menadzer menadzer = (Menadzer) getKorisnikByJWT(req, res);
+			if(menadzer.getSportskiObjekatId().equals("null"))
+			{
+				System.out.println("NEMAS SPORTSKI OBJEKAT");
+				return gson.toJson("Morate biti vlasnik sportskog objekta!");
+			}
+			System.out.println("TRENINIZI:" + treninzi.getTreninziBySportskiObjekatId(menadzer.getSportskiObjekatId()));
+			return gson.toJson(treninzi.getTreninziBySportskiObjekatId(menadzer.getSportskiObjekatId()));
+		});
+		
+		post("app/gettrenerizaobjekat", (req, res) -> 
+		{
+			Menadzer menadzer = (Menadzer) getKorisnikByJWT(req, res);
+			if(menadzer.getSportskiObjekatId().equals("null"))
+			{
+				System.out.println("NEMAS SPORTSKI OBJEKAT");
+				return gson.toJson("Morate biti vlasnik sportskog objekta!");
+			}
+			System.out.println("TRENERI:" + treninzi.getTreneriBySportskiObjekatId(menadzer.getSportskiObjekatId()));
+			return gson.toJson(treninzi.getTreneriBySportskiObjekatId(menadzer.getSportskiObjekatId()));
+		});
 			
 	}
 	
@@ -386,5 +515,4 @@ public class Main
 			return null;
 		}
 	}
-	
 }

@@ -20,7 +20,7 @@ import javaxt.utils.string;
 public class SportskiObjektiDAO {
 
 	private HashMap<Integer, SportskiObjekat> sportskiObjekti;
-	private int SportskiObjektiId =0;
+	private int SportskiObjektiId = 0;
 	public SportskiObjektiDAO()
 	{
 		sportskiObjekti = new HashMap<Integer, SportskiObjekat>();

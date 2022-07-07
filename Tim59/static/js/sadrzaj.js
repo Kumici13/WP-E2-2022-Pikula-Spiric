@@ -2,7 +2,7 @@ new Vue({
     el: '#sadrzaj-app',
     data:   
 	{
-        getSadrzaji: [],
+        getSadrzaji: '',
         getTreneri: [],
         pretragaCena: '',
         
@@ -11,8 +11,26 @@ new Vue({
     
      mounted()  
 	{
+		this.uloga = window.localStorage.getItem('uloga');
+
+        if (this.uloga == null || this.uloga != 1) 
+		{
+            alert('Sta se pravis pametan!');
+            window.localStorage.removeItem('uloga');
+            window.localStorage.removeItem('jwt');
+			window.location = "index.html";
+        }
+
+		let jwt = window.localStorage.getItem('jwt');
         axios
-            .get('app/getTreneri')
+            .post('app/gettrenerizaobjekat', jwt,
+				{
+                    headers: 
+					{
+                        'Content-Type': 'application/json',
+                        'Autorizacija': window.localStorage.getItem('jwt')
+                    }
+                })
             .then(response => 
 			{
                 this.getTreneri = response.data;
@@ -24,7 +42,14 @@ new Vue({
             });
             
         axios
-            .get('app/getSadrzaji')
+            .post('app/getTreningeZaObjekat', jwt,
+				{
+                    headers: 
+					{
+                        'Content-Type': 'application/json',
+                        'Autorizacija': window.localStorage.getItem('jwt')
+                    }
+                })
             .then(response => 
 			{
                 this.getSadrzaji = response.data;
@@ -35,7 +60,6 @@ new Vue({
                 alert(error.response.data.sadrzaj);
             });
     },
-    
     
      methods:    
 	{
@@ -51,36 +75,7 @@ new Vue({
                 return '';
             }
         }
-    },
-    
-   
-    
-    computed:   
-	{
-        
-		 sadrzajFilter: function() 
-				{
-		            return this.getSadrzaji.filter((objekat) => 
-					{	
-		                return 	   ((objekat.naziv.toLowerCase().match(this.pretragaCena.toLowerCase())) 
-		                		) 					
-						});
-		        },
-		 regTreneriFilter: function() 
-		{
-            return this.getTreneri.filter((objekat) => 
-			{	
-                return 	   ((objekat.sifra.toLowerCase().match(this.pretragaCena.toLowerCase()))
-						 )
-											
-				});
-        }
-           
     }
-   
-  
-       
-    	
 });
 
 
