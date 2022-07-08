@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Clanarine</title>
+<meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+	<style>
+            body   {
+                background-image: url(Images/loginback.jpg);
+                height: 100%;
+            }
+            
+            .h1 {
+            padding : 50px;
+            text-align : left;  
+            padding-left: 700px;
+            }
+            
+            .search {
+            padding : 5px;
+            text-align : center;  
+            }
+            
+            .card0 {
+       		width: 300px;
+            padding-top: 100px;
+            text-align: center;
+            }
+            
+            .card1 {
+            width: 300px;
+            padding-left: 20px; 
+            padding-top: 140px;
+            text-align: center;
+            }
+            
+            .card2 {
+			width: 300px;
+            padding-left: 20px; 
+            padding-top: 180px;
+            text-align: center;
+            }
+           
+            
+            label {
+		      
+		        width: 250px;   
+     		}
+            
+    </style>
+
+</head>
+
+<body>
+	 <div class="welcome" id="clanarine-app">
+			<nav class="navbar navbar-expand  fixed-top" style="background-color: #3E1D57; ">
+                <h1><a  class="naslov"  class="navbar-brand" style="color: white ; font-family:Roboto">Clanarine</a></h1>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="kupacHome.html" class="nav-link" style="color: white; font-family:Roboto">Početna</a></li>          
+                        <li class="nav-item"><a href="sportskiobjekti.html" class="nav-link" style="color: white; font-family:Roboto">Sportski objekti</a></li>
+                        <li class="nav-item"><a href="trainingKupac.html" class="nav-link" style="color: white; font-family:Roboto">Treninzi</a></li>
+                        <li class="nav-item"><a href="clanarine.html" class="nav-link" style="color: white; font-family:Roboto">Clanarine</a></li>
+                        <li class="nav-item"><a href="javascript:window.localStorage.removeItem('jwt'); window.location = 'login.html';" class="nav-link" style="color: white; font-family:Roboto">Odjavi se</a></li>
+                    </ul>
+                </div>
+		</nav>
+		<br />
+		<br />
+		<br />
+		<br />
+	
+	
+		<div class="h1">
+			<h1 style="color: white; font-family: Roboto">Kupite clanarinu</h1>			
+		</div>
+		
+		  <div class="container">
+    		<div class="row">
+				<div class="card0">			 
+					    <div class="card">
+						      <h2 class="card-title">Classic</h2>
+						      <ul class="list-group list-group-flush">
+							    <li class="list-group-item"><h5 class="card-subtitle">16 treninga mesecno</h5></li>
+							    <li class="list-group-item">1 ulazak dnevno</li>
+							    <li class="list-group-item"><h5 class="card-subtitle">3000 RSD</h5></li>
+							  </ul>				     
+						      <p class="card-text"></p>
+						      <a href="odaberi.html" class="btn btn-primary">Kupite</a>
+						</div>
+			   </div>
+				 <div class="card1">
+						<div class="card">
+						      <h2 class="card-title">Studio classic</h2>
+						      <ul class="list-group list-group-flush">
+							    <li class="list-group-item"><h5 class="card-subtitle">16 treninga mesecno</h5></li>
+							    <li class="list-group-item">1 ulazak dnevno</li>
+							    <li class="list-group-item">Aplikacija za vezbanje</li>
+							    <li class="list-group-item"><h5 class="card-subtitle">3400 RSD</h5></li>
+							  </ul>				     
+						      <p class="card-text"></p>
+						      <a href="odaberi.html" class="btn btn-primary">Kupite</a>
+						</div>
+			    </div>
+				  <div class="card2">
+						<div class="card">
+						      <h2 class="card-title">Studio elite</h2>
+						      <ul class="list-group list-group-flush">
+							    <li class="list-group-item"><h5 class="card-subtitle">600 treninga godisnje</h5></li>
+							    <li class="list-group-item">2 ulazaka dnevno</li>
+							    <li class="list-group-item">Aplikacija za vezbanje</li>
+							    <li class="list-group-item"><h5 class="card-subtitle">44000 RSD</h5></li>
+							  </ul>				     
+						      <p class="card-text"></p>
+						      <a href="odaberi.html" class="btn btn-primary">Kupite</a>
+						</div>
+				 </div>
+		 	</div>
+		</div> 
+				
+	</div>
+	 	<script src="./js/vue.js"></script>
+        <script src="./js/axios.js"></script>
+        <script src="./js/clanarine.js"></script>
+</body>
+
+</html>
