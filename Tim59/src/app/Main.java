@@ -173,6 +173,16 @@ public class Main
 			korisnici.changeActivityOfUser(body);
 			return gson.toJson("Upesno ste izmenili aktivnost.");
 		});
+		/*
+		post("app/sendToAktivneClanarine", (req, res) -> 
+		{
+			String body = req.body();	
+			System.out.print("Ispisujem body" + body);
+			clanarine.sendToAktivneClanarine(body);
+			return gson.toJson("Upesno ste izmenili aktivnost.");
+		}); */
+		
+		
 		
 		
 		get("app/getSportskiObjekti", (req, res) -> 

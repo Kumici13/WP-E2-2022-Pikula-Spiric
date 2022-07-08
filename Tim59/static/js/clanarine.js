@@ -29,7 +29,7 @@ new Vue({
             return window.localStorage.getItem('jwt') != null;
         },
         
-   /*    changeActivityOfClanarine: function(regKorisnik)
+     /*  sendToAktivneClanarine: function(regKorisnik)
        {
 		this.korisnickoIme =  regKorisnik 
 		

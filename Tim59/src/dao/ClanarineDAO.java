@@ -3,12 +3,15 @@ package dao;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
+
 import java.util.HashMap;
 import beans.Clanarina;
 import enums.TipClanarine;
 
 
+
 public class ClanarineDAO {
+
 	
 private HashMap<Integer, Clanarina> clanarine;
 	
@@ -30,7 +33,12 @@ private HashMap<Integer, Clanarina> clanarine;
 		
 		return clanarinas;
 	}
-	
+	/*
+	public Clanarina sendToAktivneClanarine (String datumi)
+	{
+		return null;
+		
+	} */
 	private void ucitajClanarine() 
 	{
 		String putanja = "./static/podaci/Clanarine.txt";
@@ -56,6 +64,8 @@ private HashMap<Integer, Clanarina> clanarine;
 			System.out.println("Fajl " + putanja + " nije pronadjen.\r\n");
 		}
 	}
+	
+	
 	
 	
 

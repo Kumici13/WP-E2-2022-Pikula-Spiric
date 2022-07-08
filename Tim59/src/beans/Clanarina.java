@@ -1,5 +1,7 @@
 package beans;
 
+import java.util.Date;
+
 import enums.TipClanarine;
 
 public class Clanarina {
@@ -47,6 +49,8 @@ public class Clanarina {
 	public void setTipClanarine(TipClanarine tipClanarine) {
 		this.tipClanarine = tipClanarine;
 	}
+
+	
 
 	public String getDatumPlacanja() {
 		return datumPlacanja;

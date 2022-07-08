@@ -1,3 +1,1 @@
 412;Godisnja;07.06.2022.;07.06.2023. 16h;18;Nikola Spiric;true;365;
-1312;Mesecna;07.06.2022.;07.07.2022. 12h;25;Nikolija;true;31;
-5215;Godisnja;02.06.2022.;02.06.2023. 12h;11;Pikula Luka;true;365;

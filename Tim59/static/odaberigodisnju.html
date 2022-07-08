@@ -74,15 +74,20 @@
            
             <div class="textboxovi">
                     <label  style="color: white; font-family:Roboto" >Datum placanja:</label>
-                    <input id="datumPlacanja" ref="datumPlacanja" v-model:value="datumPlacanja" type="textbox"  style="width: 400px; height: 35px">                     
+                    <input id="datumPlacanja" ref="datumPlacanja" v-model:value="datumPlacanja" type="textbox"  style="width: 400px; height: 35px">   
+                   
             </div>  
              <div class="textboxovi">
                     <label  style="color: white; font-family:Roboto" >Datum vazenja:</label>
-                    <input id="datumVazenja" ref="datumVazenja" v-model:value="datumVazenja" type="textbox"   style="width: 400px; height: 35px">                
+                    <input id="datumVazenja" ref="datumVazenja" v-model:value="datumVazenja" type="textbox"   style="width: 400px; height: 35px">   
+                
             </div> 
-                     
+            
+             
+                       
+           
              <div class="tablebutton">
-                    <button   class="btn btn-outline-light">Potvrdi</button>
+                    <button v-on:click.prevent="payClanarinu" class="btn btn-outline-light">Potvrdi</button>
              </div>
 	      </form>
              
@@ -91,7 +96,7 @@
         
         <script src="./js/vue.js"></script>
         <script src="./js/axios.js"></script>
-        <script src="./js/odaberi.js"></script>
+        <script src="./js/odaberigodisnju.js"></script>
 </body>
 
 </html>
