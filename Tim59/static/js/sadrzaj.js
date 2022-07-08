@@ -5,6 +5,7 @@ new Vue({
         getSadrzaji: '',
         getTreneri: [],
         pretragaCena: '',
+		treningId: ''
         
     },
     
@@ -63,8 +64,43 @@ new Vue({
     
      methods:    
 	{
-        
-		prikaziSliku: function(slika)
+        izmeniSadrzajTreninga: function(trening)
+       {
+		
+	   		this.trening = trening 
+			console.log(trening);
+	
+	   },
+	
+	   obrisiTrening: function(trening)
+       {
+		let jwt = window.localStorage.getItem('jwt');
+			console.log(trening);
+			axios
+            .post('app/obrisiTreningById', jwt,
+				{
+					
+                    headers: 
+					{
+                        'Content-Type': 'application/json',
+                        'Autorizacija': window.localStorage.getItem('jwt'),
+						
+                        'TreningId': trening,
+                    }
+                })
+            .then(response => 
+			{
+                location.reload();
+ 				alert(response.data);
+            })
+            .catch(error => 
+			{
+                console.log(error);
+                alert(error.response.data.sadrzaj);
+            });
+	
+	   },
+	   prikaziSliku: function(slika)
 		{
             if (slika != null)  
 			{

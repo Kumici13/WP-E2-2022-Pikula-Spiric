@@ -36,14 +36,17 @@ private HashMap<Integer, Trening> treninzi;
 	{
 		for (Trening trening : treninzi.values())	
 		{
-			if(!trening.getSportskiObjekatid().equals("null"))
+			if(trening.isAktivan()) 
 			{
-				trening.setSportskiObjekat(sportskiObjektiDAO.getSportskiObjekatById(trening.getSportskiObjekatid()));
-			}
-			
-			if(!trening.getTrenerid().equals("null"))
-			{
-				trening.setTrener((Trener)korisniciDAO.getKorisnikByKorisnickoIme(trening.getTrenerid()));
+				if(!trening.getSportskiObjekatid().equals("null"))
+				{
+					trening.setSportskiObjekat(sportskiObjektiDAO.getSportskiObjekatById(trening.getSportskiObjekatid()));
+				}
+				
+				if(!trening.getTrenerid().equals("null"))
+				{
+					trening.setTrener((Trener)korisniciDAO.getKorisnikByKorisnickoIme(trening.getTrenerid()));
+				}
 			}
 		}
 		
@@ -55,7 +58,10 @@ private HashMap<Integer, Trening> treninzi;
 		
 		for (Trening trening : treninzi.values())	
 		{
-			trenings.add(trening);
+			if(trening.isAktivan()) 
+			{
+				trenings.add(trening);
+			}
 		}
 		
 		return trenings;
@@ -67,7 +73,7 @@ private HashMap<Integer, Trening> treninzi;
 		
 		for (Trening trening : treninzi.values())	
 		{
-			if(trening.getSportskiObjekatid().equals(sportskiObjekatId)) 
+			if(trening.getSportskiObjekatid().equals(sportskiObjekatId) && trening.isAktivan()) 
 			{
 				trenings.add(trening);
 			}
@@ -82,7 +88,7 @@ private HashMap<Integer, Trening> treninzi;
 		
 		for (Trening trening : treninzi.values())	
 		{
-			if(trening.getSportskiObjekatid().equals(sportskiObjekatId)) 
+			if(trening.getSportskiObjekatid().equals(sportskiObjekatId) && trening.isAktivan()) 
 			{
 				if(trening.getTrener()!=null) 
 				{
@@ -110,7 +116,7 @@ private HashMap<Integer, Trening> treninzi;
 			{
 				String[] tokeni = row.split(";");
 				
-				Trening trening = new Trening(tokeni[0],tokeni[1],TipTreninga.valueOf(tokeni[2]), tokeni[3], Double.parseDouble(tokeni[4]), tokeni[5], tokeni[6], tokeni[7]);
+				Trening trening = new Trening(tokeni[0],tokeni[1],TipTreninga.valueOf(tokeni[2]), tokeni[3], Double.parseDouble(tokeni[4]), tokeni[5], tokeni[6], tokeni[7],Boolean.parseBoolean(tokeni[8]));
 				treninzi.put(Integer.parseInt(tokeni[0]), trening);
 				TreningId = Integer.parseInt(tokeni[0]);
 			}
@@ -187,7 +193,7 @@ private HashMap<Integer, Trening> treninzi;
 	{
 		for (Trening trening : treninzi.values())	
 		{
-			if(trening.getId() == idTreninga)
+			if(trening.getId().equals(idTreninga))
 			{
 				return trening;
 			}
@@ -195,5 +201,21 @@ private HashMap<Integer, Trening> treninzi;
 		
 		return null;
 	}
+	
+	public void changeTreningActivityById(String idTreninga)
+	{
+		for (Trening trening : treninzi.values())	
+		{
+			if(trening.getId().equals(idTreninga))
+			{
+				trening.setAktivan(!trening.isAktivan());
+			}
+		}
+		
+		azurirajBazu();
+		
+	}
+	
+	
 	
 }

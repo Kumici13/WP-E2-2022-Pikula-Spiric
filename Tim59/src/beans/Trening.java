@@ -19,6 +19,7 @@ public class Trening {
 	private String opis;
 	private String slikaNaziv = "null";
 	private String slika;
+	private boolean aktivan = true;
 	
 	public Trening()
 	{
@@ -48,7 +49,7 @@ public class Trening {
 	}
 
 	public Trening(String id,String naziv, TipTreninga tip, String sportskiObjekatid, double trajanje, String trenerid, String opis,
-			String slikaNaziv) {
+			String slikaNaziv, boolean aktivan) {
 		super();
 		this.id = id;
 		this.naziv = naziv;
@@ -58,9 +59,18 @@ public class Trening {
 		this.opis = opis;
 		this.sportskiObjekatid = sportskiObjekatid;
 		setSlikaNaziv(slikaNaziv);
+		this.aktivan = aktivan;
 	}
 
 	
+	public boolean isAktivan() {
+		return aktivan;
+	}
+
+	public void setAktivan(boolean aktivan) {
+		this.aktivan = aktivan;
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -157,7 +167,7 @@ public class Trening {
 	
 	public String toSaveFormat()
 	{
-		return getId()+";"+getNaziv()+";"+getTip()+";"+getSportskiObjekatid()+";"+getTrajanje()+";"+getTrenerid()+";"+getOpis()+";"+getSlikaNaziv()+"\n";
+		return getId()+";"+getNaziv()+";"+getTip()+";"+getSportskiObjekatid()+";"+getTrajanje()+";"+getTrenerid()+";"+getOpis()+";"+getSlikaNaziv()+";"+isAktivan()+"\n";
 	}
 	
 	

@@ -1,4 +1,4 @@
-1;Daragu;Grupni;1;3.0;trener;Pele te treninra;1.jpeg
-2;Trening kod trenera 2;Teretana;2;7.0;trener2;Lagani trening;2.png
-3;Trening sauna;Drugo;1;3.0;trener;Kidalica;3.jpeg
-4;Treningic;Personalni;1;8.0;trener;Kidalica2;4.jpeg
+1;Daragu;Grupni;1;3.0;trener;Pele te treninra;1.jpeg;false
+2;Trening kod trenera 2;Teretana;2;7.0;trener2;Lagani trening;2.png;true
+3;Trening sauna;Drugo;1;3.0;trener;Kidalica;3.jpeg;true
+4;Treningic;Personalni;1;8.0;trener;Kidalica2;4.jpeg;true
