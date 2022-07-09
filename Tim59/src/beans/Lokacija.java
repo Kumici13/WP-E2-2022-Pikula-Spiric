@@ -1,9 +1,15 @@
 package beans;
 
+import com.google.gson.annotations.Expose;
+
 public class Lokacija {
-	
+
+	@Expose
 	private double geoDuzina;
+	@Expose
 	private double geoSirina;
+
+	@Expose
 	private Adresa adresa;
 	
 	public Lokacija()

@@ -155,7 +155,7 @@ new Vue({
 						{
                            
 								window.localStorage.setItem('jwt', response.data.JWTToken);
-	                            window.location = "menadzerHome.html";
+	                            window.location = "regkorisnici.html";
                         	
                         } 
 						else  
@@ -186,7 +186,7 @@ new Vue({
 						{
                            
 								window.localStorage.setItem('jwt', response.data.JWTToken);
-	                            window.location = "trenerHome.html";
+	                            window.location = "regkorisnici.html";
                         	
                         } 
 						else  

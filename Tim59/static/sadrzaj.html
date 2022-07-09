@@ -88,7 +88,7 @@
 						<th>Tip</th>
 						<th>Slika</th>
 						<th>Opis</th>
-						<th>Trajanje</th>
+						<th>Kada se odrzava</th>
 						
 				</thead>
 				 <tr v-for="p in getSadrzaji">
@@ -96,7 +96,9 @@
 					<td>{{p.tip }}</td>
 					<td><img :src="prikaziSliku(p.slika)" class="img-thumbnail" width="50" height="50"></td>
 					<td>{{p.opis }}</td>
-					<td>{{p.trajanje }}</td>
+					<td>{{prikaziRadnoVreme(p)}}</td>
+					<td width=200><button type="button" v-on:click="izmeniSadrzajTreninga(p.id)"  class="btn btn-primary">Izmeni</button></td>
+					<td width=200><button type="button" v-on:click="obrisiTrening(p.id)"  class="btn btn-primary">Obrisi</button></td>
 				</tr>
 				
 			</table>

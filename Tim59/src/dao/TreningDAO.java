@@ -8,7 +8,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Date;
 import java.util.HashMap;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializer;
 
 import beans.Adresa;
 import beans.Lokacija;
@@ -36,14 +41,17 @@ private HashMap<Integer, Trening> treninzi;
 	{
 		for (Trening trening : treninzi.values())	
 		{
-			if(!trening.getSportskiObjekatid().equals("null"))
+			if(trening.isAktivan()) 
 			{
-				trening.setSportskiObjekat(sportskiObjektiDAO.getSportskiObjekatById(trening.getSportskiObjekatid()));
-			}
-			
-			if(!trening.getTrenerid().equals("null"))
-			{
-				trening.setTrener((Trener)korisniciDAO.getKorisnikByKorisnickoIme(trening.getTrenerid()));
+				if(!trening.getSportskiObjekatid().equals("null"))
+				{
+					trening.setSportskiObjekat(sportskiObjektiDAO.getSportskiObjekatById(trening.getSportskiObjekatid()));
+				}
+				
+				if(!trening.getTrenerid().equals("null"))
+				{
+					trening.setTrener((Trener)korisniciDAO.getKorisnikByKorisnickoIme(trening.getTrenerid()));
+				}
 			}
 		}
 		
@@ -55,7 +63,10 @@ private HashMap<Integer, Trening> treninzi;
 		
 		for (Trening trening : treninzi.values())	
 		{
-			trenings.add(trening);
+			if(trening.isAktivan()) 
+			{
+				trenings.add(trening);
+			}
 		}
 		
 		return trenings;
@@ -67,7 +78,7 @@ private HashMap<Integer, Trening> treninzi;
 		
 		for (Trening trening : treninzi.values())	
 		{
-			if(trening.getSportskiObjekatid().equals(sportskiObjekatId)) 
+			if(trening.getSportskiObjekatid().equals(sportskiObjekatId) && trening.isAktivan()) 
 			{
 				trenings.add(trening);
 			}
@@ -82,7 +93,7 @@ private HashMap<Integer, Trening> treninzi;
 		
 		for (Trening trening : treninzi.values())	
 		{
-			if(trening.getSportskiObjekatid().equals(sportskiObjekatId)) 
+			if(trening.getSportskiObjekatid().equals(sportskiObjekatId) && trening.isAktivan()) 
 			{
 				if(trening.getTrener()!=null) 
 				{
@@ -108,11 +119,11 @@ private HashMap<Integer, Trening> treninzi;
 			String row;
 			while ((row = bafer.readLine()) != null)	
 			{
-				String[] tokeni = row.split(";");
-				
-				Trening trening = new Trening(tokeni[0],tokeni[1],TipTreninga.valueOf(tokeni[2]), tokeni[3], Double.parseDouble(tokeni[4]), tokeni[5], tokeni[6], tokeni[7]);
-				treninzi.put(Integer.parseInt(tokeni[0]), trening);
-				TreningId = Integer.parseInt(tokeni[0]);
+				Gson gson =  new GsonBuilder().excludeFieldsWithoutExposeAnnotation().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
+				Trening trening = gson.fromJson(row, Trening.class);
+				trening.setSlikaNaziv(trening.getSlikaNaziv()); // UCITAJ SLIKA
+				treninzi.put(Integer.parseInt(trening.getId()), trening);
+				TreningId = Integer.parseInt(trening.getId());
 			}
 			
 			bafer.close();
@@ -187,7 +198,7 @@ private HashMap<Integer, Trening> treninzi;
 	{
 		for (Trening trening : treninzi.values())	
 		{
-			if(trening.getId() == idTreninga)
+			if(trening.getId().equals(idTreninga))
 			{
 				return trening;
 			}
@@ -195,5 +206,21 @@ private HashMap<Integer, Trening> treninzi;
 		
 		return null;
 	}
+	
+	public void changeTreningActivityById(String idTreninga)
+	{
+		for (Trening trening : treninzi.values())	
+		{
+			if(trening.getId().equals(idTreninga))
+			{
+				trening.setAktivan(!trening.isAktivan());
+			}
+		}
+		
+		azurirajBazu();
+		
+	}
+	
+	
 	
 }
