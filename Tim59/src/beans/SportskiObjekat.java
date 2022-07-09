@@ -230,7 +230,7 @@ public class SportskiObjekat
 	public String toSaveFormat()
 	{
 		Gson gson =  new GsonBuilder().excludeFieldsWithoutExposeAnnotation().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
-		return gson.toJson(this)+"/n";
+		return gson.toJson(this)+"\n";
 	}
 	
 	

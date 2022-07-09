@@ -1,11 +1,18 @@
 package beans;
 
+import java.util.Date;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.annotations.Expose;
+
 import enums.Pol;
 import enums.Uloga;
 import javaxt.utils.string;
 
 public class Menadzer extends Korisnik {
-	
+	@Expose
 	private String sportskiObjekatId="null";
 	private SportskiObjekat sportskiobjekat;
 	
@@ -33,9 +40,10 @@ public class Menadzer extends Korisnik {
 	@Override
 	public String toSaveFormat() 
 	{
-		return this.getKorisnickoIme() + ";" + this.getSifra() + ";" + this.getIme() + ";" + this.getPrezime() + ";" + this.getPol().name() + ";" + this.getDatumRodjenja() + ";"+ this.sportskiObjekatId + ";" + this.aktivan + "\n";
+		Gson gson =  new GsonBuilder().excludeFieldsWithoutExposeAnnotation().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
+		
+		return gson.toJson(this)+"\n";
 	}
-
 	public String getSportskiObjekatId() {
 		return sportskiObjekatId;
 	}

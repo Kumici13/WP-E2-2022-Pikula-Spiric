@@ -61,6 +61,7 @@ public class SportskiObjektiDAO {
 				Gson gson =  new GsonBuilder().excludeFieldsWithoutExposeAnnotation().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
 				
 				SportskiObjekat sportskiObjekat = gson.fromJson(row, SportskiObjekat.class);
+				sportskiObjekat.setLogo(sportskiObjekat.getLogo()); //DA UCITA SLIKU NE BRISI
 				SportskiObjektiId = Integer.parseInt(sportskiObjekat.getId());
 				sportskiObjekti.put(SportskiObjektiId, sportskiObjekat);
 			}

@@ -280,7 +280,6 @@ public class Main
 			{
 				if (korisnik.getUloga().equals(Uloga.Menadzer))	
 				{
-
 					if (noviSportskiObjekat != null)	
 					{
 						noviSportskiObjekat = sportskiObjekti.dodajNoviSportskiObjekat(noviSportskiObjekat);
