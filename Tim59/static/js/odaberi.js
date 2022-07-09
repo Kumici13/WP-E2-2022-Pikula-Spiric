@@ -49,21 +49,23 @@ new Vue({
                         'Content-Type': 'application/json',
                         'Autorizacija': window.localStorage.getItem('jwt')
                     }
+
             })
             .then(response => 
 			{
                 this.addClanarina = response.data;
             	window.location.href='aktivnaclanarina.html';
+
             })
             .catch(error => 
 			{
                 console.log(error);
                 
             });	
+
+			}           
 		}
-    },
- 
-	
+		
 });
 
 

@@ -38,17 +38,17 @@ private HashMap<Integer, Clanarina> clanarine;
 				
 				if(NazivClanarine.equals("Classic"))
 				{
-					Clanarina clanarina = new Clanarina("0", TipClanarine.Godisnja, "/","/", 32, null, "lukap", true, 3);
+					Clanarina clanarina = new Clanarina("Classic150", TipClanarine.Mesecna, "12/07/2022","12/08/2022", 3000,  "lukap", true, 16);
 					clanarine.put(412, clanarina);
 				}
 				else if(NazivClanarine.equals("StudioClassic"))
 				{
-					Clanarina clanarina = new Clanarina("0", TipClanarine.Mesecna, "/","/", 32, null, "lukap", true, 3);
+					Clanarina clanarina = new Clanarina("StudioClassic150", TipClanarine.Mesecna, "12/07/2022","12/08/2022", 3400, "lukap", true, 16);
 					clanarine.put(412, clanarina);
 				}
 				else if(NazivClanarine.equals("StudioElite"))
 				{
-					Clanarina clanarina = new Clanarina("0", TipClanarine.Godisnja, "/","/", 32, null, "lukap", true, 3);
+					Clanarina clanarina = new Clanarina("StudioElite150", TipClanarine.Godisnja, "12/07/2022","12/07/2023", 4400, "lukap", true, 600);
 					clanarine.put(412, clanarina);
 				}
 				else

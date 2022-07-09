@@ -13,27 +13,33 @@ new Vue({
     },
     mounted()  
 	{
+
 		let jwt = window.localStorage.getItem('jwt');
 		
 		axios
             .post('app/getClanarinaWithKorisnickoIme', jwt, 
-				{
-                    headers: 
+				{     
+                 headers: 
 					{
                         'Content-Type': 'application/json',
-                        'Autorizacija': window.localStorage.getItem('jwt')
+                        'Autorizacija': window.localStorage.getItem('jwt')                  
                     }
                 })
             .then(response => 
 			{
                 this.aktivneClanarine = response.data;
-				
+
+
             })
             .catch(error => 
 			{
                 console.log(error);
-                alert("Problem sa ucitavanjem clanarine!");
+				alert(error.response.data.sadrzaj);
             });
+
+              
+          	
+
     },
    
    
