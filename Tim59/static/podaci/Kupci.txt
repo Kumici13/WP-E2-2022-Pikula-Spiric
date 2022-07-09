@@ -5,3 +5,4 @@ Trenerkica;trenerkica;Trener;Treneric;Zenski;null;clanarina;null;0.0;true
 Jovke;jovkef89;Jovan;Spiric;Muski;null;clanarina;null;0.0;true
 nikolas;12345678;Mirko;Mirkovic;Zenski;null;clanarina;null;0.0;true
 Sima;simasima;Sima;Kesic;Muski;null;clanarina;null;0.0;true
+lukap;lukap123;Luka;Pikula;Muski;null;clanarina;null;0.0;false

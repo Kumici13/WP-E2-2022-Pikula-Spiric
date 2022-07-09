@@ -22,23 +22,21 @@ public class Clanarina {
 		
 	}
 
-	public Clanarina(String identifikator, TipClanarine tipClanarine, String datumPlacanja, String datumVazenja, double cena,
-			String kupacid, boolean status, int brojTermina) {
+
+	public Clanarina(String identifikator, TipClanarine tipClanarine, String datumPlacanja, String datumVazenja,
+			double cena, Kupac kupac, String kupacid, boolean status, int brojTermina) {
 		super();
 		this.identifikator = identifikator;
 		this.tipClanarine = tipClanarine;
 		this.datumPlacanja = datumPlacanja;
 		this.datumVazenja = datumVazenja;
 		this.cena = cena;
+		this.kupac = kupac;
 		this.kupacid = kupacid;
 		this.status = status;
 		this.brojTermina = brojTermina;
 	}
 
-	public Clanarina(int i, String string, LocalDate now, LocalDate now2, int j, String string2, boolean b, int k) {
-		super();
-		
-	}
 
 	public String getIdentifikator() {
 		return identifikator;

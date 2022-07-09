@@ -21,24 +21,8 @@ private HashMap<Integer, Clanarina> clanarine;
 	public ClanarineDAO()
 	{
 		clanarine = new HashMap<Integer, Clanarina>();
-
-		ucitajClanarine();
-	}
-	
-	public ArrayList<Clanarina> getClanarina(String korisnik)
-	{
-		ArrayList<Clanarina> clanarinas = new ArrayList<>();
-		
-		for (Clanarina clanarina : clanarine.values())	
-		{
-			if(korisnik != null) 
-			{
-				clanarinas.add(clanarina);
-			}
-			
-		}
-		
-		return clanarinas;
+		AddClanarina("Classic");
+		//ucitajClanarine();
 	}
 	
 	public void AddClanarina(String NazivClanarine)
@@ -54,10 +38,23 @@ private HashMap<Integer, Clanarina> clanarine;
 				
 				if(NazivClanarine.equals("Classic"))
 				{
-					Clanarina clanarina = new Clanarina(412, "Mesecna", LocalDate.now(), LocalDate.now() , 3000, "Dzoni", true, 16);
+					Clanarina clanarina = new Clanarina("0", TipClanarine.Godisnja, "/","/", 32, null, "lukap", true, 3);
 					clanarine.put(412, clanarina);
 				}
-								
+				else if(NazivClanarine.equals("StudioClassic"))
+				{
+					Clanarina clanarina = new Clanarina("0", TipClanarine.Mesecna, "/","/", 32, null, "lukap", true, 3);
+					clanarine.put(412, clanarina);
+				}
+				else if(NazivClanarine.equals("StudioElite"))
+				{
+					Clanarina clanarina = new Clanarina("0", TipClanarine.Godisnja, "/","/", 32, null, "lukap", true, 3);
+					clanarine.put(412, clanarina);
+				}
+				else
+				{
+					System.out.println("NAZIV CLANRINE NIJE DOBAR!!!!!!!!!!!");
+				}
 			}
 			
 			bafer.close();
@@ -72,16 +69,21 @@ private HashMap<Integer, Clanarina> clanarine;
 		
 	}
 	
-	public ArrayList<Clanarina> getClanarinaByKorisnik(String korisnik)
+	public Clanarina getClanarinaByKorisnickoIme(String korisnickoIme)
 	{
-		ArrayList<Clanarina> clanarinas = new ArrayList<>();
 		
 		for (Clanarina clan : clanarine.values())	
 		{					
-		  clanarinas.add(clan);
+			if(clan.getKupacid().equals(korisnickoIme))
+			{
+				System.out.println("uporedjujem " + clan.getKupacid());
+
+				System.out.println(" sa korisnickim imenom: " + korisnickoIme);
+				return clan;
+			}
 		}
 		
-		return clanarinas;
+		return null;
 	}
 	
 	private void ucitajClanarine() 
@@ -97,8 +99,8 @@ private HashMap<Integer, Clanarina> clanarine;
 			{
 				String[] tokeni = row.split(";");
 				
-				Clanarina clanarina = new Clanarina(tokeni[0],TipClanarine.valueOf(tokeni[1]), tokeni[2], tokeni[3], Double.parseDouble(tokeni[4]), tokeni[5], Boolean.parseBoolean(tokeni[6]), Integer.parseInt(tokeni[7]));
-				clanarine.put(Integer.parseInt(tokeni[0]), clanarina);
+				//Clanarina clanarina = new Clanarina(tokeni[0],TipClanarine.valueOf(tokeni[1]), tokeni[2], tokeni[3], Double.parseDouble(tokeni[4]), tokeni[5], Boolean.parseBoolean(tokeni[6]), Integer.parseInt(tokeni[7]));
+				//clanarine.put(Integer.parseInt(tokeni[0]), clanarina);
 			}
 			
 			bafer.close();

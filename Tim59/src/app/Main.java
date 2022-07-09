@@ -179,6 +179,7 @@ public class Main
 		{
 			String body = req.body();	
 			clanarine.AddClanarina(body);
+			System.out.println("Clanarina dodata!");
 			return gson.toJson("Upesno ste izmenili aktivnost.");
 		});
 		
@@ -193,8 +194,29 @@ public class Main
 		post("app/getClanarinaWithKorisnickoIme", (req, res) -> 
 		{
 			Korisnik korisnik = getKorisnikByJWT(req, res);
-			System.out.print(korisnik.getKorisnickoIme());		
-			return gson.toJson(clanarine.getClanarinaByKorisnik(korisnik.getKorisnickoIme()));
+			System.out.print(req);
+			System.out.print(res);
+			if(korisnik != null) 
+			{
+				System.out.print(korisnik.getKorisnickoIme());
+				Clanarina clanarina = clanarine.getClanarinaByKorisnickoIme(korisnik.getKorisnickoIme());
+				if(clanarina != null)
+				{
+
+					System.out.print(clanarina.getIdentifikator());
+					return gson.toJson(clanarina);
+				}
+				else
+				{
+					System.out.print("Nema te clanarinu!");
+					return gson.toJson("Nema te clanarinu!");
+				}
+			}
+			else
+			{
+				System.out.print("Korisnik je null");
+				return gson.toJson("KORISNIK JE NULL!");
+			}
 		});
 		
 		
