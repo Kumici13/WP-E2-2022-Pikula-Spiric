@@ -27,6 +27,10 @@
        		width: 300px;
             padding-top: 100px;
             text-align: center;
+            box-shadow: 0 0 0px 0px rgba(0, 0, 0, 0.1);
+		    cursor: pointer;
+			transition: transform 0.2s;
+			 border-radius: 25px;
             }
             
             .card1 {
@@ -34,6 +38,10 @@
             padding-left: 20px; 
             padding-top: 140px;
             text-align: center;
+            box-shadow: 0 0 0px 0px rgba(0, 0, 0, 0.1);
+		    cursor: pointer;
+			transition: transform 0.2s;
+			 border-radius: 25px;
             }
             
             .card2 {
@@ -41,6 +49,16 @@
             padding-left: 20px; 
             padding-top: 180px;
             text-align: center;
+            box-shadow: 0 0 0px 0px rgba(0, 0, 0, 0.1);
+		    cursor: pointer;
+			transition: transform 0.2s;
+            }
+             .textboxovi  {
+            
+            	text-align: center;
+            	padding: 30px;
+            	font-size: 30;
+            
             }
            
             
@@ -48,6 +66,20 @@
 		      
 		        width: 250px;   
      		}
+     		
+     		.card0:hover{
+				transform: translateY(-10px);
+			}
+			
+			.card1:hover{
+				transform: translateY(-10px);
+			}
+			
+			.card2:hover{
+				transform: translateY(-10px);
+			}
+			
+			
             
     </style>
 
@@ -80,15 +112,15 @@
 		  <div class="container">
     		<div class="row">
 				<div class="card0">			 
-					    <div class="card">
-						      <h2 class="card-title">Classic</h2>
+					    <div class="card" >
+						      <h2 class="card-title" id="tipTr" ref="tipTr">Classic</h2>
 						      <ul class="list-group list-group-flush">
-							    <li class="list-group-item"><h5 class="card-subtitle">16 treninga mesecno</h5></li>
-							    <li class="list-group-item">1 ulazak dnevno</li>
-							    <li class="list-group-item"><h5 class="card-subtitle">3000 RSD</h5></li>
+							    <li class="list-group-item" id="brTr" ref="brTr" ><h5 class="card-subtitle">16 treninga mesecno</h5></li>
+							    <li class="list-group-item" id="brUlazaka" ref="brUlazaka" >1 ulazak dnevno</li>
+							    <li class="list-group-item"  id="cena" ref="cena" ><h5 class="card-subtitle">3000 RSD</h5></li>
 							  </ul>				     
 						      <p class="card-text"></p>
-						      <a href="odaberi.html" class="btn btn-primary">Kupite</a>
+						     <button type="button" v-on:click.prevent="setClassic()"  class="btn btn-primary">Odaberi</button>
 						</div>
 			   </div>
 				 <div class="card1">
@@ -101,7 +133,7 @@
 							    <li class="list-group-item"><h5 class="card-subtitle">3400 RSD</h5></li>
 							  </ul>				     
 						      <p class="card-text"></p>
-						      <a href="odaberi.html" class="btn btn-primary">Kupite</a>
+						       <button type="button" v-on:click.prevent="setStudioClassic()"  class="btn btn-primary">Odaberi</button>
 						</div>
 			    </div>
 				  <div class="card2">
@@ -114,11 +146,17 @@
 							    <li class="list-group-item"><h5 class="card-subtitle">44000 RSD</h5></li>
 							  </ul>				     
 						      <p class="card-text"></p>
-						      <a href="odaberi.html" class="btn btn-primary">Kupite</a>
+						      <button type="button" v-on:click.prevent="setStudioElite()"  class="btn btn-primary">Odaberi</button>
 						</div>
 				 </div>
 		 	</div>
 		</div> 
+		
+		 	  <div class="textboxovi">
+	         		<tr>
+	           			<td> <h3 style="color: white; font-family:Roboto">Vec imate clanarinu? </h3> </td>	   			
+		           		<td> <button type="button" onclick="window.location.href='aktivnaclanarina.html'"  class="btn btn-outline-light">Aktivna clanarina</button> </td> 
+	         </div>
 				
 	</div>
 	 	<script src="./js/vue.js"></script>

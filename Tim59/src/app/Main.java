@@ -28,6 +28,7 @@ import beans.SportskiObjekat;
 import beans.Trener;
 import beans.Trening;
 import beans.Dan;
+import beans.Clanarina;
 import beans.Korisnik;
 import dao.ClanarineDAO;
 import dao.KorisniciDAO;
@@ -171,21 +172,34 @@ public class Main
 		
 		post("app/changeActivityOfUser", (req, res) -> 
 		{
-			String body = req.body();			
+			String body = req.body();	
 			korisnici.changeActivityOfUser(body);
 			return gson.toJson("Upesno ste izmenili aktivnost.");
 		});
 		
+		post("app/addClanarina", (req, res) -> 
+		{
+			String body = req.body();	
+			clanarine.AddClanarina(body);
+			return gson.toJson("Upesno ste izmenili aktivnost.");
+		});
+		
+	
+			
 		
 		get("app/getSportskiObjekti", (req, res) -> 
 		{
 			return gson.toJson(sportskiObjekti.getAllSportskiObjekti());
 		});
 		
-		get("app/getclanarine", (req, res) -> 
+		post("app/getClanarinaWithKorisnickoIme", (req, res) -> 
 		{
-			return gson.toJson(clanarine.getAllClanarine());
+			Korisnik korisnik = getKorisnikByJWT(req, res);
+			System.out.print(korisnik.getKorisnickoIme());		
+			return gson.toJson(clanarine.getClanarinaByKorisnik(korisnik.getKorisnickoIme()));
 		});
+		
+		
 		
 		get("app/getSlobodniMenadzeri", (req, res) -> 
 		{
