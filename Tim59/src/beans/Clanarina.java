@@ -1,5 +1,6 @@
 package beans;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import enums.TipClanarine;
@@ -32,6 +33,11 @@ public class Clanarina {
 		this.kupacid = kupacid;
 		this.status = status;
 		this.brojTermina = brojTermina;
+	}
+
+	public Clanarina(int i, String string, LocalDate now, LocalDate now2, int j, String string2, boolean b, int k) {
+		super();
+		
 	}
 
 	public String getIdentifikator() {

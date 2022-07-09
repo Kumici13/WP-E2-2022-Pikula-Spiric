@@ -2,6 +2,7 @@ new Vue({
     el: '#odaberi-app',
     data:   
 	{
+		addClanarina: [],
 		odaberi: [],
 		datumPlacanja: '',
 		datumVazenja: '',  
@@ -34,23 +35,34 @@ new Vue({
 		{
             return window.localStorage.getItem('jwt') != null;
         },
-      /*  
-       sendToAktivneClanarine: function()
-       {
-		
-		
-		axios
-            .post('app/sendToAktivneClanarine' , this.datumPlacanja, this.datumVazenja)
+     
+     	AktivirajClanarinu: function()
+     	{
+		    var x = window.localStorage.getItem('clanarina');
+			console.log(x);	
+			
+			axios
+            .post('app/addClanarina' , x,
+            {
+                    headers: 
+					{
+                        'Content-Type': 'application/json',
+                        'Autorizacija': window.localStorage.getItem('jwt')
+                    }
+                })
             .then(response => 
 			{
-                this.sendToAktivneClanarine = response.data;
+                this.addClanarina = response.data;
             })
             .catch(error => 
 			{
                 console.log(error);
                 
-            });
-		}, */
+            });	
+            window.location.href='aktivnaclanarina.html';
+		}
+		
+		
 
        	
     },

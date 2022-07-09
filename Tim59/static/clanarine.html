@@ -112,15 +112,15 @@
 		  <div class="container">
     		<div class="row">
 				<div class="card0">			 
-					    <div class="card">
-						      <h2 class="card-title" id="tipTr" ref="tipTr" v-model:value="tipTr">Classic</h2>
+					    <div class="card" >
+						      <h2 class="card-title" id="tipTr" ref="tipTr">Classic</h2>
 						      <ul class="list-group list-group-flush">
-							    <li class="list-group-item" id="brTr" ref="brTr" v-model:value="brTr"><h5 class="card-subtitle">16 treninga mesecno</h5></li>
-							    <li class="list-group-item" id="brUlazaka" ref="brUlazaka" v-model:value="brUlazaka">1 ulazak dnevno</li>
-							    <li class="list-group-item"  id="cena" ref="cena" v-model:value="cena"><h5 class="card-subtitle">3000 RSD</h5></li>
+							    <li class="list-group-item" id="brTr" ref="brTr" ><h5 class="card-subtitle">16 treninga mesecno</h5></li>
+							    <li class="list-group-item" id="brUlazaka" ref="brUlazaka" >1 ulazak dnevno</li>
+							    <li class="list-group-item"  id="cena" ref="cena" ><h5 class="card-subtitle">3000 RSD</h5></li>
 							  </ul>				     
 						      <p class="card-text"></p>
-						      <a href="odaberi.html" class="btn btn-primary">Kupite</a>
+						     <button type="button" v-on:click.prevent="setClassic()"  class="btn btn-primary">Odaberi</button>
 						</div>
 			   </div>
 				 <div class="card1">
@@ -133,7 +133,7 @@
 							    <li class="list-group-item"><h5 class="card-subtitle">3400 RSD</h5></li>
 							  </ul>				     
 						      <p class="card-text"></p>
-						      <a href="odaberi.html" class="btn btn-primary">Kupite</a>
+						       <button type="button" v-on:click.prevent="setStudioClassic()"  class="btn btn-primary">Odaberi</button>
 						</div>
 			    </div>
 				  <div class="card2">
@@ -146,7 +146,7 @@
 							    <li class="list-group-item"><h5 class="card-subtitle">44000 RSD</h5></li>
 							  </ul>				     
 						      <p class="card-text"></p>
-						      <a href="odaberigodisnju.html" class="btn btn-primary">Kupite</a>
+						      <button type="button" v-on:click.prevent="setStudioElite()"  class="btn btn-primary">Odaberi</button>
 						</div>
 				 </div>
 		 	</div>

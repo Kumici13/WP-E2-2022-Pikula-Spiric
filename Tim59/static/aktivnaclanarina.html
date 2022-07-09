@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<title>Clanarine</title>
+<title>Aktivna clanarina</title>
 <meta charset="UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
@@ -34,7 +34,7 @@
 </head>
 
 <body>
-	 <div class="welcome" id="clanarine-app">
+	 <div class="welcome" id="aktivnaclanarina-app">
 			<nav class="navbar navbar-expand  fixed-top" style="background-color: #3E1D57; ">
                 <h1><a  class="naslov"  class="navbar-brand" style="color: white ; font-family:Roboto">Clanarine</a></h1>
                 <div class="collapse navbar-collapse">
@@ -55,7 +55,8 @@
 	
 	
 		<div class="h1">
-			<h1 style="color: white; font-family: Roboto">Aktivna clanarina</h1>			
+			<h1 style="color: white; font-family: Roboto">Aktivna clanarina</h1>	
+	
 		</div>
 		
 		
@@ -74,14 +75,14 @@
 						
 				</thead>
 	
-				<tr v-for="p in clanarineFilter">
-					<td>{{p.identifikator }}</td>
-					<td>{{p.tipClanarine }}</td>
-					<td>{{p.datumPlacanja }}</td>
-					<td>{{p.datumVazenja }}</td>
-					<td>{{p.cena }}</td>
-					<td>{{p.status }}</td>
-					<td >{{p.brojTermina }}</td>
+				<tr>
+					<td>{{aktivneClanarine.identifikator }}</td>
+					<td>{{aktivneClanarine.tipClanarine }}</td>
+					<td>{{aktivneClanarine.datumPlacanja }}</td>
+					<td>{{aktivneClanarine.datumVazenja }}</td>
+					<td>{{aktivneClanarine.cena }}</td>
+					<td>{{aktivneClanarine.status }}</td>
+					<td >{{aktivneClanarine.brojTermina }}</td>
 				
 				</tr>
 			</table>
@@ -89,7 +90,7 @@
 	</div>
 	 	<script src="./js/vue.js"></script>
         <script src="./js/axios.js"></script>
-        <script src="./js/clanarine.js"></script>
+        <script src="./js/aktivnaclanarina.js"></script>
 </body>
 
 </html>

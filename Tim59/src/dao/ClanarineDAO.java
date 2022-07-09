@@ -2,11 +2,14 @@ package dao;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import java.util.HashMap;
 import beans.Clanarina;
+import beans.Korisnik;
 import enums.TipClanarine;
+import enums.Uloga;
 
 
 
@@ -22,23 +25,65 @@ private HashMap<Integer, Clanarina> clanarine;
 		ucitajClanarine();
 	}
 	
-	public ArrayList<Clanarina> getAllClanarine()
+	public ArrayList<Clanarina> getClanarina(String korisnik)
 	{
 		ArrayList<Clanarina> clanarinas = new ArrayList<>();
 		
 		for (Clanarina clanarina : clanarine.values())	
 		{
-			clanarinas.add(clanarina);
+			if(korisnik != null) 
+			{
+				clanarinas.add(clanarina);
+			}
+			
 		}
 		
 		return clanarinas;
 	}
-	/*
-	public Clanarina sendToAktivneClanarine (String datumi)
+	
+	public void AddClanarina(String NazivClanarine)
 	{
-		return null;
+		String putanja = "./static/podaci/Clanarine.txt";
+		BufferedReader bafer;
+		try	
+		{
+			bafer = new BufferedReader(new FileReader(putanja));
+			String row;
+			while ((row = bafer.readLine()) != null)	
+			{
+				
+				if(NazivClanarine.equals("Classic"))
+				{
+					Clanarina clanarina = new Clanarina(412, "Mesecna", LocalDate.now(), LocalDate.now() , 3000, "Dzoni", true, 16);
+					clanarine.put(412, clanarina);
+				}
+								
+			}
+			
+			bafer.close();
+		} 
+		catch (Exception e)	
+		{
+			e.printStackTrace();
+			System.out.println("Fajl " + putanja + " nije pronadjen.\r\n");
+		}
 		
-	} */
+		
+		
+	}
+	
+	public ArrayList<Clanarina> getClanarinaByKorisnik(String korisnik)
+	{
+		ArrayList<Clanarina> clanarinas = new ArrayList<>();
+		
+		for (Clanarina clan : clanarine.values())	
+		{					
+		  clanarinas.add(clan);
+		}
+		
+		return clanarinas;
+	}
+	
 	private void ucitajClanarine() 
 	{
 		String putanja = "./static/podaci/Clanarine.txt";
