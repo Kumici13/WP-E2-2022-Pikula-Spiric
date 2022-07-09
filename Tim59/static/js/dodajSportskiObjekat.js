@@ -2,6 +2,38 @@ new Vue({
     el: '#dodaj-sportski-objekat-app',
     data: 
 	{
+		ponedeljakEnabled:'',
+		ponedeljakStart:'',
+		ponedeljakEnd:'',
+		
+		utorakEnabled:'',
+		utorakStart:'',
+		utorakEnd:'',
+		
+		sredaEnabled:'',
+		sredaStart:'',
+		sredaEnd:'',
+		
+		cetvrtakEnabled:'',
+		cetvrtakStart:'',
+		cetvrtakEnd:'',
+		
+		petakEnabled:'',
+		petakStart:'',
+		petakEnd:'',
+		
+		subotaEnabled:'',
+		subotaStart:'',
+		subotaEnd:'',
+		
+		nedeljaEnabled:'',
+		nedeljaStart:'',
+		nedeljaEnd:'',
+		
+		enejblovani:[ponedeljakEnabled, utorakEnabled, sredaEnabled, cetvrtakEnabled, petakEnabled, subotaEnabled, nedeljaEnabled],
+		startVremena:[ponedeljakStart, utorakStart, sredaStart, cetvrtakStart, petakStart, subotaStart, nedeljaStart],
+		endVremena:[ponedeljakEnd, utorakEnd, sredaEnd, cetvrtakEnd, petakEnd, subotaEnd, nedeljaEnd],
+		
 		slobodniMenadzeri: [],
 		menadzer:'',
         naziv: '',
@@ -253,10 +285,22 @@ new Vue({
             this.fajl = this.$refs.logo.files[0];
         },
 
-        capitalize: function(string)    
+		aktivirajTime: function (start, end)
 		{
-            return string.charAt(0).toUpperCase() + string.slice(1);
-        }
+		  document.getElementById(start).disabled = !document.getElementById(start).disabled;
+		  document.getElementById(end).disabled = !document.getElementById(end).disabled;
+		},
+		minTime: function (start, end)
+		{
+			console.log("EBESFHAUJHD");
+			console.log("Value" + document.getElementById(start).value);
+			if(document.getElementById(end).value<document.getElementById(start).value)
+			{
+				document.getElementById(end).value = document.getElementById(start).value
+			}
+		    document.getElementById(end).min = document.getElementById(start).value;
+			console.log("Min" + document.getElementById(end).min);
+		}
     
     }
     

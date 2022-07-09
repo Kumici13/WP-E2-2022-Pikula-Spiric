@@ -130,6 +130,58 @@
                     <input id="logo" ref="logo" type="file" accept=".jpg,.png,.jpeg" v-on:change="preuzmiSliku()" style="width: 400px; height: 60px">   
              		<div class="invalid-feedback">Ukucajte vase ime.</div> 
              </div>
+
+
+			<table border = "1px solid black" align="center" style="background-color:white">
+			  <tr>
+			  	<th>Dan</th>
+			  	<th>Pocetak</th>
+			  	<th>Kraj</th>
+			  </tr>
+			  <tr>
+			      <td>Ponedeljak: <input checked type="checkbox" v-on:click="aktivirajTime('ponedeljakStart','ponedeljakEnd')" v-model:value="ponedeljakEnabled"  id="ponedeljakEnabled"></td>
+			      <td><input type ="time" v-model:value="ponedeljakStart" id="ponedeljakStart" v-on:change="minTime('ponedeljakStart','ponedeljakEnd')"/></td>
+			      <td><input type ="time" v-model:value="ponedeljakEnd" id="ponedeljakEnd" v-on:change="minTime('ponedeljakStart','ponedeljakEnd')"/></td>
+			  </tr>
+			
+			  <tr>
+			      <td>Utorak: <input checked type="checkbox" v-model:value="utorakEnabled" v-on:click="aktivirajTime('utorakStart','utorakEnd')" id="utorakEnabled"></td>
+			      <td><input type ="time" v-model:value="utorakStart" id="utorakStart" v-on:change="minTime('utorakStart','utorakEnd')"/></td>
+			      <td><input type ="time" v-model:value="utorakEnd" id="utorakEnd" v-on:change="minTime('utorakStart','utorakEnd')"/></td>
+			  </tr>
+			
+			  <tr>
+			      <td>Sreda: <input checked v-model:value="sredaEnabled" type="checkbox" v-on:click="aktivirajTime('sredaStart','sredaEnd')" id="sredaEnabled"></td>
+			      <td><input type ="time" v-model:value="sredaStart" id="sredaStart" v-on:change="minTime('sredaStart','sredaEnd')"/></td>
+			      <td><input type ="time" v-model:value="sredaEnd" id="sredaEnd" v-on:change="minTime('sredaStart','sredaEnd')"/></td>
+			  </tr>
+			
+			  <tr>
+			      <td>Cetvrtak: <input checked v-model:value="cetvrtakEnabled" type="checkbox" v-on:click="aktivirajTime('cetvrtakStart','cetvrtakEnd')" id="cetvrtakEnabled"></td>
+			      <td><input type ="time" v-model:value="cetvrtakStart" id="cetvrtakStart" v-on:change="minTime('cetvrtakStart','cetvrtakEnd')"/></td>
+			      <td><input type ="time" v-model:value="cetvrtakEnd" id="cetvrtakEnd" v-on:change="minTime('cetvrtakStart','cetvrtakEnd')"/></td>
+			  </tr>
+			
+			  <tr>
+			      <td>Petak: <input checked v-model:value="petakEnabled" type="checkbox" v-on:click="aktivirajTime('petakStart','petakEnd')" id="petakEnabled"></td>
+			      <td><input type ="time" v-model:value="petakStart" id="petakStart" v-on:change="minTime('petakStart','petakEnd')"/></td>
+			      <td><input type ="time" v-model:value="petakEnd" id="petakEnd" v-on:change="minTime('petakStart','petakEnd')"/></td>
+			  </tr>
+			
+			  <tr>
+			      <td>Subota: <input checked v-model:value="subotaEnabled" type="checkbox" min ="" v-on:click="aktivirajTime('subotaStart','subotaEnd')" id="subotaEnabled"></td>
+			      <td><input type ="time" v-model:value="subotaStart" id="subotaStart" v-on:change="minTime('subotaStart','subotaEnd')"/></td>
+			      <td><input type ="time" v-model:value="subotaEnd" id="subotaEnd" v-on:change="minTime('subotaStart','subotaEnd')"/></td>
+			  </tr>
+			
+			  <tr>
+			      <td>Nedelja: <input checked v-model:value="nedeljaEnabled" type="checkbox" v-on:click="aktivirajTime('nedeljaStart','nedeljaEnd')" id="nedeljaEnabled"></td>
+			      <td><input type ="time" v-model:value="nedeljaStart" id="nedeljaStart" v-on:change="minTime('nedeljaStart','nedeljaEnd')"/></td>
+			      <td><input type ="time" v-model:value="nedeljaEnd" id="nedeljaEnd" v-on:change="minTime('nedeljaStart','nedeljaEnd')"/></td>
+			  </tr>
+			</table>
+
+
              <div class="tablebutton">
                     <button v-on:click.prevent="provera"  class="btn btn-outline-light">Dodaj</button>
              </div>
@@ -144,6 +196,7 @@
         <script src="./js/vue.js"></script>
         <script src="./js/axios.js"></script>
         <script src="./js/dodajSportskiObjekat.js"></script>
+        
 </body>
 
 </html>

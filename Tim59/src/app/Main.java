@@ -23,9 +23,11 @@ import com.google.gson.JsonDeserializer;
 
 import beans.Kupac;
 import beans.Menadzer;
+import beans.RadnoVreme;
 import beans.SportskiObjekat;
 import beans.Trener;
 import beans.Trening;
+import beans.Dan;
 import beans.Korisnik;
 import dao.ClanarineDAO;
 import dao.KorisniciDAO;
@@ -61,6 +63,8 @@ public class Main
 		clanarine = new ClanarineDAO();
 		gson =  new GsonBuilder().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
 		
+		
+		System.out.println("RV:" + radnoVreme.toSaveFormat());
 			
 		post("app/login", (req, res) -> 
 		{
@@ -338,7 +342,6 @@ public class Main
 						else 
 						{
 							res.status(500);
-							System.out.println("341");
 							return gson.toJson("Doslo je do greske");
 						}
 						
@@ -346,14 +349,12 @@ public class Main
 					else	
 					{
 						res.status(500);
-						System.out.println("349");
 						return gson.toJson("Doslo je do greske");
 					}
 				} 
 				else	
 				{
 					res.status(403);
-					System.out.println("356");
 					return gson.toJson("Niste ovlasceni.");
 				}
 			} 
@@ -361,16 +362,13 @@ public class Main
 			{
 				if (res.status() == 400)	
 				{
-					System.out.println("364");
 					return gson.toJson("Morate se ulogovati.");
 				} 
 				else if (res.status() == 500)	
 				{
-					System.out.println("369");
 					return gson.toJson("Doslo je do greske.");
 				}
 
-				System.out.println("373");
 				res.status(500);
 				return gson.toJson("Doslo je do greske.");
 			}
