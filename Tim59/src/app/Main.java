@@ -274,6 +274,7 @@ public class Main
 			Korisnik korisnik = korisnici.getKorisnikByKorisnickoIme(menadzerUserName);
 
 			String payload = req.body();
+			System.out.println(payload);
 			SportskiObjekat noviSportskiObjekat = gson.fromJson(payload, SportskiObjekat.class);
 			if (korisnik != null)	
 			{

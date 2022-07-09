@@ -194,22 +194,34 @@ new Vue({
 			let startVremena = [this.ponedeljakStart, this.utorakStart, this.sredaStart, this.cetvrtakStart, this.petakStart, this.subotaStart, this.nedeljaStart];
 			let endVremena = [this.ponedeljakEnd, this.utorakEnd, this.sredaEnd, this.cetvrtakEnd, this.petakEnd, this.subotaEnd, this.nedeljaEnd];
 		
-			let radnoVreme = [];
+			var radnoVremeTemp = [];
 
 			for(let i = 0; i < 7;i++)
 			{
-				let dan = 
+				var dan = 
 				{
 					'imeDana': imenaDana[i],
 					'danStart':startVremena[i],
 					'danEnd': endVremena[i],
 					'radniDan': enejblovani[i]
-				}
+				};
 				
 				console.log(dan);
-				radnoVreme.push(dan);
-				
+				radnoVremeTemp.push(dan);
 			}
+			
+			console.log(radnoVremeTemp);
+			
+			var radnoVreme = 
+			{
+				'ponedeljakDan' : radnoVremeTemp[0],
+				'utorakDan' : radnoVremeTemp[1],
+				'sredaDan' : radnoVremeTemp[2],
+				'cetvrtakDan' : radnoVremeTemp[3],
+				'petakDan' : radnoVremeTemp[4],
+				'subotaDan' : radnoVremeTemp[5],
+				'nedeljaDan' : radnoVremeTemp[6]
+			};
     		var adresa = 
 			{
     				'ulica' : this.ulica,
@@ -238,7 +250,7 @@ new Vue({
     		};
     		
     		let putanja = 'app/dodajSportskiObjekat';
-			
+			console.log(sportskiObjekat);
             axios
                 .post(putanja, sportskiObjekat, 
 				{

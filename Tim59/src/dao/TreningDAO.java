@@ -8,7 +8,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Date;
 import java.util.HashMap;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializer;
 
 import beans.Adresa;
 import beans.Lokacija;
@@ -114,11 +119,10 @@ private HashMap<Integer, Trening> treninzi;
 			String row;
 			while ((row = bafer.readLine()) != null)	
 			{
-				String[] tokeni = row.split(";");
-				
-				Trening trening = new Trening(tokeni[0],tokeni[1],TipTreninga.valueOf(tokeni[2]), tokeni[3], Double.parseDouble(tokeni[4]), tokeni[5], tokeni[6], tokeni[7],Boolean.parseBoolean(tokeni[8]));
-				treninzi.put(Integer.parseInt(tokeni[0]), trening);
-				TreningId = Integer.parseInt(tokeni[0]);
+				Gson gson =  new GsonBuilder().excludeFieldsWithoutExposeAnnotation().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
+				Trening trening = gson.fromJson(row, Trening.class);
+				treninzi.put(Integer.parseInt(trening.getId()), trening);
+				TreningId = Integer.parseInt(trening.getId());
 			}
 			
 			bafer.close();

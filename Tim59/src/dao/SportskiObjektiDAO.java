@@ -8,8 +8,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializer;
 
 import beans.Adresa;
 import beans.Lokacija;
@@ -53,17 +58,10 @@ public class SportskiObjektiDAO {
 			String row;
 			while ((row = bafer.readLine()) != null)	
 			{
-				String[] tokeni = row.split(";");
-				SportskiObjektiId = Integer.parseInt(tokeni[0]);
-				String[] tokeniAdrese = tokeni[5].split(",");
-				Adresa adresaSportskogObjekta = new Adresa(tokeniAdrese[0],tokeniAdrese[1],tokeniAdrese[2],Integer.parseInt(tokeniAdrese[3]));
+				Gson gson =  new GsonBuilder().excludeFieldsWithoutExposeAnnotation().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
 				
-				Lokacija lokacija = new Lokacija(Double.parseDouble(tokeni[6]), Double.parseDouble(tokeni[7]), adresaSportskogObjekta);
-				
-				String sadrzaj = tokeni[4];
-				String[] sadrzaji = sadrzaj.split(",");
-				
-				SportskiObjekat sportskiObjekat = new SportskiObjekat(tokeni[0],tokeni[1],Boolean.parseBoolean(tokeni[2]),TipObjektaEnum.valueOf(tokeni[3]),sadrzaji,lokacija,tokeni[8],Double.parseDouble(tokeni[9]),tokeni[10]);
+				SportskiObjekat sportskiObjekat = gson.fromJson(row, SportskiObjekat.class);
+				SportskiObjektiId = Integer.parseInt(sportskiObjekat.getId());
 				sportskiObjekti.put(SportskiObjektiId, sportskiObjekat);
 			}
 			

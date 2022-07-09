@@ -1,1 +1,1 @@
-luka;luka;Luka;Pikula;Muski;24.01.2001;true
+{"korisnickoIme":"luka","sifra":"luka","ime":"Luka","prezime":"Pikula","pol":"0","uloga":"2","aktivan":true}

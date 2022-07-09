@@ -4,9 +4,13 @@ import com.google.gson.annotations.Expose;
 
 public class Dan 
 {
+	@Expose
 	private String imeDana;
+	@Expose
 	private String danStart;
+	@Expose
 	private String danEnd;
+	@Expose
 	private boolean radniDan = true;
 	
 	

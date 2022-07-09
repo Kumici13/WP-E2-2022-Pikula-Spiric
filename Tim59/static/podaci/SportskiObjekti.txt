@@ -1,2 +1,0 @@
-1;TeretanaNaziv;false;Teretana;/;Maksima Gorkog,54,Kula,24423;0.43;0.64;1.png;0.0;/
-2;Mandic;false;Bazen;/;Save Kovacevica,23,Kula,25567;0.23;0.24;2.png;0.0;/

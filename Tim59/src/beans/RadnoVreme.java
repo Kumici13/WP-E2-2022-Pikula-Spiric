@@ -2,16 +2,24 @@ package beans;
 
 import java.util.Date;
 
+import com.google.gson.annotations.Expose;
+
 
 public class RadnoVreme 
 {
-
+	@Expose
 	private Dan ponedeljakDan;
+	@Expose
 	private Dan utorakDan;
+	@Expose
 	private Dan sredaDan;
+	@Expose
 	private Dan cetvrtakDan;
+	@Expose
 	private Dan petakDan;
+	@Expose
 	private Dan subotaDan;
+	@Expose
 	private Dan nedeljaDan;
 	
 	

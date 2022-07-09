@@ -3,22 +3,38 @@ package beans;
 import java.io.File;
 import java.nio.file.Files;
 import java.util.Base64;
+import java.util.Date;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.annotations.Expose;
 
 import enums.TipObjektaEnum;
 
 public class SportskiObjekat 
 {
+
 	
+	@Expose
 	private String id;
+	@Expose
 	private String naziv;
+	@Expose
 	private Boolean status;
+	@Expose
 	private TipObjektaEnum tipObjekta;
+	@Expose
 	private String[] sadrzaj;
+	@Expose
 	private Lokacija lokacija;
+	@Expose
 	private String logo = "null";
 	private String slika;
+	@Expose
 	private double prosecnaOcena;
-	private String radnoVreme;
+	@Expose
+	private RadnoVreme radnoVreme;
 	
 	public SportskiObjekat()
 	{
@@ -45,7 +61,7 @@ public class SportskiObjekat
 
 
 	public SportskiObjekat(String id, String naziv, Boolean status, TipObjektaEnum tipObjekta, String[] sadrzaj,
-			Lokacija lokacija, String logo, double prosecnaOcena, String radnoVreme) {
+			Lokacija lokacija, String logo, double prosecnaOcena, RadnoVreme radnoVreme) {
 		super();
 		this.id = id;
 		this.naziv = naziv;
@@ -162,6 +178,7 @@ public class SportskiObjekat
 
 	public String getSlika() 
 	{
+		this.slika =  ucitajSliku("./static/Images/SportskiObjekat/" + this.logo);
 		return slika;
 	}
 	
@@ -193,13 +210,13 @@ public class SportskiObjekat
 
 
 
-	public String getRadnoVreme() {
+	public RadnoVreme getRadnoVreme() {
 		return radnoVreme;
 	}
 
 
 
-	public void setRadnoVreme(String radnoVreme) {
+	public void setRadnoVreme(RadnoVreme radnoVreme) {
 		this.radnoVreme = radnoVreme;
 	}
 	
@@ -212,7 +229,8 @@ public class SportskiObjekat
 	
 	public String toSaveFormat()
 	{
-		return this.id+ ";" + this.naziv + ";" + this.status + ";"+ this.getTipObjekta().toString() + ";" + this.getSadrzajSaveFormat()+ ";" + this.lokacija.getAdresa().toString()+ ";"+this.lokacija.getGeoDuzina()+ ";"+ this.lokacija.getGeoSirina()+ ";" + this.logo+ ";" + this.prosecnaOcena+ ";"+this.radnoVreme+"\n";
+		Gson gson =  new GsonBuilder().excludeFieldsWithoutExposeAnnotation().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
+		return gson.toJson(this)+"/n";
 	}
 	
 	
