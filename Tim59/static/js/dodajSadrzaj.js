@@ -2,12 +2,39 @@ new Vue({
     el: '#dodaj-sadrzaj-app',
     data: 
 	{
+		ponedeljakEnabled:'true',
+		ponedeljakStart:'01:00',
+		ponedeljakEnd:'23:00',
+		
+		utorakEnabled:'true',
+		utorakStart:'01:00',
+		utorakEnd:'23:00',
+		
+		sredaEnabled:'true',
+		sredaStart:'01:00',
+		sredaEnd:'23:00',
+		
+		cetvrtakEnabled:'true',
+		cetvrtakStart:'01:00',
+		cetvrtakEnd:'23:00',
+		
+		petakEnabled:'true',
+		petakStart:'01:00',
+		petakEnd:'23:00',
+		
+		subotaEnabled:'true',
+		subotaStart:'01:00',
+		subotaEnd:'23:00',
+		
+		nedeljaEnabled:'true',
+		nedeljaStart:'01:00',
+		nedeljaEnd:'23:00',
+		
 		treneri:[],
 		sadrzaj: [],
         naziv: '',
         tip: '',
 		sportskiobjekatid: '',
-		trajanje: '',
 		trenerid: '',
 		opis: '',
 		slika:'',
@@ -117,12 +144,45 @@ new Vue({
     	
     	dodajSadrzaj: function()
 		{
+    		let imenaDana = ['Ponedeljak', 'Utorak', 'Sreda', 'Cetvrtak', 'Petak', 'Subota', 'Nedelja'];
+			let enejblovani = [this.ponedeljakEnabled, this.utorakEnabled, this.sredaEnabled, this.cetvrtakEnabled, this.petakEnabled, this.subotaEnabled, this.nedeljaEnabled];
+			let startVremena = [this.ponedeljakStart, this.utorakStart, this.sredaStart, this.cetvrtakStart, this.petakStart, this.subotaStart, this.nedeljaStart];
+			let endVremena = [this.ponedeljakEnd, this.utorakEnd, this.sredaEnd, this.cetvrtakEnd, this.petakEnd, this.subotaEnd, this.nedeljaEnd];
+		
+			var radnoVremeTemp = [];
+
+			for(let i = 0; i < 7;i++)
+			{
+				var dan = 
+				{
+					'imeDana': imenaDana[i],
+					'danStart':startVremena[i],
+					'danEnd': endVremena[i],
+					'radniDan': enejblovani[i]
+				};
+				
+				console.log(dan);
+				radnoVremeTemp.push(dan);
+			}
+			
+			console.log(radnoVremeTemp);
+			
+			var radnoVreme = 
+			{
+				'ponedeljakDan' : radnoVremeTemp[0],
+				'utorakDan' : radnoVremeTemp[1],
+				'sredaDan' : radnoVremeTemp[2],
+				'cetvrtakDan' : radnoVremeTemp[3],
+				'petakDan' : radnoVremeTemp[4],
+				'subotaDan' : radnoVremeTemp[5],
+				'nedeljaDan' : radnoVremeTemp[6]
+			};
     		var trening = 
 			{
 				'naziv': this.naziv,
         		'tip': this.tip,
 				'sportskiobjekatid': this.sportskiobjekatid,
-				'trajanje': this.trajanje,
+				'radnoVreme': radnoVreme,
 				'trenerid': this.trenerid,
 				'opis': this.opis,
 				'slika': this.slika
@@ -190,7 +250,20 @@ new Vue({
         preuzmiSliku: function() 
 		{
             this.fajl = this.$refs.slika.files[0];
-        }
+        },
+		aktivirajTime: function (start, end)
+		{
+		  document.getElementById(start).disabled = !document.getElementById(start).disabled;
+		  document.getElementById(end).disabled = !document.getElementById(end).disabled;
+		},
+		minTime: function (start, end)
+		{
+			if(document.getElementById(end).value<document.getElementById(start).value)
+			{
+				document.getElementById(end).value = document.getElementById(start).value
+			}
+		    document.getElementById(end).min = document.getElementById(start).value;
+		}
     
     }
     

@@ -560,10 +560,18 @@ public class Main
 		post("app/gettrenerizaobjekat", (req, res) -> 
 		{
 			Menadzer menadzer = (Menadzer) getKorisnikByJWT(req, res);
-			if(menadzer.getSportskiObjekatId().equals("null"))
+			if(menadzer != null) 
 			{
-				System.out.println("NEMAS SPORTSKI OBJEKAT");
-				return gson.toJson("Morate biti vlasnik sportskog objekta!");
+				if(menadzer.getSportskiObjekatId().equals("null"))
+				{
+					System.out.println("NEMAS SPORTSKI OBJEKAT");
+					return gson.toJson("Morate biti vlasnik sportskog objekta!");
+				}
+			}
+			else 
+			{
+				System.out.println("MENADZER JE NULL");
+				return gson.toJson("MORATE SE ULOGOVATI!");
 			}
 			return gson.toJson(treninzi.getTreneriBySportskiObjekatId(menadzer.getSportskiObjekatId()));
 		});

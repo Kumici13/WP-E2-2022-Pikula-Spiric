@@ -121,6 +121,7 @@ private HashMap<Integer, Trening> treninzi;
 			{
 				Gson gson =  new GsonBuilder().excludeFieldsWithoutExposeAnnotation().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
 				Trening trening = gson.fromJson(row, Trening.class);
+				trening.setSlikaNaziv(trening.getSlikaNaziv()); // UCITAJ SLIKA
 				treninzi.put(Integer.parseInt(trening.getId()), trening);
 				TreningId = Integer.parseInt(trening.getId());
 			}
