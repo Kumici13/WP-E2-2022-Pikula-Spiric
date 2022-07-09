@@ -2,37 +2,34 @@ new Vue({
     el: '#dodaj-sportski-objekat-app',
     data: 
 	{
-		ponedeljakEnabled:'',
-		ponedeljakStart:'',
-		ponedeljakEnd:'',
+		ponedeljakEnabled:'true',
+		ponedeljakStart:'01:00',
+		ponedeljakEnd:'23:00',
 		
-		utorakEnabled:'',
-		utorakStart:'',
-		utorakEnd:'',
+		utorakEnabled:'true',
+		utorakStart:'01:00',
+		utorakEnd:'23:00',
 		
-		sredaEnabled:'',
-		sredaStart:'',
-		sredaEnd:'',
+		sredaEnabled:'true',
+		sredaStart:'01:00',
+		sredaEnd:'23:00',
 		
-		cetvrtakEnabled:'',
-		cetvrtakStart:'',
-		cetvrtakEnd:'',
+		cetvrtakEnabled:'true',
+		cetvrtakStart:'01:00',
+		cetvrtakEnd:'23:00',
 		
-		petakEnabled:'',
-		petakStart:'',
-		petakEnd:'',
+		petakEnabled:'true',
+		petakStart:'01:00',
+		petakEnd:'23:00',
 		
-		subotaEnabled:'',
-		subotaStart:'',
-		subotaEnd:'',
+		subotaEnabled:'true',
+		subotaStart:'01:00',
+		subotaEnd:'23:00',
 		
-		nedeljaEnabled:'',
-		nedeljaStart:'',
-		nedeljaEnd:'',
+		nedeljaEnabled:'true',
+		nedeljaStart:'01:00',
+		nedeljaEnd:'23:00',
 		
-		enejblovani:[ponedeljakEnabled, utorakEnabled, sredaEnabled, cetvrtakEnabled, petakEnabled, subotaEnabled, nedeljaEnabled],
-		startVremena:[ponedeljakStart, utorakStart, sredaStart, cetvrtakStart, petakStart, subotaStart, nedeljaStart],
-		endVremena:[ponedeljakEnd, utorakEnd, sredaEnd, cetvrtakEnd, petakEnd, subotaEnd, nedeljaEnd],
 		
 		slobodniMenadzeri: [],
 		menadzer:'',
@@ -192,7 +189,27 @@ new Vue({
     	
     	dodajSportskiObjekat: function()
 		{
-    		
+    		let imenaDana = ['Ponedeljak', 'Utorak', 'Sreda', 'Cetvrtak', 'Petak', 'Subota', 'Nedelja'];
+			let enejblovani = [this.ponedeljakEnabled, this.utorakEnabled, this.sredaEnabled, this.cetvrtakEnabled, this.petakEnabled, this.subotaEnabled, this.nedeljaEnabled];
+			let startVremena = [this.ponedeljakStart, this.utorakStart, this.sredaStart, this.cetvrtakStart, this.petakStart, this.subotaStart, this.nedeljaStart];
+			let endVremena = [this.ponedeljakEnd, this.utorakEnd, this.sredaEnd, this.cetvrtakEnd, this.petakEnd, this.subotaEnd, this.nedeljaEnd];
+		
+			let radnoVreme = [];
+
+			for(let i = 0; i < 7;i++)
+			{
+				let dan = 
+				{
+					'imeDana': imenaDana[i],
+					'danStart':startVremena[i],
+					'danEnd': endVremena[i],
+					'radniDan': enejblovani[i]
+				}
+				
+				console.log(dan);
+				radnoVreme.push(dan);
+				
+			}
     		var adresa = 
 			{
     				'ulica' : this.ulica,
@@ -216,7 +233,7 @@ new Vue({
     				'sadrzaj' : ["/"],
     				'lokacija' : lokacija,
 					'prosecnaOcena': 0,
-					'radnoVreme': '/'
+					'radnoVreme': radnoVreme
     				
     		};
     		
@@ -292,16 +309,12 @@ new Vue({
 		},
 		minTime: function (start, end)
 		{
-			console.log("EBESFHAUJHD");
-			console.log("Value" + document.getElementById(start).value);
 			if(document.getElementById(end).value<document.getElementById(start).value)
 			{
 				document.getElementById(end).value = document.getElementById(start).value
 			}
 		    document.getElementById(end).min = document.getElementById(start).value;
-			console.log("Min" + document.getElementById(end).min);
 		}
-    
     }
     
 

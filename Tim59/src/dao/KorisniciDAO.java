@@ -48,10 +48,7 @@ public class KorisniciDAO
 		
 		for (Korisnik kor : korisnici.values())	
 		{
-			
-				korisnics.add(kor);
-		
-			
+			korisnics.add(kor);
 		}
 		
 		return korisnics;

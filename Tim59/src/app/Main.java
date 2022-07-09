@@ -63,8 +63,6 @@ public class Main
 		clanarine = new ClanarineDAO();
 		gson =  new GsonBuilder().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
 		
-		
-		System.out.println("RV:" + radnoVreme.toSaveFormat());
 			
 		post("app/login", (req, res) -> 
 		{

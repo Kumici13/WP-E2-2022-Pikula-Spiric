@@ -1,5 +1,7 @@
 package beans;
 
+import com.google.gson.annotations.Expose;
+
 public class Dan 
 {
 	private String imeDana;

@@ -2,14 +2,10 @@ package beans;
 
 import java.util.Date;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonDeserializer;
 
 public class RadnoVreme 
 {
-	private static Gson gson;
-	
+
 	private Dan ponedeljakDan;
 	private Dan utorakDan;
 	private Dan sredaDan;
@@ -73,13 +69,5 @@ public class RadnoVreme
 	public void setNedeljaDan(Dan nedeljaDan) {
 		this.nedeljaDan = nedeljaDan;
 	}
-	
-	public String toSaveFormat()
-	{
-		gson =  new GsonBuilder().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
-	
-		return gson.toJson(this);
-	}
-	
 	
 }
