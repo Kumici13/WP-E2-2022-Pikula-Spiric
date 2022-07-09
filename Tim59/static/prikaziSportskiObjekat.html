@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Prikaz sadrzaja</title>
+<meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+	<style>
+            body   {
+                background-image: url(Images/loginback.jpg);
+                height: 100%;
+            }
+            
+            .h1 {
+            padding : 10px;
+            text-align : center;  
+            }
+            
+            .h2 {
+            padding-top : 50px;
+            padding-bottom : 0px;
+            text-align : left;  
+            padding-left: 210px;
+            }
+            
+            .search {
+            padding : 5px;
+            text-align : center;  
+            }
+            
+           
+            
+            label {
+		      
+		        width: 250px;   
+     		}
+     		
+     		.table0 {
+     			width: 1000px;    			
+     			padding-left: 210px;
+     			padding-top: 0px;
+     			padding-bottom: 10px;
+     			font-size: 50;
+     		}
+     		
+     		.table1 {
+     			
+     			width: 1000px;    			
+     			padding-left: 210px;
+     			font-size: 50;
+     		}
+     		
+     		.logo {  	  			
+     			padding-top: 50px;		
+     			padding-left: 200px;  					
+     		}
+     		
+     		.textarea {  	  				
+     			padding-left: 210px;  	
+     			width: 500px;
+     			height: 300px;		
+     			padding-bottom: 100px;		
+     		}
+     		
+     		.ocena {  	
+     			padding-top: 10px;		
+     			padding-left: 210px;
+     			border-spacing: 15px;
+     		}
+     		
+     		.oNama {  	
+     			padding-top: 40px;		
+     			padding-left: 210px;
+     		}
+     		
+            .editbutton {
+				text-align: right;
+				padding: 10px;
+				font-size: 50;
+				padding-left: 530px;
+			
+			}
+			
+			.addbutton {
+				text-align: left;
+				padding: 10px;
+				font-size: 50;
+				
+			
+			}
+            
+    </style>
+
+</head>
+
+<body>
+	 <div class="welcome" id="sadrzaj-app">
+			<nav class="navbar navbar-expand  fixed-top" style="background-color: #3E1D57; ">
+                <h1><a  class="naslov"  class="navbar-brand" style="color: white ; font-family:Roboto">Sadrzaji</a></h1>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="menadzerHome.html" class="nav-link" style="color: white; font-family:Roboto">Početna</a></li>     
+                        <li class="nav-item"><a href="sportskiobjekti.html" class="nav-link" style="color: white; font-family:Roboto">Sportski objekti</a></li>    
+                        <li class="nav-item"><a href="sadrzaj.html" class="nav-link" style="color: white; font-family:Roboto">Sadrzaj</a></li>  
+                        <li class="nav-item"><a href="trainingManager.html" class="nav-link" style="color: white; font-family:Roboto">Treninzi</a></li>                                          
+                        <li class="nav-item"><a href="javascript:window.localStorage.removeItem('jwt'); window.location = 'login.html';" class="nav-link" style="color: white; font-family:Roboto">Odjavi se</a></li>
+                    </ul>
+                </div>
+		</nav>
+		<br />
+		<br />
+		<br />
+		<br />
+	
+	
+		<div class="h1">
+			<h1 style="color: white; font-family: Roboto">Pregled konkretnog sadrzaja:</h1>			
+		</div>
+		
+		<div class="logo">
+			<table cellspacing="10" cellpadding="10">
+				<td><img  src="Images/login.png" class="img-thumbnail" width="150" height="150" ></td>
+				<td style="color: white; font-family:Roboto"><h2>IME</h2></td>	
+			</table>		
+		</div>
+		
+		<div class="ocena">
+			<table>
+				<td style="color: white; font-family:Roboto"><h4>Ocena:</h4></td>
+				<td style="color: white; font-family:Roboto"><h4>4.33</h4></td>		
+			</table>		
+		</div>
+		
+		<div class="h2">
+			<h2 style="color: white; font-family: Roboto">Radno vreme:</h2>			
+		</div>
+		
+		<div  id="sadrzaj" class="table1">
+			<table bgcolor="#DEF7F9"  border="0" id="tabela" class="table1">
+				
+				<thead>
+					<tr bgcolor="#309AF9">
+						<th>Dan</th>
+						<th>Pocetak radnog vremena</th>
+						<th>Kraj randog vremena</th>
+					</tr>
+				</thead>
+	 
+				<tr v-for="p in radnoVreme">
+					<td>{{p.dan }}</td>
+					<td>{{p.pocetakRadnogVremena }}</td>
+					<td>{{p.krajRadnogVremena }}</td>
+				</tr>
+			</table>
+		</div>
+
+		
+		
+		<div class="h2">
+			<h2 style="color: white; font-family: Roboto">Raspored aktivnosti:</h2>			
+		</div>
+		
+		<div  id="sadrzaj" class="table0">
+			<table bgcolor="#DEF7F9"  border="0" id="tabela" class="table0">
+				<thead>
+					<tr>
+						<th><button type="button" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+  						<path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+						</svg></button></th>
+						<th class="text-center">Neki datum PIKULA</th>
+						<<th><button type="button" class="btn btn-primary float-right"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+						 <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+						 </svg></button></th>				
+						</thead>
+				</table>
+		</div>
+		
+		<div  id="sadrzaj" class="table1">
+			<table bgcolor="#DEF7F9"  border="2" id="tabela" class="table1">
+				
+				<thead>
+					<tr bgcolor="#309AF9">
+						<th>Slika</th>
+						<th>Opis</th>
+						<th>Trener</th>
+						<th>Cena</th>
+				</thead>
+	 
+				<tr v-for="p in getprikazSportskiObjekat">
+					<td>{{p.slika }}</td>
+					<td>{{p.opis }}</td>
+					<td>{{p.trener }}</td>
+					<td>{{p.cena }}</td>
+				</tr>
+			</table>
+		</div>
+		
+		<div class="oNama">
+			<table>
+				<td style="color: white; font-family:Roboto"><h4>O nama</h4></td>					
+			</table>		
+		</div>
+		<div class="textarea">
+			<input type="text" id="textArea" name="textArea" style="font-size: 18pt; height: 100px; width:580px; ">
+		</div>
+		
+		
+		
+		
+		
+  
+		</div>	
+	 	<script src="js/vue.js"></script>
+        <script src="js/axios.js"></script>
+        <script src="js/"></script>
+</body>
+
+</html>

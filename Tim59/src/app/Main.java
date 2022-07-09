@@ -23,11 +23,9 @@ import com.google.gson.JsonDeserializer;
 
 import beans.Kupac;
 import beans.Menadzer;
-import beans.RadnoVreme;
 import beans.SportskiObjekat;
 import beans.Trener;
 import beans.Trening;
-import beans.Dan;
 import beans.Clanarina;
 import beans.Korisnik;
 import dao.ClanarineDAO;
