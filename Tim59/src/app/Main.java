@@ -11,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.Key;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -610,6 +611,19 @@ public class Main
 				return gson.toJson("Morate biti vlasnik sportskog objekta!");
 			}
 			return gson.toJson(treninzi.getTreninziBySportskiObjekatId(menadzer.getSportskiObjekatId()));
+		});
+		
+		post("app/getSadrzajiZaSportskiObjekat", (req, res) -> 
+		{
+			
+			String tremningId = req.headers("idSporskogObjekta");
+		
+			ArrayList<Trening> nadjeniTreninzi = treninzi.getTreninziBySportskiObjekatId(tremningId);
+			if(nadjeniTreninzi != null)
+			{
+				return gson.toJson(nadjeniTreninzi);	
+			}
+			return gson.toJson("ne postoje treninzi za ovaj objekat!");
 		});
 		
 		post("app/getTreningByTreningId", (req, res) -> 
