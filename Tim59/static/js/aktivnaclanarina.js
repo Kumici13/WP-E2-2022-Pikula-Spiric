@@ -13,28 +13,33 @@ new Vue({
     },
     mounted()  
 	{
-	
-        axios
-        	
-            post('app/getClanarinaWithKorisnickoIme' , window.localStorage.getItem('jwt'),
-            {
-                    headers: 
+
+		let jwt = window.localStorage.getItem('jwt');
+		
+		axios
+            .post('app/getClanarinaWithKorisnickoIme', jwt, 
+				{     
+                 headers: 
 					{
                         'Content-Type': 'application/json',
-                        'Autorizacija': window.localStorage.getItem('jwt')
-                        
+                        'Autorizacija': window.localStorage.getItem('jwt')                  
                     }
                 })
             .then(response => 
 			{
                 this.aktivneClanarine = response.data;
+
+
             })
             .catch(error => 
 			{
                 console.log(error);
-                alert(error.response.data.sadrzaj);
+				alert(error.response.data.sadrzaj);
             });
+
+              
           	
+
     },
    
    
