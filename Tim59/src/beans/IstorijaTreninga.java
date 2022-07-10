@@ -1,23 +1,45 @@
 package beans;
 
-public class IstorijaTreninga {
-	
+import java.util.Date;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.annotations.Expose;
+
+public class IstorijaTreninga 
+{
+	@Expose
+	private String id;
+	@Expose
 	private String datumVreme;
-	private Trening trening;
-	private Kupac kupac;
-	private Trener trener;
+	@Expose
+	private String treningId;
+	@Expose
+	private String kupacId;
+	@Expose
+	private String trenerId;
 	
 	public IstorijaTreninga()
 	{
 		
 	}
 
-	public IstorijaTreninga(String datumVreme, Trening trening, Kupac kupac, Trener trener) {
+	public IstorijaTreninga(String id, String datumVreme, String treningId, String kupacId, String trenerId) {
 		super();
+		this.id = id;
 		this.datumVreme = datumVreme;
-		this.trening = trening;
-		this.kupac = kupac;
-		this.trener = trener;
+		this.treningId = treningId;
+		this.kupacId = kupacId;
+		this.trenerId = trenerId;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getDatumVreme() {
@@ -28,29 +50,38 @@ public class IstorijaTreninga {
 		this.datumVreme = datumVreme;
 	}
 
-	public Trening getTrening() {
-		return trening;
+	public String getTreningId() {
+		return treningId;
 	}
 
-	public void setTrening(Trening trening) {
-		this.trening = trening;
+	public void setTreningId(String treningId) {
+		this.treningId = treningId;
 	}
 
-	public Kupac getKupac() {
-		return kupac;
+	public String getKupacId() {
+		return kupacId;
 	}
 
-	public void setKupac(Kupac kupac) {
-		this.kupac = kupac;
+	public void setKupacId(String kupacId) {
+		this.kupacId = kupacId;
 	}
 
-	public Trener getTrener() {
-		return trener;
+	public String getTrenerId() {
+		return trenerId;
 	}
 
-	public void setTrener(Trener trener) {
-		this.trener = trener;
+	public void setTrenerId(String trenerId) {
+		this.trenerId = trenerId;
 	}
+
+	public String toSaveFormat() 
+	{
+
+		Gson gson =  new GsonBuilder().excludeFieldsWithoutExposeAnnotation().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
+		
+		return gson.toJson(this)+"\n";
+	}
+
 	
 	
 

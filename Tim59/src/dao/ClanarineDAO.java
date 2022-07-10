@@ -16,6 +16,7 @@ import com.google.gson.JsonDeserializer;
 
 import beans.Clanarina;
 import beans.Korisnik;
+import beans.Kupac;
 import beans.SportskiObjekat;
 import enums.TipClanarine;
 import enums.Uloga;
@@ -29,10 +30,10 @@ public class ClanarineDAO {
 private HashMap<Integer, Clanarina> clanarine;
 	
 	private int ClanarineId = 0;
-	public ClanarineDAO()
+	public ClanarineDAO(KorisniciDAO korisniciDAO)
 	{
 		clanarine = new HashMap<Integer, Clanarina>();
-		ucitajClanarine();
+		ucitajClanarine(korisniciDAO);
 	}
 	
 	public void AddClanarina(String nazivClanarine, String korisnickoIme)
@@ -152,7 +153,7 @@ private HashMap<Integer, Clanarina> clanarine;
 		return null;
 	}
 	
-	private void ucitajClanarine() 
+	private void ucitajClanarine(KorisniciDAO korisniciDAO) 
 	{
 		String putanja = "./static/podaci/Clanarine.txt";
 		
@@ -164,16 +165,26 @@ private HashMap<Integer, Clanarina> clanarine;
 			while ((row = bafer.readLine()) != null)	
 			{
 				Gson gson =  new GsonBuilder().excludeFieldsWithoutExposeAnnotation().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
-				
+
+				LocalDate now = LocalDate.now();
 				Clanarina clanarina = gson.fromJson(row, Clanarina.class);
 				if(clanarina.isStatus()) 
 				{
+					if(clanarina.getBrojTermina() <= 0 || LocalDate.parse(clanarina.getDatumVazenja()).compareTo(now) <= 0) 
+					{
+							int bodovi = clanarina.setStatus(false);
+							((Kupac)korisniciDAO.getKorisnikByKorisnickoIme(clanarina.getKupacid())).addBodovi(bodovi);
+							
+							System.out.println("Clanarina istekla!");
+						
+					}
+					
 					ClanarineId = Integer.parseInt(clanarina.getIdentifikator());
 					clanarine.put(ClanarineId, clanarina);
 				}
 			}
-			
 			bafer.close();
+			AzurirajBazu();
 		} 
 		catch (Exception e)	
 		{

@@ -1,1 +1,1 @@
-{"sakupljeniBodovi":0.0,"korisnickoIme":"korisnik","sifra":"korisnik123","ime":"Korisnik","prezime":"Korisnikic","pol":"0","uloga":"0","aktivan":true}
+{"sakupljeniBodovi":600.0,"korisnickoIme":"korisnik","sifra":"korisnik123","ime":"Korisnik","prezime":"Korisnikic","pol":"0","uloga":"0","aktivan":true}

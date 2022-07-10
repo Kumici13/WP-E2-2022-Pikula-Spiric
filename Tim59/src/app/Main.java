@@ -11,9 +11,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.Key;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.http.Part;
@@ -28,8 +31,10 @@ import beans.SportskiObjekat;
 import beans.Trener;
 import beans.Trening;
 import beans.Clanarina;
+import beans.IstorijaTreninga;
 import beans.Korisnik;
 import dao.ClanarineDAO;
+import dao.IstorijaTreningaDAO;
 import dao.KorisniciDAO;
 import dao.SportskiObjektiDAO;
 import dao.TreningDAO;
@@ -48,8 +53,10 @@ public class Main
 	private static SportskiObjektiDAO sportskiObjekti = null;
 	private static TreningDAO treninzi = null;
 	private static ClanarineDAO clanarine = null;
+	private static IstorijaTreningaDAO istorijaTreningaDAO = null;
 	private static Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 	
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) throws Exception 
 	{
 		port(8080);
@@ -59,8 +66,9 @@ public class Main
 		sportskiObjekti = new SportskiObjektiDAO();
 		korisnici.ucitajSportskeObjekteUMenadzere(sportskiObjekti);
 		treninzi = new TreningDAO();
+		istorijaTreningaDAO = new IstorijaTreningaDAO();
 		treninzi.ucitajSportskeObjekteiTrenerer(sportskiObjekti, korisnici);
-		clanarine = new ClanarineDAO();
+		clanarine = new ClanarineDAO(korisnici);
 		gson =  new GsonBuilder().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
 		
 			
@@ -471,6 +479,92 @@ public class Main
 						return gson.toJson("Doslo je do greske");
 					}
 				} 
+				else	
+				{
+					res.status(403);
+					return gson.toJson("Niste ovlasceni.");
+				}
+			} 
+			else	
+			{
+				if (res.status() == 400)	
+				{
+					return gson.toJson("Morate se ulogovati.");
+				} 
+				else if (res.status() == 500)	
+				{
+					return gson.toJson("Doslo je do greske.");
+				}
+
+				res.status(500);
+				return gson.toJson("Doslo je do greske.");
+			}
+
+		});
+		
+		post("app/prijaviSeNaTrening", (req, res) ->	
+		{
+			res.type("application/json");
+			Korisnik korisnik = getKorisnikByJWT(req, res);
+
+			String treningid = req.headers("treningId");
+			String dateTime = req.headers("dateTime");
+			
+			if(treningid == null)
+			{
+				System.out.println("TRENERID JE PRAZAN");
+				return gson.toJson("Doslo je do greske");
+			}
+			
+			if (korisnik != null)	
+			{
+				if (korisnik.getUloga().equals(Uloga.Kupac))	
+				{
+					LocalDate now = LocalDate.now();
+					
+					Clanarina clanarinaTemp = clanarine.getClanarinaByKorisnickoIme(korisnik.getKorisnickoIme());
+					
+					if(clanarinaTemp != null) 
+					{
+						if(clanarinaTemp.getBrojTermina() > 0) 
+						{
+							if(LocalDate.parse(clanarinaTemp.getDatumVazenja()).compareTo(now) > 0) 
+							{
+								if(istorijaTreningaDAO.checkIfAlreadyExists(treningid, korisnik.getKorisnickoIme(), dateTime))
+								{
+									return gson.toJson("Vec ste prijavljeni na ovaj trening!");
+								}
+								else 
+								{
+									IstorijaTreninga istorijaTreninga = new IstorijaTreninga("", dateTime, treningid, korisnik.getKorisnickoIme(), treninzi.getTreningById(treningid).getTrenerid());
+									istorijaTreningaDAO.dodajNoviTrening(istorijaTreninga);
+									clanarine.getClanarinaByKorisnickoIme(korisnik.getKorisnickoIme()).setBrojTermina(clanarine.getClanarinaByKorisnickoIme(korisnik.getKorisnickoIme()).getBrojTermina()-1);
+									clanarine.AzurirajBazu();
+									return gson.toJson("Trening dodat.");
+								}
+							}
+							else 
+							{
+								int bodovi = clanarine.getClanarinaByKorisnickoIme(korisnik.getKorisnickoIme()).setStatus(false);
+								((Kupac)korisnici.getKorisnikByKorisnickoIme(korisnik.getKorisnickoIme())).addBodovi(bodovi);
+								korisnici.azurirajPodatke(Uloga.Kupac);
+								return gson.toJson("Clanarina vam je istekla!");
+							}
+						}
+						else 
+						{
+							int bodovi = clanarine.getClanarinaByKorisnickoIme(korisnik.getKorisnickoIme()).setStatus(false);
+							((Kupac)korisnici.getKorisnikByKorisnickoIme(korisnik.getKorisnickoIme())).addBodovi(bodovi);
+							korisnici.azurirajPodatke(Uloga.Kupac);
+							return gson.toJson("Nemate vise slobodnih termina");
+							
+						}
+					}
+					else 
+					{
+						return gson.toJson("Nemate clanarinu!");
+					}
+				}
 				else	
 				{
 					res.status(403);

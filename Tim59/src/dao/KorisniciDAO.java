@@ -105,6 +105,24 @@ public class KorisniciDAO
 		return korisnics;
 	}
 	
+	public ArrayList<Trener> getAllRegTreneriToTrener()
+	{
+			
+		ArrayList<Trener> korisnics = new ArrayList<>();	
+		for (Korisnik kor : korisnici.values())	
+		{
+			if(kor.getUloga().equals(Uloga.Trener))
+			{
+				korisnics.add((Trener)kor);
+			}
+			
+		}
+		
+		return korisnics;
+	}
+	
+	
+	
 	private void ucitajKorisnike(Uloga uloga)	
 	{
 		BufferedReader bafer;

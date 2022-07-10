@@ -65,8 +65,6 @@ new Vue({
                 console.log(error);
                 
             });
-
-
     },    
      methods:    
 	{
@@ -102,7 +100,28 @@ new Vue({
 
 		zakaziTrening: function(treningId)
 		{
-            alert("Trening uspesno zakazan!");
+			let jwt = window.localStorage.getItem('idSporskogObjekta');
+			axios
+            .post('app/prijaviSeNaTrening', jwt,
+				{
+                    headers: 
+					{
+                        'Content-Type': 'application/json',
+                        'Autorizacija': window.localStorage.getItem('jwt'),
+						'treningId': treningId,
+						'dateTime': this.date
+                    }
+                })
+            .then(response => 
+			{
+            	alert(response.data);
+			})
+            .catch(error => 
+			{
+                console.log(error);
+            	alert(error.data);
+                
+            });
         },
 
 		prikaziStart: function(objekat)
