@@ -3,22 +3,37 @@ package beans;
 import java.io.File;
 import java.nio.file.Files;
 import java.util.Base64;
+import java.util.Date;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.annotations.Expose;
 
 import enums.TipTreninga;
 
 public class Trening {
-	
+	@Expose
 	private String id;
+	@Expose
 	private String naziv;
+	@Expose
 	private TipTreninga tip;
 	private SportskiObjekat sportskiObjekat;
+	@Expose
 	private String sportskiObjekatid;
-	private double trajanje;
+	@Expose
+	private RadnoVreme radnoVreme;
 	private Trener trener;
+	@Expose
 	private String trenerid;
+	@Expose
 	private String opis;
+	@Expose
 	private String slikaNaziv = "null";
 	private String slika;
+	@Expose
+	private boolean aktivan = true;
 	
 	public Trening()
 	{
@@ -47,20 +62,29 @@ public class Trening {
 		}
 	}
 
-	public Trening(String id,String naziv, TipTreninga tip, String sportskiObjekatid, double trajanje, String trenerid, String opis,
-			String slikaNaziv) {
+	public Trening(String id,String naziv, TipTreninga tip, String sportskiObjekatid, RadnoVreme radnoVreme, String trenerid, String opis,
+			String slikaNaziv, boolean aktivan) {
 		super();
 		this.id = id;
 		this.naziv = naziv;
 		this.tip = tip;
-		this.trajanje = trajanje;
+		this.radnoVreme = radnoVreme;
 		this.trenerid = trenerid;
 		this.opis = opis;
 		this.sportskiObjekatid = sportskiObjekatid;
 		setSlikaNaziv(slikaNaziv);
+		this.aktivan = aktivan;
 	}
 
 	
+	public boolean isAktivan() {
+		return aktivan;
+	}
+
+	public void setAktivan(boolean aktivan) {
+		this.aktivan = aktivan;
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -93,12 +117,12 @@ public class Trening {
 		this.sportskiObjekat = ime;
 	}
 
-	public double getTrajanje() {
-		return trajanje;
+	public RadnoVreme getTrajanje() {
+		return radnoVreme;
 	}
 
-	public void setTrajanje(double trajanje) {
-		this.trajanje = trajanje;
+	public void setTrajanje(RadnoVreme radnoVreme) {
+		this.radnoVreme = radnoVreme;
 	}
 
 	public Trener getTrener() {
@@ -157,7 +181,9 @@ public class Trening {
 	
 	public String toSaveFormat()
 	{
-		return getId()+";"+getNaziv()+";"+getTip()+";"+getSportskiObjekatid()+";"+getTrajanje()+";"+getTrenerid()+";"+getOpis()+";"+getSlikaNaziv()+"\n";
+		Gson gson =  new GsonBuilder().excludeFieldsWithoutExposeAnnotation().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
+	
+		return gson.toJson(this)+"\n";
 	}
 	
 	

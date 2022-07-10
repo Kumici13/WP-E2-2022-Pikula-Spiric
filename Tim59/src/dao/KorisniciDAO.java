@@ -5,11 +5,15 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.imageio.ImageTypeSpecifier;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.IconifyAction;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 
 import beans.Administrator;
@@ -28,7 +32,7 @@ public class KorisniciDAO
 	private String trenerFajlIme = "Treneri.txt";
 	private String putanjaMain = "./static/podaci/";
 	
-	
+	private int currentId = 0;
 	private HashMap<String, Korisnik> korisnici;
 	
 	public KorisniciDAO()	
@@ -48,10 +52,7 @@ public class KorisniciDAO
 		
 		for (Korisnik kor : korisnici.values())	
 		{
-			
-				korisnics.add(kor);
-		
-			
+			korisnics.add(kor);
 		}
 		
 		return korisnics;
@@ -114,29 +115,32 @@ public class KorisniciDAO
 			String red;
 			while ((red = bafer.readLine()) != null)	
 			{
-				String[] tokeni = red.split(";");
-				
 				if (uloga == Uloga.Administrator)	
 				{
-					Administrator admin = new Administrator(tokeni[0], tokeni[1], tokeni[2], tokeni[3], Pol.valueOf(tokeni[4]), tokeni[5], Boolean.parseBoolean(tokeni[6]));
-					korisnici.put(tokeni[0], admin);
+					Gson gson =  new GsonBuilder().excludeFieldsWithoutExposeAnnotation().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
+				
+					Administrator admin = gson.fromJson(red, Administrator.class);
+					korisnici.put(admin.getKorisnickoIme(), admin);
 				} 
 				else if (uloga == Uloga.Kupac)	
 				{
+					Gson gson =  new GsonBuilder().excludeFieldsWithoutExposeAnnotation().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
 					//CLANARINA FALI UMESTO NULL
-					Kupac kupac = new Kupac(tokeni[0], tokeni[1], tokeni[2], tokeni[3], Pol.valueOf(tokeni[4]), tokeni[5], null, tokeni[7], Double.parseDouble(tokeni[8]), Boolean.parseBoolean(tokeni[9]));
-					korisnici.put(tokeni[0], kupac);
+					Kupac kupac = gson.fromJson(red, Kupac.class);
+					korisnici.put(kupac.getKorisnickoIme(), kupac);
 				} 
 				else if (uloga == Uloga.Menadzer)	
 				{
+					Gson gson =  new GsonBuilder().excludeFieldsWithoutExposeAnnotation().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
 					//SPORTSKI OBJEKAT UMESTO NULL 
-					Menadzer menadzer = new Menadzer(tokeni[0], tokeni[1], tokeni[2], tokeni[3], Pol.valueOf(tokeni[4]), tokeni[5], tokeni[6], Boolean.parseBoolean(tokeni[7]));
-					korisnici.put(tokeni[0], menadzer);
+					Menadzer menadzer = gson.fromJson(red, Menadzer.class);
+					korisnici.put(menadzer.getKorisnickoIme(), menadzer);
 				}
 				else if(uloga == Uloga.Trener)
 				{
-					Trener trener = new Trener(tokeni[0], tokeni[1], tokeni[2], tokeni[3], Pol.valueOf(tokeni[4]), tokeni[5], tokeni[6], Boolean.parseBoolean(tokeni[7]));
-					korisnici.put(tokeni[0], trener);
+					Gson gson =  new GsonBuilder().excludeFieldsWithoutExposeAnnotation().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
+					Trener trener = gson.fromJson(red, Trener.class);
+					korisnici.put(trener.getKorisnickoIme(), trener);
 				}
 			}
 			bafer.close();

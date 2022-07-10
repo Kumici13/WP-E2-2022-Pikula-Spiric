@@ -1,19 +1,34 @@
 package beans;
 
+import java.util.Date;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.annotations.Expose;
+
 import enums.Pol;
 import enums.Uloga;
 
 public class Korisnik {
-	
+	@Expose
 	private String korisnickoIme;
+	@Expose
 	private String sifra;
+	@Expose
 	private String ime;
+	@Expose
 	private String prezime;
+	@Expose
 	private Pol pol;
+	@Expose
 	private String datumRodjenja;
+	@Expose
 	protected Uloga uloga;
+	
 	protected String JWTToken;
-	protected boolean aktivan;
+	@Expose
+	protected boolean aktivan= true;
 
 	
 	public Korisnik()
@@ -109,8 +124,11 @@ public class Korisnik {
 		this.aktivan = obrisan;
 	}
 
-	public String toSaveFormat() {
-		return this.korisnickoIme + ";" + this.sifra + ";" + this.ime + ";" + this.prezime + ";" + this.pol.name() + ";" + this.datumRodjenja +"\n";
+	public String toSaveFormat() 
+	{
+		Gson gson =  new GsonBuilder().excludeFieldsWithoutExposeAnnotation().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
+		
+		return gson.toJson(this)+"\n";
 	}
 
 }

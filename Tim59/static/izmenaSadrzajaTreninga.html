@@ -98,61 +98,23 @@
              <div class="textboxovi" >
                     <label  style="color: white; font-family:Roboto" >Opis:</label>
                     <input id="opis" ref="opis" v-model:value="opis" type="textbox" style="width: 400px; height: 35px">  
-            </div>
-             <div class="textboxovi" >
+            </div> 
+            <div class="textboxovi" >
                     <label  style="color: white; font-family:Roboto" >Trajanje:</label>
-            <table border = "1px solid black" align="center" style="background-color:white">
-			  <tr>
-			  	<th>Dan</th>
-			  	<th>Pocetak</th>
-			  	<th>Kraj</th>
-			  </tr>
-			  <tr>
-			      <td>Ponedeljak: <input checked type="checkbox" v-on:click="aktivirajTime('ponedeljakStart','ponedeljakEnd')" v-model="ponedeljakEnabled"  id="ponedeljakEnabled"></td>
-			      <td><input type ="time" v-model="ponedeljakStart" id="ponedeljakStart" v-on:change="minTime('ponedeljakStart','ponedeljakEnd')"/></td>
-			      <td><input type ="time" v-model="ponedeljakEnd" id="ponedeljakEnd" v-on:change="minTime('ponedeljakStart','ponedeljakEnd')"/></td>
-			  </tr>
-			
-			  <tr>
-			      <td>Utorak: <input checked type="checkbox" v-model="utorakEnabled" v-on:click="aktivirajTime('utorakStart','utorakEnd')" id="utorakEnabled"></td>
-			      <td><input type ="time" v-model="utorakStart" id="utorakStart" v-on:change="minTime('utorakStart','utorakEnd')"/></td>
-			      <td><input type ="time" v-model="utorakEnd" id="utorakEnd" v-on:change="minTime('utorakStart','utorakEnd')"/></td>
-			  </tr>
-			
-			  <tr>
-			      <td>Sreda: <input checked v-model="sredaEnabled" type="checkbox" v-on:click="aktivirajTime('sredaStart','sredaEnd')" id="sredaEnabled"></td>
-			      <td><input type ="time" v-model="sredaStart" id="sredaStart" v-on:change="minTime('sredaStart','sredaEnd')"/></td>
-			      <td><input type ="time" v-model="sredaEnd" id="sredaEnd" v-on:change="minTime('sredaStart','sredaEnd')"/></td>
-			  </tr>
-			
-			  <tr>
-			      <td>Cetvrtak: <input checked v-model="cetvrtakEnabled" type="checkbox" v-on:click="aktivirajTime('cetvrtakStart','cetvrtakEnd')" id="cetvrtakEnabled"></td>
-			      <td><input type ="time" v-model="cetvrtakStart" id="cetvrtakStart" v-on:change="minTime('cetvrtakStart','cetvrtakEnd')"/></td>
-			      <td><input type ="time" v-model="cetvrtakEnd" id="cetvrtakEnd" v-on:change="minTime('cetvrtakStart','cetvrtakEnd')"/></td>
-			  </tr>
-			
-			  <tr>
-			      <td>Petak: <input  v-model="petakEnabled" checked type="checkbox" v-on:click="aktivirajTime('petakStart','petakEnd')" id="petakEnabled"></td>
-			      <td><input type ="time" v-model="petakStart" id="petakStart" v-on:change="minTime('petakStart','petakEnd')"/></td>
-			      <td><input type ="time" v-model="petakEnd" id="petakEnd" v-on:change="minTime('petakStart','petakEnd')"/></td>
-			  </tr>
-			
-			  <tr>
-			      <td>Subota: <input checked v-model="subotaEnabled" type="checkbox" min ="" v-on:click="aktivirajTime('subotaStart','subotaEnd')" id="subotaEnabled"></td>
-			      <td><input type ="time" v-model="subotaStart" id="subotaStart" v-on:change="minTime('subotaStart','subotaEnd')"/></td>
-			      <td><input type ="time" v-model="subotaEnd" id="subotaEnd" v-on:change="minTime('subotaStart','subotaEnd')"/></td>
-			  </tr>
-			
-			  <tr>
-			      <td>Nedelja: <input checked v-model="nedeljaEnabled" type="checkbox" v-on:click="aktivirajTime('nedeljaStart','nedeljaEnd')" id="nedeljaEnabled"></td>
-			      <td><input type ="time" v-model="nedeljaStart" id="nedeljaStart" v-on:change="minTime('nedeljaStart','nedeljaEnd')"/></td>
-			      <td><input type ="time" v-model="nedeljaEnd" id="nedeljaEnd" v-on:change="minTime('nedeljaStart','nedeljaEnd')"/></td>
-			  </tr>
-			</table>
-			</div>
-            <div class="tablebutton">
+                    <select v-model:value="trajanje" style="width: 400px; height: 35px; font-family:Roboto " >
+	                        <option value="1">1</option>
+	                        <option value="2">2</option>
+	                        <option value="3">3</option>
+	                        <option value="4">4</option>
+	                        <option value="5">5</option>
+	                        <option value="6">6</option>
+	                        <option value="7">7</option>
+	                        <option value="8">8</option>
+	            </select>   
+            </div> 
+             <div class="tablebutton">
                     <button v-on:click.prevent="provera"  class="btn btn-outline-light">Dodaj</button>
-           	</div>
+             </div>
 	      </form>
             <div class="col" align="center">
 								<p id="err_msg" ref="err_msg" style="color: red;"></p>

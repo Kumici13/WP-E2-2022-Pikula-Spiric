@@ -1,4 +1,4 @@
-package app;
+ package app;
 
 import static spark.Spark.get;
 import static spark.Spark.port;
@@ -23,9 +23,11 @@ import com.google.gson.JsonDeserializer;
 
 import beans.Kupac;
 import beans.Menadzer;
+import beans.RadnoVreme;
 import beans.SportskiObjekat;
 import beans.Trener;
 import beans.Trening;
+import beans.Dan;
 import beans.Clanarina;
 import beans.Korisnik;
 import dao.ClanarineDAO;
@@ -308,12 +310,12 @@ public class Main
 			Korisnik korisnik = korisnici.getKorisnikByKorisnickoIme(menadzerUserName);
 
 			String payload = req.body();
+			System.out.println(payload);
 			SportskiObjekat noviSportskiObjekat = gson.fromJson(payload, SportskiObjekat.class);
 			if (korisnik != null)	
 			{
 				if (korisnik.getUloga().equals(Uloga.Menadzer))	
 				{
-
 					if (noviSportskiObjekat != null)	
 					{
 						noviSportskiObjekat = sportskiObjekti.dodajNoviSportskiObjekat(noviSportskiObjekat);
@@ -322,6 +324,61 @@ public class Main
 						korisnici.azurirajPodatke(Uloga.Menadzer);
 						res.header("idNovogSportskogObjekta", noviSportskiObjekat.getId());
 						return gson.toJson("Sportski objekat dodat.");
+					} 
+					else	
+					{
+						res.status(500);
+						return gson.toJson("Doslo je do greske");
+					}
+				} 
+				else	
+				{
+					res.status(403);
+					return gson.toJson("Niste ovlasceni.");
+				}
+			} 
+			else	
+			{
+				if (res.status() == 400)	
+				{
+					return gson.toJson("Morate se ulogovati.");
+				} 
+				else if (res.status() == 500)	
+				{
+					return gson.toJson("Doslo je do greske.");
+				}
+
+				res.status(500);
+				return gson.toJson("Doslo je do greske.");
+			}
+
+		});
+		
+		post("app/obrisiTreningById", (req, res) ->	
+		{
+			res.type("application/json");
+			Korisnik korisnik = getKorisnikByJWT(req, res);
+
+			String treningId = req.headers("TreningId");
+			Trening stariTrening = treninzi.getTreningById(treningId);
+			
+			if (korisnik != null)	
+			{
+				if (korisnik.getUloga().equals(Uloga.Menadzer))	
+				{
+					if (stariTrening != null )
+					{
+						if(((Menadzer)korisnik).getSportskiObjekatId().equals(stariTrening.getSportskiObjekatid()))
+						{
+							treninzi.changeTreningActivityById(treningId);
+							return gson.toJson("Trening obrisan");
+						}
+						else 
+						{
+							res.status(500);
+							return gson.toJson("Doslo je do greske");
+						}
+						
 					} 
 					else	
 					{
@@ -367,6 +424,7 @@ public class Main
 				{
 					if (noviTrening != null)	
 					{
+						noviTrening.setAktivan(true);
 						noviTrening.setSportskiObjekatid(((Menadzer)korisnik).getSportskiObjekatId());
 						noviTrening.setTrener((Trener)(korisnici.getKorisnikByKorisnickoIme(noviTrening.getTrenerid())));
 						noviTrening = treninzi.dodajNoviTrening(noviTrening);
@@ -522,13 +580,34 @@ public class Main
 			return gson.toJson(treninzi.getTreninziBySportskiObjekatId(menadzer.getSportskiObjekatId()));
 		});
 		
+		post("app/getTreningByTreningId", (req, res) -> 
+		{
+			
+			String tremningId = req.headers("TreningId");
+		
+			Trening trening = treninzi.getTreningById(tremningId);
+			if(trening != null)
+			{
+				return gson.toJson(trening);	
+			}
+			return gson.toJson("ne postoji takav trening!");
+		});
+		
 		post("app/gettrenerizaobjekat", (req, res) -> 
 		{
 			Menadzer menadzer = (Menadzer) getKorisnikByJWT(req, res);
-			if(menadzer.getSportskiObjekatId().equals("null"))
+			if(menadzer != null) 
 			{
-				System.out.println("NEMAS SPORTSKI OBJEKAT");
-				return gson.toJson("Morate biti vlasnik sportskog objekta!");
+				if(menadzer.getSportskiObjekatId().equals("null"))
+				{
+					System.out.println("NEMAS SPORTSKI OBJEKAT");
+					return gson.toJson("Morate biti vlasnik sportskog objekta!");
+				}
+			}
+			else 
+			{
+				System.out.println("MENADZER JE NULL");
+				return gson.toJson("MORATE SE ULOGOVATI!");
 			}
 			return gson.toJson(treninzi.getTreneriBySportskiObjekatId(menadzer.getSportskiObjekatId()));
 		});

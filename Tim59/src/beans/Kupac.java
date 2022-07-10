@@ -1,12 +1,21 @@
 package beans;
 
+import java.util.Date;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.annotations.Expose;
+
 import enums.Pol;
 import enums.Uloga;
 
 public class Kupac extends Korisnik {
-	
+	@Expose
 	private Clanarina clanarina;
+	@Expose
 	private String poseceniObjekti;
+	@Expose
 	private double sakupljeniBodovi;
 	
 	public Kupac() {
@@ -47,8 +56,11 @@ public class Kupac extends Korisnik {
 	}
 	
 	@Override
-	public String toSaveFormat() {
-		return this.getKorisnickoIme() + ";" + this.getSifra() + ";" + this.getIme() + ";" + this.getPrezime() + ";" + this.getPol().name() + ";" + this.getDatumRodjenja() + ";"+ "clanarina" + ";"+ this.poseceniObjekti + ";"+ this.sakupljeniBodovi + ";" + this.aktivan + "\n";
+	public String toSaveFormat() 
+	{
+		Gson gson =  new GsonBuilder().excludeFieldsWithoutExposeAnnotation().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
+		
+		return gson.toJson(this)+"\n";
 	}
 
 
