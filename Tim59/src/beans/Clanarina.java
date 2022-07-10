@@ -102,8 +102,51 @@ public class Clanarina {
 		return status;
 	}
 
-	public void setStatus(boolean status) {
+	public int setStatus(boolean status) 
+	{
+		int bodovi = 0;
 		this.status = status;
+		if(!this.status)
+		{
+			
+			if(tipClanarine == TipClanarine.Godisnja)
+			{
+				if(brojTermina < 400)
+				{
+					bodovi = 50000 / 1000 * 600-brojTermina;
+				}
+				else 
+				{
+					bodovi = 50000 / (1000*133*4);
+					bodovi *=-1;
+				}
+			}
+			else if(tipClanarine == TipClanarine.Mesecna)
+			{
+				if(brojTermina < 11)
+				{
+					bodovi = 50000 / 1000 * 15-brojTermina;
+				}
+				else 
+				{
+					bodovi = 4500 / 1000*133*4;
+					bodovi *=-1;
+				}
+			}
+			else if(tipClanarine == TipClanarine.Nedeljna)
+			{
+				if(brojTermina < 4 )
+				{
+					bodovi = 50000 / 1000 * 4 -brojTermina;
+				}
+				else 
+				{
+					bodovi = 1500 / 1000*133*4;
+					bodovi *=-1;
+				}
+			}
+		}
+		return bodovi;
 	}
 
 	public int getBrojTermina() {

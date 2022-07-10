@@ -33,6 +33,11 @@ new Vue({
     },
     methods:    
 	{
+		pogledajObjekat: function(idObjekta)
+		{
+			window.localStorage.setItem('idSporskogObjekta', idObjekta);
+			window.location.href='prikaziSportskiObjekat.html';
+		},
         ulogovanKorisnik: function()    
 		{
             return window.localStorage.getItem('jwt') != null;

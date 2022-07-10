@@ -16,7 +16,7 @@ public class Kupac extends Korisnik {
 	@Expose
 	private String poseceniObjekti;
 	@Expose
-	private double sakupljeniBodovi;
+	private double sakupljeniBodovi = 0;
 	
 	public Kupac() {
 		super();
@@ -53,6 +53,11 @@ public class Kupac extends Korisnik {
 
 	public void setSakupljeniBodovi(double sakupljeniBodovi) {
 		this.sakupljeniBodovi = sakupljeniBodovi;
+	}
+	
+	public void addBodovi(double sakupljeniBodovi) 
+	{
+		this.sakupljeniBodovi = this.sakupljeniBodovi+sakupljeniBodovi;
 	}
 	
 	@Override

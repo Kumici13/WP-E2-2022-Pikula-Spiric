@@ -26,7 +26,7 @@ import enums.TipTreninga;
 
 public class TreningDAO {
 	
-private HashMap<Integer, Trening> treninzi;
+	private HashMap<Integer, Trening> treninzi;
 
 	private int TreningId = 0;
 	
