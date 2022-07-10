@@ -35,7 +35,7 @@ new Vue({
 		setStudioElite: function()
 		{
 			window.localStorage.setItem("clanarina", 'StudioElite');
-			window.location.href='odaberigodisnju.html';
+			window.location.href='odaberi.html';
 		},
  
        	
