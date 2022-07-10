@@ -177,9 +177,21 @@ public class Main
 		
 		post("app/addClanarina", (req, res) -> 
 		{
-			String body = req.body();	
-			clanarine.AddClanarina(body);
-			return gson.toJson("Upesno ste izmenili aktivnost.");
+			Korisnik korisnik = getKorisnikByJWT(req, res);
+			if(korisnik != null)
+			{
+				String nazivClanarine = req.body();	
+				clanarine.AddClanarina(nazivClanarine, korisnik.getKorisnickoIme());
+				System.out.println("Clanarina dodata!");
+				return gson.toJson("Upesno ste izmenili aktivnost.");
+			}
+			else 
+			{					
+
+				System.out.println("Clanarina dodata!");
+				return gson.toJson("Upesno ste izmenili aktivnost.");
+			}
+			
 		});
 		
 	
@@ -193,8 +205,26 @@ public class Main
 		post("app/getClanarinaWithKorisnickoIme", (req, res) -> 
 		{
 			Korisnik korisnik = getKorisnikByJWT(req, res);
-			System.out.print(korisnik.getKorisnickoIme());		
-			return gson.toJson(clanarine.getClanarinaByKorisnik(korisnik.getKorisnickoIme()));
+			
+			if(korisnik != null) 
+			{
+				System.out.println(korisnik.getKorisnickoIme());
+				Clanarina clanarina = clanarine.getClanarinaByKorisnickoIme(korisnik.getKorisnickoIme());
+				if(clanarina != null)
+				{
+					return gson.toJson(clanarina);
+				}
+				else
+				{
+					System.out.println("Nema te clanarinu!");
+					return gson.toJson("Nema te clanarinu!");
+				}
+			}
+			else
+			{
+				System.out.println("Korisnik je null");
+				return gson.toJson("KORISNIK JE NULL!");
+			}
 		});
 		
 		
