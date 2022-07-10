@@ -168,7 +168,7 @@
 				</thead>
 	
 				<tbody>
-					<tr v-for="p in filtriraniObjekti" onclick="window.location.href='prikaziSportskiObjekat.html'" >
+					<tr v-for="p in filtriraniObjekti" v-on:click="pogledajObjekat(p.id)" >
 						<td>{{p.naziv }}</td>
 						<td>{{p.status == 0 ? 'Ne radi' : 'Radi' }}</td>
 						<td>{{p.tipObjekta }}</td>

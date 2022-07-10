@@ -95,7 +95,7 @@
 </head>
 
 <body>
-	 <div class="welcome" id="sadrzaj-app">
+	 <div class="welcome" id="prikaz-sportskog-objekta-app">
 			<nav class="navbar navbar-expand  fixed-top" style="background-color: #3E1D57; ">
                 <h1><a  class="naslov"  class="navbar-brand" style="color: white ; font-family:Roboto">Sadrzaji</a></h1>
                 <div class="collapse navbar-collapse">
@@ -120,15 +120,15 @@
 		
 		<div class="logo">
 			<table cellspacing="10" cellpadding="10">
-				<td><img  src="Images/login.png" class="img-thumbnail" width="150" height="150" ></td>
-				<td style="color: white; font-family:Roboto"><h2>IME</h2></td>	
+				<td><img :src="prikaziSliku(sportskiObjekat.slika)" class="img-thumbnail" width="150" height="150" ></td>
+				<td style="color: white; font-family:Roboto"><h2>{{sportskiObjekat.naziv}}</h2></td>	
 			</table>		
 		</div>
 		
 		<div class="ocena">
 			<table>
-				<td style="color: white; font-family:Roboto"><h4>Ocena:</h4></td>
-				<td style="color: white; font-family:Roboto"><h4>4.33</h4></td>		
+				<td style="color: white; font-family:Roboto"><h4>Ocena: </h4></td>
+				<td style="color: white; font-family:Roboto"><h4>{{sportskiObjekat.prosecnaOcena}}</h4></td>		
 			</table>		
 		</div>
 		
@@ -146,12 +146,90 @@
 						<th>Kraj randog vremena</th>
 					</tr>
 				</thead>
-	 
-				<tr v-for="p in radnoVreme">
-					<td>{{p.dan }}</td>
-					<td>{{p.pocetakRadnogVremena }}</td>
-					<td>{{p.krajRadnogVremena }}</td>
-				</tr>
+	 			<div>
+					<tr v-if="sportskiObjekat.radnoVreme.ponedeljakDan.radniDan">
+						<td>{{sportskiObjekat.radnoVreme.ponedeljakDan.imeDana}}</td>
+						<td>{{sportskiObjekat.radnoVreme.ponedeljakDan.danStart}}</td>
+						<td>{{sportskiObjekat.radnoVreme.ponedeljakDan.danEnd}}</td>
+					</tr>
+					<tr v-else>
+						<td>{{sportskiObjekat.radnoVreme.ponedeljakDan.imeDana}}</td>
+						<td>NE RADIMO</td>
+						<td>NE RADIMO</td>
+					</tr>
+				</div>
+	 			<div>
+					<tr v-if="sportskiObjekat.radnoVreme.utorakDan.radniDan">
+						<td>{{sportskiObjekat.radnoVreme.utorakDan.imeDana}}</td>
+						<td>{{sportskiObjekat.radnoVreme.utorakDan.danStart}}</td>
+						<td>{{sportskiObjekat.radnoVreme.utorakDan.danEnd}}</td>
+					</tr>
+					<tr v-else>
+						<td>{{sportskiObjekat.radnoVreme.utorakDan.imeDana}}</td>
+						<td>NE RADIMO</td>
+						<td>NE RADIMO</td>
+					</tr>
+				</div>
+	 			<div>
+					<tr v-if="sportskiObjekat.radnoVreme.sredaDan.radniDan">
+						<td>{{sportskiObjekat.radnoVreme.sredaDan.imeDana}}</td>
+						<td>{{sportskiObjekat.radnoVreme.sredaDan.danStart}}</td>
+						<td>{{sportskiObjekat.radnoVreme.sredaDan.danEnd}}</td>
+					</tr>
+					<tr v-else>
+						<td>{{sportskiObjekat.radnoVreme.sredaDan.imeDana}}</td>
+						<td>NE RADIMO</td>
+						<td>NE RADIMO</td>
+					</tr>
+				</div>
+	 			<div>
+					<tr v-if="sportskiObjekat.radnoVreme.cetvrtakDan.radniDan">
+						<td>{{sportskiObjekat.radnoVreme.cetvrtakDan.imeDana}}</td>
+						<td>{{sportskiObjekat.radnoVreme.cetvrtakDan.danStart}}</td>
+						<td>{{sportskiObjekat.radnoVreme.cetvrtakDan.danEnd}}</td>
+					</tr>
+					<tr v-else>
+						<td>{{sportskiObjekat.radnoVreme.cetvrtakDan.imeDana}}</td>
+						<td>NE RADIMO</td>
+						<td>NE RADIMO</td>
+					</tr>
+				</div>
+	 			<div>
+					<tr v-if="sportskiObjekat.radnoVreme.petakDan.radniDan">
+						<td>{{sportskiObjekat.radnoVreme.petakDan.imeDana}}</td>
+						<td>{{sportskiObjekat.radnoVreme.petakDan.danStart}}</td>
+						<td>{{sportskiObjekat.radnoVreme.petakDan.danEnd}}</td>
+					</tr>
+					<tr v-else>
+						<td>{{sportskiObjekat.radnoVreme.petakDan.imeDana}}</td>
+						<td>NE RADIMO</td>
+						<td>NE RADIMO</td>
+					</tr>
+				</div>
+	 			<div>
+					<tr v-if="sportskiObjekat.radnoVreme.subotaDan.radniDan">
+						<td>{{sportskiObjekat.radnoVreme.subotaDan.imeDana}}</td>
+						<td>{{sportskiObjekat.radnoVreme.subotaDan.danStart}}</td>
+						<td>{{sportskiObjekat.radnoVreme.subotaDan.danEnd}}</td>
+					</tr>
+					<tr v-else>
+						<td>{{sportskiObjekat.radnoVreme.subotaDan.imeDana}}</td>
+						<td>NE RADIMO</td>
+						<td>NE RADIMO</td>
+					</tr>
+				</div>
+	 			<div>
+					<tr v-if="sportskiObjekat.radnoVreme.nedeljaDan.radniDan">
+						<td>{{sportskiObjekat.radnoVreme.nedeljaDan.imeDana}}</td>
+						<td>{{sportskiObjekat.radnoVreme.nedeljaDan.danStart}}</td>
+						<td>{{sportskiObjekat.radnoVreme.nedeljaDan.danEnd}}</td>
+					</tr>
+					<tr v-else>
+						<td>{{sportskiObjekat.radnoVreme.nedeljaDan.imeDana}}</td>
+						<td>NE RADIMO</td>
+						<td>NE RADIMO</td>
+					</tr>
+				</div>
 			</table>
 		</div>
 
@@ -195,25 +273,11 @@
 				</tr>
 			</table>
 		</div>
-		
-		<div class="oNama">
-			<table>
-				<td style="color: white; font-family:Roboto"><h4>O nama</h4></td>					
-			</table>		
-		</div>
-		<div class="textarea">
-			<input type="text" id="textArea" name="textArea" style="font-size: 18pt; height: 100px; width:580px; ">
-		</div>
-		
-		
-		
-		
-		
   
 		</div>	
 	 	<script src="js/vue.js"></script>
         <script src="js/axios.js"></script>
-        <script src="js/"></script>
+        <script src="js/prikazSportskogObjekta.js"></script>
 </body>
 
 </html>

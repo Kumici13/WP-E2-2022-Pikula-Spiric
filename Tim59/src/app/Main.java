@@ -227,7 +227,33 @@ public class Main
 			}
 		});
 		
-		
+		post("app/getSportskiObjekatWithID", (req, res) -> 
+		{
+			Korisnik korisnik = getKorisnikByJWT(req, res);
+			
+			if(korisnik != null) 
+			{
+				//if(korisnik.getUloga() == Uloga.Kupac) 
+				{
+					String idSportskogObjektaString = req.headers("idSporskogObjekta");
+					SportskiObjekat sportskiObjekat = sportskiObjekti.getSportskiObjekatById(idSportskogObjektaString);
+					if(sportskiObjekat != null)
+					{
+						return gson.toJson(sportskiObjekat);
+					}
+					else
+					{
+						System.out.println("Nema tog objekta");
+						return gson.toJson("Nema tog objekta");
+					}
+				}
+			}
+			else
+			{
+				System.out.println("Korisnik je null");
+				return gson.toJson("KORISNIK JE NULL!");
+			}
+		});
 		
 		get("app/getSlobodniMenadzeri", (req, res) -> 
 		{
