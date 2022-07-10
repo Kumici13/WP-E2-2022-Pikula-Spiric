@@ -263,24 +263,31 @@
 						<th>Naziv</th>
 						<th>Tip treninga</th>
 						<th>Opis</th>
+						<th>Trening start</th>
+						<th>Trening kraj</th>
 						<th>Trener</th>
 						<th>Cena</th>
 						<th v-if="uloga==='0'">Zakazi</th>
+						</tr>
 				</thead>
 	 
+				<td v-if="filterPrazan()">NEMA TRENINGA ZA TAJ DAN</td>		
 				<tr v-for="p in filterSadrzaji">
-					<td><img :src="prikaziSliku(p.slika)" class="img-thumbnail" width="150" height="150" ></td>
-					<td>{{p.naziv }}</td>
-					<td>{{p.tip }}</td>
-					<td>{{p.opis }}</td>
-					<td v-if="p.trener">{{p.trener.ime}} {{p.trener.prezime}}  </td>
-					<td v-else>Nema</td>
-					<td>{{p.cena }}</td>
-					<td v-if="uloga==='0'"><input type = "button" value="Zakazi" v-on:click="zakaziTrening(p.id)"></td>
+				
+						<td><img :src="prikaziSliku(p.slika)" class="img-thumbnail" width="150" height="150" ></td>
+						<td>{{p.naziv }}</td>
+						<td>{{p.tip }}</td>
+						<td>{{p.opis }}</td>
+						<td>{{prikaziStart(p) }}</td>
+						<td>{{prikaziKraj(p) }}</td>
+						<td v-if="p.trener">{{p.trener.ime}} {{p.trener.prezime}}  </td>
+						<td v-else>Nema</td>
+						<td>{{p.cena }}</td>
+						<td v-if="uloga==='0'"><input type = "button" value="Zakazi" v-on:click="zakaziTrening(p.id)"></td>
 				</tr>
 			</table>
 		</div>
-  
+  <input type = "button" value="Zakazi" v-on:click="filterPrazan()">
 		</div>	
 	 	<script src="js/vue.js"></script>
         <script src="js/axios.js"></script>

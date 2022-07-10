@@ -59,7 +59,6 @@ new Vue({
             .then(response => 
 			{
                 this.sadrzaji = response.data;
-            	console.log(this.sadrzaji);
 			})
             .catch(error => 
 			{
@@ -104,7 +103,93 @@ new Vue({
 		zakaziTrening: function(treningId)
 		{
             alert("Trening uspesno zakazan!");
-        }
+        },
+
+		prikaziStart: function(objekat)
+		{	
+			var d = new Date();
+			d.setDate(d.getDate() + this.brojac);   
+			let day = d.getDay();
+				if(day == 0)
+				{
+					return objekat.radnoVreme.nedeljaDan.danStart;
+				}
+				else if(day == 1)
+				{
+					return objekat.radnoVreme.ponedeljakDan.danStart;
+				}
+				else if(day == 2)
+				{
+					return objekat.radnoVreme.utorakDan.danStart;
+				}
+				else if(day == 3)
+				{
+					return objekat.radnoVreme.sredaDan.danStart;
+				}
+				else if(day == 4)
+				{
+					return objekat.radnoVreme.cetvrtakDan.danStart;
+				}
+				else if(day == 5)
+				{
+					return objekat.radnoVreme.petakDan.danStart;
+				}
+				else if(day == 6)
+				{
+					return objekat.radnoVreme.subotaDan.danStart;
+				}		
+		},
+		
+		prikaziKraj: function(objekat)
+		{
+			var d = new Date();
+			d.setDate(d.getDate() + this.brojac);   
+			let day = d.getDay();
+				if(day == 0)
+				{
+					return objekat.radnoVreme.nedeljaDan.danEnd;
+				}
+				else if(day == 1)
+				{
+					return objekat.radnoVreme.ponedeljakDan.danEnd;
+				}
+				else if(day == 2)
+				{
+					return objekat.radnoVreme.utorakDan.danEnd;
+				}
+				else if(day == 3)
+				{
+					return objekat.radnoVreme.sredaDan.danEnd;
+				}
+				else if(day == 4)
+				{
+					return objekat.radnoVreme.cetvrtakDan.danEnd;
+				}
+				else if(day == 5)
+				{
+					return objekat.radnoVreme.petakDan.danEnd;
+				}
+				else if(day == 6)
+				{
+					return objekat.radnoVreme.subotaDan.danEnd;
+				}
+		},
+		
+		filterPrazan: function()
+		{
+			var i;
+			for (i in this.filterSadrzaji) 
+			{
+				
+			}
+			
+			if(i == null)
+			{
+				return true;
+			}
+			
+			return false;	
+		}
     },
 	computed:   
 	{
@@ -113,7 +198,6 @@ new Vue({
 		    var d = new Date();
 			d.setDate(d.getDate() + this.brojac);   
 			let day = d.getDay();
-			console.log(day);
             return this.sadrzaji.filter((objekat) => 
 			{	
 				if(day == 0)
