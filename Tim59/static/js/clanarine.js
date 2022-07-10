@@ -5,23 +5,14 @@ new Vue({
 		clanarine: [],
 		//changeActivityOfClanarine: [],
         pretragaClanarine: '',
+        tipTr: '',
+        brTr: '',
+        brUlazaka: '',
+        cena: '',
       
       
     },
-    mounted()  
-	{
-        axios
-            .get('app/getclanarine')
-            .then(response => 
-			{
-                this.clanarine = response.data;
-            })
-            .catch(error => 
-			{
-                console.log(error);
-                alert(error.response.data.sadrzaj);
-            });
-    },
+   
     methods:    
 	{
         ulogovanKorisnik: function()    
@@ -29,23 +20,24 @@ new Vue({
             return window.localStorage.getItem('jwt') != null;
         },
         
-   /*    changeActivityOfClanarine: function(regKorisnik)
-       {
-		this.korisnickoIme =  regKorisnik 
+        setClassic: function()
+		{
+			 window.localStorage.setItem("clanarina", 'Classic');
+			 window.location.href='odaberi.html';
+		},
 		
-		axios
-            .post('app/changeActivityOfClanarine' , this.korisnickoIme )
-            .then(response => 
-			{
-                this.changeActivityOfUser = response.data;
-            })
-            .catch(error => 
-			{
-                console.log(error);
-                
-            });
-	
-	   } */
+		setStudioClassic: function()
+		{
+			window.localStorage.setItem("clanarina", 'StudioClassic');
+			window.location.href='odaberi.html';
+		},
+		
+		setStudioElite: function()
+		{
+			window.localStorage.setItem("clanarina", 'StudioElite');
+			window.location.href='odaberi.html';
+		},
+ 
        	
     },
     computed:   

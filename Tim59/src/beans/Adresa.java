@@ -1,15 +1,24 @@
 package beans;
 
+import com.google.gson.annotations.Expose;
+
 public class Adresa {
-	
+
+	@Expose
 	private String ulica;
-	private int broj;
+
+	@Expose
+	private String broj;
+
+	@Expose
 	private String mesto;
+
+	@Expose
 	private int postanskiBroj;
 	
 	public Adresa() {}
 	
-	public Adresa(String ulica, int broj, String mesto, int postanskiBroj) {
+	public Adresa(String ulica, String broj, String mesto, int postanskiBroj) {
 		
 		this.ulica = ulica;
 		this.broj = broj;
@@ -25,11 +34,11 @@ public class Adresa {
 		this.ulica = ulica;
 	}
 
-	public int getBroj() {
+	public String getBroj() {
 		return broj;
 	}
 
-	public void setBroj(int broj) {
+	public void setBroj(String broj) {
 		this.broj = broj;
 	}
 

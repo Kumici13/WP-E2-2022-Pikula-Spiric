@@ -1,7 +1,1 @@
-nikolas;12345678;Nikola;Spiric;Muski;null;clanarina;null;0.0
-markom;12345678;Marko;Markovic;Muski;null;clanarina;null;0.0
-Dzoni;dzoni123;Nikola;Spiric;Muski;null
-Gravarini;gravarini12;Milos;Gravara;Muski;null
-Sima;simasima;Sima;Kesic;Muski;null
-Jovke;jovkef89;Jovan;Spiric;Muski;null
-Trenerkica;trenerkica;Trener;Treneric;Zenski;null
+{"sakupljeniBodovi":0.0,"korisnickoIme":"korisnik","sifra":"korisnik123","ime":"Korisnik","prezime":"Korisnikic","pol":"0","uloga":"0","aktivan":true}

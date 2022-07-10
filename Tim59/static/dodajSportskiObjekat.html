@@ -50,15 +50,16 @@
 </head>
 
 <body>
-		<div class="welcome" id="register-app">
+		<div class="welcome" id="dodaj-sportski-objekat-app">
 			<nav class="navbar navbar-expand  fixed-top" style="background-color: #3E1D57; ">
                 <h1><a  class="naslov"  class="navbar-brand" style="color: white ; font-family:Roboto">Dodavanje novog sportskog objekta</a></h1>
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a href="index.html" class="nav-link" style="color: white; font-family:Roboto">Pocetna</a></li>
+                        <li class="nav-item"><a href="administratorHome.html" class="nav-link" style="color: white; font-family:Roboto">Pocetna</a></li>
                         <li class="nav-item"><a href="sportskiobjekti.html" class="nav-link" style="color: white; font-family:Roboto">Sportski objekti</a></li>
-                        <li class="nav-item"><a href="login.html" class="nav-link" style="color: white; font-family:Roboto">Uloguj se</a></li>
-                        <li class="nav-item"><a href="registration.html" class="nav-link" style="color: white; font-family:Roboto">Registruj se</a></li>
+                        <li class="nav-item"><a href="regkorisnici.html" class="nav-link" style="color: white; font-family:Roboto">Registrovani korisnici</a></li>
+                        <li class="nav-item"><a href="registrationAdministrator.html" class="nav-link" style="color: white; font-family:Roboto">Registruj korisnika</a></li>
+                        <li class="nav-item"><a href="javascript:window.localStorage.removeItem('jwt'); window.location = 'login.html';" class="nav-link" style="color: white; font-family:Roboto">Odjavi se</a></li>
                     </ul>
                 </div>
             </nav>
@@ -70,54 +71,133 @@
 			<div class="pocetni">
                     <h1  style="color: white; font-family:Roboto" >Dodaj novi sportski objekat:</h1>
             </div>
+            
+	            
+            <div class = "textboxovi">
+                <label  style="color: white; font-family:Roboto" >Menadzer:</label>
+            	<select v-model="menadzer" style="width: 400px; height: 35px; font-family:Roboto " >
+                	<option  v-for = "m in slobodniMenadzeri" v-bind:id="m.korisnickoIme " v-bind:value="m.korisnickoIme">{{m.korisnickoIme}}</option>
+                </select> 
+            </div>
+            
             <div class="textboxovi" >
                     <label  style="color: white; font-family:Roboto" >Naziv:</label>
-                    <input id="ime" ref="ime" v-model:value="ime" type="textbox" style="width: 400px; height: 35px">  
+                    <input id="naziv" ref="naziv" v-model="naziv" type="textbox" style="width: 400px; height: 35px">  
                     <div class="invalid-feedback">Ukucajte vase ime.</div> 
-            </div>    
+            </div>   
+             <div class="textboxovi"> 
+             	<label  style="color: white; font-family:Roboto" >Tip objekta:</label>
+	            <select id = "tipObjekta" ref = "tipObjekta" v-model="tipObjekta" style="width: 400px; height: 35px; font-family:Roboto " >
+	                        <option value="Teretana">Teretana</option>
+	                        <option value="Bazen">Bazen</option>
+	                        <option value="SportskiCentar">Sportski centar</option>
+	                        <option value="PlesniStudio">Plesni studio</option>
+	                        <option value="Drugo">Ostalo</option>
+	            </select> 
+	            <div class="invalid-feedback">Ukucajte vase ime.</div> 
+            </div>          
             <div class="textboxovi">
-                    <label  style="color: white; font-family:Roboto" >Status:</label>
-                    <input id="prezime" ref="prezime" v-model:value="prezime" type="textbox" style="width: 400px; height: 35px">   
-                    <div class="invalid-feedback">Ukucajte vase prezime.</div>
-            </div>  
-            <div class="textboxovi">
-                    <label  style="color: white; font-family:Roboto" >Tip objekta:</label>
-                    <input id="korisnickoIme" ref="korisnickoIme" v-model:value="korisnickoIme" type="textbox" style="width: 400px; height: 35px">   
-                    <div class="invalid-feedback">Ukucajte vase korisnicko ime. Dozvoljena su slova, brojevi i crtica!</div>
-            </div>  
-             <div class="textboxovi">
-                    <label  style="color: white; font-family:Roboto" >Sadrzaj:</label>
-                    <input id="sifra" ref="sifra" v-model:value="sifra" type="password" style="width: 400px; height: 35px">   
-                    <div class="invalid-feedback">Sifre moraju da se poklapaju.Ukucajte najmanje 8 karaktera!</div>
+                    <label  style="color: white; font-family:Roboto" >Geo duzina:</label>
+                    <input id="geoDuzina" ref="geoDuzina" v-model="geoDuzina" type="textbox" style="width: 400px; height: 35px">   
+            		<div class="invalid-feedback">Ukucajte vase ime.</div> 
             </div> 
             <div class="textboxovi">
-                    <label  style="color: white; font-family:Roboto" >Lokacija:</label>
-                    <input id="sifraPonovo" ref="sifraPonovo" v-model:value="sifraPonovo" type="password" style="width: 400px; height: 35px">   
-            		<div class="invalid-feedback">Sifre moraju da se poklapaju.</div>
+                    <label  style="color: white; font-family:Roboto" >Geo sirina:</label>
+                    <input id="geoSirina" ref="geoSirina" v-model="geoSirina" type="textbox" style="width: 400px; height: 35px">   
+            		<div class="invalid-feedback">Ukucajte vase ime.</div> 
+            </div> 
+            <div class="textboxovi">
+                    <label  style="color: white; font-family:Roboto" >Ulica:</label>
+                    <input id="ulica" ref="ulica" v-model="ulica" type="textbox" style="width: 400px; height: 35px">   
+            		<div class="invalid-feedback">Ukucajte vase ime.</div> 
+            </div> 
+            <div class="textboxovi">
+                    <label  style="color: white; font-family:Roboto" >Broj:</label>
+                    <input id="broj" ref="broj" v-model="broj" type="textbox" style="width: 400px; height: 35px">   
+            		<div class="invalid-feedback">Ukucajte vase ime.</div> 
+            </div> 
+            <div class="textboxovi">
+                    <label  style="color: white; font-family:Roboto" >Mesto:</label>
+                    <input id="mesto" ref="mesto" v-model="mesto" type="textbox" style="width: 400px; height: 35px">   
+            </div> 
+            <div class="textboxovi">
+                    <label  style="color: white; font-family:Roboto" >Postanski broj:</label>
+                    <input id="postanskiBroj" ref="postanskiBroj" v-model="postanskiBroj" type="textbox" style="width: 400px; height: 35px">   
+            		<div class="invalid-feedback">Ukucajte vase ime.</div> 
             </div> 
             <div class="textboxovi">
                     <label style="color: white; font-family:Roboto">Logo:</label>
-                     <input id="sifraPonovo" ref="sifraPonovo" v-model:value="sifraPonovo" type="password" style="width: 400px; height: 35px">   
+                    <input id="logo" ref="logo" type="file" accept=".jpg,.png,.jpeg" v-on:change="preuzmiSliku()" style="width: 400px; height: 60px">   
+             		<div class="invalid-feedback">Ukucajte vase ime.</div> 
              </div>
-             <div class="textboxovi">
-                    <label style="color: white; font-family:Roboto">Prosecna ocena:</label>
-                     <input id="sifraPonovo" ref="sifraPonovo" v-model:value="sifraPonovo" type="password" style="width: 400px; height: 35px">   
-             </div>
-             <div class="textboxovi">
-                    <label style="color: white; font-family:Roboto">Radno vreme:</label>
-                     <input id="sifraPonovo" ref="sifraPonovo" v-model:value="sifraPonovo" type="password" style="width: 400px; height: 35px">   
-             </div>
+
+
+			<table border = "1px solid black" align="center" style="background-color:white">
+			  <tr>
+			  	<th>Dan</th>
+			  	<th>Pocetak</th>
+			  	<th>Kraj</th>
+			  </tr>
+			  <tr>
+			      <td>Ponedeljak: <input checked type="checkbox" v-on:click="aktivirajTime('ponedeljakStart','ponedeljakEnd')" v-model="ponedeljakEnabled"  id="ponedeljakEnabled"></td>
+			      <td><input type ="time" v-model="ponedeljakStart" id="ponedeljakStart" v-on:change="minTime('ponedeljakStart','ponedeljakEnd')"/></td>
+			      <td><input type ="time" v-model="ponedeljakEnd" id="ponedeljakEnd" v-on:change="minTime('ponedeljakStart','ponedeljakEnd')"/></td>
+			  </tr>
+			
+			  <tr>
+			      <td>Utorak: <input checked type="checkbox" v-model="utorakEnabled" v-on:click="aktivirajTime('utorakStart','utorakEnd')" id="utorakEnabled"></td>
+			      <td><input type ="time" v-model="utorakStart" id="utorakStart" v-on:change="minTime('utorakStart','utorakEnd')"/></td>
+			      <td><input type ="time" v-model="utorakEnd" id="utorakEnd" v-on:change="minTime('utorakStart','utorakEnd')"/></td>
+			  </tr>
+			
+			  <tr>
+			      <td>Sreda: <input checked v-model="sredaEnabled" type="checkbox" v-on:click="aktivirajTime('sredaStart','sredaEnd')" id="sredaEnabled"></td>
+			      <td><input type ="time" v-model="sredaStart" id="sredaStart" v-on:change="minTime('sredaStart','sredaEnd')"/></td>
+			      <td><input type ="time" v-model="sredaEnd" id="sredaEnd" v-on:change="minTime('sredaStart','sredaEnd')"/></td>
+			  </tr>
+			
+			  <tr>
+			      <td>Cetvrtak: <input checked v-model="cetvrtakEnabled" type="checkbox" v-on:click="aktivirajTime('cetvrtakStart','cetvrtakEnd')" id="cetvrtakEnabled"></td>
+			      <td><input type ="time" v-model="cetvrtakStart" id="cetvrtakStart" v-on:change="minTime('cetvrtakStart','cetvrtakEnd')"/></td>
+			      <td><input type ="time" v-model="cetvrtakEnd" id="cetvrtakEnd" v-on:change="minTime('cetvrtakStart','cetvrtakEnd')"/></td>
+			  </tr>
+			
+			  <tr>
+			      <td>Petak: <input  v-model="petakEnabled" checked type="checkbox" v-on:click="aktivirajTime('petakStart','petakEnd')" id="petakEnabled"></td>
+			      <td><input type ="time" v-model="petakStart" id="petakStart" v-on:change="minTime('petakStart','petakEnd')"/></td>
+			      <td><input type ="time" v-model="petakEnd" id="petakEnd" v-on:change="minTime('petakStart','petakEnd')"/></td>
+			  </tr>
+			
+			  <tr>
+			      <td>Subota: <input checked v-model="subotaEnabled" type="checkbox" min ="" v-on:click="aktivirajTime('subotaStart','subotaEnd')" id="subotaEnabled"></td>
+			      <td><input type ="time" v-model="subotaStart" id="subotaStart" v-on:change="minTime('subotaStart','subotaEnd')"/></td>
+			      <td><input type ="time" v-model="subotaEnd" id="subotaEnd" v-on:change="minTime('subotaStart','subotaEnd')"/></td>
+			  </tr>
+			
+			  <tr>
+			      <td>Nedelja: <input checked v-model="nedeljaEnabled" type="checkbox" v-on:click="aktivirajTime('nedeljaStart','nedeljaEnd')" id="nedeljaEnabled"></td>
+			      <td><input type ="time" v-model="nedeljaStart" id="nedeljaStart" v-on:change="minTime('nedeljaStart','nedeljaEnd')"/></td>
+			      <td><input type ="time" v-model="nedeljaEnd" id="nedeljaEnd" v-on:change="minTime('nedeljaStart','nedeljaEnd')"/></td>
+			  </tr>
+			</table>
+			
+			
+	
              <div class="tablebutton">
                     <button v-on:click.prevent="provera"  class="btn btn-outline-light">Dodaj</button>
              </div>
 	      </form>
-            
+            			<div class="col" align="center">
+								<p id="err_msg" ref="err_msg" style="color: red;"></p>
+							</div>
+						</div>
         	</div>
         </div>   
         
         <script src="./js/vue.js"></script>
         <script src="./js/axios.js"></script>
-        <script src="./js/registration.js"></script>
+        <script src="./js/dodajSportskiObjekat.js"></script>
+        
 </body>
 
 </html>

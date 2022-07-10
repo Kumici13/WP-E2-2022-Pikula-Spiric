@@ -3,10 +3,12 @@ new Vue({
     data:   
 	{
 		regKorisnici: [],
+		changeActivityOfUser: [],
      	pretragaIme: '',
         pretragaPrezime: '',
         pretragaKorisnickoIme: '',
-        filtriranje: ''
+        filtriranje: '',
+      
     },
     mounted()  
 	{
@@ -28,6 +30,24 @@ new Vue({
 		{
             return window.localStorage.getItem('jwt') != null;
         },
+        
+       changeActivity: function(regKorisnik)
+       {
+		this.korisnickoIme =  regKorisnik 
+		
+		axios
+            .post('app/changeActivityOfUser' , this.korisnickoIme )
+            .then(response => 
+			{
+                this.changeActivityOfUser = response.data;
+            })
+            .catch(error => 
+			{
+                console.log(error);
+                
+            });
+	
+	   }
        	
     },
     computed:   

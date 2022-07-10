@@ -1,18 +1,40 @@
 package beans;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.util.Base64;
+import java.util.Date;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.annotations.Expose;
+
 import enums.TipObjektaEnum;
 
-public class SportskiObjekat {
+public class SportskiObjekat 
+{
+
 	
+	@Expose
 	private String id;
+	@Expose
 	private String naziv;
+	@Expose
 	private Boolean status;
+	@Expose
 	private TipObjektaEnum tipObjekta;
+	@Expose
 	private String[] sadrzaj;
+	@Expose
 	private Lokacija lokacija;
+	@Expose
+	private String logo = "null";
 	private String slika;
+	@Expose
 	private double prosecnaOcena;
-	private String radnoVreme;
+	@Expose
+	private RadnoVreme radnoVreme;
 	
 	public SportskiObjekat()
 	{
@@ -21,8 +43,25 @@ public class SportskiObjekat {
 	
 	
 
+	public String getLogo() {
+		return logo;
+	}
+
+
+
+	public void setLogo(String logo) 
+	{
+		this.logo = logo;
+		if(logo != "null") 
+		{
+			this.slika = ucitajSliku("./static/Images/SportskiObjekat/" + this.logo);
+		}
+	}
+
+
+
 	public SportskiObjekat(String id, String naziv, Boolean status, TipObjektaEnum tipObjekta, String[] sadrzaj,
-			Lokacija lokacija, String slika, double prosecnaOcena, String radnoVreme) {
+			Lokacija lokacija, String logo, double prosecnaOcena, RadnoVreme radnoVreme) {
 		super();
 		this.id = id;
 		this.naziv = naziv;
@@ -30,9 +69,10 @@ public class SportskiObjekat {
 		this.tipObjekta = tipObjekta;
 		this.sadrzaj = sadrzaj;
 		this.lokacija = lokacija;
-		this.slika = slika;
+		this.logo = logo;
 		this.prosecnaOcena = prosecnaOcena;
 		this.radnoVreme = radnoVreme;
+		this.slika = ucitajSliku("./static/Images/SportskiObjekat/" + this.logo);
 	}
 
 
@@ -46,7 +86,25 @@ public class SportskiObjekat {
 		String s = "";
 		for(int i = 0; i < sadrzaj.length;i++)
 		{
-			s+= sadrzaj[0] + " ";
+			s+= sadrzaj[i] + " ";
+		}
+		
+		return s;
+	}
+	
+	public String getSadrzajSaveFormat()
+	{
+		String s = "";
+		for(int i = 0; i < sadrzaj.length;i++)
+		{
+			if(i == 0)
+			{
+				s = sadrzaj[0];
+			}
+			else 
+			{
+				s+= "," + sadrzaj[i];
+			}
 		}
 		
 		return s;
@@ -118,16 +176,26 @@ public class SportskiObjekat {
 
 
 
-	public String getSlika() {
+	public String getSlika() 
+	{
+		this.slika =  ucitajSliku("./static/Images/SportskiObjekat/" + this.logo);
 		return slika;
 	}
-
-
-
-	public void setSlika(String slika) {
-		this.slika = slika;
+	
+	private String ucitajSliku(String putanja)	
+	{
+		try 
+		{
+			File file = new File(putanja);
+			String encodeImage = Base64.getEncoder().withoutPadding().encodeToString(Files.readAllBytes(file.toPath()));
+			return encodeImage;
+		} 
+		catch (Exception e) 
+		{
+			System.out.println("Slika sportskog objekta: " + putanja + " nije pronadjen.\r\n");
+			return null;
+		}
 	}
-
 
 
 	public double getProsecnaOcena() {
@@ -142,13 +210,13 @@ public class SportskiObjekat {
 
 
 
-	public String getRadnoVreme() {
+	public RadnoVreme getRadnoVreme() {
 		return radnoVreme;
 	}
 
 
 
-	public void setRadnoVreme(String radnoVreme) {
+	public void setRadnoVreme(RadnoVreme radnoVreme) {
 		this.radnoVreme = radnoVreme;
 	}
 	
@@ -157,6 +225,12 @@ public class SportskiObjekat {
 	{
 		return this.naziv + " - " + this.sadrzaj[0].toString() + " - " + this.tipObjekta +  " - " +prosecnaOcena;
 		
+	}
+	
+	public String toSaveFormat()
+	{
+		Gson gson =  new GsonBuilder().excludeFieldsWithoutExposeAnnotation().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
+		return gson.toJson(this)+"\n";
 	}
 	
 	

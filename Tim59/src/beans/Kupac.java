@@ -1,12 +1,21 @@
 package beans;
 
+import java.util.Date;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.annotations.Expose;
+
 import enums.Pol;
 import enums.Uloga;
 
 public class Kupac extends Korisnik {
-	
+	@Expose
 	private Clanarina clanarina;
+	@Expose
 	private String poseceniObjekti;
+	@Expose
 	private double sakupljeniBodovi;
 	
 	public Kupac() {
@@ -14,8 +23,8 @@ public class Kupac extends Korisnik {
 		this.uloga = Uloga.Kupac;
 	}
 	
-	public Kupac(String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, String datumRodjenja, Clanarina clanarina, String poseceniObjekti, double sakupljeniBodovi) {
-		super(korisnickoIme, lozinka, ime, prezime, pol, datumRodjenja, Uloga.Kupac);
+	public Kupac(String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, String datumRodjenja, Clanarina clanarina, String poseceniObjekti, double sakupljeniBodovi, boolean aktivan) {
+		super(korisnickoIme, lozinka, ime, prezime, pol, datumRodjenja, Uloga.Kupac, aktivan);
 		this.uloga = Uloga.Kupac;
 		this.clanarina = clanarina;
 		this.poseceniObjekti = poseceniObjekti;
@@ -47,8 +56,11 @@ public class Kupac extends Korisnik {
 	}
 	
 	@Override
-	public String toSaveFormat() {
-		return this.getKorisnickoIme() + ";" + this.getSifra() + ";" + this.getIme() + ";" + this.getPrezime() + ";" + this.getPol().name() + ";" + this.getDatumRodjenja() + ";"+ "clanarina" + ";"+ this.poseceniObjekti + ";"+ this.sakupljeniBodovi +"\n";
+	public String toSaveFormat() 
+	{
+		Gson gson =  new GsonBuilder().excludeFieldsWithoutExposeAnnotation().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
+		
+		return gson.toJson(this)+"\n";
 	}
 
 

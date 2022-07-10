@@ -5,6 +5,11 @@ new Vue({
         sifra: '',
         valid: true
     },
+	mounted()   
+	{
+		window.localStorage.removeItem('uloga');
+        window.localStorage.removeItem('jwt');
+	},
     methods:    {
         provera: function()  
 		{
@@ -59,9 +64,11 @@ new Vue({
 				{
                     if (response.data.hasOwnProperty('JWTToken'))   
 					{
-						console.log(response.data.uloga)
+						console.log(response.data.JWTToken)
                         window.localStorage.setItem('jwt', response.data.JWTToken);
-
+						window.localStorage.setItem('uloga', response.data.uloga);
+			
+							
                         let uloga = response.data.uloga;
                         if (uloga == 0) 
 						{
@@ -77,7 +84,7 @@ new Vue({
                         }
 						else if(uloga == 3)
 						{
-							window.location = "trenerHome";
+							window.location = "trenerHome.html";
 						}
 						
                     } 

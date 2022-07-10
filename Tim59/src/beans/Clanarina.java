@@ -1,16 +1,39 @@
 package beans;
 
+import java.time.LocalDate;
+import java.util.Date;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.annotations.Expose;
+
 import enums.TipClanarine;
 
 public class Clanarina {
-	
+
+	@Expose
 	private String identifikator;
+
+	@Expose
 	private TipClanarine tipClanarine;
+
+	@Expose
 	private String datumPlacanja;
+
+	@Expose
 	private String datumVazenja;
+
+	@Expose
 	private double cena;
-	private Kupac kupac;
-	private boolean status;
+
+	@Expose
+	private String kupacid;
+
+	@Expose
+	private boolean status = true;
+
+	@Expose
 	private int brojTermina;
 	
 	public Clanarina()
@@ -18,18 +41,20 @@ public class Clanarina {
 		
 	}
 
-	public Clanarina(String identifikator, TipClanarine tipClanarine, String datumPlacanja, String datumVazenja, double cena,
-			Kupac kupac, boolean status, int brojTermina) {
+
+	public Clanarina(String identifikator, TipClanarine tipClanarine, String datumPlacanja, String datumVazenja,
+			         double cena,  String kupacid, boolean status, int brojTermina) {
 		super();
 		this.identifikator = identifikator;
 		this.tipClanarine = tipClanarine;
 		this.datumPlacanja = datumPlacanja;
 		this.datumVazenja = datumVazenja;
 		this.cena = cena;
-		this.kupac = kupac;
+		this.kupacid = kupacid;
 		this.status = status;
 		this.brojTermina = brojTermina;
 	}
+
 
 	public String getIdentifikator() {
 		return identifikator;
@@ -46,6 +71,8 @@ public class Clanarina {
 	public void setTipClanarine(TipClanarine tipClanarine) {
 		this.tipClanarine = tipClanarine;
 	}
+
+	
 
 	public String getDatumPlacanja() {
 		return datumPlacanja;
@@ -71,14 +98,6 @@ public class Clanarina {
 		this.cena = cena;
 	}
 
-	public Kupac getKupac() {
-		return kupac;
-	}
-
-	public void setKupac(Kupac kupac) {
-		this.kupac = kupac;
-	}
-
 	public boolean isStatus() {
 		return status;
 	}
@@ -94,6 +113,24 @@ public class Clanarina {
 	public void setBrojTermina(int brojTermina) {
 		this.brojTermina = brojTermina;
 	}
+
+	public String getKupacid() {
+		return kupacid;
+	}
+
+	public void setKupacid(String kupacid) {
+		this.kupacid = kupacid;
+	}
+
+
+	public String toSaveFormat() 
+	{
+		Gson gson =  new GsonBuilder().excludeFieldsWithoutExposeAnnotation().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
+		return gson.toJson(this)+"\n";
+		
+	}
+	
+	
 	
 	
 

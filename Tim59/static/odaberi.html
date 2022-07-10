@@ -50,7 +50,7 @@
 </head>
 
 <body>
-		<div class="welcome" id="register-app">
+		<div class="welcome" id="odaberi-app">
 			<nav class="navbar navbar-expand  fixed-top" style="background-color: #3E1D57; ">
                 <h1><a  class="naslov"  class="navbar-brand" style="color: white ; font-family:Roboto">Odabrana clanarina</a></h1>
                 <div class="collapse navbar-collapse">
@@ -71,23 +71,29 @@
 			<div class="pocetni">
                     <h1  style="color: white; font-family:Roboto" >Potvrdi odabranu clanarinu:</h1>
             </div>          
-           
+            <div class="textboxovi">
+                    <label  style="color: white; font-family:Roboto" >Tip clanarine:</label>
+                    <input id="tip" disabled ref="tip" v-model:value="tip" type="textbox"  style="width: 400px; height: 35px">                     
+            </div> 
+            <div class="textboxovi">
+                    <label  style="color: white; font-family:Roboto" >Broj treninga:</label>
+                    <input id="brojTreninga" disabled ref="brojTreninga" v-model:value="brojTreninga" type="textbox"  style="width: 400px; height: 35px">                     
+            </div> 
+             <div class="textboxovi">
+                    <label  style="color: white; font-family:Roboto" >Cena:</label>
+                    <input id="cena" disabled ref="cena" v-model:value="cena" type="textbox"  style="width: 400px; height: 35px">                     
+            </div> 
             <div class="textboxovi">
                     <label  style="color: white; font-family:Roboto" >Datum placanja:</label>
-                    <input id="korisnickoIme" ref="korisnickoIme" v-model:value="korisnickoIme" type="textbox" readonly style="width: 400px; height: 35px">   
-                   
+                    <input id="datumPlacanja" disabled ref="datumPlacanja" v-model:value="datumPlacanja" type="textbox"  style="width: 400px; height: 35px">                     
             </div>  
              <div class="textboxovi">
                     <label  style="color: white; font-family:Roboto" >Datum vazenja:</label>
-                    <input id="sifra" ref="sifra" v-model:value="sifra" type="textbox"  readonly style="width: 400px; height: 35px">   
-                
+                    <input id="datumVazenja" disabled ref="datumVazenja" v-model:value="datumVazenja" type="textbox"   style="width: 400px; height: 35px">                
             </div> 
-            
-             
-                       
-           
+                     
              <div class="tablebutton">
-                    <button v-on:click.prevent="provera"  class="btn btn-outline-light">Potvrdi</button>
+                   <button type="button"  v-on:click.prevent="AktivirajClanarinu()"  class="btn btn-outline-light">Potvrdi</button>
              </div>
 	      </form>
              
@@ -96,7 +102,7 @@
         
         <script src="./js/vue.js"></script>
         <script src="./js/axios.js"></script>
-        <script src="./js/registration.js"></script>
+        <script src="./js/odaberi.js"></script>
 </body>
 
 </html>

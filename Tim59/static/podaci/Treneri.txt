@@ -1,1 +1,1 @@
-Suarez12;suarez12;Suarez;Suarezovic;Muski;null
+{"korisnickoIme":"trener","sifra":"trener123","ime":"TrenerIme","prezime":"TrenerPrezime","pol":"1","uloga":"3","aktivan":true}
