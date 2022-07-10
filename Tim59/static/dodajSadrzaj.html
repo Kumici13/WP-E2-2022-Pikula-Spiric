@@ -42,6 +42,10 @@
 				font-size: 30;
 				padding-left: 530px;
 			}
+			
+			.invalid-feedback {
+				padding-left: 140px;
+			}
 			     		
      		
             
@@ -74,7 +78,7 @@
             <div class="textboxovi" >
                     <label  style="color: white; font-family:Roboto" >Naziv:</label>
                     <input id="naziv" ref="naziv" v-model:value="naziv" type="textbox" style="width: 400px; height: 35px">  
-                    <div class="invalid-feedback">Ukucajte naziv sadrzaja ili je taj naziv vec iskoriscen!</div> 
+                     <div class="invalid-feedback" style="color: #F32424; font-family:Roboto">Ukucajte unikatan naziv za sadrzaj!</div> 
             </div>   
              <div class="textboxovi"> 
              	<label  style="color: white; font-family:Roboto" >Tip sadrzaja:</label>
@@ -84,12 +88,14 @@
 	                        <option value="Teretana">Teretana</option>
 	                        <option value="Drugo">Drugo</option>
 	            </select> 
+	              <div class="invalid-feedback" style="color: #F32424; font-family:Roboto">Odaberite tip sadrzaja!</div> 
             </div>
             <div class = "textboxovi">
                 <label  style="color: white; font-family:Roboto" >Trener:</label>
             	<select v-model:value="trenerid" style="width: 400px; height: 35px; font-family:Roboto " >
                 	<option  v-for = "m in treneri" v-bind:id="m.korisnickoIme " v-bind:value="m.korisnickoIme">{{m.korisnickoIme}}</option>
                 </select> 
+                <div class="invalid-feedback" style="color: #F32424; font-family:Roboto">Odabrite trenera!</div> 
             </div>
             <div class="textboxovi">
                     <label style="color: white; font-family:Roboto">Slika:</label>

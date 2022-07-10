@@ -42,10 +42,14 @@
 				font-size: 30;
 				padding-left: 530px;
 			}
-			     		
-     		
-            
-           
+			
+			.invalid-feedback {			
+				font-size: 23;
+				padding-bottom: 0px;
+				padding-top: 0px;
+				text-align: center;
+			}
+		        
         </style>
 </head>
 
@@ -73,27 +77,27 @@
             <div class="textboxovi" >
                     <label  style="color: white; font-family:Roboto" >Ime:</label>
                     <input id="ime" ref="ime" v-model:value="ime" type="textbox" style="width: 400px; height: 35px">  
-                    <div class="invalid-feedback">Ukucajte vase ime.</div> 
+                    <div class="invalid-feedback" style="color: #F32424; font-family:Roboto">Ukucajte vase ime!</div>               
             </div>    
             <div class="textboxovi">
                     <label  style="color: white; font-family:Roboto" >Prezime:</label>
                     <input id="prezime" ref="prezime" v-model:value="prezime" type="textbox" style="width: 400px; height: 35px">   
-                    <div class="invalid-feedback">Ukucajte vase prezime.</div>
+                    <div class="invalid-feedback" style="color: #F32424; font-family:Roboto">Ukucajte vase prezime!</div> 
             </div>  
             <div class="textboxovi">
                     <label  style="color: white; font-family:Roboto" >Korisnicko ime:</label>
                     <input id="korisnickoIme" ref="korisnickoIme" v-model:value="korisnickoIme" type="textbox" style="width: 400px; height: 35px">   
-                    <div class="invalid-feedback">Ukucajte vase korisnicko ime. Dozvoljena su slova, brojevi i crtica!</div>
+                    <div class="invalid-feedback" style="color: #F32424; font-family:Roboto">Ukucajte vase korisnicko ime. Dozvoljena su slova, brojevi i crtica!</div> 
             </div>  
              <div class="textboxovi">
                     <label  style="color: white; font-family:Roboto" >Lozinka:</label>
                     <input id="sifra" ref="sifra" v-model:value="sifra" type="password" style="width: 400px; height: 35px">   
-                    <div class="invalid-feedback">Sifre moraju da se poklapaju.Ukucajte najmanje 8 karaktera!</div>
+                    <div class="invalid-feedback" style="color: #F32424; font-family:Roboto">Sifre moraju da se poklapaju.Ukucajte najmanje 8 karaktera!</div> 
             </div> 
             <div class="textboxovi">
                     <label  style="color: white; font-family:Roboto" >Lozinka:</label>
                     <input id="sifraPonovo" ref="sifraPonovo" v-model:value="sifraPonovo" type="password" style="width: 400px; height: 35px">   
-            		<div class="invalid-feedback">Sifre moraju da se poklapaju.</div>
+            		<div class="invalid-feedback" style="color: #F32424; font-family:Roboto">Sifre moraju da se poklapaju!</div> 
             </div> 
             <div class="textboxovi">
                     <label style="color: white; font-family:Roboto">Pol:</label>
@@ -102,7 +106,7 @@
                         <option value="0">Zenski</option>
                         <option value="1">Muski</option>
                      </select>
-                     <div class="invalid-feedback">Morate uneti pol.</div>
+                    <div class="invalid-feedback" style="color: #F32424; font-family:Roboto">Morate uneti polove!</div> 
              </div>
              <div class="tablebutton">
                     <button v-on:click.prevent="provera"  class="btn btn-outline-light">Registruj</button>
