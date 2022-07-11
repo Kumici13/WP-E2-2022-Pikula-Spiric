@@ -1,0 +1,8 @@
+{"id":"1","datumVreme":"13/07/2022","treningId":"1","kupacId":"kupac123","active":true}
+{"id":"2","datumVreme":"13/07/2022","treningId":"2","kupacId":"kupac123","active":true}
+{"id":"3","datumVreme":"14/07/2022","treningId":"2","kupacId":"kupac123","active":true}
+{"id":"4","datumVreme":"15/07/2022","treningId":"1","kupacId":"kupac123","active":true}
+{"id":"5","datumVreme":"12/07/2022","treningId":"3","kupacId":"jovansp03","active":true}
+{"id":"6","datumVreme":"11/07/2022","treningId":"3","kupacId":"jovansp03","active":true}
+{"id":"7","datumVreme":"12/07/2022","treningId":"2","kupacId":"jovansp03","active":true}
+{"id":"8","datumVreme":"13/07/2022","treningId":"1","kupacId":"jovansp03","active":true}
