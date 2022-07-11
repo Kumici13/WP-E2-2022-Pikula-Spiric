@@ -1,1 +1,1 @@
-{"korisnickoIme":"trener","sifra":"trener123","ime":"TrenerIme","prezime":"TrenerPrezime","pol":"1","uloga":"3","aktivan":true}
+{"korisnickoIme":"trener","sifra":"trener123","ime":"TrenerIme","prezime":"TrenerPrezime","pol":"1","uloga":"3","aktivan":false}

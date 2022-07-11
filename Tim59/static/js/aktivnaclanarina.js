@@ -8,6 +8,7 @@ new Vue({
         brTr: '',
         brUlazaka: '',
         cena: '',
+        bodovi: '0',
       
       
     },
@@ -28,6 +29,27 @@ new Vue({
             .then(response => 
 			{
                 this.aktivneClanarine = response.data;
+
+
+            })
+            .catch(error => 
+			{
+                console.log(error);
+				alert(error.response.data.sadrzaj);
+            });
+            
+          axios
+            .post('app/getBodoviWithKorisnickoIme', jwt, 
+				{     
+                 headers: 
+					{
+                        'Content-Type': 'application/json',
+                        'Autorizacija': window.localStorage.getItem('jwt')                  
+                    }
+                })
+            .then(response => 
+			{
+                this.bodovi = response.data;
 
 
             })
