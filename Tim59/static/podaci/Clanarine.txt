@@ -1,1 +1,5 @@
-{"identifikator":"1","tipClanarine":"Nedeljna","datumPlacanja":"2022-07-10","datumVazenja":"2022-07-17","cena":1500.0,"kupacid":"korisnik","status":false,"brojTermina":0}
+{"identifikator":"1","tipClanarine":"Nedeljna","datumPlacanja":"2022-07-11","datumVazenja":"2022-07-18","cena":1500.0,"kupacid":"korisnik","status":false,"brojTermina":4}
+{"identifikator":"2","tipClanarine":"Nedeljna","datumPlacanja":"2022-07-11","datumVazenja":"2022-07-18","cena":1500.0,"kupacid":"korisnik","status":false,"brojTermina":0}
+{"identifikator":"3","tipClanarine":"Nedeljna","datumPlacanja":"2022-07-11","datumVazenja":"2022-07-18","cena":1500.0,"kupacid":"Milica1312","status":false,"brojTermina":4}
+{"identifikator":"4","tipClanarine":"Nedeljna","datumPlacanja":"2022-07-11","datumVazenja":"2022-07-18","cena":1500.0,"kupacid":"Milica1312","status":false,"brojTermina":4}
+{"identifikator":"5","tipClanarine":"Nedeljna","datumPlacanja":"2022-07-11","datumVazenja":"2022-07-18","cena":1500.0,"kupacid":"Milica1312","status":true,"brojTermina":2}

@@ -96,7 +96,7 @@
 					<td>{{p.tip }}</td>
 					<td><img :src="prikaziSliku(p.slika)" class="img-thumbnail" width="50" height="50"></td>
 					<td>{{p.opis }}</td>
-					<td>{{prikaziRadnoVreme(p)}}</td>
+					<td><pre>{{prikaziRadnoVreme(p)}}</pre></td>
 					<td width=200><button type="button" v-on:click="izmeniSadrzajTreninga(p.id)"  class="btn btn-primary">Izmeni</button></td>
 					<td width=200><button type="button" v-on:click="obrisiTrening(p.id)"  class="btn btn-primary">Obrisi</button></td>
 				</tr>

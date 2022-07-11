@@ -1,1 +1,2 @@
-{"sakupljeniBodovi":600.0,"korisnickoIme":"korisnik","sifra":"korisnik123","ime":"Korisnik","prezime":"Korisnikic","pol":"0","uloga":"0","aktivan":true}
+{"sakupljeniBodovi":200.0,"korisnickoIme":"Milica1312","sifra":"milica1312","ime":"Milica","prezime":"Stepanov","pol":"0","uloga":"0","aktivan":true}
+{"sakupljeniBodovi":800.0,"korisnickoIme":"korisnik","sifra":"korisnik123","ime":"Korisnik","prezime":"Korisnikic","pol":"0","uloga":"0","aktivan":true}

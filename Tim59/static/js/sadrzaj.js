@@ -122,7 +122,7 @@ new Vue({
 					}
 					else
 					{
-						s += objekat.radnoVreme.ponedeljakDan['imeDana'] + " " + objekat.radnoVreme.ponedeljakDan['danStart'] + " - " + objekat.radnoVreme.ponedeljakDan['danEnd'] + " \n"
+						s += objekat.radnoVreme.ponedeljakDan['imeDana'] + " " + objekat.radnoVreme.ponedeljakDan['danStart'] + " - " + objekat.radnoVreme.ponedeljakDan['danEnd'] + '\n'
 					}
 					  
 					if(objekat.radnoVreme.utorakDan['radniDan']== false)
