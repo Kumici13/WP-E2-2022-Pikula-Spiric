@@ -150,6 +150,30 @@
 		</div>
 		
 		<div class="search">
+			<label  style="color: white; font-family:Roboto" >Sortiranje po nazivu:</label>	
+			<label  style="color: white; font-family:Roboto" >Sortiranje po lokaciji:</label>
+			<label  style="color: white; font-family:Roboto" >Sortiraj po oceni:</label>	
+		</div>
+		
+		<div class="search">	
+                        <select v-model:value="sortiranje"  @change="sortirajPoNazivu" style="width: 250px; height: 35px; font-family:Roboto">
+                            <option disabled hidden value="">Sortiranje po nazivu</option>
+                            <option value="rastuceNaziv">Rastuce</option>
+                            <option value="opadajuceNaziv">Opadajuce</option>
+                        </select>
+                        <select v-model:value="sortiranje"  @change="sortirajPoLokaciji" style="width: 250px; height: 35px; font-family:Roboto">
+                            <option disabled hidden value="">Sortiranje po lokaciji</option>
+                            <option value="rastuceLokacija">Rastuce</option>
+                            <option value="opadajuceLokacija">Opadajuce</option>
+                        </select>
+                        <select v-model:value="sortiranje"  @change="sortirajPoOceni" style="width: 250px; height: 35px; font-family:Roboto">
+                            <option disabled hidden value="">Sortiranje po oceni</option>
+                            <option value="rastuce">Rastuce</option>
+                            <option value="opadajuce">Opadajuce</option>
+                        </select>
+        </div>
+		
+		<div class="search">
 		</div>
 	
 		<div  id="sportskiobjekti">

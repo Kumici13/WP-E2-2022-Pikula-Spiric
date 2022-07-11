@@ -7,7 +7,8 @@ new Vue({
         pretragaNaziv: '',
         pretragaPoTipu: '5',
         pretragaLokacija: '',
-        pretragaProsecnaOcena: '6'
+        pretragaProsecnaOcena: '6',
+        sortiranje: undefined
     },
     mounted()  
 	{
@@ -118,7 +119,107 @@ new Vue({
 			{
                 return '';
             }
-        }
+        },
+        
+         rastuce: function (a, b) {
+            if ( a.prosecnaOcena < b.prosecnaOcena )  {
+              return -1;
+            }
+            if ( a.prosecnaOcena > b.prosecnaOcena )  {
+              return 1;
+            }
+            return 0;
+        },
+
+        opadajuce: function(a, b)   {
+            if ( a.prosecnaOcena > b.prosecnaOcena )  {
+                return -1;
+              }
+              if ( a.prosecnaOcena < b.prosecnaOcena )  {
+                return 1;
+              }
+              return 0;
+        },
+
+        sortirajPoOceni: function(event)  {
+            if (this.sortiranje == 'rastuce')   {
+                this.sportskiObjekti.sort(this.rastuce);
+            } else  {
+                this.sportskiObjekti.sort(this.opadajuce);
+            }
+        },
+        
+        rastuceNaziv: function (a,b)
+        {
+			 if ( a.naziv < b.naziv )  {
+              return -1;
+            }
+            if ( a.naziv > b.naziv )  {
+              return 1;
+            }
+            return 0;
+       
+		},
+		
+		 opadajuceNaziv: function (a,b)
+        {
+			if ( a.naziv > b.naziv )  {
+                return -1;
+              }
+              if ( a.naziv < b.naziv )  {
+                return 1;
+              }
+              return 0;
+       
+		},
+      
+        
+        sortirajPoNazivu: function(a,b)
+        {
+			
+	 		if (this.sortiranje == 'rastuceNaziv')   {
+                this.sportskiObjekti.sort(this.rastuceNaziv);
+            } else  {
+                this.sportskiObjekti.sort(this.opadajuceNaziv);
+            }
+	
+		},
+		
+		 rastuceLokacija: function (a,b)
+        {
+			 if ( a.prikaziAdresu < b.prikaziAdresu )  {
+              return -1;
+            }
+            if ( a.prikaziAdresu > b.prikaziAdresu )  {
+              return 1;
+            }
+            return 0;
+       
+		},
+		
+		 opadajuceLokacija: function (a,b)
+        {
+			
+			if ( a.prikaziAdresu > b.prikaziAdresu )  {
+                return -1;
+              }
+              if ( a.prikaziAdresu < b.prikaziAdresu )  {
+                return 1;
+              }
+              return 0;
+       
+		},
+		
+		sortirajPoLokaciji: function(a,b)
+        {
+			
+	 		if (this.sortiranje == 'rastuceNaziv')   {
+                this.sportskiObjekti.sort(this.rastuceLokacija);
+            } else  {
+                this.sportskiObjekti.sort(this.opadajuceLokacija);
+            }
+	
+		},
     },
     computed:   
 	{
