@@ -22,11 +22,11 @@ public class IstorijaTreningaDAO {
 	private HashMap<Integer, IstorijaTreninga> treninzi;
 
 	private int TreningId = 0;
-	
+	private KorisniciDAO korisniciDAO;
 	public IstorijaTreningaDAO(KorisniciDAO korisniciDAO, TreningDAO treningDAO, SportskiObjektiDAO sportskiObjektiDAO)
 	{
 		treninzi = new HashMap<Integer, IstorijaTreninga>();
-
+		korisniciDAO = korisniciDAO;
 		ucitajIstorijuTreninga(korisniciDAO, treningDAO, sportskiObjektiDAO);
 	}
 	
@@ -213,6 +213,22 @@ public class IstorijaTreningaDAO {
 		}
 		
 		return null;
+	}
+	
+	public ArrayList<String> otkaziIstorijaTreninga(String idIstorijeTreninga)	
+	{
+		ArrayList<String> korisniciId = new ArrayList<String>();
+		for (IstorijaTreninga trening : treninzi.values())	
+		{
+			if(trening.getTreningId().equals(idIstorijeTreninga))
+			{
+				korisniciId.add(trening.getKupacId());
+				System.out.println("DODAJEM " + trening.getKupacId());
+				trening.setActive(false);
+			}
+		}
+		azurirajBazu();
+		return korisniciId;
 	}
 	
 

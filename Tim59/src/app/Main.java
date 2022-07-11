@@ -36,6 +36,7 @@ import dao.IstorijaTreningaDAO;
 import dao.KorisniciDAO;
 import dao.SportskiObjektiDAO;
 import dao.TreningDAO;
+import enums.TipTreninga;
 import enums.Uloga;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -401,6 +402,13 @@ public class Main
 					{
 						if(((Menadzer)korisnik).getSportskiObjekatId().equals(stariTrening.getSportskiObjekatid()))
 						{
+							ArrayList<String> listaKorisnikArrayList =  istorijaTreningaDAO.otkaziIstorijaTreninga(treningId);
+							for (String string : listaKorisnikArrayList) 
+							{
+								clanarine.getClanarinaByKorisnickoIme(string).setBrojTermina(clanarine.getClanarinaByKorisnickoIme(string).getBrojTermina() + 1);
+
+								System.out.println("broj termina: "+clanarine.getClanarinaByKorisnickoIme(string).getBrojTermina());
+							}
 							treninzi.changeTreningActivityById(treningId);
 							return gson.toJson("Trening obrisan");
 						}
@@ -719,11 +727,12 @@ public class Main
 		post("app/getTreningByTreningId", (req, res) -> 
 		{
 			
-			String tremningId = req.headers("TreningId");
-		
+			String tremningId = req.headers("treningid");
+			System.out.println(tremningId);
 			Trening trening = treninzi.getTreningById(tremningId);
 			if(trening != null)
 			{
+				System.out.println(gson.toJson(trening));
 				return gson.toJson(trening);	
 			}
 			return gson.toJson("ne postoji takav trening!");
@@ -795,6 +804,32 @@ public class Main
 			istorijaTreningaDAO.getIstorijaTreningById(itID).setActive(false);
 			istorijaTreningaDAO.azurirajBazu();
 			return gson.toJson("Trening uspesno otkazan!");
+		});
+		
+		post("app/izmeniTrening", (req, res) -> 
+		{
+			Menadzer menadzer = (Menadzer) getKorisnikByJWT(req, res);
+			
+			if(menadzer == null)
+			{
+				return gson.toJson("Morate biti ulogovani kao menadzer");
+			}
+				String itID = req.headers("id");
+				String naziv = req.headers("naziv");
+				String tip = req.headers("tip");
+				String trenerid = req.headers("trenerid");
+				String opis = req.headers("opis");
+				
+				
+				treninzi.getTreningById(itID).setNaziv(naziv);
+				treninzi.getTreningById(itID).setTip(TipTreninga.valueOf(tip));
+				treninzi.getTreningById(itID).setTrenerid(trenerid);
+				treninzi.getTreningById(itID).setTrener((Trener)korisnici.getKorisnikByKorisnickoIme(trenerid));
+				treninzi.getTreningById(itID).setOpis(opis);
+				
+				treninzi.azurirajBazu();
+			
+			return gson.toJson("Trening uspesno izmenjen!");
 		});
 		
 		post("app/gettrenerizaobjekat", (req, res) -> 

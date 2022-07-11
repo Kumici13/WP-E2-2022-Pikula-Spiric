@@ -64,11 +64,11 @@ new Vue({
     
      methods:    
 	{
-        izmeniSadrzajTreninga: function(trening)
+        izmeniSadrzajTreninga: function(id)
        {
-		
-	   		this.trening = trening 
-			console.log(trening);
+			window.localStorage.setItem('treningid', id);
+			console.log(id);
+			window.location = "izmenaSadrzajaTreninga.html";
 	
 	   },
 	

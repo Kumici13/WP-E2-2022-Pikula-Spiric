@@ -177,7 +177,7 @@ public class TreningDAO {
 		}
 	}
 
-	private void azurirajBazu()	
+	public void azurirajBazu()	
 	{
 		String putanja = "./static/podaci/Treninzi.txt";
 		try 
