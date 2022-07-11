@@ -1,7 +1,9 @@
 new Vue({
-    el: '#dodaj-sadrzaj-app',
+    el: '#izmeni-sadrzaj-app',
     data: 
 	{
+		staroIme:'',
+		trening:[],
 		treneri:[],
 		sadrzaj: [],
         naziv: '',
@@ -10,7 +12,6 @@ new Vue({
 		trajanje: '',
 		trenerid: '',
 		opis: '',
-		slika:'',
         sveDobro: true
     },
 	mounted()   
@@ -27,16 +28,30 @@ new Vue({
 
 		let jwt = window.localStorage.getItem('jwt');
 		
-		 axios
-            .get('app/getTreningByTreningId')
+		axios
+            .post('app/getTreningByTreningId', jwt, 
+				{
+                    headers: 
+					{
+                        'Content-Type': 'application/json',
+                        'Autorizacija': window.localStorage.getItem('jwt'),
+						'TreningId': window.localStorage.getItem('treningid')
+                    }
+                })
             .then(response => 
 			{
                 this.trening = response.data;
+				this.staroIme = this.trening.naziv;
+				console.log(this.staroIme);
+				this.naziv = this.trening.naziv;
+				this.tip= this.trening.tip;
+				this.trenerid = this.trening.trener.korisnickoIme;
+				this.opis = this.trening.opis;
             })
             .catch(error => 
 			{
                 console.log(error);
-                alert("Problem sa ucitavanjem trenera!");
+                alert("Problem sa ucitavanjem treninga!");
             });
 
         axios
@@ -58,7 +73,20 @@ new Vue({
                 console.log(error);
                 alert("Problem sa ucitavanjem treninga!");
             });
-    },
+    
+		
+		 axios
+            .get('app/getTreneri')
+            .then(response => 
+			{
+                this.treneri = response.data;
+            })
+            .catch(error => 
+			{
+                console.log(error);
+                alert("Problem sa ucitavanjem trenera!");
+            });
+	},
     methods: 
 	{
     	provera: function() 
@@ -82,16 +110,24 @@ new Vue({
                 }
             }
 			
+			console.log(this.staroIme);
 			
 			let imaVecToIme = false;
+			let si = this.staroIme;
 			this.sadrzaj.forEach(function (arrayItem) 
 			{
    					if(this.naziv.value == arrayItem.naziv)
 					{
-						imaVecToIme = true;
+						
+							imaVecToIme = true;
+						
 					}
 			});
 				
+			if(si = this.$refs.naziv)
+			{
+				imaVecToIme=false;
+			}
 			if (this.$refs.naziv == "" || imaVecToIme) 
 			{
 				alert("Ne moze taj naziv");
@@ -110,73 +146,34 @@ new Vue({
             
             if(sveDobro) 
 			{
-                this.dodajSadrzaj();
+                this.izmeniSadrzaj();
             }
         
     	},
     	
-    	dodajSadrzaj: function()
+    	izmeniSadrzaj: function()
 		{
-    		var trening = 
-			{
-				'naziv': this.naziv,
-        		'tip': this.tip,
-				'sportskiobjekatid': this.sportskiobjekatid,
-				'trajanje': this.trajanje,
-				'trenerid': this.trenerid,
-				'opis': this.opis,
-				'slika': this.slika
-    		};
 
-    		let putanja = 'app/dodajTrening';
-			
+    		let putanja = 'app/izmeniTrening';
+			let jwt =  window.localStorage.getItem('jwt');
             axios
-                .post(putanja, trening, 
+                .post(putanja, jwt,
 				{
                     headers: 
 					{
                         'Content-Type': 'application/json',
-                        'Autorizacija': window.localStorage.getItem('jwt')
+                        'Autorizacija': window.localStorage.getItem('jwt'),
+						'id': window.localStorage.getItem('treningid'),
+						'naziv': this.naziv,
+		        		'tip': this.tip,
+						'trenerid': this.trenerid,
+						'opis': this.opis
                     }
                 })
                 .then(response => 
 				{
-                    this.$refs.err_msg.classList.remove("error-msg");
-                    this.$refs.err_msg.classList.add("ok-msg");
-                    this.$refs.err_msg.innerHTML = response.data.sadrzaj;
-
-                    if (this.fajl != null)   
-					{
-    					console.log(response.headers);
-                        let formData = new FormData();
-                        formData.append('file', this.fajl);
-
-                        let id = response.headers['idnovogtreninga'];
-                        axios
-                            .post('app/dodajSlikuTreningu', formData, 
-							{
-                                headers: 
-								{
-                                    'Content-Type': 'multipart/form-data',
-                                    'Autorizacija': window.localStorage.getItem('jwt'),
-                                    'idtreninga': id
-                                }
-                            })
-                            .then(response => 
-							{
-                                this.sportskiObjekat = response.data;
-								window.location = "sadrzaj.html";
-                            })
-                            .catch(error => 
-							{
-                                console.log(error);
-                                alert(error.response.data.sadrzaj);
-                            });
-                    }
-					else
-					{
-						console.log("Nemam sliku!");
-					}
+                    alert(response.data);
+					window.location = "sadrzaj.html";
                 })
                 .catch(error => 
 				{
@@ -185,13 +182,7 @@ new Vue({
                     this.$refs.err_msg.innerHTML = error.response.data.sadrzaj;
                 });
     		
-        },
-        
-        preuzmiSliku: function() 
-		{
-            this.fajl = this.$refs.slika.files[0];
         }
-    
     }
     
 

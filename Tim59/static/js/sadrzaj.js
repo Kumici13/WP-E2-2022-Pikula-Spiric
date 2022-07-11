@@ -64,11 +64,11 @@ new Vue({
     
      methods:    
 	{
-        izmeniSadrzajTreninga: function(trening)
+        izmeniSadrzajTreninga: function(id)
        {
-		
-	   		this.trening = trening 
-			console.log(trening);
+			window.localStorage.setItem('treningid', id);
+			console.log(id);
+			window.location = "izmenaSadrzajaTreninga.html";
 	
 	   },
 	
@@ -122,7 +122,7 @@ new Vue({
 					}
 					else
 					{
-						s += objekat.radnoVreme.ponedeljakDan['imeDana'] + " " + objekat.radnoVreme.ponedeljakDan['danStart'] + " - " + objekat.radnoVreme.ponedeljakDan['danEnd'] + " \n"
+						s += objekat.radnoVreme.ponedeljakDan['imeDana'] + " " + objekat.radnoVreme.ponedeljakDan['danStart'] + " - " + objekat.radnoVreme.ponedeljakDan['danEnd'] + '\n'
 					}
 					  
 					if(objekat.radnoVreme.utorakDan['radniDan']== false)

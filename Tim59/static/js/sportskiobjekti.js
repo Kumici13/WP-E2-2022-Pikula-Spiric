@@ -7,7 +7,8 @@ new Vue({
         pretragaNaziv: '',
         pretragaPoTipu: '5',
         pretragaLokacija: '',
-        pretragaProsecnaOcena: '6'
+        pretragaProsecnaOcena: '6',
+        sortiranje: undefined
     },
     mounted()  
 	{
@@ -33,6 +34,11 @@ new Vue({
     },
     methods:    
 	{
+		pogledajObjekat: function(idObjekta)
+		{
+			window.localStorage.setItem('idSporskogObjekta', idObjekta);
+			window.location.href='prikaziSportskiObjekat.html';
+		},
         ulogovanKorisnik: function()    
 		{
             return window.localStorage.getItem('jwt') != null;
@@ -118,7 +124,46 @@ new Vue({
 			{
                 return '';
             }
-        }
+        },
+         rastuce: function (a, b) {
+            if ( a.prosecnaOcena < b.prosecnaOcena )  {
+              return -1;
+            }
+            if ( a.prosecnaOcena > b.prosecnaOcena )  {
+              return 1;
+            }
+            return 0;
+        },
+
+        opadajuce: function(a, b)   {
+            if ( a.prosecnaOcena > b.prosecnaOcena )  {
+                return -1;
+              }
+              if ( a.prosecnaOcena < b.prosecnaOcena )  {
+                return 1;
+              }
+              return 0;
+        },
+        
+       
+        
+        sortirajPoProsecnojOceni: function(event)  {
+            if (this.sortiranje == 'rastuce')   {
+                this.sportskiObjekti.sort(this.rastuce);
+            } else  {
+                this.sportskiObjekti.sort(this.opadajuce);
+            }
+        },
+        
+        /* sortirajPoNazivu: function(event)  {
+	 	return this.sportskiObjekti.filter((objekat) => 
+	 		{
+				return (this.sportskiObjekti.sort(objekat.naziv))
+			});
+           
+        } */
+        
+        
     },
     computed:   
 	{

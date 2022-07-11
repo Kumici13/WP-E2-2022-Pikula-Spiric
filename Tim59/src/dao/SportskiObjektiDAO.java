@@ -139,7 +139,7 @@ public class SportskiObjektiDAO {
 	{
 		for (SportskiObjekat sportskiObjekat : sportskiObjekti.values())	
 		{
-			if(sportskiObjekat.getId() == idSportskogObjekta)
+			if(sportskiObjekat.getId().equals( idSportskogObjekta))
 			{
 				return sportskiObjekat;
 			}

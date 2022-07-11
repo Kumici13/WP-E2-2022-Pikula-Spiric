@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Prikaz sadrzaja</title>
+<meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+	<style>
+            body   {
+                background-image: url(Images/loginback.jpg);
+                height: 100%;
+            }
+            
+            .h1 {
+            padding : 10px;
+            text-align : center;  
+            }
+            
+            .h2 {
+            padding-top : 50px;
+            padding-bottom : 0px;
+            text-align : left;  
+            padding-left: 210px;
+            }
+            
+            .search {
+            padding : 5px;
+            text-align : center;  
+            }
+            
+           
+            
+            label {
+		      
+		        width: 250px;   
+     		}
+     		
+     		.table0 {
+     			width: 1000px;    			
+     			padding-left: 210px;
+     			padding-top: 0px;
+     			padding-bottom: 10px;
+     			font-size: 50;
+     		}
+     		
+     		.table1 {
+     			
+     			width: 1000px;    			
+     			padding-left: 210px;
+     			font-size: 50;
+     		}
+     		
+     		.logo {  	  			
+     			padding-top: 50px;		
+     			padding-left: 200px;  					
+     		}
+     		
+     		.textarea {  	  				
+     			padding-left: 210px;  	
+     			width: 500px;
+     			height: 300px;		
+     			padding-bottom: 100px;		
+     		}
+     		
+     		.ocena {  	
+     			padding-top: 10px;		
+     			padding-left: 210px;
+     			border-spacing: 15px;
+     		}
+     		
+     		.oNama {  	
+     			padding-top: 40px;		
+     			padding-left: 210px;
+     		}
+     		
+            .editbutton {
+				text-align: right;
+				padding: 10px;
+				font-size: 50;
+				padding-left: 530px;
+			
+			}
+			
+			.addbutton {
+				text-align: left;
+				padding: 10px;
+				font-size: 50;
+				
+			
+			}
+            
+    </style>
+
+</head>
+
+<body>
+	 <div class="welcome" id="prikaz-sportskog-objekta-app">
+			<nav v-if="uloga === '0'" class="navbar navbar-expand  fixed-top" style="background-color: #3E1D57; ">
+                <h1><a  class="naslov"  class="navbar-brand" style="color: white ; font-family:Roboto">Sportski objekat</a></h1>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="kupacHome.html" class="nav-link" style="color: white; font-family:Roboto">Pocetna</a></li>          
+                        <li class="nav-item"><a href="sportskiobjekti.html" class="nav-link" style="color: white; font-family:Roboto">Sportski objekti</a></li>
+                        <li class="nav-item"><a href="trainingKupac.html" class="nav-link" style="color: white; font-family:Roboto">Treninzi</a></li>
+                        <li class="nav-item"><a href="clanarine.html" class="nav-link" style="color: white; font-family:Roboto">Clanarine</a></li>
+                        <li class="nav-item"><a href="javascript:window.localStorage.removeItem('jwt'); window.location = 'login.html';" class="nav-link" style="color: white; font-family:Roboto">Odjavi se</a></li>
+                    </ul>
+                </div>
+        </nav>
+        <nav v-else-if="uloga === '1'" class="navbar navbar-expand  fixed-top" style="background-color: #3E1D57; ">
+                <h1><a  class="naslov"  class="navbar-brand" style="color: white ; font-family:Roboto">Sportski objekat</a></h1>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="menadzerHome.html" class="nav-link" style="color: white; font-family:Roboto">Pocetna</a></li>     
+                        <li class="nav-item"><a href="sportskiobjekti.html" class="nav-link" style="color: white; font-family:Roboto">Sportski objekti</a></li>    
+                        <li class="nav-item"><a href="sadrzaj.html" class="nav-link" style="color: white; font-family:Roboto">Sadrzaj</a></li>  
+                        <li class="nav-item"><a href="trainingManager.html" class="nav-link" style="color: white; font-family:Roboto">Treninzi</a></li>                                          
+                        <li class="nav-item"><a href="javascript:window.localStorage.removeItem('jwt'); window.location = 'login.html';" class="nav-link" style="color: white; font-family:Roboto">Odjavi se</a></li>
+                    </ul>
+                </div>
+        </nav>
+         <nav v-else-if="uloga === '2'" class="navbar navbar-expand  fixed-top" style="background-color: #3E1D57; ">
+                <h1><a  class="naslov"  class="navbar-brand" style="color: white ; font-family:Roboto">Sportski objekat</a></h1>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="administratorHome.html" class="nav-link" style="color: white; font-family:Roboto">Pocetna</a></li>
+                        <li class="nav-item"><a href="sportskiobjekti.html" class="nav-link" style="color: white; font-family:Roboto">Sportski objekti</a></li>
+                        <li class="nav-item"><a href="regkorisnici.html" class="nav-link" style="color: white; font-family:Roboto">Registrovani korisnici</a></li>
+                        <li class="nav-item"><a href="registrationAdministrator.html" class="nav-link" style="color: white; font-family:Roboto">Registruj korisnika</a></li>
+                        <li class="nav-item"><a href="javascript:window.localStorage.removeItem('jwt'); window.location = 'login.html';" class="nav-link" style="color: white; font-family:Roboto">Odjavi se</a></li>
+                    </ul>
+                </div>
+        </nav>
+         <nav v-else-if="uloga === '3'" class="navbar navbar-expand  fixed-top" style="background-color: #3E1D57; ">
+                <h1><a  class="naslov"  class="navbar-brand" style="color: white ; font-family:Roboto">Sportski objekat</a></h1>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="#" class="nav-link" style="color: white; font-family:Roboto">Pocetna</a></li>
+                        <li class="nav-item"><a href="sportskiobjekti.html" class="nav-link" style="color: white; font-family:Roboto">Sportski objekti</a></li>
+                        <li class="nav-item"><a href="trainingTrener.html" class="nav-link" style="color: white; font-family:Roboto">Treninzi</a></li>                      
+                        <li class="nav-item"><a href="javascript:window.localStorage.removeItem('jwt'); window.location = 'login.html';" class="nav-link" style="color: white; font-family:Roboto">Odjavi se</a></li>
+                    </ul>
+                </div>
+        </nav>
+		<br />
+		<br />
+		<br />
+		<br />
+	
+	
+		<div class="h1">
+			<h1 style="color: white; font-family: Roboto">Pregled konkretnog sadrzaja:</h1>			
+		</div>
+		
+		<div class="logo">
+			<table cellspacing="10" cellpadding="10">
+				<td><img :src="prikaziSliku(sportskiObjekat.slika)" class="img-thumbnail" width="150" height="150" ></td>
+				<td style="color: white; font-family:Roboto"><h2>{{sportskiObjekat.naziv}}</h2></td>	
+			</table>		
+		</div>
+		
+		<div class="ocena">
+			<table>
+				<td style="color: white; font-family:Roboto"><h4>Ocena: </h4></td>
+				<td style="color: white; font-family:Roboto"><h4>{{sportskiObjekat.prosecnaOcena}}</h4></td>		
+			</table>		
+		</div>
+		
+		<div class="h2">
+			<h2 style="color: white; font-family: Roboto">Radno vreme:</h2>			
+		</div>
+		
+		<div  id="sadrzaj" class="table1">
+			<table bgcolor="#DEF7F9"  border="0" id="tabela" class="table1">
+				
+				<thead>
+					<tr bgcolor="#309AF9">
+						<th>Dan</th>
+						<th>Pocetak radnog vremena</th>
+						<th>Kraj randog vremena</th>
+					</tr>
+				</thead>
+	 			<div>
+					<tr v-if="sportskiObjekat.radnoVreme.ponedeljakDan.radniDan">
+						<td>{{sportskiObjekat.radnoVreme.ponedeljakDan.imeDana}}</td>
+						<td>{{sportskiObjekat.radnoVreme.ponedeljakDan.danStart}}</td>
+						<td>{{sportskiObjekat.radnoVreme.ponedeljakDan.danEnd}}</td>
+					</tr>
+					<tr v-else>
+						<td>{{sportskiObjekat.radnoVreme.ponedeljakDan.imeDana}}</td>
+						<td>NE RADIMO</td>
+						<td>NE RADIMO</td>
+					</tr>
+				</div>
+	 			<div>
+					<tr v-if="sportskiObjekat.radnoVreme.utorakDan.radniDan">
+						<td>{{sportskiObjekat.radnoVreme.utorakDan.imeDana}}</td>
+						<td>{{sportskiObjekat.radnoVreme.utorakDan.danStart}}</td>
+						<td>{{sportskiObjekat.radnoVreme.utorakDan.danEnd}}</td>
+					</tr>
+					<tr v-else>
+						<td>{{sportskiObjekat.radnoVreme.utorakDan.imeDana}}</td>
+						<td>NE RADIMO</td>
+						<td>NE RADIMO</td>
+					</tr>
+				</div>
+	 			<div>
+					<tr v-if="sportskiObjekat.radnoVreme.sredaDan.radniDan">
+						<td>{{sportskiObjekat.radnoVreme.sredaDan.imeDana}}</td>
+						<td>{{sportskiObjekat.radnoVreme.sredaDan.danStart}}</td>
+						<td>{{sportskiObjekat.radnoVreme.sredaDan.danEnd}}</td>
+					</tr>
+					<tr v-else>
+						<td>{{sportskiObjekat.radnoVreme.sredaDan.imeDana}}</td>
+						<td>NE RADIMO</td>
+						<td>NE RADIMO</td>
+					</tr>
+				</div>
+	 			<div>
+					<tr v-if="sportskiObjekat.radnoVreme.cetvrtakDan.radniDan">
+						<td>{{sportskiObjekat.radnoVreme.cetvrtakDan.imeDana}}</td>
+						<td>{{sportskiObjekat.radnoVreme.cetvrtakDan.danStart}}</td>
+						<td>{{sportskiObjekat.radnoVreme.cetvrtakDan.danEnd}}</td>
+					</tr>
+					<tr v-else>
+						<td>{{sportskiObjekat.radnoVreme.cetvrtakDan.imeDana}}</td>
+						<td>NE RADIMO</td>
+						<td>NE RADIMO</td>
+					</tr>
+				</div>
+	 			<div>
+					<tr v-if="sportskiObjekat.radnoVreme.petakDan.radniDan">
+						<td>{{sportskiObjekat.radnoVreme.petakDan.imeDana}}</td>
+						<td>{{sportskiObjekat.radnoVreme.petakDan.danStart}}</td>
+						<td>{{sportskiObjekat.radnoVreme.petakDan.danEnd}}</td>
+					</tr>
+					<tr v-else>
+						<td>{{sportskiObjekat.radnoVreme.petakDan.imeDana}}</td>
+						<td>NE RADIMO</td>
+						<td>NE RADIMO</td>
+					</tr>
+				</div>
+	 			<div>
+					<tr v-if="sportskiObjekat.radnoVreme.subotaDan.radniDan">
+						<td>{{sportskiObjekat.radnoVreme.subotaDan.imeDana}}</td>
+						<td>{{sportskiObjekat.radnoVreme.subotaDan.danStart}}</td>
+						<td>{{sportskiObjekat.radnoVreme.subotaDan.danEnd}}</td>
+					</tr>
+					<tr v-else>
+						<td>{{sportskiObjekat.radnoVreme.subotaDan.imeDana}}</td>
+						<td>NE RADIMO</td>
+						<td>NE RADIMO</td>
+					</tr>
+				</div>
+	 			<div>
+					<tr v-if="sportskiObjekat.radnoVreme.nedeljaDan.radniDan">
+						<td>{{sportskiObjekat.radnoVreme.nedeljaDan.imeDana}}</td>
+						<td>{{sportskiObjekat.radnoVreme.nedeljaDan.danStart}}</td>
+						<td>{{sportskiObjekat.radnoVreme.nedeljaDan.danEnd}}</td>
+					</tr>
+					<tr v-else>
+						<td>{{sportskiObjekat.radnoVreme.nedeljaDan.imeDana}}</td>
+						<td>NE RADIMO</td>
+						<td>NE RADIMO</td>
+					</tr>
+				</div>
+			</table>
+		</div>
+
+		
+		
+		<div class="h2">
+			<h2 style="color: white; font-family: Roboto">Raspored aktivnosti:</h2>			
+		</div>
+		
+		<div  id="sadrzaj" class="table0">
+			<table bgcolor="#DEF7F9"  border="0" id="tabela" class="table0">
+				<thead>
+					<tr>
+						<th><button type="button" v-on:click="prethodniDan()" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+  						<path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+						</svg></button></th>
+						<th class="text-center">{{date}}</th>
+						<<th><button type="button" v-on:click="sledeciDan()" class="btn btn-primary float-right"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+						 <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+						 </svg></button></th>				
+						</thead>
+				</table>
+		</div>
+		
+		<div  id="sadrzaj" class="table1">
+			<table bgcolor="#DEF7F9"  border="2" id="tabela" class="table1">
+				
+				<thead>
+					<tr bgcolor="#309AF9">
+						<th>Slika</th>
+						<th>Naziv</th>
+						<th>Tip treninga</th>
+						<th>Opis</th>
+						<th>Trening start</th>
+						<th>Trening kraj</th>
+						<th>Trener</th>
+						<th>Cena</th>
+						<th v-if="uloga==='0'">Zakazi</th>
+						</tr>
+				</thead>
+	 
+				<td v-if="filterPrazan()">NEMA TRENINGA ZA TAJ DAN</td>		
+				<tr v-for="p in filterSadrzaji">
+				
+						<td><img :src="prikaziSliku(p.slika)" class="img-thumbnail" width="150" height="150" ></td>
+						<td>{{p.naziv }}</td>
+						<td>{{p.tip }}</td>
+						<td>{{p.opis }}</td>
+						<td>{{prikaziStart(p) }}</td>
+						<td>{{prikaziKraj(p) }}</td>
+						<td v-if="p.trener">{{p.trener.ime}} {{p.trener.prezime}}  </td>
+						<td v-else>Nema</td>
+						<td>{{p.cena }}</td>
+						<td v-if="uloga==='0'"><input type = "button" value="Zakazi" v-on:click="zakaziTrening(p.id)"></td>
+				</tr>
+			</table>
+		</div>
+		</div>	
+	 	<script src="js/vue.js"></script>
+        <script src="js/axios.js"></script>
+        <script src="js/prikazSportskogObjekta.js"></script>
+</body>
+
+</html>
