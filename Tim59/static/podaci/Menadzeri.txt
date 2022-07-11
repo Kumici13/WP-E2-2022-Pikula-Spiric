@@ -1,1 +1,1 @@
-{"sportskiObjekatId":"1","korisnickoIme":"menadzer2","sifra":"menadzer123","ime":"Mdfsdf","prezime":"Mdsfsfsd","pol":"1","uloga":"1","aktivan":true}
+{"sportskiObjekatId":"1","korisnickoIme":"menadzer","sifra":"menadzer123","ime":"Mdfsdf","prezime":"Mdsfsfsd","pol":"1","uloga":"1","aktivan":true}

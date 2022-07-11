@@ -173,6 +173,7 @@ public class KorisniciDAO
 
 	public Korisnik getKorisnikByKorisnickoIme(String korisnickoIme)	
 	{
+		
 		return korisnici.get(korisnickoIme);
 	}
 

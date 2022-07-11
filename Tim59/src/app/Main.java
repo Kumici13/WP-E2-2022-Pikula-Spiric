@@ -82,6 +82,10 @@ public class Main
 			
 			if (korisnik != null)	
 			{
+				if(!korisnik.isAktivan())
+				{
+					return gson.toJson("Ne postoji korisnik!");
+				}
 				if (korisnik.getSifra().equals(sifra))	
 				{
 					LogovanjeKorisnika(korisnik);
@@ -201,6 +205,25 @@ public class Main
 			}
 			
 		});
+		
+
+		post("app/getBodoviWithKorisnickoIme", (req, res) -> 
+		{
+			Korisnik korisnik = getKorisnikByJWT(req, res);
+			if(korisnik != null)
+			{
+				
+				return gson.toJson(((Kupac) korisnik).getSakupljeniBodovi());
+			}
+			else 
+			{					
+			
+				return gson.toJson("Nema bodova");
+			}
+			
+		});
+		
+		
 		
 	
 			

@@ -60,21 +60,53 @@
 		<div class="search">
 			<label  style="color: white; font-family:Roboto" >Ime:</label>	
 			<label  style="color: white; font-family:Roboto" >Prezime:</label>
-			<label  style="color: white; font-family:Roboto" >Korisnicko ime:</label>
-			<label  style="color: white; font-family:Roboto" >Broj sakupljenih bodova:</label>		
+			<label  style="color: white; font-family:Roboto" >Korisnicko ime:</label>	
+			<label  style="color: white; font-family:Roboto" >Filtriranje uloga:</label>	
 		</div>
 		
 		
 		<div class="search">
 			<input v-model:value="pretragaIme" type="textbox" style="width: 250px; height: 35px">  	
 			<input v-model:value="pretragaPrezime" type="textbox" style="width: 250px; height: 35px">   
-			<input v-model:value="pretragaKorisnickoIme" type="textbox" style="width: 250px; height: 35px">  
-			<select v-model:value="filtriranje" style="width: 250px; height: 35px; font-family:Roboto " >
-                        <option  disabled hidden ">Izaberite kako zelite da sortirate:</option>
-                        <option value="1">Rastuce</option>
-                        <option value="2">Opadajuce</option>                      
-            </select> 		
+			<input v-model:value="pretragaKorisnickoIme" type="textbox" style="width: 250px; height: 35px">  	
+			<select v-model:value="filtriranje" style="width: 250px; height: 35px; font-family:Roboto">
+				<option value="svi">Svi</option>
+                <option value="0">Kupac</option>
+                <option value="1">Menadzer</option>
+                <option value="2">Administrator</option>
+                <option value="3">Trener</option>
+            </select>				
 		</div>
+		
+		<div class="search">
+			<label  style="color: white; font-family:Roboto" >Sortiranje po imenu:</label>	
+			<label  style="color: white; font-family:Roboto" >Sortiranje po prezimenu:</label>
+			<label  style="color: white; font-family:Roboto" >Sortiranje po korisnickom imenu:</label>
+			<label  style="color: white; font-family:Roboto" >Sortiraj po broju sakupljenih bodova:</label>		
+		</div>
+		
+		<div class="search">	
+                        <select v-model:value="sortiranje"  @change="sortirajPoImenu" style="width: 250px; height: 35px; font-family:Roboto">
+                            <option disabled hidden value="">Sortiranje po imenu</option>
+                            <option value="rastuceIme">Rastuce</option>
+                            <option value="opadajuceIme">Opadajuce</option>
+                        </select>
+                        <select v-model:value="sortiranje"  @change="sortirajPoPrezimenu" style="width: 250px; height: 35px; font-family:Roboto">
+                            <option disabled hidden value="">Sortiranje po prezimenu</option>
+                            <option value="rastucePrezime">Rastuce</option>
+                            <option value="opadajucePrezime">Opadajuce</option>
+                        </select>
+                        <select v-model:value="sortiranje"  @change="sortirajPoKorImenu" style="width: 250px; height: 35px; font-family:Roboto">
+                            <option disabled hidden value="">Sortiranje po korisnickom imenu</option>
+                            <option value="rastuceKorIme">Rastuce</option>
+                            <option value="opadajuceKorIme">Opadajuce</option>
+                        </select>
+                        <select v-model:value="sortiranje"  @change="sortirajPoBodovima" style="width: 250px; height: 35px; font-family:Roboto">
+                            <option disabled hidden value="">Sortiraj po broju sakupljenih bodova</option>
+                            <option value="rastuce">Rastuce</option>
+                            <option value="opadajuce">Opadajuce</option>
+                        </select>
+        </div>
 	
 		<div  id="regkorisnici">
 			<table bgcolor="#DEF7F9" class="table" border="2" id="tabela">
@@ -85,9 +117,10 @@
 						<th>Ime</th>
 						<th>Prezime</th>
 						<th>Pol</th>
-						<th>Datum rodjenja</th>
+						<th>Uloga</th>
 						<th>Aktivan/Neaktivan</th>
 						<th>Promeni stanje</th>
+						<th>Broj sakupljenih bodova</th>
 				</thead>
 	
 				<tr v-for="p in regkorisniciFilter">
@@ -95,10 +128,11 @@
 					<td>{{p.sifra }}</td>
 					<td>{{p.ime }}</td>
 					<td>{{p.prezime }}</td>
-					<td>{{p.pol }}</td>
-					<td>{{p.datumRodjenja }}</td>
-					<td>{{p.aktivan }}</td>
+					<td>{{prikaziPol(p.pol) }}</td>
+					<td><pre>{{ prikaziUlogu(p.uloga) }}</pre></td>
+					<td>{{ prikaziAktivnost(p.aktivan) }}</td>
 					<td width=200><button type="button" v-on:click="changeActivity(p.korisnickoIme)"  class="btn btn-primary">Promeni stanje</button></td>
+					<td v-if="p.uloga =='0' ">{{p.sakupljeniBodovi}}</td>
 				</tr>
 			</table>
 		</div>
