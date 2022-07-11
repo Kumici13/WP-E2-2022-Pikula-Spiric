@@ -7,7 +7,7 @@ new Vue({
      	pretragaIme: '',
         pretragaPrezime: '',
         pretragaKorisnickoIme: '',
-        filtriranje: '',
+        filtriranje: 'svi',
         sortiranje: undefined,
       
     },
@@ -230,6 +230,16 @@ new Vue({
                 this.regKorisnici.sort(this.opadajuce);
             }
         },
+        
+      
+        
+       	filtrirajPoImenu: function()
+        {
+			if(this.filtriranje == "kupac")
+			{
+				
+			}
+		},
        	
     },
     computed:   
@@ -238,9 +248,11 @@ new Vue({
 		{
             return this.regKorisnici.filter((objekat) => 
 			{	
+				
                 return 	   ((objekat.ime.toLowerCase().match(this.pretragaIme.toLowerCase()))
 						&& (objekat.prezime.toLowerCase().match(this.pretragaPrezime.toLowerCase()))
-						&& (objekat.korisnickoIme.toLowerCase().match(this.pretragaKorisnickoIme.toLowerCase())) )
+						&& (objekat.korisnickoIme.toLowerCase().match(this.pretragaKorisnickoIme.toLowerCase()))
+						&& (objekat.uloga == this.filtriranje || this.filtriranje=='svi'))
 											
 				});
         }

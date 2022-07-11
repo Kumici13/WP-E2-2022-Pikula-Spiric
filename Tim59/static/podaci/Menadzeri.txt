@@ -1,4 +1,4 @@
 {"sportskiObjekatId":"3","korisnickoIme":"menadzer3","sifra":"menadzer123","ime":"MenadzerTri","prezime":"MenadzerTri","pol":"1","uloga":"1","aktivan":true}
 {"sportskiObjekatId":"2","korisnickoIme":"menadzer2","sifra":"menadzer123","ime":"MenadzerDva","prezime":"MenadzericDva","pol":"1","uloga":"1","aktivan":true}
 {"sportskiObjekatId":"1","korisnickoIme":"menadzer","sifra":"menadzer123","ime":"Menadzer","prezime":"Menadzeric","pol":"0","uloga":"1","aktivan":true}
-{"sportskiObjekatId":"4","korisnickoIme":"Gravara1312","sifra":"gravara1312","ime":"Gravara","prezime":"Gravaric","pol":"1","uloga":"1","aktivan":true}
+{"sportskiObjekatId":"4","korisnickoIme":"Gravara1312","sifra":"gravara1312","ime":"Gravara","prezime":"Gravaric","pol":"1","uloga":"1","aktivan":false}

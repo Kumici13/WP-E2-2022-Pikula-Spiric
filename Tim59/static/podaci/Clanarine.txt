@@ -1,2 +1,2 @@
-{"identifikator":"10","tipClanarine":"Godisnja","datumPlacanja":"2022-07-10","datumVazenja":"2023-07-10","cena":50000.0,"kupacid":"korisnik","status":false,"brojTermina":180}
-{"identifikator":"11","tipClanarine":"Nedeljna","datumPlacanja":"2022-07-11","datumVazenja":"2022-07-18","cena":1500.0,"kupacid":"korisnik","status":true,"brojTermina":4}
+{"identifikator":"11","tipClanarine":"Nedeljna","datumPlacanja":"2022-07-11","datumVazenja":"2022-07-18","cena":1500.0,"kupacid":"korisnik","status":false,"brojTermina":4}
+{"identifikator":"12","tipClanarine":"Nedeljna","datumPlacanja":"2022-07-11","datumVazenja":"2022-07-18","cena":1500.0,"kupacid":"korisnik","status":true,"brojTermina":4}
