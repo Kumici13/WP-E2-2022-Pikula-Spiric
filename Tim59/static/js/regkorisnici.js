@@ -87,6 +87,7 @@ new Vue({
             .then(response => 
 			{
                 this.changeActivityOfUser = response.data;
+                location.reload();
             })
             .catch(error => 
 			{

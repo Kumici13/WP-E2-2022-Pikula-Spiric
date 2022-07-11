@@ -1,2 +1,0 @@
-{"identifikator":"5","tipClanarine":"Nedeljna","datumPlacanja":"2022-07-11","datumVazenja":"2022-07-18","cena":1500.0,"kupacid":"Milica1312","status":true,"brojTermina":2}
-{"identifikator":"8","tipClanarine":"Nedeljna","datumPlacanja":"2022-07-11","datumVazenja":"2022-07-18","cena":1500.0,"kupacid":"korisnik","status":true,"brojTermina":4}
