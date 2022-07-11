@@ -10,28 +10,24 @@ import com.google.gson.annotations.Expose;
 public class IstorijaTreninga 
 {
 	@Expose
-	private String id;
+	private String id;	
 	@Expose
 	private String datumVreme;
 	@Expose
 	private String treningId;
+	private Trening trening;
 	@Expose
 	private String kupacId;
+	private Kupac kupac;
 	@Expose
-	private String trenerId;
+	private boolean active = true;
+	
+	private Trener trener;
+	private SportskiObjekat sportskiObjekat;
 	
 	public IstorijaTreninga()
 	{
 		
-	}
-
-	public IstorijaTreninga(String id, String datumVreme, String treningId, String kupacId, String trenerId) {
-		super();
-		this.id = id;
-		this.datumVreme = datumVreme;
-		this.treningId = treningId;
-		this.kupacId = kupacId;
-		this.trenerId = trenerId;
 	}
 
 	public String getId() {
@@ -66,12 +62,67 @@ public class IstorijaTreninga
 		this.kupacId = kupacId;
 	}
 
-	public String getTrenerId() {
-		return trenerId;
+	public boolean isActive() {
+		return active;
 	}
 
-	public void setTrenerId(String trenerId) {
-		this.trenerId = trenerId;
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public IstorijaTreninga(String id, String datumVreme, String treningId, String kupacId, boolean active) {
+		super();
+		this.id = id;
+		this.datumVreme = datumVreme;
+		this.treningId = treningId;
+		this.kupacId = kupacId;
+		this.active = active;
+	}
+
+	public IstorijaTreninga(String id, String datumVreme, String treningId, Trening trening, String kupacId,
+			Kupac kupac, Trener trener, SportskiObjekat sportskiObjekat, boolean active) {
+		super();
+		this.id = id;
+		this.datumVreme = datumVreme;
+		this.treningId = treningId;
+		this.trening = trening;
+		this.kupacId = kupacId;
+		this.kupac = kupac;
+		this.trener = trener;
+		this.sportskiObjekat = sportskiObjekat;
+		this.active = active;
+	}
+
+	public Trening getTrening() {
+		return trening;
+	}
+
+	public void setTrening(Trening trening) {
+		this.trening = trening;
+	}
+
+	public Kupac getKupac() {
+		return kupac;
+	}
+
+	public void setKupac(Kupac kupac) {
+		this.kupac = kupac;
+	}
+
+	public Trener getTrener() {
+		return trener;
+	}
+
+	public void setTrener(Trener trener) {
+		this.trener = trener;
+	}
+
+	public SportskiObjekat getSportskiObjekat() {
+		return sportskiObjekat;
+	}
+
+	public void setSportskiObjekat(SportskiObjekat sportskiObjekat) {
+		this.sportskiObjekat = sportskiObjekat;
 	}
 
 	public String toSaveFormat() 

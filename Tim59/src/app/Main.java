@@ -12,11 +12,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.Key;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.http.Part;
@@ -56,7 +54,7 @@ public class Main
 	private static IstorijaTreningaDAO istorijaTreningaDAO = null;
 	private static Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 	
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception 
 	{
 		port(8080);
@@ -66,11 +64,11 @@ public class Main
 		sportskiObjekti = new SportskiObjektiDAO();
 		korisnici.ucitajSportskeObjekteUMenadzere(sportskiObjekti);
 		treninzi = new TreningDAO();
-		istorijaTreningaDAO = new IstorijaTreningaDAO();
 		treninzi.ucitajSportskeObjekteiTrenerer(sportskiObjekti, korisnici);
 		clanarine = new ClanarineDAO(korisnici);
 		gson =  new GsonBuilder().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
-		
+
+		istorijaTreningaDAO = new IstorijaTreningaDAO(korisnici, treninzi, sportskiObjekti);
 			
 		post("app/login", (req, res) -> 
 		{
@@ -238,10 +236,8 @@ public class Main
 		
 		post("app/getSportskiObjekatWithID", (req, res) -> 
 		{
-			Korisnik korisnik = getKorisnikByJWT(req, res);
+			//Korisnik korisnik = getKorisnikByJWT(req, res);
 			
-			if(korisnik != null) 
-			{
 				//if(korisnik.getUloga() == Uloga.Kupac) 
 				{
 					String idSportskogObjektaString = req.headers("idSporskogObjekta");
@@ -256,12 +252,6 @@ public class Main
 						return gson.toJson("Nema tog objekta");
 					}
 				}
-			}
-			else
-			{
-				System.out.println("Korisnik je null");
-				return gson.toJson("KORISNIK JE NULL!");
-			}
 		});
 		
 		get("app/getSlobodniMenadzeri", (req, res) -> 
@@ -536,7 +526,13 @@ public class Main
 								}
 								else 
 								{
-									IstorijaTreninga istorijaTreninga = new IstorijaTreninga("", dateTime, treningid, korisnik.getKorisnickoIme(), treninzi.getTreningById(treningid).getTrenerid());
+									IstorijaTreninga istorijaTreninga = new IstorijaTreninga("", dateTime, treningid, korisnik.getKorisnickoIme(), true);
+
+									istorijaTreninga.setTrening(treninzi.getTreningById(istorijaTreninga.getTreningId()));
+									
+									istorijaTreninga.setTrener((Trener) korisnici.getKorisnikByKorisnickoIme(istorijaTreninga.getTrening().getTrenerid()));
+									istorijaTreninga.setKupac((Kupac) korisnici.getKorisnikByKorisnickoIme(istorijaTreninga.getKupacId()));
+									istorijaTreninga.setSportskiObjekat(sportskiObjekti.getSportskiObjekatById(istorijaTreninga.getTrening().getSportskiObjekatid()));
 									istorijaTreningaDAO.dodajNoviTrening(istorijaTreninga);
 									clanarine.getClanarinaByKorisnickoIme(korisnik.getKorisnickoIme()).setBrojTermina(clanarine.getClanarinaByKorisnickoIme(korisnik.getKorisnickoIme()).getBrojTermina()-1);
 									clanarine.AzurirajBazu();
@@ -731,6 +727,74 @@ public class Main
 				return gson.toJson(trening);	
 			}
 			return gson.toJson("ne postoji takav trening!");
+		});
+		
+		post("app/getIstorijuTreningaByKupacId", (req, res) -> 
+		{
+			Kupac kupac = (Kupac) getKorisnikByJWT(req, res);
+		
+			ArrayList<IstorijaTreninga> it = istorijaTreningaDAO.getIstorijaTreningaByKupacId(kupac.getKorisnickoIme());
+			if(it != null)
+			{
+				return gson.toJson(it);	
+			}
+			return gson.toJson("Nema istorije treninga!");
+		});
+		
+		post("app/getIstorijuTreningaByTrenerId", (req, res) -> 
+		{
+			Trener trener = (Trener) getKorisnikByJWT(req, res);
+			if(trener == null)
+			{
+				return gson.toJson("Morate biti ulogovani kao trener!");
+			}
+			ArrayList<IstorijaTreninga> it = istorijaTreningaDAO.getIstorijaTreningaByTrenerId(trener.getKorisnickoIme());
+			if(it != null)
+			{
+				return gson.toJson(it);	
+			}
+			return gson.toJson("Nema istorije treninga!");
+		});
+		
+		post("app/otkaziTreningKupac", (req, res) -> 
+		{
+			Kupac kupac = (Kupac) getKorisnikByJWT(req, res);
+
+			String itID = req.headers("istorijaTreningaId");
+			if(kupac == null)
+			{
+				return gson.toJson("Morate biti ulogovani kao kupac!");
+			}
+			try {
+			clanarine.getClanarinaByKorisnickoIme(kupac.getKorisnickoIme()).setBrojTermina(clanarine.getClanarinaByKorisnickoIme(kupac.getKorisnickoIme()).getBrojTermina()+1);
+			}
+			catch (Exception e) {
+				return gson.toJson("Nema clanarine");
+			}
+			istorijaTreningaDAO.getIstorijaTreningById(itID).setActive(false);
+			istorijaTreningaDAO.azurirajBazu();
+			return gson.toJson("Trening uspesno otkazan!");
+		});
+		
+		post("app/otkaziTreningTrener", (req, res) -> 
+		{
+			Trener trener = (Trener) getKorisnikByJWT(req, res);
+
+			String itID = req.headers("istorijaTreningaId");
+			if(trener == null)
+			{
+				return gson.toJson("Morate biti ulogovani kao trener!");
+			}
+			try {
+				clanarine.getClanarinaByKorisnickoIme(istorijaTreningaDAO.getIstorijaTreningById(itID).getKupacId()).setBrojTermina(clanarine.getClanarinaByKorisnickoIme(istorijaTreningaDAO.getIstorijaTreningById(itID).getKupacId()).getBrojTermina()+1);
+				}
+				catch (Exception e) {
+					System.out.println("Edge case vrlo domisljato");
+				}
+			
+			istorijaTreningaDAO.getIstorijaTreningById(itID).setActive(false);
+			istorijaTreningaDAO.azurirajBazu();
+			return gson.toJson("Trening uspesno otkazan!");
 		});
 		
 		post("app/gettrenerizaobjekat", (req, res) -> 
