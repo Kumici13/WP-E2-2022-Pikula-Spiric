@@ -149,7 +149,7 @@ new Vue({
         
        
         
-        sortirajPoProsecnojOceni: function(event)  {
+        sortirajPoOceni: function(event)  {
 
             if (this.sortiranje == 'rastuce')   {
                 this.sportskiObjekti.sort(this.rastuce);

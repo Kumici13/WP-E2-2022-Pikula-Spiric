@@ -205,16 +205,7 @@
 				</tbody>
 			</table>
 		</div>
-		
-		<div class="search">
-                        <p>Sortiraj po prosecnoj oceni:</p>
-                        <select v-model:value="sortiranje" class="search" @change="sortirajPoProsecnojOceni">
-                            <option disabled hidden value="">Sortiranje po prosecnoj oceni</option>
-                            <option value="rastuce">Rastuće</option>
-                            <option value="opadajuce">Opadajuće</option>
-                        </select>
-        </div>
-        
+		     
 		
 		<div class="tablebutton">
                     <button  v-if="uloga === '2'" onclick="window.location.href='dodajSportskiObjekat.html'"  class="btn btn-outline-light">Dodaj novi objekat</button>

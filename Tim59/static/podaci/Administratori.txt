@@ -1,1 +1,1 @@
-{"korisnickoIme":"luka","sifra":"luka","ime":"Luka","prezime":"Pikula","pol":"0","uloga":"2","aktivan":true}
+{"korisnickoIme":"luka","sifra":"luka","ime":"Luka","prezime":"Pikulic","pol":"0","uloga":"2","aktivan":true}

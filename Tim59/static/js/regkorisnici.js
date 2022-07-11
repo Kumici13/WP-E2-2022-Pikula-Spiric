@@ -56,11 +56,11 @@ new Vue({
         {
 			if(objekat == "0")
 			{
-				return "Muski";
+				return "Zenski";
 			}
 			else
 			{
-				return "Zenski"
+				return "Muski"
 			}
 	
 		},
