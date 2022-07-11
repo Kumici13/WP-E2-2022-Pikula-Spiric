@@ -13,7 +13,9 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializer;
 
 import beans.IstorijaTreninga;
+import beans.Kupac;
 import beans.Trener;
+import beans.Trening;
 import beans.IstorijaTreninga;
 
 public class IstorijaTreningaDAO {
@@ -21,11 +23,11 @@ public class IstorijaTreningaDAO {
 
 	private int TreningId = 0;
 	
-	public IstorijaTreningaDAO()
+	public IstorijaTreningaDAO(KorisniciDAO korisniciDAO, TreningDAO treningDAO, SportskiObjektiDAO sportskiObjektiDAO)
 	{
 		treninzi = new HashMap<Integer, IstorijaTreninga>();
 
-		ucitajIstorijuTreninga();
+		ucitajIstorijuTreninga(korisniciDAO, treningDAO, sportskiObjektiDAO);
 	}
 	
 	public ArrayList<IstorijaTreninga> getAllIstorijaTreninga()
@@ -35,7 +37,6 @@ public class IstorijaTreningaDAO {
 		for (IstorijaTreninga trening : treninzi.values())	
 		{
 			trenings.add(trening);
-			
 		}
 		
 		return trenings;
@@ -52,8 +53,11 @@ public class IstorijaTreningaDAO {
 				{
 					if(it.getTreningId().equals(treningId))
 					{
-						found = true; //VEC POSTOJI
-						break;
+						if(it.isActive()) 
+						{
+							found = true; //VEC POSTOJI
+							break;
+						}
 					}
 					else 
 					{
@@ -75,7 +79,49 @@ public class IstorijaTreningaDAO {
 		
 	}
 	
-	private void ucitajIstorijuTreninga() 
+	public ArrayList<IstorijaTreninga> getIstorijaTreningaByKupacId(String kupacId)
+	{
+		ArrayList<IstorijaTreninga> trenings = new ArrayList<>();
+		
+		for (IstorijaTreninga trening : treninzi.values())	
+		{
+			if(trening.getKupacId().equals(kupacId)) 
+			{
+				if(trening.isActive()) 
+				{
+					trenings.add(trening);
+				}
+			}
+		}
+		
+		return trenings;
+	}
+	
+	public ArrayList<IstorijaTreninga> getIstorijaTreningaByTrenerId(String trenerId)
+	{
+		ArrayList<IstorijaTreninga> trenings = new ArrayList<>();
+		
+		for (IstorijaTreninga trening : treninzi.values())	
+		{
+			try 
+			{
+				if(trening.getTrening().getTrenerid().equals(trenerId)) 
+				{
+					if(trening.isActive()) 
+					{
+						trenings.add(trening);
+					}
+				}
+			}
+			catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+		
+		return trenings;
+	}
+	
+	private void ucitajIstorijuTreninga(KorisniciDAO korisniciDAO, TreningDAO treningDAO, SportskiObjektiDAO sportskiObjektiDAO) 
 	{
 		String putanja = "./static/podaci/IstorijaTreninga.txt";
 		
@@ -87,9 +133,17 @@ public class IstorijaTreningaDAO {
 			while ((row = bafer.readLine()) != null)	
 			{
 				Gson gson =  new GsonBuilder().excludeFieldsWithoutExposeAnnotation().registerTypeAdapter(Date.class, (JsonDeserializer) (json, typeOfT, context) -> new Date(json.getAsLong())).create();
-				IstorijaTreninga trening = gson.fromJson(row, IstorijaTreninga.class);
-				treninzi.put(Integer.parseInt(trening.getId()), trening);
-				TreningId = Integer.parseInt(trening.getId());
+				IstorijaTreninga it = gson.fromJson(row, IstorijaTreninga.class);
+				
+				it.setTrening(treningDAO.getTreningById(it.getTreningId()));
+				
+				it.setTrener((Trener) korisniciDAO.getKorisnikByKorisnickoIme(it.getTrening().getTrenerid()));
+				it.setKupac((Kupac) korisniciDAO.getKorisnikByKorisnickoIme(it.getKupacId()));
+				it.setSportskiObjekat(sportskiObjektiDAO.getSportskiObjekatById(it.getTrening().getSportskiObjekatid()));
+				
+				
+				treninzi.put(Integer.parseInt(it.getId()), it);
+				TreningId = Integer.parseInt(it.getId());
 			}
 			
 			bafer.close();
@@ -105,6 +159,7 @@ public class IstorijaTreningaDAO {
 	{
 		TreningId++;
 		novaIstorijaTreninga.setId(""+TreningId);
+		
 		treninzi.put(TreningId, novaIstorijaTreninga);
 		
 		sacuvajNovuIstorijuTreninga(novaIstorijaTreninga);
@@ -128,7 +183,7 @@ public class IstorijaTreningaDAO {
 		}
 	}
 
-	private void azurirajBazu()	
+	public void azurirajBazu()	
 	{
 		String putanja = "./static/podaci/IstorijaTreninga.txt";
 		try 

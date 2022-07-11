@@ -17,13 +17,6 @@ new Vue({
 		var d = new Date();
         this.date = d.toLocaleDateString("en-GB");  
 
-        if (this.uloga == null) 
-		{
-            alert('Sta se pravis pametan!');
-            window.localStorage.removeItem('uloga');
-            window.localStorage.removeItem('jwt');
-			window.location = "index.html";
-        }
 
 		let jwt = window.localStorage.getItem('idSporskogObjekta');
         axios

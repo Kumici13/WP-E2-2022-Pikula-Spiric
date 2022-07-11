@@ -87,6 +87,8 @@ public class TreningDAO {
 		return trenings;
 	}
 	
+	
+	
 	public ArrayList<Trener> getTreneriBySportskiObjekatId(String sportskiObjekatId)
 	{
 		ArrayList<Trener> treneri = new ArrayList<>();
