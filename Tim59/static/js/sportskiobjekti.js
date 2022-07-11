@@ -34,6 +34,11 @@ new Vue({
     },
     methods:    
 	{
+		pogledajObjekat: function(idObjekta)
+		{
+			window.localStorage.setItem('idSporskogObjekta', idObjekta);
+			window.location.href='prikaziSportskiObjekat.html';
+		},
         ulogovanKorisnik: function()    
 		{
             return window.localStorage.getItem('jwt') != null;
@@ -120,7 +125,7 @@ new Vue({
                 return '';
             }
         },
-        
+
          rastuce: function (a, b) {
             if ( a.prosecnaOcena < b.prosecnaOcena )  {
               return -1;
@@ -141,7 +146,11 @@ new Vue({
               return 0;
         },
 
-        sortirajPoOceni: function(event)  {
+        
+       
+        
+        sortirajPoProsecnojOceni: function(event)  {
+
             if (this.sortiranje == 'rastuce')   {
                 this.sportskiObjekti.sort(this.rastuce);
             } else  {
@@ -149,6 +158,7 @@ new Vue({
             }
         },
         
+
         rastuceNaziv: function (a,b)
         {
 			 if ( a.naziv < b.naziv )  {
@@ -220,6 +230,7 @@ new Vue({
             }
 	
 		},
+
     },
     computed:   
 	{

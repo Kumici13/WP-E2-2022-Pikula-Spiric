@@ -29,6 +29,10 @@
 		      
 		        width: 200px;   
      		}
+     		.label2 {
+		      
+		        width: 400px;   
+     		}
      		
      		 .table3    {
             	text-align: center;
@@ -42,7 +46,8 @@
 				font-size: 30;
 				padding-left: 530px;
 			}
-			     		
+			
+					
      		
             
            
@@ -80,10 +85,15 @@
                 </select> 
             </div>
             
+            
+            <div class = "textboxovi">
+                <label class="label2"  style="color: white; font-family:Roboto" >Nema slobodnog menadzera?</label>
+            	<td> <button type="button" onclick="window.location.href='registrationAdministrator.html'"  class="btn btn-outline-light">Dodaj menadzera.</button> </td>          	 
+            </div>
             <div class="textboxovi" >
                     <label  style="color: white; font-family:Roboto" >Naziv:</label>
                     <input id="naziv" ref="naziv" v-model="naziv" type="textbox" style="width: 400px; height: 35px">  
-                    <div class="invalid-feedback">Ukucajte vase ime.</div> 
+                    <div class="invalid-feedback" style="color: #F32424; font-family:Roboto">Ukucajte naziv sportskog objekta!</div> 
             </div>   
              <div class="textboxovi"> 
              	<label  style="color: white; font-family:Roboto" >Tip objekta:</label>
@@ -94,41 +104,42 @@
 	                        <option value="PlesniStudio">Plesni studio</option>
 	                        <option value="Drugo">Ostalo</option>
 	            </select> 
-	            <div class="invalid-feedback">Ukucajte vase ime.</div> 
+	           <div class="invalid-feedback" style="color: #F32424; font-family:Roboto">Ukucajte tip objekta!</div>  
             </div>          
             <div class="textboxovi">
                     <label  style="color: white; font-family:Roboto" >Geo duzina:</label>
                     <input id="geoDuzina" ref="geoDuzina" v-model="geoDuzina" type="textbox" style="width: 400px; height: 35px">   
-            		<div class="invalid-feedback">Ukucajte vase ime.</div> 
+            		<div class="invalid-feedback" style="color: #F32424; font-family:Roboto">Ukucajte geofrafsku duzinu!</div>  
             </div> 
             <div class="textboxovi">
                     <label  style="color: white; font-family:Roboto" >Geo sirina:</label>
                     <input id="geoSirina" ref="geoSirina" v-model="geoSirina" type="textbox" style="width: 400px; height: 35px">   
-            		<div class="invalid-feedback">Ukucajte vase ime.</div> 
+            		<div class="invalid-feedback" style="color: #F32424; font-family:Roboto">Ukucajte geofrafsku sirinu!</div> 
             </div> 
             <div class="textboxovi">
                     <label  style="color: white; font-family:Roboto" >Ulica:</label>
                     <input id="ulica" ref="ulica" v-model="ulica" type="textbox" style="width: 400px; height: 35px">   
-            		<div class="invalid-feedback">Ukucajte vase ime.</div> 
+            		<div class="invalid-feedback" style="color: #F32424; font-family:Roboto">Ukucajte ulicu u kojoj se nalazi sportski objekat!</div>  
             </div> 
             <div class="textboxovi">
                     <label  style="color: white; font-family:Roboto" >Broj:</label>
                     <input id="broj" ref="broj" v-model="broj" type="textbox" style="width: 400px; height: 35px">   
-            		<div class="invalid-feedback">Ukucajte vase ime.</div> 
+            		<div class="invalid-feedback" style="color: #F32424; font-family:Roboto">Ukucajte broj ulice!</div> 
             </div> 
             <div class="textboxovi">
                     <label  style="color: white; font-family:Roboto" >Mesto:</label>
-                    <input id="mesto" ref="mesto" v-model="mesto" type="textbox" style="width: 400px; height: 35px">   
+                    <input id="mesto" ref="mesto" v-model="mesto" type="textbox" style="width: 400px; height: 35px"> 
+                    <div class="invalid-feedback" style="color: #F32424; font-family:Roboto">Ukucajte mesto sportskog objekta!</div>   
             </div> 
             <div class="textboxovi">
                     <label  style="color: white; font-family:Roboto" >Postanski broj:</label>
                     <input id="postanskiBroj" ref="postanskiBroj" v-model="postanskiBroj" type="textbox" style="width: 400px; height: 35px">   
-            		<div class="invalid-feedback">Ukucajte vase ime.</div> 
+            		<div class="invalid-feedback" style="color: #F32424; font-family:Roboto">Ukucajte postanski broj od mesta!</div> 
             </div> 
             <div class="textboxovi">
                     <label style="color: white; font-family:Roboto">Logo:</label>
                     <input id="logo" ref="logo" type="file" accept=".jpg,.png,.jpeg" v-on:change="preuzmiSliku()" style="width: 400px; height: 60px">   
-             		<div class="invalid-feedback">Ukucajte vase ime.</div> 
+             		<div class="invalid-feedback" style="color: #F32424; font-family:Roboto">Odabrite logo za vas sportski objekat!</div> 
              </div>
 
 

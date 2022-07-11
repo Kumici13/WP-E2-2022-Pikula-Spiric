@@ -26,7 +26,7 @@ import enums.TipTreninga;
 
 public class TreningDAO {
 	
-private HashMap<Integer, Trening> treninzi;
+	private HashMap<Integer, Trening> treninzi;
 
 	private int TreningId = 0;
 	
@@ -86,6 +86,8 @@ private HashMap<Integer, Trening> treninzi;
 		
 		return trenings;
 	}
+	
+	
 	
 	public ArrayList<Trener> getTreneriBySportskiObjekatId(String sportskiObjekatId)
 	{
@@ -175,7 +177,7 @@ private HashMap<Integer, Trening> treninzi;
 		}
 	}
 
-	private void azurirajBazu()	
+	public void azurirajBazu()	
 	{
 		String putanja = "./static/podaci/Treninzi.txt";
 		try 

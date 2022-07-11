@@ -1,6 +1,7 @@
 package beans;
 
 import java.util.Date;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -11,26 +12,16 @@ import enums.Pol;
 import enums.Uloga;
 
 public class Trener extends Korisnik{
-	@Expose
-	private String istorijaTreninga;
 	
-	public Trener() {
+	public Trener() 
+	{
 		super();
 		this.uloga = Uloga.Trener;
 	}
 	
-	public Trener(String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, String datumRodjenja, String istorijaTreninga, boolean aktivan) {
+	public Trener(String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, String datumRodjenja, List<IstorijaTreninga> istorijaTreninga, boolean aktivan) {
 		super(korisnickoIme, lozinka, ime, prezime, pol,datumRodjenja, Uloga.Trener, aktivan);
 		this.uloga = Uloga.Trener;
-		this.istorijaTreninga = istorijaTreninga;
-	}
-
-	public String getIstorijaTreninga() {
-		return istorijaTreninga;
-	}
-
-	public void setIstorijaTreninga(String istorijaTreninga) {
-		this.istorijaTreninga = istorijaTreninga;
 	}
 	
 	@Override

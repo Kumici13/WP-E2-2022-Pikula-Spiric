@@ -44,7 +44,7 @@
 </head>
 
 <body>
-	 <div class="welcome" id="sportski-objekti-app">
+	 <div class="welcome" id="trener-trening-app">
 			<nav class="navbar navbar-expand  fixed-top" style="background-color: #3E1D57; ">
                 <h1><a  class="naslov"  class="navbar-brand" style="color: white ; font-family:Roboto">Treninzi</a></h1>
                 <div class="collapse navbar-collapse">
@@ -74,13 +74,13 @@
 		</div>
 			
 		<div class="search">
-			<select v-model:value="pretragaPoTipu" style="width: 250px; height: 35px; font-family:Roboto " >
+			<select  style="width: 250px; height: 35px; font-family:Roboto " >
                         <option value="Grupni">Grupni</option>
                         <option value="Personlani">Personalni</option>
             </select>  
-            <input v-model:value="pretragaNaziv" type="textbox" style="width: 250px; height: 35px">  
-            <input v-model:value="pretragaNaziv" type="textbox" style="width: 250px; height: 35px">  
-            <input v-model:value="pretragaNaziv" type="textbox" style="width: 250px; height: 35px">  
+            <input  type="textbox" style="width: 250px; height: 35px">  
+            <input type="textbox" style="width: 250px; height: 35px">  
+            <input type="textbox" style="width: 250px; height: 35px">  
          </div>
          
          
@@ -92,29 +92,33 @@
 						<th>Naziv treninga</th>
 						<th>Tip treninga</th>
 						<th>Sportski objekat</th>
-						<th>Tip sportskog objekta</th>
-						<th>Trajanje</th>
-						<th>Opis</th>
-						<th>Slika</th>			
+						<th>Kupac id</th>
+						<th>Trening Start</th>
+						<th>Trening End</th>
+						<th>Date</th>	
 					</tr>
 				</thead>
 	
 				<tbody>
-					<tr v-for="p in filtriraniObjekti">
-						
+					<tr v-for="p in treninzi">
+						<td>{{p.trening.naziv}}</td>
+						<td>{{p.trening.tip}}</td>
+						<td>{{p.sportskiObjekat.naziv}}</td>
+						<td>{{p.kupac.korisnickoIme}}</td>
+						<td>{{prikaziStart(p)}}</td>
+						<td>{{prikaziKraj(p)}}</td>
+						<td>{{p.datumVreme}}</td>
+                    	<td><button v-if="mozeDaOtkaze(p)"  v-on:click="otkaziIstorijuTreninga(p)">Otkazi trening</button></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		
-		<div class="editbutton">
-                    <button v-on:click="editProduct(p)"  class="btn btn-outline-light">Otkazi trening</button>
              
         </div>
 	</div>
 	<script src="js/vue.js"></script>
 	<script src="js/axios.js"></script>
-	<script src="js/sportskiobjekti.js"></script>
+	<script src="js/trainingTrener.js"></script>
 </body>
 
 </html>
