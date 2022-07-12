@@ -1,3 +1,4 @@
 {"sportskiObjekatId":"4","korisnickoIme":"torbica00","sifra":"torbica00","ime":"Mihajlo","prezime":"Torbica","pol":"1","uloga":"1","aktivan":true}
+{"sportskiObjekatId":"4","korisnickoIme":"menadzerM","sifra":"menadzer123","ime":"Marko","prezime":"Radulovic","pol":"1","uloga":"1","aktivan":true}
 {"sportskiObjekatId":"3","korisnickoIme":"gravarica00","sifra":"gravarica00","ime":"Milos","prezime":"Gravara","pol":"1","uloga":"1","aktivan":true}
 {"sportskiObjekatId":"1","korisnickoIme":"menadzer","sifra":"menadzer123","ime":"Mdfsdf","prezime":"Mdsfsfsd","pol":"1","uloga":"1","aktivan":true}
