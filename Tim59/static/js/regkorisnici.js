@@ -204,21 +204,21 @@ new Vue({
 	
 		},
 		
-		 rastuce: function (a, b) {
-            if ( a.bodovi < b.bodovi )  {
+		 rastuceBodovi: function (a, b) {
+            if ( a.sakupljeniBodovi < b.sakupljeniBodovi )  {
               return -1;
             }
-            if ( a.bodovi > b.bodovi )  {
+            if ( a.sakupljeniBodovi > b.sakupljeniBodovi )  {
               return 1;
             }
             return 0;
         },
 
-        opadajuce: function(a, b)   {
-            if ( a.bodovi > b.bodovi )  {
+        opadajuceBodovi: function(a, b)   {
+            if ( a.sakupljeniBodovi > b.sakupljeniBodovi )  {
                 return -1;
               }
-              if ( a.bodovi < b.bodovi )  {
+              if ( a.sakupljeniBodovi < b.sakupljeniBodovi )  {
                 return 1;
               }
               return 0;
@@ -226,9 +226,9 @@ new Vue({
 
         sortirajPoBodovima: function(event)  {
             if (this.sortiranje == 'rastuce')   {
-                this.regKorisnici.sort(this.rastuce);
+                this.regKorisnici.sort(this.rastuceBodovi);
             } else  {
-                this.regKorisnici.sort(this.opadajuce);
+                this.regKorisnici.sort(this.opadajuceBodovi);
             }
         },
         

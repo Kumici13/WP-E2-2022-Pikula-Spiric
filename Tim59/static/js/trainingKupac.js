@@ -2,7 +2,12 @@ new Vue({
     el: '#kupac-trening-app',
     data:   
 	{
-       treninzi:[]
+       treninzi:[],
+       sortiranje: undefined,
+       pretragaPoTipu: '',
+       pretragaNaziv: '',
+       pretragaCena: '',
+       pretragaDatum: '',
         
     },
     
@@ -173,9 +178,95 @@ new Vue({
 				return false;
 			}
 			return true;
-		}
+		},
+		
+		rastuceNaziv: function (a,b)
+        {
+			 if ( a.trening.naziv < b.trening.naziv )  {
+              return -1;
+            }
+            if ( a.trening.naziv > b.trening.naziv )  {
+              return 1;
+            }
+            return 0;
+       
+		},
+		
+		 opadajuceNaziv: function (a,b)
+        {
+			if ( a.trening.naziv > b.trening.naziv )  {
+                return -1;
+              }
+              if ( a.trening.naziv < b.trening.naziv )  {
+                return 1;
+              }
+              return 0;
+       
+		},
+      
         
-    }
+        sortirajPoNazivu: function(a,b)
+        {
+			
+	 		if (this.sortiranje == 'rastuceNaziv')   {
+                this.treninzi.sort(this.rastuceNaziv);
+            } else  {
+                this.treninzi.sort(this.opadajuceNaziv);
+            }
+	
+		},
+		
+		sortirajPoCeni: function(a,b)
+        {
+			
+	 		if (this.sortiranje == 'rastuceNaziv')   {
+                this.treninzi.sort(this.rastuceCena);
+            } else  {
+                this.treninzi.sort(this.opadajuceCena);
+            }
+	
+		},
+		
+		
+		 rastuceDatum: function (a,b)
+        {
+			 if ( a.datumVreme < b.datumVreme )  {
+              return -1;
+            }
+            if ( a.datumVreme > b.datumVreme )  {
+              return 1;
+            }
+            return 0;
+       
+		},
+		
+		 opadajuceDatum: function (a,b)
+        {
+			if ( a.datumVreme > b.datumVreme )  {
+                return -1;
+              }
+              if ( a.datumVreme < b.datumVreme )  {
+                return 1;
+              }
+              return 0;
+       
+		},
+		
+		sortirajPoDatumu: function(a,b)
+        {
+			
+	 		if (this.sortiranje == 'rastuceDatum')   {
+                this.treninzi.sort(this.rastuceDatum);
+            } else  {
+                this.treninzi.sort(this.opadajuceDatum);
+            }
+	
+		},
+        
+    },
+    
+   
+    
 });
 
 

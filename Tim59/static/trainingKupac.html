@@ -80,9 +80,31 @@
                         <option value="Personlani">Personalni</option>
             </select>  
             <input v-model:value="pretragaNaziv" type="textbox" style="width: 250px; height: 35px">  
-            <input v-model:value="pretragaNaziv" type="textbox" style="width: 250px; height: 35px">  
-            <input v-model:value="pretragaNaziv" type="textbox" style="width: 250px; height: 35px">  
+            <input v-model:value="pretragaCena" type="textbox" style="width: 250px; height: 35px">  
+            <input v-model:value="pretragaDatum" type="textbox" style="width: 250px; height: 35px">  
          </div>
+         
+          <div class="search">
+			<label  style="color: white; font-family:Roboto" >Sortiranje ime sportski objekat:</label>	
+			<label  style="color: white; font-family:Roboto" >Sortiranje po ceni:</label>
+			<label  style="color: white; font-family:Roboto" >Sortiraj po datumu:</label>	
+		</div>
+		
+		<div class="search">	
+                        <select v-model:value="sortiranje"  @change="sortirajPoNazivu" style="width: 250px; height: 35px; font-family:Roboto">
+                            <option value="rastuceNaziv">Rastuce</option>
+                            <option value="opadajuceNaziv">Opadajuce</option>
+                        </select>
+                        <select v-model:value="sortiranje"  @change="sortirajPoCeni" style="width: 250px; height: 35px; font-family:Roboto">
+                        
+                            <option value="rastuceCena">Rastuce</option>
+                            <option value="opadajuceCena">Opadajuce</option>
+                        </select>
+                        <select v-model:value="sortiranje"  @change="sortirajPoDatumu" style="width: 250px; height: 35px; font-family:Roboto">
+                            <option value="rastuceDatum">Rastuce</option>
+                            <option value="opadajuceDatum">Opadajuce</option>
+                        </select>
+        </div>
 	
 		<div  id="sportskiobjekti">
 			<table bgcolor="#DEF7F9" class="table" border="2" id="tabela">
@@ -91,10 +113,10 @@
 						<th>Naziv treninga</th>
 						<th>Tip treninga</th>
 						<th>Sportski objekat</th>
-						<th>Tip sportskog objekta</th>
 						<th>Trening Start</th>
 						<th>Trening End</th>
-						<th>Opis</th>	
+						<th>Datum</th>	
+						<th></th>
 					</tr>
 				</thead>
 	

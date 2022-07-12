@@ -1,1 +1,3 @@
 {"korisnickoIme":"trener","sifra":"trener123","ime":"TrenerIme","prezime":"TrenerPrezime","pol":"1","uloga":"3","aktivan":true}
+{"korisnickoIme":"stanisic00","sifra":"stanisic00","ime":"Andrija","prezime":"Stanisic","pol":"1","uloga":"3","aktivan":true}
+{"korisnickoIme":"vukoman00","sifra":"vukoman00","ime":"Vladimir","prezime":"Vukoman","pol":"1","uloga":"3","aktivan":true}

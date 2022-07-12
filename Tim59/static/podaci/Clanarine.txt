@@ -1,0 +1,1 @@
+{"identifikator":"4","tipClanarine":"Nedeljna","datumPlacanja":"2022-07-11","datumVazenja":"2022-07-18","cena":1500.0,"kupacid":"jovansp03","status":true,"brojTermina":0}

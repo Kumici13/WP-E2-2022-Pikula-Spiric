@@ -1,2 +1,3 @@
-{"sakupljeniBodovi":200.0,"korisnickoIme":"Milica1312","sifra":"milica1312","ime":"Milica","prezime":"Stepanov","pol":"0","uloga":"0","aktivan":true}
-{"sakupljeniBodovi":800.0,"korisnickoIme":"korisnik","sifra":"korisnik123","ime":"Korisnik","prezime":"Korisnikic","pol":"0","uloga":"0","aktivan":true}
+{"sakupljeniBodovi":1000.0,"korisnickoIme":"kupac123","sifra":"kupac123","ime":"Korisnik","prezime":"Korisnikic","pol":"0","uloga":"0","aktivan":true}
+{"sakupljeniBodovi":200.0,"korisnickoIme":"milica00","sifra":"milica00","ime":"Milica","prezime":"Stepanov","pol":"0","uloga":"0","aktivan":true}
+{"sakupljeniBodovi":0.0,"korisnickoIme":"jovansp03","sifra":"jovansp03","ime":"Jovan","prezime":"Spiric","pol":"1","uloga":"0","aktivan":true}
